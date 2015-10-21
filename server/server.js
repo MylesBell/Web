@@ -5,8 +5,8 @@ var socketio = require('socket.io');
 var io = socketio.listen(1337);
 
 io.on('connection', function(socket){
-	// As SocketIO doesn't include namespace protocols,
-	// we implement our own room system
+    // As SocketIO doesn't include namespace protocols,
+    // we implement our own room system
     socket.on('subscribe', function (data) {
         console.log("["+socket.id+"] joined "+data.name);
         socket.join(data.name);
