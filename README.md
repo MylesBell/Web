@@ -4,3 +4,4 @@ Server, mobile and developer tools for the SocketIO non-local code in the Granit
 # Code Standardisation
 * Indent using spaces, not tabs
 * 4 space indentation on blocks
+* Unix standard LF line terminators
