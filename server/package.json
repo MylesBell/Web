@@ -1,0 +1,10 @@
+{
+    "name": "GraniteServer",
+    "version": "1.0.0",
+    "description": "SocketIO Server for Granite project",
+    "author": "Joseph Foulds",
+    "dependencies": {
+        "socket.io": "latest"
+    },
+    "private": true
+}
