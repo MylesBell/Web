@@ -1,0 +1,10 @@
+{
+    "name": "GraniteMobileCLI",
+    "version": "1.0.0",
+    "description": "SocketIO Client for simulating mobile clients for Granite project",
+    "author": "Joseph Foulds",
+    "dependencies": {
+        "socket.io-client": "latest"
+    },
+    "private": true
+}
