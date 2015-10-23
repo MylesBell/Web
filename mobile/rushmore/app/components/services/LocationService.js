@@ -8,7 +8,7 @@ angular.module('myApp').factory('LocationService', function($q, $location) {
     /* --------------------
         PUBLIC API
     ---------------- */
-    
+
     return {
         setPath: setPath
     };

@@ -8,7 +8,7 @@ angular.module('myApp').factory('NetworkService', function($q, socket) {
     /* --------------------
         PUBLIC API
     ---------------- */
-    
+
     return {
         send: send
     };
@@ -16,7 +16,7 @@ angular.module('myApp').factory('NetworkService', function($q, socket) {
     // Sends a message over the socket to the server
     // takes a callback that calls when the server handles the response
     function send(eventName, msg, callback) {
-        socket.emit(eventName, msg, callback);       
+        socket.emit(eventName, msg, callback);
     }
 
 

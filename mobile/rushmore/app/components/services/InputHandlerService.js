@@ -8,7 +8,7 @@ angular.module('myApp').factory('InputHandlerService', function($q, NetworkServi
     /* --------------------
         PUBLIC API
     ---------------- */
-    
+
     return {
         handleInput: handleInput
     };
@@ -20,10 +20,12 @@ angular.module('myApp').factory('InputHandlerService', function($q, NetworkServi
     function handleInput(input) {
         var deferred = $q.defer();
 
-        NetworkService.send("user input", {input: input.direction}, function(res){
-            if (res.ok === false){
+        NetworkService.send("user input", {
+            input: input.direction
+        }, function(res) {
+            if (res.ok === false) {
                 deferred.reject(res);
-            } else{
+            } else {
                 deferred.resolve(res);
             }
         });

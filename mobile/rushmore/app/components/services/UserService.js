@@ -8,7 +8,7 @@ angular.module('myApp').factory('UserService', function($q, NetworkService) {
     /* --------------------
         PUBLIC API
     ---------------- */
-    
+
     return {
         registerWithServer: registerWithServer
     };
@@ -20,10 +20,12 @@ angular.module('myApp').factory('UserService', function($q, NetworkService) {
     function registerWithServer(username) {
         var deferred = $q.defer();
 
-        NetworkService.send("user register", {username: username}, function(res){
-            if (res.ok === false){
+        NetworkService.send("user register", {
+            username: username
+        }, function(res) {
+            if (res.ok === false) {
                 deferred.reject(res);
-            } else{
+            } else {
                 deferred.resolve(res);
             }
         });
