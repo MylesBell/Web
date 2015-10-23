@@ -11,4 +11,5 @@ angular.module('myApp.view1', ['ngRoute'])
 
 .controller('View1Ctrl', ['$scope', 'NetworkService', function($scope, NetworkService) {
 	$scope.teststring = "hello world";
+	NetworkService.send("message", {name: "johnny"}).then(console.log("Done"));
 }]);
