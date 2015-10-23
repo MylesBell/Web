@@ -2,10 +2,19 @@
 
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
-  'ngRoute',
-  'myApp.view1',
-  "btford.socket-io"
+	'ngRoute',
+	'splashView',
+	'gameView',
+	"btford.socket-io"
 ]).
 config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/view1'});
+	$routeProvider.when('/game', {
+		templateUrl: 'views/game/game.html',
+		controller: 'GameCtrl'
+	}).when('/splash', {
+		templateUrl: 'views/splash/splash.html',
+		controller: 'SplashCtrl'
+	}).otherwise({
+		redirectTo: '/splash'
+	});
 }]);
