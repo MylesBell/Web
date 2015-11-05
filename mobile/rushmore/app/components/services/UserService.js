@@ -24,6 +24,7 @@ angular.module('myApp').factory('UserService', function($q, NetworkService) {
             username: username
         });
 
+        //TODO make this proper
         deferred.resolve({ok:true, username:username});
         return deferred.promise;
     }

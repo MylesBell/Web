@@ -18,8 +18,8 @@ angular.module('myApp').factory('LocationService', function($q, $location) {
     */
     function setPath(path) {
         console.log(path);
-        var path = $location.path(path);
-        // $location.path(path);
+        // var path = $location.path(path);
+        $location.path(path);
     }
 
 });

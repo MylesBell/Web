@@ -21,6 +21,7 @@ angular.module('splashView', ['ngRoute'])
             .then(function(res) {
                 console.log(res);
             }).then(function() {
+                // $location.path('/game');
                 LocationService.setPath('/game');
             }).catch(function(res) {
                 console.log(res);
