@@ -1,5 +1,7 @@
 // Require the SocketIO library
 var socketio = require('socket.io');
+var housekeeping = require('./housekeeping');
+var mobile = require('./mobile');
 
 var port = 1337;
 
@@ -11,63 +13,21 @@ var MOBILE_CHAN = "mobile";
 console.log("socket server listening on " + port)
 
 io.on('connection', function(socket) {
-
-    var username = "";
-
-    console.log("Client [" + socket.id + "] connected");
-
-    socket.on('user register', function(data) {
-
-        var res = {}
-
-        if (data.username !== "") {
-            username = data.username;
-            res.ok = true;
-            res.username = username;
-        } else {
-            res.ok = false;
-        }
-
-        console.log(res);
-        if(res.ok){
-            io.sockets.in(UNITY_CHAN).emit('playerJoin', res);
-        }
-    });
+    housekeeping.connect(socket);
 
     socket.on('disconnect', function(data) {
-        console.log("Client [" + socket.id + "] dis-connected");
+        housekeeping.disconnect(socket, data);
     })
 
-    // As SocketIO doesn't include namespace protocols,
-    // we implement our own room system
     socket.on('subscribe', function(data) {
-        console.log("[" + socket.id + "] joined " + data.name);
-        socket.join(data.name);
+        housekeeping.subscribe(socket, data);
     });
 
-    // PoC test to show broadcast events from one group
-    // to all elements in another group
-    socket.on('message', function(data) {
-        console.log("[" + socket.id + "] message to " + data.name);
-        io.sockets.in(data.name).emit('message', data);
+    socket.on('playerRegister', function(data) {
+        mobile.register(socket, data);
     });
 
-    // Direction movement control for heroes
-    socket.on('direction', function(data) {
-        var res = {}
-        var input = {};
-
-        if (data.direction !== "") {
-            input = data.input;
-            res.ok = true;
-            res.input = input;
-        } else {
-            res.ok = false;
-        }
-
-        console.log(res);
-        if(res.ok){
-            io.sockets.in(UNITY_CHAN).emit('playerDirection', res);
-        }
+    socket.on('playerDirection', function(data) {
+        mobile.playerDirection(socket, data);  
     });
 });
