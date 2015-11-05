@@ -15,6 +15,6 @@ config(['$routeProvider', function($routeProvider) {
         templateUrl: 'views/splash/splash.html',
         controller: 'SplashCtrl'
     }).otherwise({
-        redirectTo: '/splash'
+        redirectTo: '/game'
     });
 }]);

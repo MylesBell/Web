@@ -20,15 +20,10 @@ angular.module('myApp').factory('InputHandlerService', function($q, NetworkServi
     function handleInput(input) {
         var deferred = $q.defer();
 
-        NetworkService.send("user input", {
+        NetworkService.send("direction", {
             input: input.direction
-        }, function(res) {
-            if (res.ok === false) {
-                deferred.reject(res);
-            } else {
-                deferred.resolve(res);
-            }
         });
+        deferred.resolve({ok:true});
 
         return deferred.promise;
     }
