@@ -22,14 +22,10 @@ angular.module('myApp').factory('UserService', function($q, NetworkService) {
 
         NetworkService.send("user register", {
             username: username
-        }, function(res) {
-            if (res.ok === false) {
-                deferred.reject(res);
-            } else {
-                deferred.resolve(res);
-            }
         });
 
+        //TODO make this proper
+        deferred.resolve({ok:true, username:username});
         return deferred.promise;
     }
 
