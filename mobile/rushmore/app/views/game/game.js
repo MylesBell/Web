@@ -1,7 +1,4 @@
-'use strict';
-
 angular.module('gameView', ['ngRoute'])
-
 .controller('GameCtrl', ['$scope', 'InputHandlerService', function($scope, InputHandlerService) {
 
     /*
@@ -16,7 +13,7 @@ angular.module('gameView', ['ngRoute'])
             console.log(res);
         }).catch(function(res) {
             console.log(res);
-        })
+        });
     };
 
 
