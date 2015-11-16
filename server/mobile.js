@@ -19,9 +19,7 @@ module.exports = {
         }
 
         console.log(res);
-        if(res.ok){
-            io.sockets.in(UNITY_CHAN).emit('playerJoin', res);
-        }
+        return res;
     },
 
     // Direction movement control for heroes
@@ -38,9 +36,7 @@ module.exports = {
         }
 
         console.log(res);
-        if(res.ok){
-            io.sockets.in(UNITY_CHAN).emit('playerDirection', res);
-        }
+        return res;
     },
 
 };
