@@ -1,0 +1,6 @@
+deployment:
+  staging:
+    branch: master
+    codedeploy:
+      3rd Year Web:
+        deployment_group: my-deployment-group
