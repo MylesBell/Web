@@ -24,10 +24,16 @@ io.on('connection', function(socket) {
     });
 
     socket.on('playerRegister', function(data) {
-        mobile.register(socket, data);
+        var res = mobile.register(socket, data);
+        if(res.ok){
+            io.sockets.in(UNITY_CHAN).emit('playerJoin', res);
+        }
     });
 
     socket.on('playerDirection', function(data) {
-        mobile.playerDirection(socket, data);  
+        var res = mobile.playerDirection(socket, data);
+        if(res.ok){
+            io.sockets.in(UNITY_CHAN).emit('playerDirection', res);
+        }
     });
 });
