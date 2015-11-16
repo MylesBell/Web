@@ -23,7 +23,7 @@ module.exports = {
     },
 
     // Direction movement control for heroes
-    moveDirection: function(socket, data){
+    playerDirection: function(socket, data){
         var res = {}
         var input = {};
 
