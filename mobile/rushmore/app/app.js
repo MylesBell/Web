@@ -1,11 +1,10 @@
-'use strict';
-
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
     'ngRoute',
     'splashView',
     'gameView',
-    "btford.socket-io"
+    "btford.socket-io",
+    "config"
 ]).
 config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/game', {

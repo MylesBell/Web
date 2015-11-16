@@ -1,7 +1,6 @@
-angular.module('myApp').factory('socket', function(socketFactory) {
-    var hostName = 'http://icantmiss.com:';
-    var port = '1337';
-    var myIoSocket = io.connect(hostName + port);
+angular.module('myApp').factory('socket', function(socketFactory, ENV) {
+
+    var myIoSocket = io.connect(ENV.socketIOEndpoint);
 
     mySocket = socketFactory({
         ioSocket: myIoSocket
