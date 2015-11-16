@@ -3,7 +3,7 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 
-var port = 7777;
+var port = 80;
 
 // Serve static files from the app folder
 app.use(express.static('app'));

@@ -20,7 +20,7 @@ angular.module('myApp').factory('UserService', function($q, NetworkService) {
     function registerWithServer(username) {
         var deferred = $q.defer();
 
-        NetworkService.send("user register", {
+        NetworkService.send("playerRegister", {
             username: username
         });
 
