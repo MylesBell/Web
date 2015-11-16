@@ -2,6 +2,7 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-bower-task');
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-nodemon');
 
     grunt.initConfig({
         bower: {
@@ -24,10 +25,16 @@ module.exports = function(grunt) {
                     console: true
                 }
             }
+        },
+        nodemon: {
+            dev: {
+                script: 'local_server/server.js'
+            }
         }
     });
 
     grunt.registerTask("check", ["jshint"]);
     grunt.registerTask("install", ['bower:install']);
-    grunt.registerTask("default", ["check", 'install']);
+    grunt.registerTask("server", ["nodemon:dev"]);
+    grunt.registerTask("default", ["check", 'install', "server"]);
 };
