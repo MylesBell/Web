@@ -1,25 +1,36 @@
 // Require the SocketIO library
 var socketio = require('socket.io');
 
-var UNITY_CHAN = "unity";
-var MOBILE_CHAN = "mobile";
-
-
 module.exports = {
     // Log whenever a client joins
-    connect: function(socket){
-        console.log("Client [" + socket.id + "] connected");
+    connect: function(socket, logger){
+        // Handle connect methods later
+        logger.log(socket, logger.loggableModules["CONNECT"]);
     },
 
     // Log the client disconnects
-    disconnect: function (socket, data) {
-        console.log("Client [" + socket.id + "] dis-connected");
+    disconnect: function (socket, logger) {
+        // Handle disconnect methods later
+        logger.log(socket, logger.loggableModules["DISCONNECT"]);
     },
 
     // As SocketIO doesn't include namespace protocols,
     // we implement our own room system using joins
-    subscribe: function (socket, data) {
-        console.log("[" + socket.id + "] joined " + data.name);
+    subscribe: function (socket, data, logger) {
         socket.join(data.name);
+        logger.log(socket, logger.loggableModules["SUBSCRIBE"], data);
     },
+
+    logger: {
+        loggableModules : {
+            "CONNECT" : "Connected",
+            "DISCONNECT" : "Disconnected",
+            "SUBSCRIBE" : "Subscribed",
+            "PLAYER_REGISTER" : "Player Registration",
+            "PLAYER_DIRECTION" : "Player Direction"
+        },
+        log: function (socket, method, data) {
+            console.log("[" + socket.id + "] " + method + " : " + JSON.stringify(data));
+        }
+    }
 };
