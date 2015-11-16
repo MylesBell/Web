@@ -1,10 +1,6 @@
 // Require the SocketIO library
 var socketio = require('socket.io');
 
-var UNITY_CHAN = "unity";
-var MOBILE_CHAN = "mobile";
-
-
 module.exports = {
     // Log whenever a client joins
     connect: function(socket){
