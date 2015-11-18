@@ -42,7 +42,7 @@ module.exports = function (grunt) {
                 script: 'rushmore/local_server/server.js',
                 options: {
                     env: {
-                        PORT: '80'
+                        PORT: '3000' // we port forward all 80 traffic to 3000
                     },
                 }
             },
