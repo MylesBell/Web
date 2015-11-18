@@ -1,14 +1,10 @@
 // Require the SocketIO library
 var socketio = require('socket.io');
 
-var UNITY_CHAN = "unity";
-var MOBILE_CHAN = "mobile";
-
-
 module.exports = {
     // Register a new user with the system
-    register: function(socket, data){
-        var res = {}
+    register: function(socket, data, logger){
+        var res = {};
 
         if (data.username !== "") {
             username = data.username;
@@ -18,13 +14,13 @@ module.exports = {
             res.ok = false;
         }
 
-        console.log(res);
+        logger.log(socket, logger.loggableModules.PLAYER_REGISTER, res);
         return res;
     },
 
     // Direction movement control for heroes
-    playerDirection: function(socket, data){
-        var res = {}
+    playerDirection: function(socket, data, logger){
+        var res = {};
         var input = {};
 
         if (data.direction !== "") {
@@ -35,7 +31,7 @@ module.exports = {
             res.ok = false;
         }
 
-        console.log(res);
+        logger.log(socket, logger.loggableModules.PLAYER_DIRECTION, res);
         return res;
     },
 

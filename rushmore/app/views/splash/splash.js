@@ -1,8 +1,4 @@
-'use strict';
-
 angular.module('splashView', ['ngRoute'])
-
-
 .controller('SplashCtrl', ['$scope', 'UserService', 'LocationService', function($scope, UserService, LocationService) {
 
 
@@ -25,7 +21,7 @@ angular.module('splashView', ['ngRoute'])
                 LocationService.setPath('/game');
             }).catch(function(res) {
                 console.log(res);
-            })
-    }
+            });
+    };
 
 }]);
