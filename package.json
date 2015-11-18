@@ -1,14 +1,14 @@
 {
-  "name": "angular-seed",
+  "name": "3rdYearWebServers",
   "private": true,
-  "version": "0.0.0",
-  "description": "A starter project for AngularJS",
-  "repository": "https://github.com/angular/angular-seed",
+  "version": "1.0.0",
+  "description": "SocketIO Server for Granite project and the rushmore angualr web app",
   "license": "MIT",
   "devDependencies": {
     "bower": "^1.6.3",
     "grunt": "^0.4.5",
     "grunt-bower-task": "^0.4.0",
+    "grunt-concurrent": "^2.1.0",
     "grunt-contrib-jshint": "^0.11.3",
     "grunt-ng-constant": "^1.1.0",
     "grunt-nodemon": "^0.4.0",
@@ -22,9 +22,11 @@
     "karma-junit-reporter": "^0.2.2",
     "protractor": "^2.1.0"
   },
-  "scripts": {},
+  "scripts": {
+    "test": "grunt check"
+  },
   "dependencies": {
     "express": "^4.13.3",
-    "socket.io": "^1.3.7"
+    "socket.io": "latest"
   }
 }
