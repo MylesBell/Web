@@ -1,4 +1,4 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-bower-task');
     grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -30,8 +30,21 @@ module.exports = function(grunt) {
             }
         },
         nodemon: {
-            angular: {
-                script: 'rushmore/local_server/server.js'
+            angular_loc: {
+                script: 'rushmore/local_server/server.js',
+                options: {
+                    env: {
+                        PORT: '7777'
+                    },
+                }
+            },
+            angular_prod: {
+                script: 'rushmore/local_server/server.js',
+                options: {
+                    env: {
+                        PORT: '80'
+                    },
+                }
             },
             socket: {
                 script: 'socket_server/server.js'
@@ -62,21 +75,23 @@ module.exports = function(grunt) {
             }
         },
         concurrent: {
-          run: {
-            tasks: ['nodemon:angular', 'nodemon:socket'],
-            options: {
-              logConcurrentOutput: true
+            run: {
+                tasks: ['run-angular-local', 'run-socket-prod'],
+                options: {
+                    logConcurrentOutput: true
+                }
             }
-          }
         },
     });
 
     grunt.registerTask("check", ["jshint"]);
     grunt.registerTask("install", ['bower:install']);
-    grunt.registerTask("run-angular", ["nodemon:angular"]);
     grunt.registerTask("run-socket", ["nodemon:socket"]);
-    grunt.registerTask("default", ["check", 'install', "concurrent:run"]);
-    grunt.registerTask("run-local", ["ngconstant:dev", "default"]);
-    grunt.registerTask("run-prod", ["ngconstant:prod", "default"]);
+    grunt.registerTask("default", ["check", 'install']);
+    grunt.registerTask("run-angular-local", ["default", "ngconstant:dev", "nodemon:angular_loc"]);
+    grunt.registerTask("run-angular-prod", ["default", "ngconstant:prod", "nodemon:angular_prod"]);
+    grunt.registerTask("run-socket-prod", ["default", "nodemon:socket"]);
+    
+    grunt.registerTask("run-concurrent-local", ["concurrent:run"]);
 
 };
