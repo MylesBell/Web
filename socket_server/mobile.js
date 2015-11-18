@@ -5,11 +5,13 @@ module.exports = {
     // Register a new user with the system
     register: function(socket, data, logger){
         var res = {};
+        var username;
 
         if (data.username !== "") {
             username = data.username;
             res.ok = true;
             res.username = username;
+            res.uID = socket.id;
         } else {
             res.ok = false;
         }
@@ -27,6 +29,7 @@ module.exports = {
             input = data.input;
             res.ok = true;
             res.input = input;
+            res.uID = socket.id;
         } else {
             res.ok = false;
         }
