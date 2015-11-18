@@ -33,7 +33,7 @@ io.on('connection', function(socket) {
     });
 
     socket.on('playerDirection', function(data) {
-        var res = mobile.moveDirection(socket, data, housekeeping.logger);
+        var res = mobile.playerDirection(socket, data, housekeeping.logger);
 
         if(res.ok){
             io.sockets.in(UNITY_CHAN).emit('playerDirection', res);

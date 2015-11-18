@@ -4,7 +4,7 @@ var app = express();
 var http = require('http').Server(app);
 var path = require('path');
 
-var port = 7777;
+var port = 80;
 
 // Serve static files from the app folder
 app.use(express.static('./rushmore/app'));
