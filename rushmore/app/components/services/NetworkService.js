@@ -4,7 +4,7 @@
 */
 angular.module('myApp').factory('NetworkService', function($q, socket) {
     
-    var listenerEventList = {};
+    var listenerEventList = [];
     
     socket.emit("subscribe", {"name" : "mobile"});
 
@@ -14,8 +14,7 @@ angular.module('myApp').factory('NetworkService', function($q, socket) {
 
     socket.on('gamePlayerJoined', function (data) {
         alert("Joined "+data.team);
-        alert("Game is "+data.state);
-        
+        alert("Game is "+data.state);        
         alertListeners("gamePlayerJoined", data);
     });
     
@@ -44,6 +43,6 @@ angular.module('myApp').factory('NetworkService', function($q, socket) {
     }
     
     function registerListener(listenerEvent) {
-        listenerEventList.add(listenerEvent);
+        listenerEventList.push(listenerEvent);
     }
 });

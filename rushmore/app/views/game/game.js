@@ -16,7 +16,7 @@ angular.module('gameView', ['ngRoute'])
         });
     };
     
-    $scope.team = 0;
+    $scope.teamClass = 'blue-team';
     
     /*
         Register with the network service to listen to game events fired from the server
@@ -25,8 +25,10 @@ angular.module('gameView', ['ngRoute'])
     
     function playerJoinedEvent(data){
         if(data.team === 0){
+            $scope.teamClass = 'red-team';
             console.log("RED TEAM");
         } else if(data.team === 1){
+            $scope.teamClass = 'blue-team';
             console.log("BLUE TEAM");
         }
     }

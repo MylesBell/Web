@@ -120,7 +120,6 @@ label {
  */
 
 .splash-container {
-    background: #1f8dd6;
     z-index: 1;
     overflow: hidden;
     /* The following styles are required for the "scroll-over" effect */
@@ -180,6 +179,14 @@ label {
     border-radius: 5px;
     margin-left: 2em;
     margin-right: 2em;
+}
+
+.blue-team{
+        background: #1f8dd6;        
+}
+
+.red-team{
+        background: red;        
 }
 
 /* do not group these rules */
