@@ -60,7 +60,7 @@ label {
 
 .pure-game-button {
     border-radius: 5px;
-    height: 70px;
+    height: 60px;
     display: flex;
     justify-content: center;
     margin: 20px;
@@ -148,7 +148,7 @@ label {
     height: 100%;
     margin: auto;
     position: absolute;
-    top: 30%; left: 0; bottom: 0; right: 0;
+    top: 20%; left: 0; bottom: 0; right: 0;
     text-align: center;
     text-transform: uppercase;
 }
