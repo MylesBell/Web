@@ -18,15 +18,23 @@ angular.module('gameView', ['ngRoute'])
     
      var HAS_TOUCH = ('ontouchstart' in window);
                     
-    function print(){
+    function left(){
        $scope.inputButtonClicked('left');
     }
     
+     function right(){
+       $scope.inputButtonClicked('right');
+    }
+    
     // Enable click & dblclick events, and monitor both.
-    var both = document.getElementById('right-button');
-    both.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', doubleTap(), false);
-    both.addEventListener('tap', print, false);
-    both.addEventListener('dbltap', print, false);
+    var rightButton = document.getElementById('right-button');
+    var leftButton = document.getElementById('left-button');
+    rightButton.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', doubleTap(), false);
+    rightButton.addEventListener('tap', right, false);
+    rightButton.addEventListener('dbltap', right, false);
+    leftButton.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', doubleTap(), false);
+    leftButton.addEventListener('tap', left, false);
+    leftButton.addEventListener('dbltap', left, false);
 
 
 
