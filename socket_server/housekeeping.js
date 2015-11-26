@@ -30,7 +30,8 @@ module.exports = {
             "PLAYER_DIRECTION" : "Player Direction",
             "GAME_PLAYER_DIED" : "Game Player Died",
             "GAME_PLAYER_RESPAWN" : "Game Player Respawn",
-            "GAME_STATE_UPDATE" : "Game State Update"
+            "GAME_STATE_UPDATE" : "Game State Update",
+            "GAME_PLAYER_JOIN" : "Game Player Joined"
         },
         log: function (socket, method, data) {
             console.log("[" + socket.id + "] " + method + " : " + JSON.stringify(data));
