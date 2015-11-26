@@ -128,6 +128,7 @@ label {
     top: 0;
     left: 0;
     position: fixed !important;
+    background: #1f8dd6;        
 }
 
 .splash {
