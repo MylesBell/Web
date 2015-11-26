@@ -3,7 +3,11 @@
     connects to mobile server using socketio client
 */
 angular.module('myApp').factory('NetworkService', function($q, socket) {
+    socket.emit("subscribe", {"name" : "mobile"});
 
+    socket.on('gameStateUpdate', function (data) {
+        alert(data.state);
+    });
 
     /* --------------------
         PUBLIC API
@@ -18,14 +22,4 @@ angular.module('myApp').factory('NetworkService', function($q, socket) {
     function send(eventName, msg) {
         socket.emit(eventName, msg);
     }
-
-
-    /*----------------
-    SOCKET EVENT HANDLERS
-
-    -----------------*/
-    socket.on('setup', function(msg) {
-        console.log(msg);
-    });
-
 });

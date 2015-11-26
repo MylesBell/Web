@@ -27,7 +27,10 @@ module.exports = {
             "DISCONNECT" : "Disconnected",
             "SUBSCRIBE" : "Subscribed",
             "PLAYER_REGISTER" : "Player Registration",
-            "PLAYER_DIRECTION" : "Player Direction"
+            "PLAYER_DIRECTION" : "Player Direction",
+            "GAME_PLAYER_DIED" : "Game Player Died",
+            "GAME_PLAYER_RESPAWN" : "Game Player Respawn",
+            "GAME_STATE_UPDATE" : "Game State Update"
         },
         log: function (socket, method, data) {
             console.log("[" + socket.id + "] " + method + " : " + JSON.stringify(data));
