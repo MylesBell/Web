@@ -19,7 +19,7 @@ angular.module('gameView', ['ngRoute'])
      var HAS_TOUCH = ('ontouchstart' in window);
                     
     function print(){
-        console.log("clicekd");
+       $scope.inputButtonClicked('left');
     }
     
     // Enable click & dblclick events, and monitor both.
