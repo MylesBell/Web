@@ -60,7 +60,7 @@ label {
 
 .pure-game-button {
     border-radius: 5px;
-    height: 100px;
+    height: 70px;
     display: flex;
     justify-content: center;
     margin: 20px;
@@ -68,7 +68,7 @@ label {
 
 .pure-game-button > div {
    align-self: center;
-   font-size: x-large;
+   font-size: large;
 }
 
 
@@ -134,7 +134,7 @@ label {
 .splash {
     /* absolute center .splash within .splash-container */
     width: 80%;
-    height: 70%;
+    height: 100%;
     margin: auto;
     position: absolute;
     top: 100px; left: 0; bottom: 0; right: 0;
@@ -266,7 +266,7 @@ label {
     to work with */
     .splash {
         width: 50%;
-        height: 50%;
+        height: 80%;
     }
 
     .splash-head {
