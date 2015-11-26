@@ -67,4 +67,13 @@ io.on('connection', function(socket) {
         }
     });
 
+
+    socket.on('gamePlayerJoined', function(data) {
+        var res = unity.gamePlayerJoined(socket, data, housekeeping.logger);
+
+        if(res.ok){
+            io.sockets.in(res.player).emit('gamePlayerJoined', res);
+        }
+    });
+
 });

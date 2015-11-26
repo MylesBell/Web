@@ -9,6 +9,11 @@ angular.module('myApp').factory('NetworkService', function($q, socket) {
         alert(data.state);
     });
 
+    socket.on('gamePlayerJoined', function (data) {
+        alert("Joined "+data.team);
+        alert("Game is "+data.state);
+    });
+
     /* --------------------
         PUBLIC API
     ---------------- */
