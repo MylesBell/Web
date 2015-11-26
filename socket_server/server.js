@@ -2,6 +2,7 @@
 var socketio = require('socket.io');
 var housekeeping = require('./housekeeping');
 var mobile = require('./mobile');
+var unity = require('./unity');
 
 var port = 1337;
 
@@ -24,8 +25,9 @@ io.on('connection', function(socket) {
         housekeeping.subscribe(socket, data, housekeeping.logger);
     });
 
+    /* Mobile events */
     socket.on('playerRegister', function(data) {
-        var res = mobile.register(socket, data, housekeeping.logger);
+        var res = mobile.playerRegister(socket, data, housekeeping.logger);
 
         if(res.ok){
             io.sockets.in(UNITY_CHAN).emit('playerJoin', res);
@@ -39,4 +41,30 @@ io.on('connection', function(socket) {
             io.sockets.in(UNITY_CHAN).emit('playerDirection', res);
         }
     });
+
+    /* Unity events */
+    socket.on('gamePlayerRespawn', function(data) {
+        var res = unity.gamePlayerRespawn(socket, data, housekeeping.logger);
+
+        if(res.ok){
+            io.sockets.in(MOBILE_CHAN).emit('gamePlayerRespawn', res);
+        }
+    });
+
+    socket.on('gamePlayerDied', function(data) {
+        var res = unity.gamePlayerDied(socket, data, housekeeping.logger);
+
+        if(res.ok){
+            io.sockets.in(MOBILE_CHAN).emit('gamePlayerDied', res);
+        }
+    });
+
+    socket.on('gameStateUpdate', function(data) {
+        var res = unity.gameStateUpdate(socket, data, housekeeping.logger);
+
+        if(res.ok){
+            io.sockets.in(MOBILE_CHAN).emit('gameStateUpdate', res);
+        }
+    });
+
 });

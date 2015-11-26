@@ -3,7 +3,7 @@ var socketio = require('socket.io');
 
 module.exports = {
     // Register a new user with the system
-    register: function(socket, data, logger){
+    playerRegister: function(socket, data, logger){
         var res = {};
         var username;
 
