@@ -6,13 +6,14 @@
 
 <div class="splash-container">
     <div class="splash">
+        <div class="pure-g">               
+            <input class="splash-input-box pure-u-1 pure-u-md-1-2" type="text" ng-model="username" ng-click="username = ''"/>
+            <p class="splash-subhead">
+                Join the fight, destroy the enemy base, win the war.
+            </p>
 
-        <input class="splash-input-box" type="text" ng-model="username" ng-click="username = ''"/>
-        <p class="splash-subhead">
-            Join the fight, destroy the enemy base, win the war.
-        </p>
-        <p>
-            <a class="pure-button" id="deploy-button" ng-click="deploy()">Deploy</a>
-        </p>
+            <a class="deploy-button pure-u-1 pure-u-md-1-2" id="deploy-button" ng-click="deploy()">Deploy</a>
+
+        </div>        
     </div>
 </div>
