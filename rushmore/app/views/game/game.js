@@ -15,6 +15,18 @@ angular.module('gameView', ['ngRoute'])
             console.log(res);
         });
     };
+    
+     var HAS_TOUCH = ('ontouchstart' in window);
+                    
+    function print(){
+        console.log("clicekd");
+    }
+    
+    // Enable click & dblclick events, and monitor both.
+    var both = document.getElementById('right-button');
+    both.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', doubleTap(), false);
+    both.addEventListener('tap', print, false);
+    both.addEventListener('dbltap', print, false);
 
 
 
