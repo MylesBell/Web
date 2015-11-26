@@ -134,13 +134,25 @@ label {
 .splash {
     /* absolute center .splash within .splash-container */
     width: 80%;
-    height: 100%;
+    height: 80%;
     margin: auto;
     position: absolute;
     top: 100px; left: 0; bottom: 0; right: 0;
     text-align: center;
+    text-transform: uppercase;    
+}
+
+.controller-container {
+    /* absolute center .splash within .splash-container */
+    width: 80%;
+    height: 100%;
+    margin: auto;
+    position: absolute;
+    top: 30%; left: 0; bottom: 0; right: 0;
+    text-align: center;
     text-transform: uppercase;
 }
+
 
 .splash h1{
     color: white;
@@ -159,6 +171,15 @@ label {
     font-weight: 100;
     border-radius: 5px;
     line-height: 1em;
+}
+
+.deploy-button{
+    background-color: white;
+    color: grey;
+    padding: 0.5em 2em;
+    border-radius: 5px;
+    margin-left: 2em;
+    margin-right: 2em;
 }
 
 /* do not group these rules */
