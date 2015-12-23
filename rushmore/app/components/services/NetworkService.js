@@ -11,10 +11,9 @@ angular.module('myApp').factory('NetworkService', function($q, socket) {
     socket.on('gameStateUpdate', function (data) {
         alert(data.state);
     });
-
+    
+    // called by the sever when a player has their request to join a game granted
     socket.on('gamePlayerJoined', function (data) {
-        alert("Joined "+data.team);
-        alert("Game is "+data.state);        
         alertListeners("gamePlayerJoined", data);
     });
     

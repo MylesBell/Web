@@ -30,6 +30,9 @@ module.exports = {
             // TODO IF GAME CODE IS CORRECT
             res.ok = true;
             res.gamecode = data.gamecode;
+            res.uID = socket.id;
+            res.username = data.username; 
+                   
         } else {
             res.ok = false;
             res.message = "Invalid game code";

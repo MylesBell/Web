@@ -36,10 +36,6 @@ io.on('connection', function(socket) {
     */
     socket.on('playerRegister', function(data, callback) {
         var res = mobile.playerRegister(socket, data, housekeeping.logger);
-
-        // if(res.ok){
-        //     io.sockets.in(UNITY_CHAN).emit('playerJoin', res);
-        // }
         
         // Return the response back to the client, either success or failure, to fufilled the promise
         callback(res);

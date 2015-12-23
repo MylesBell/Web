@@ -1,5 +1,5 @@
 angular.module('gameView', ['ngRoute'])
-.controller('GameCtrl', ['$scope', 'InputHandlerService', "NetworkService", function($scope, InputHandlerService, NetworkService) {
+.controller('GameCtrl', ['$scope', 'InputHandlerService', "NetworkService", "UserService", function($scope, InputHandlerService, NetworkService, UserService) {
 
     /*
 		Fired when user selects input button on game controller page
@@ -16,24 +16,7 @@ angular.module('gameView', ['ngRoute'])
         });
     };
     
-    $scope.teamClass = 'blue-team';
-    
-    /*
-        Register with the network service to listen to game events fired from the server
-    */
-    NetworkService.registerListener({eventName: "gamePlayerJoined", call: playerJoinedEvent});
-    
-    function playerJoinedEvent(data){
-        if(data.team === 0){
-            $scope.teamClass = 'red-team';
-            console.log("RED TEAM");
-        } else if(data.team === 1){
-            $scope.teamClass = 'blue-team';
-            console.log("BLUE TEAM");
-        }
-    }
-    
-    
+    $scope.teamClass = UserService.getUserTeam();
     
     
     var HAS_TOUCH = ('ontouchstart' in window);
