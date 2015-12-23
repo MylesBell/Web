@@ -23,8 +23,20 @@ angular.module('myApp').factory('NetworkService', function($q, socket) {
     };
 
     // Sends a message over the socket to the server
-    // takes a callback that calls when the server handles the response
+    // Returns a promise that is fullilled or rejected by the server responce
     function send(eventName, msg) {
-        socket.emit(eventName, msg);
+        var deferred = $q.defer();
+        
+        socket.emit(eventName, msg, function(res){
+            console.log(res);
+            if(res.ok){
+                deferred.resolve(res);
+            } else{
+                deferred.reject(res);
+            }
+        });
+        
+               
+        return deferred.promise;
     }
 });
