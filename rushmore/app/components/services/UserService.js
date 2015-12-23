@@ -10,8 +10,33 @@ angular.module('myApp').factory('UserService', function ($q, NetworkService) {
     ---------------- */
 
     return {
-        registerUserWithServer: registerUserWithServer
+        registerUserWithServer: registerUserWithServer,
+        attemptToJoinGame: attemptToJoinGame
     };
+
+    function attemptToJoinGame(gamecode) {
+        var deferred = $q.defer();
+
+        gamecode = gamecode.trim();
+        
+        // check name is not too long or short
+        if (gamecode.length !== 4) {
+            deferred.reject({ ok: false, message: "Gamecodes are  4 characters long" });
+        } else {
+            
+            // try to add the user to the game
+            // may need much more validtion and details being sent here
+            NetworkService.send("playerJoinGame", {
+                gamecode: gamecode
+            }).then(function (res) {
+                deferred.resolve({ ok: true, details: res.details });
+            }).catch(function (err) {
+                deferred.reject({ ok: false, message: err.message });
+            });
+        }
+
+        return deferred.promise;
+    }
 
     /* 
         Sends the users name to the server to register with the game
@@ -42,8 +67,6 @@ angular.module('myApp').factory('UserService', function ($q, NetworkService) {
                 deferred.reject({ ok: false, message: err.message });
             });
         }
-
-
 
         return deferred.promise;
     }

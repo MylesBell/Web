@@ -25,16 +25,37 @@ io.on('connection', function(socket) {
         housekeeping.subscribe(socket, data, housekeeping.logger);
     });
 
-    /* Mobile events */
+    /* 
+     ----------------------
+      Mobile events 
+     ----------------------
+    */
+    
+    /*
+        New player wants to register in the system with a name and socket id
+    */
     socket.on('playerRegister', function(data, callback) {
         var res = mobile.playerRegister(socket, data, housekeeping.logger);
 
-        if(res.ok){
-            io.sockets.in(UNITY_CHAN).emit('playerJoin', res);
-        }
+        // if(res.ok){
+        //     io.sockets.in(UNITY_CHAN).emit('playerJoin', res);
+        // }
         
         // Return the response back to the client, either success or failure, to fufilled the promise
         callback(res);
+    });
+       
+    /*
+        Registered player wants to join a game using a game code
+    */
+    socket.on("playerJoinGame", function(data, callback) {
+       var res = mobile.playerJoinGame(socket, data, housekeeping.logger);
+       
+       if(res.ok){
+            io.sockets.in(UNITY_CHAN).emit('playerJoin', res);
+       } 
+       
+       callback(res);
     });
 
     socket.on('playerDirection', function(data) {
