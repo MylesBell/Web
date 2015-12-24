@@ -2,49 +2,62 @@
 <!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Rushmore</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
-  <link rel="stylesheet" type="text/css" href="css/marketing.css">
-</head>
-<body  ng-app="myApp">
-  
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
 
-  <!--[if lt IE 7]>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Rushmore</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+    <link rel="stylesheet" type="text/css" href="css/marketing.css">
+</head>
+
+<body ng-app="myApp">
+
+
+    <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
+    
+    <div class="header" ng-controller="headerBarInfoCtrl">
+        <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+            <a class="pure-menu-heading" style="float:left" href="">Onslaughats</a>
+            <a class="pure-menu-heading" style="float:right" href="">{{username}}</a>
+        </div>
+    </div>
 
-  <div ng-view></div>
+    <div ng-view></div>
 
-  <div>Angular seed app: v<span app-version></span></div>
+    <div>Angular seed app: v<span app-version></span></div>
 
-  <!-- In production use:
+    <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
   -->
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/angular-route/angular-route.js"></script>
-  <script src="bower_components/angular-socket-io/socket.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-socket-io/socket.js"></script>
 
-  <script src="https://cdn.socket.io/socket.io-1.3.7.js"></script>
-  <script src="https://rawgit.com/mckamey/doubleTap.js/master/doubleTap.js"></script>
-  
+    <script src="https://cdn.socket.io/socket.io-1.3.7.js"></script>
+    <script src="https://rawgit.com/mckamey/doubleTap.js/master/doubleTap.js"></script>
 
 
-  <script src="app.js"></script>
-  <script src="/components/config.js"></script>
-  <script src="views/playerCreation/playerCreation.js"></script>
-  <script src="views/game/game.js"></script>
-  <script src="views/gameJoin/gameJoin.js"></script>
-  <script src="components/services/socketFactory.js"></script>
-  <script src="components/services/NetworkService.js"></script>
-  <script type="text/javascript" src="components/services/InputHandlerService.js"></script>
-  <script type="text/javascript" src="components/services/LocationService.js"></script>
-  <script type="text/javascript" src="components/services/UserService.js"></script>
+
+    <script src="app.js"></script>
+    <script src="/components/config.js"></script>
+    <script src="views/playerCreation/playerCreation.js"></script>
+    <script src="views/game/game.js"></script>
+    <script src="views/gameJoin/gameJoin.js"></script>
+    <script src="components/services/socketFactory.js"></script>
+    <script src="components/services/NetworkService.js"></script>
+    <script src="views/headerBarInfo.js"></script>
+    <script type="text/javascript" src="components/services/InputHandlerService.js"></script>
+    <script type="text/javascript" src="components/services/LocationService.js"></script>
+    <script type="text/javascript" src="components/services/UserService.js"></script>
 
 </body>
+
 </html>

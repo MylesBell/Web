@@ -107,8 +107,9 @@ label {
  * -- SPLASH STYLES --
  * This is the blue top section that appears on the page.
  */
+ 
+ .main-container {
 
-.splash-container {
     z-index: 1;
     overflow: hidden;
     /* The following styles are required for the "scroll-over" effect */
@@ -117,29 +118,22 @@ label {
     top: 0;
     left: 0;
     position: fixed !important;
-    background: #1f8dd6;        
-}
-
-.splash {
-    /* absolute center .splash within .splash-container */
-    width: 80%;
-    height: 80%;
-    margin: auto;
-    position: absolute;
-    top: 100px; left: 0; bottom: 0; right: 0;
-    text-align: center;
-    text-transform: uppercase;    
-}
+    background: #ECF0F1; 
+ }
 
 .controller-container {
     /* absolute center .splash within .splash-container */
     width: 80%;
-    height: 100%;
     margin: auto;
     position: absolute;
     top: 20%; left: 0; bottom: 0; right: 0;
     text-align: center;
     text-transform: uppercase;
+}
+
+.controller-container p {
+    color: rgba(21,21,21,1);
+    font-size: 15px;
 }
 
 
@@ -149,13 +143,13 @@ label {
 }
 
 /* This is the input box heading that appears on the blue section */
-.splash-input-box {
+.input-box {
     font-size: 20px;
     font-weight: bold;
     text-align: center;
-    color: white;
-    border: 3px solid white;
-    background-color: #1f8dd6;
+    color: rgba(21,21,21,1);
+    border: 3px solid rgba(21,21,21,1);
+    background-color: #ECF0F1;
     padding: 1em 1.6em;
     font-weight: 100;
     border-radius: 5px;
@@ -164,11 +158,13 @@ label {
 
 .deploy-button{
     background-color: white;
-    color: grey;
+    color: rgba(21,21,21,1);
     padding: 0.5em 2em;
     border-radius: 5px;
     margin-left: 2em;
     margin-right: 2em;
+    font-size: 20px;
+    font-weight: 100;
 }
 
 .blue-team{

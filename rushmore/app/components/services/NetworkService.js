@@ -6,10 +6,18 @@ angular.module('myApp').factory('NetworkService', function($q, socket) {
     
     var listenerEventList = [];
     
-    socket.emit("subscribe", {"name" : "mobile"});
+    //check on connect if we have connected previous (cookie or local storage)
+    //send that data back if we have registered before
+    
+    socket.on("connect", function(data){
+        socket.emit("subscribe", {"name" : "mobile"});   
+    });
+    
+
 
     socket.on('gameStateUpdate', function (data) {
         alert(data.state);
+        
     });
     
     // called by the sever when a player has their request to join a game granted
