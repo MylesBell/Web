@@ -2,10 +2,11 @@
     This controls the first page players see    
     From here they can enter the game code to join a game and move to the player creation screen. 
 */
-angular.module('gameJoin', ['ngRoute'])
+angular.module('gameJoinView', ['ngRoute'])
     .controller('GameJoinCtrl', ['$scope', 'UserService', 'LocationService', "NetworkService", function ($scope, UserService, LocationService, NetworkService) {
 
         // The unique game code for each game
+        $scope.username = UserService.getUsername();
         $scope.gamecode = "Enter Game Code";
         $scope.enableInput = true;
 
