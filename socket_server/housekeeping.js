@@ -27,6 +27,7 @@ module.exports = {
             "DISCONNECT" : "Disconnected",
             "SUBSCRIBE" : "Subscribed",
             "PLAYER_REGISTER" : "Player Registration",
+            "PLAYER_GAME_JOIN" : "Player Game Join",
             "PLAYER_DIRECTION" : "Player Direction",
             "GAME_PLAYER_DIED" : "Game Player Died",
             "GAME_PLAYER_RESPAWN" : "Game Player Respawn",

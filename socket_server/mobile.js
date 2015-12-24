@@ -19,6 +19,28 @@ module.exports = {
         logger.log(socket, logger.loggableModules.PLAYER_REGISTER, res);
         return res;
     },
+    
+    // add a player to a game
+    playerJoinGame : function(socket, data, logger){
+        var res = {};
+        
+        // need to do some game code checking here
+        if(data.gamecode !== ""){
+            // 
+            // TODO IF GAME CODE IS CORRECT
+            res.ok = true;
+            res.gamecode = data.gamecode;
+            res.uID = socket.id;
+            res.username = data.username; 
+                   
+        } else {
+            res.ok = false;
+            res.message = "Invalid game code";
+        }
+        
+        logger.log(socket, logger.loggableModules.PLAYER_GAME_JOIN, res);
+        return res;
+    },
 
     // Direction movement control for heroes
     playerDirection: function(socket, data, logger){

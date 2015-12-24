@@ -7,12 +7,12 @@
 <div class="splash-container">
     <div class="splash">
         <div class="pure-g">               
-            <input class="splash-input-box pure-u-1 pure-u-md-1-2" type="text" ng-model="username" ng-click="username = ''"/>
+            <input class="splash-input-box pure-u-1 pure-u-md-1-2" type="text" ng-model="gamecode" ng-click="gamecode = ''" ng-disabled="!enableInput"/>
             <p class="splash-subhead pure-u-1 pure-u-md-1-2">
-                Join the fight, destroy the enemy base, win the war.
+                Enter the game code shown on the battle monitors to join the fight!
             </p>
 
-            <a class="deploy-button pure-u-1 pure-u-md-1-2" id="deploy-button" ng-click="deploy()">Deploy</a>
+            <a class="deploy-button pure-u-1 pure-u-md-1-2" id="deploy-button" ng-click="joinGame()">Join Game</a>
 
         </div>        
     </div>
