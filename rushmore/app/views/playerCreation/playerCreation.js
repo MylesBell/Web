@@ -1,6 +1,6 @@
 /*
-    This controls the first page players see    
-    From here they can enter the game code to join a game and move to the player creation screen. 
+   This controls the first page players see    
+   Let the player set their username, then move to the game join screen
 */
 angular.module('playerCreationView', ['ngRoute'])
 .controller('PlayerCreationCtrl', ['$scope', 'UserService', 'LocationService', function($scope, UserService, LocationService) {

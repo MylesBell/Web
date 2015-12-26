@@ -1,6 +1,5 @@
 /*
-    Service that provides an interface for getting and setting user informaation
-    uses NetworkService to communicate with service
+    Service that handles movement between pages
 */
 angular.module('myApp').factory('LocationService', function ($q, $location, NetworkService) {
 

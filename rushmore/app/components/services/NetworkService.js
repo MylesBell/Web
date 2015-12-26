@@ -11,6 +11,7 @@ angular.module('myApp').factory('NetworkService', function ($q, socket, StorageS
     socket.on("connect", function (data) {        
         // get the  client user id in session storage, if it exists
         // var existingID = StorageService.get("uID");
+        // TODO actuallt do this
         var existingID = 0;
 
         socket.emit("subscribe", { name: "mobile", existingID: existingID });
@@ -37,8 +38,6 @@ angular.module('myApp').factory('NetworkService', function ($q, socket, StorageS
             }
         }, this);
     }
-
-
 
     // Sends a message over the socket to the server
     // Returns a promise that is fullilled or rejected by the server responce

@@ -1,6 +1,8 @@
 /*
-    Service that provides an interface for sending and recieving messages over the network,
-    connects to mobile server using socketio client
+    Service that provides controllers information about the game state such as 
+        Current players in the game
+        The state of the game
+        Events occuring in the game state
 */
 angular.module('myApp').factory('GameStateService', function ($q, NetworkService) {
    
@@ -24,6 +26,7 @@ angular.module('myApp').factory('GameStateService', function ($q, NetworkService
         alertListeners(data.state, 0);
     }
 
+    // Register to listen to changes in state
     NetworkService.registerListener({eventName: "gameStateUpdate", call: handleGameStateUpdate});
 
     

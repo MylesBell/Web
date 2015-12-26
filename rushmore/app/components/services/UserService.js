@@ -1,6 +1,7 @@
 /*
-    Service that provides an interface for getting and setting user informaation
-    uses NetworkService to communicate with service
+    Service that contains the user information and handles user interaction events such as
+    Registering user with server
+    Set username for game
 */
 angular.module('myApp').factory('UserService', function ($q, NetworkService) {
 

@@ -1,6 +1,6 @@
 /*
-    Service that provides an interface for sending and recieving messages over the network,
-    connects to mobile server using socketio client
+    Service that provides an interface to the session and local storage
+    of the users browser
 */
 angular.module('myApp').factory('StorageService', function($q,localStorageService ) {
     
