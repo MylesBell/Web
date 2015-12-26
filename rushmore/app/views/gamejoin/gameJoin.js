@@ -1,6 +1,7 @@
 /*
-    This controls the first page players see    
-    From here they can enter the game code to join a game and move to the player creation screen. 
+    This page allows players to join a game
+    must enter the correct game code TODO CHANGE TO VALIDATE THIS  
+    Move to the game lobby after this
 */
 angular.module('gameJoinView', ['ngRoute'])
     .controller('GameJoinCtrl', ['$scope', 'UserService', 'LocationService', "NetworkService", function ($scope, UserService, LocationService, NetworkService) {
@@ -14,7 +15,7 @@ angular.module('gameJoinView', ['ngRoute'])
             UserService.attemptToJoinGame($scope.gamecode).then(function (res) {
                 // the code was was valid and sent to the unity server
                 // However the user HAS NOT YET joined, until the unity server confirms this
-                $scope.gamecode = "Attempting to join game...";
+                $scope.gamecode = "Joining game...";
                 $scope.enableInput = false;
 
             }).catch(function (res) {
@@ -22,15 +23,8 @@ angular.module('gameJoinView', ['ngRoute'])
                 $scope.gamecode = res.message;
             });
         };
-
-
-
     
-        /*
-            Register with the network service to listen to  when the player has joined the game
-        */
-        NetworkService.registerListener({ eventName: "gamePlayerJoined", call: playerJoinedEvent });
-
+        // Change the background color
         function playerJoinedEvent(data) {
             if (data.team === 0) {
                 UserService.setUserTeam('red-team');
@@ -41,7 +35,13 @@ angular.module('gameJoinView', ['ngRoute'])
             }
             
             // Move player to the game screen
-            LocationService.setPath('/game');
+            LocationService.setPath('/lobby');
         }
+
+        /*
+            Register with the network service to listen to  when the player has joined the game
+        */
+        NetworkService.registerListener({ eventName: "gamePlayerJoined", call: playerJoinedEvent });
+
 
     }]);

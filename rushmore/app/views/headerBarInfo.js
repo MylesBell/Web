@@ -14,5 +14,4 @@ angular.module('headerBarInfoView', ['ngRoute'])
              $scope.username = UserService.getUsername();
         });
         
-        console.log(UserService);
     }]);

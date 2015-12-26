@@ -1,13 +1,26 @@
-<div class="splash-container">
-    <div class="splash">
-        <div class="pure-g">               
-            <input class="splash-input-box pure-u-1 pure-u-md-1-2" type="text" ng-model="username" ng-click="username = ''"/>
-            <p class="splash-subhead pure-u-1 pure-u-md-1-2">
-                Enter your username, then deploy into battle!
-            </p>
+<div class="main-container">
+    <div class="controller-container">
+        <div class="top-container">
+            <p>The game will start shortly...</p>
+        </div>
+        <div class="pure-g bottom-container lobby-container">
+            <div class="pure-u-1-2">
+                <h1 class="blue-team-lobby-header">Blue Team</h1>
+                <ul>
+                    <li ng-repeat="player in players | filter: {team: 1}">
+                      <p>{{player.name}}</p>
+                    </li>                    
+                </ul>
+            </div>
+            <div class="pure-u-1-2">
+                <h1 class="red-team-lobby-header">Red team</h1>
+                <ul>
+                    <li ng-repeat="player in players | filter: {team: 0}">
+                      <p>{{player.name}}</p>                  
+                    </li>   
+                </ul>
+            </div>
 
-            <a class="deploy-button pure-u-1 pure-u-md-1-2" id="deploy-button" ng-click="deploy()">Deploy</a>
-
-        </div>        
+        </div>
     </div>
 </div>

@@ -1,6 +1,5 @@
 /*
-    Service that provides an interface for getting and setting user informaation
-    uses NetworkService to communicate with service
+    Service that handles input from the game screen to the network manager
 */
 angular.module('myApp').factory('InputHandlerService', function($q, NetworkService) {
 

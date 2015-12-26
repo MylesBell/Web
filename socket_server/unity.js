@@ -42,7 +42,7 @@ module.exports = {
 
         if (data.playerID) {
             res.ok = true;
-            res.player = data.playerID;
+            res.playerID = data.playerID;
             res.team = data.teamID;
             res.state = data.state;
         }

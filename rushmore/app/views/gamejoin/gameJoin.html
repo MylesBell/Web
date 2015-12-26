@@ -1,12 +1,15 @@
 <div class="main-container">
     <div class="controller-container">
-        <div class="pure-g">               
+        <div class="top-container" style="display:none">
+
+        </div>
+        <div class="pure-g bottom-container">               
             <input class="input-box pure-u-1 pure-u-md-1-2" type="text" ng-model="gamecode" ng-click="gamecode = ''" ng-disabled="!enableInput"/>
             <p class="splash-subhead pure-u-1 pure-u-md-1-2" style="padding-top:20px">
                 {{username}}, the fight needs you. </br>
                 Enter the game code shown on the monitors to join a side, then deploy into battle!
             </p>
-            <a class="deploy-button pure-u-1 pure-u-md-1-2" id="deploy-button" ng-click="joinGame()">Deploy</a>
+            <a class="deploy-button pure-u-1 pure-u-md-1-2" id="deploy-button" ng-click="joinGame()" ng-disabled="!enableInput">Deploy</a>
 
         </div>        
     </div>

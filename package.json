@@ -26,6 +26,7 @@
     "test": "grunt check"
   },
   "dependencies": {
+    "angular-local-storage": "^0.2.2",
     "express": "^4.13.3",
     "socket.io": "latest"
   }
