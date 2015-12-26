@@ -47,11 +47,13 @@ io.on('connection', function(socket) {
     socket.on("playerJoinGame", function(data, callback) {
        var res = mobile.playerJoinGame(socket, data, housekeeping.logger);
        
-       if(res.ok){
+        if(res.ok){
             io.sockets.in(UNITY_CHAN).emit('playerJoin', res);
-       } 
-       
-       callback(res);
+        } 
+
+        // io.sockets.in(res.uID).emit('gamePlayerJoined', res);
+  
+        callback(res);
     });
 
     socket.on('playerDirection', function(data) {
@@ -87,12 +89,12 @@ io.on('connection', function(socket) {
         }
     });
 
-
+    // TODO BROADCAST THIS TO ALL PLAYERS IN THE GAME
     socket.on('gamePlayerJoined', function(data) {
         var res = unity.gamePlayerJoined(socket, data, housekeeping.logger);
 
         if(res.ok){
-            io.sockets.in(res.player).emit('gamePlayerJoined', res);
+            io.sockets.in(res.playerID).emit('gamePlayerJoined', res);
         }
     });
 

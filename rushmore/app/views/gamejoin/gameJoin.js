@@ -14,7 +14,7 @@ angular.module('gameJoinView', ['ngRoute'])
             UserService.attemptToJoinGame($scope.gamecode).then(function (res) {
                 // the code was was valid and sent to the unity server
                 // However the user HAS NOT YET joined, until the unity server confirms this
-                $scope.gamecode = "Attempting to join game...";
+                $scope.gamecode = "Joining game...";
                 $scope.enableInput = false;
 
             }).catch(function (res) {
@@ -22,8 +22,6 @@ angular.module('gameJoinView', ['ngRoute'])
                 $scope.gamecode = res.message;
             });
         };
-
-
 
     
         /*

@@ -5,13 +5,7 @@
 angular.module('myApp').factory('LocationService', function ($q, $location, NetworkService) {
 
 
-    /* --------------------
-        PUBLIC API
-    ---------------- */
 
-    return {
-        setPath: setPath
-    };
     
     // register for socket events that change the path
     NetworkService.registerListener({ eventName: "locationChange", call: setPath });
@@ -23,5 +17,13 @@ angular.module('myApp').factory('LocationService', function ($q, $location, Netw
         console.log(path);
         $location.path(path);
     }
+    
+   /* --------------------
+        PUBLIC API
+    ---------------- */
+
+    return {
+        setPath: setPath
+    };
 
 });

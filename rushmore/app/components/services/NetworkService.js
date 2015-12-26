@@ -3,16 +3,7 @@
     connects to mobile server using socketio client
 */
 angular.module('myApp').factory('NetworkService', function ($q, socket, StorageService) {
-    /* --------------------
-        PUBLIC API
-    ---------------- */
-
-    return {
-        send: send,
-        registerListener: registerListener
-    };
-    
-    
+   
     var listenerEventList = [];
     
     //check on connect if we have connected previous (cookie or local storage)
@@ -30,7 +21,7 @@ angular.module('myApp').factory('NetworkService', function ($q, socket, StorageS
     });
 
     socket.on('gameStateUpdate', function (data) {
-        alert(data.state);
+        alertListeners("gameStateUpdate", data);
     });
     
     // called by the sever when a player has their request to join a game granted
@@ -70,4 +61,14 @@ angular.module('myApp').factory('NetworkService', function ($q, socket, StorageS
     function registerListener(listenerEvent) {
         listenerEventList.push(listenerEvent);
     }
+    
+    
+   /* --------------------
+        PUBLIC API
+    ---------------- */
+    return {
+        send: send,
+        registerListener: registerListener
+    };
+    
 });
