@@ -123,28 +123,89 @@ label {
 
 .controller-container {
     /* absolute center .splash within .splash-container */
-    width: 80%;
+
+    width: 100%;
+    margin: auto;
+    text-align: center;
+
+}
+
+.top-container{
+   width: 80%;
+    margin: auto;
+    position: absolute;
+    top: 15%;
+    left: 0;
+    /* bottom: 0; */
+    right: 0;
+}
+
+.bottom-container {
+    width: 80%; 
     margin: auto;
     position: absolute;
     top: 20%; left: 0; bottom: 0; right: 0;
     text-align: center;
-    text-transform: uppercase;
 }
 
 .controller-container p {
     color: rgba(21,21,21,1);
+    font-size: 20px;
+    letter-spacing: 0.05em;
+    opacity: 0.8;
+    font-weight: 100;
+    line-height: 1.2em;
+}
+
+.controller-container h1{
+    color: rgba(21,21,21,1);
+    font-size: 25px;
+    margin-bottom: 0px;
+    letter-spacing: 0.05em;
+    opacity: 0.8;
+    font-weight: 100;
+    line-height: 1.2em;
+}
+
+.controller-container h2{
+    color: rgba(21,21,21,1);
+    font-size: 25px;
+    margin-bottom: 0px;
+    font-weight: 100;
+    line-height: 1.2em;
+}
+
+.lobby-container ul {
+    list-style-type: none;
+    padding-left: 0px;
+    padding-top: 10px;
+}
+
+.red-team-lobby-header {
+        border-bottom: 3px solid red;
+}
+.blue-team-lobby-header {
+        border-bottom: 3px solid blue;
+}
+
+.lobby-container h1 {
+    list-style-type: none;
+    padding-left: 0px;
+    padding-top: 10px;
+}
+
+.lobby-container li {
+    list-style-type: none;
+    padding-left: 0px;
+    padding-top: 10px;
     font-size: 15px;
+    color: rgba(21,21,21,1);
 }
 
-
-.splash h1{
-    color: white;
-    margin-bottom: 50px;
-}
 
 /* This is the input box heading that appears on the blue section */
 .input-box {
-    font-size: 20px;
+    font-size: 25px;
     font-weight: bold;
     text-align: center;
     color: rgba(21,21,21,1);
@@ -163,7 +224,7 @@ label {
     border-radius: 5px;
     margin-left: 2em;
     margin-right: 2em;
-    font-size: 20px;
+    font-size: 25px;
     font-weight: 100;
 }
 
@@ -195,8 +256,7 @@ label {
 /* This is the subheading that appears on the blue section */
 .splash-subhead {
     color: white;
-    letter-spacing: 0.05em;
-    opacity: 0.8;
+
 }
 
 /*

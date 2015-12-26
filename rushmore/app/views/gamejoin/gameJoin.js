@@ -41,7 +41,7 @@ angular.module('gameJoinView', ['ngRoute'])
             }
             
             // Move player to the game screen
-            LocationService.setPath('/game');
+            LocationService.setPath('/lobby');
         }
 
     }]);

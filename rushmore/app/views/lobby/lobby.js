@@ -2,12 +2,10 @@
     This controls the first page players see    
     From here they can enter the game code to join a game and move to the player creation screen. 
 */
-angular.module('playerCreationView', ['ngRoute'])
-.controller('PlayerCreationCtrl', ['$scope', 'UserService', 'LocationService', function($scope, UserService, LocationService) {
+angular.module('lobbyView', ['ngRoute'])
+.controller('LobbyCtrl', ['$scope', 'UserService', 'LocationService', function($scope, UserService, LocationService) {
 
 
-    // Entered name of the user
-    $scope.username = "Enter your name";
     
     /* 
         Called when the deploy button selected
@@ -20,7 +18,7 @@ angular.module('playerCreationView', ['ngRoute'])
         UserService.registerUserWithServer($scope.username)
             .then(function(res) {
                 console.log(res);
-                LocationService.setPath('/lobby'); // TODO CHANGE THIS 
+                LocationService.setPath('/join');
              }).catch(function(res) {
                 // name was not right, show the user the error                
                 $scope.username = res.message; 
