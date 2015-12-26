@@ -15,7 +15,7 @@ config(['$routeProvider', function($routeProvider) {
         templateUrl: 'views/game/game.html',
         controller: 'GameCtrl'
     }).when('/join', {
-        templateUrl: 'views/gamejoin/gameJoin.html',
+        templateUrl: 'views/gameJoin/gameJoin.html',
         controller: 'GameJoinCtrl'
     }).when('/lobby', {
         templateUrl: 'views/lobby/lobby.html',
