@@ -2,7 +2,7 @@
     Service that provides an interface for getting and setting user informaation
     uses NetworkService to communicate with service
 */
-angular.module('myApp').factory('LocationService', function($q, $location) {
+angular.module('myApp').factory('LocationService', function ($q, $location, NetworkService) {
 
 
     /* --------------------
@@ -12,13 +12,15 @@ angular.module('myApp').factory('LocationService', function($q, $location) {
     return {
         setPath: setPath
     };
+    
+    // register for socket events that change the path
+    NetworkService.registerListener({ eventName: "locationChange", call: setPath });
 
     /* 
         Sets the url path
     */
     function setPath(path) {
         console.log(path);
-        // var path = $location.path(path);
         $location.path(path);
     }
 
