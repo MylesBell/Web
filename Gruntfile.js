@@ -2,10 +2,12 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-bower-task');
     grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-nodemon');
+    grunt.loadNpmTasks('grunt-express-server');
     grunt.loadNpmTasks('grunt-ng-constant');
     grunt.loadNpmTasks('grunt-concurrent');
-
+    grunt.loadNpmTasks('grunt-protractor-runner');    
+    grunt.loadNpmTasks('grunt-selenium-webdriver');
+    grunt.loadNpmTasks('grunt-contrib-watch');
 
     grunt.initConfig({
         bower: {
@@ -29,25 +31,23 @@ module.exports = function (grunt) {
                 }
             }
         },
-        nodemon: {
+        express: {
             angular_loc: {
-                script: 'rushmore/local_server/server.js',
                 options: {
-                    env: {
-                        PORT: '7777'
-                    },
+                    script: 'rushmore/local_server/server.js',
+                    port: '7777'
                 }
             },
-            angular_prod: {
-                script: 'rushmore/local_server/server.js',
+            angular_prod: {                
                 options: {
-                    env: {
-                        PORT: '3000' // we port forward all 80 traffic to 3000
-                    },
+                    script: 'rushmore/local_server/server.js',
+                    port: '3000' // we port forward all 80 traffic to 3000                
                 }
             },
             socket: {
-                script: 'socket_server/server.js'
+                options: {
+                    script: 'socket_server/server.js'
+                }
             }
         },
         ngconstant: {
@@ -82,15 +82,53 @@ module.exports = function (grunt) {
                 }
             }
         },
+        protractor: {
+            options: {
+                configFile: 'rushmore/protractor.conf.js',
+                args: {
+                    "verbose": "true"
+                }
+            },
+            e2e: {
+                options: {
+                    // Stops Grunt process if a test fails
+                    keepAlive: false
+                }
+            }
+        },
+        watch: {
+            angular: {
+                files: ['rushmore/local_server/*.js'],
+                tasks: ['express:angular_loc'],
+                options: {
+                    spawn: false // for grunt-contrib-watch v0.5.0+, "nospawn: true" for lower versions. Without this option specified express won't be reloaded
+                }
+            },
+            socket: {
+               files: ['socket_server/*.js'],
+                tasks: ['express:socket'],
+                options: {
+                    spawn: false // for grunt-contrib-watch v0.5.0+, "nospawn: true" for lower versions. Without this option specified express won't be reloaded
+                } 
+            }
+        },
+        selenium_start: {
+            options: {
+                port: 4444,
+                args: {
+                }
+            }
+        },
     });
 
     grunt.registerTask("check", ["jshint"]);
     grunt.registerTask("install", ['bower:install']);
-    grunt.registerTask("run-socket", ["nodemon:socket"]);
+    grunt.registerTask('e2e-test', ['run-angular-local', 'selenium_start', 'protractor:e2e']);
+    grunt.registerTask("run-socket", ["express:socket"]);
     grunt.registerTask("default", ["check", 'install']);
-    grunt.registerTask("run-angular-local", ["default", "ngconstant:dev", "nodemon:angular_loc"]);
-    grunt.registerTask("run-angular-prod", ["default", "ngconstant:prod", "nodemon:angular_prod"]);
-    grunt.registerTask("run-socket-prod", ["default", "nodemon:socket"]);
+    grunt.registerTask("run-angular-local", ["default", "ngconstant:dev", "express:angular_loc", "watch:angular"]);
+    grunt.registerTask("run-angular-prod", ["default", "ngconstant:prod", "express:angular_prod", "watch:angular"]);
+    grunt.registerTask("run-socket-prod", ["default", "express:socket", "watch:socket"]);
     
     grunt.registerTask("run-concurrent-local", ["concurrent:run"]);
 

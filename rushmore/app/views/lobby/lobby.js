@@ -32,6 +32,4 @@ angular.module('lobbyView', ['ngRoute'])
     GameStateService.registerListener({stateName: "playing", call: handleGamePlaying});
     // TODO update player list
 
-
-
 }]);
