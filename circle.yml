@@ -4,3 +4,6 @@ deployment:
     codedeploy:
       3rd Year Web:
         deployment_group: my-deployment-group
+machine:
+  node:
+    version: 5.1.0
