@@ -4,6 +4,9 @@ describe('Player Creation page', function() {
         //navigate to the website
         browser.get('http://localhost:7777/');
 
+        browser.waitForAngular();
+
+
         expect(browser.getTitle()).toEqual('Rushmore');
     });
 
