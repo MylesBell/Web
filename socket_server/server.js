@@ -1,6 +1,6 @@
 // Require the SocketIO library
 var socketio = require('socket.io');
-var housekeeping = require('./housekeeping');
+var logger = require('./logger');
 var mobile = require('./mobile');
 var unity = require('./unity');
 
@@ -12,9 +12,21 @@ var io = socketio.listen(port);
 var UNITY_CHAN = "unity";
 var MOBILE_CHAN = "mobile";
 
-console.log("socket server listening on " + port);
+// Get the logging level from the command line
+var loggingLevel =  process.argv.slice(2)[0];
+loggingLevel = loggingLevel.split("=")[1];
+
+console.log("socket server listening on " + port + " logging set to "+ loggingLevel);
 
 io.on('connection', function(socket) {
+
+    var housekeeping = new logger();
+    if(loggingLevel !== undefined){
+        housekeeping.setLoggingLevel(loggingLevel);
+    } else {
+        housekeeping.setLoggingLevel("FULL");
+    }
+
     housekeeping.connect(socket, housekeeping.logger);
 
     socket.on('disconnect', function(data) {

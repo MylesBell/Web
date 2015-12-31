@@ -48,6 +48,12 @@ module.exports = function (grunt) {
                 options: {
                     script: 'socket_server/server.js'
                 }
+            },
+            socket_test: {
+                options: {
+                    script: 'socket_server/server.js',
+                    args: ['LOGGINGLEVEL=SILENT']
+                }
             }
         },
         ngconstant: {
@@ -72,7 +78,7 @@ module.exports = function (grunt) {
                         socketIOEndpoint: 'http://icantmiss.com:1337'
                     }
                 }
-            }
+            }            
         },
         concurrent: {
             run: {
@@ -123,7 +129,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask("check", ["jshint"]);
     grunt.registerTask("install", ['bower:install']);
-    grunt.registerTask('e2e-test', ['ngconstant:dev', "express:angular_loc", "express:socket", 'selenium_start', 'protractor:e2e']);
+    grunt.registerTask('e2e-test', ['ngconstant:dev', "express:angular_loc", "express:socket_test", 'selenium_start', 'protractor:e2e']);
     grunt.registerTask("run-socket", ["express:socket"]);
     grunt.registerTask("default", ["check", 'install']);
     grunt.registerTask("run-angular-local", ["default", "ngconstant:dev", "express:angular_loc", "watch:angular"]);
