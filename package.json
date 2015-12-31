@@ -24,7 +24,7 @@
     "protractor": "^2.1.0"
   },
   "scripts": {
-    "test": "grunt check"
+    "test": "grunt e2e-test"
   },
   "dependencies": {
     "angular-local-storage": "^0.2.2",

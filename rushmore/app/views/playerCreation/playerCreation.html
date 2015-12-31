@@ -4,12 +4,12 @@
 
         </div>
         <div class="pure-g bottom-container">               
-            <input class="input-box pure-u-1 pure-u-md-1-2" type="text" ng-model="username" ng-click="username = ''"/>
+            <input class="input-box pure-u-1 pure-u-md-1-2" type="text" ng-model="username" ng-click="username = ''" id="player-name-input-box"/>
             <p class="pure-u-1 pure-u-md-1-2" style="padding-top:40px">
                 Enter your name, then join a game in progress!
             </p>
 
-            <a class="deploy-button pure-u-1 pure-u-md-1-2" id="deploy-button" ng-click="deploy()">Join Game</a>
+            <a id="submit-button" class="deploy-button pure-u-1 pure-u-md-1-2" id="deploy-button" ng-click="deploy()">Join Game</a>
 
         </div>        
     </div>
