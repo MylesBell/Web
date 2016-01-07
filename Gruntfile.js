@@ -46,7 +46,8 @@ module.exports = function (grunt) {
             },
             socket: {
                 options: {
-                    script: 'socket_server/server.js'
+                    script: 'socket_server/server.js',
+                    args: ['LOGGINGLEVEL=FULL']
                 }
             },
             socket_test: {
