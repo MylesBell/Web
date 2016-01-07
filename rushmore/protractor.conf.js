@@ -8,6 +8,12 @@ exports.config = {
     jasmineNodeOpts: {
         isVerbose: true
     },
+    capabilities: {
+        'browserName': 'chrome',        
+    },
+    rootElement: "[ng-app]",    
+    getPageTimeout: 300000,
+    allScriptsTimeout: 300000,
     framework: 'jasmine2',
     baseUrl: 'http://localhost:7777/',
 }

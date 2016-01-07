@@ -2,17 +2,22 @@ describe('Player Creation page', function() {
     it('should have a title', function() {
 
         //navigate to the website
-        browser.get('http://localhost:7777/');
+        browser.get('/');
 
         browser.waitForAngular();
-
 
         expect(browser.getTitle()).toEqual('Rushmore');
     });
 
     it("clicking input box clears the text inside", function() {
+
+        browser.waitForAngular()
+
         var inputBox = element(by.css('#player-name-input-box'));
+                browser.waitForAngular()
+
         inputBox.click();
+        browser.waitForAngular()
 
         expect(inputBox.getAttribute('value')).toEqual('');
     });
