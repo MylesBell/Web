@@ -1,4 +1,5 @@
 describe('Game Join page', function() {
+
     it('can get the the game join page', function() {
 
         //navigate to the website
@@ -24,47 +25,49 @@ describe('Game Join page', function() {
         expect(inputBox.getAttribute('value')).toEqual('');
     });
 
-    // it('can enter a name into the input box', function() {
+    it('can enter a code into the input box', function() {
 
-    //     var inputBox = element(by.css('#player-name-input-box'));
-    //     inputBox.click();
-    //     inputBox.sendKeys("James");
+        var inputBox = element(by.css('#game-code-input-box'));
+        inputBox.click();
+        inputBox.sendKeys("thisisacode");
 
-    //     expect(inputBox.getAttribute('value')).toEqual('James');
-    // });
+        expect(inputBox.getAttribute('value')).toEqual('thisisacode');
+    });
 
-    // it('entering no name shows error on page', function() {
+    it('entering no code shows error on page', function() {
 
-    //     var inputBox = element(by.css('#player-name-input-box'));
-    //     var submitButton = element(by.css('#submit-button'));
+        var inputBox = element(by.css('#game-code-input-box'));
+        var submitButton = element(by.css('#game-join-button'));
 
-    //     inputBox.click();
-    //     submitButton.click();
+        inputBox.click();
+        submitButton.click();
 
-    //     expect(inputBox.getAttribute('value')).toEqual('Name must be a least one character long');
-    // });
+        expect(inputBox.getAttribute('value')).toEqual('Gamecodes should be 4 characters long');
+    });
 
-    // it('entering a name over 20 characters shows error on page', function() {
+    // it
+    it('entering code over 4 characters shows error on page', function() {
 
-    //     var inputBox = element(by.css('#player-name-input-box'));
-    //     var submitButton = element(by.css('#submit-button'));
+        var inputBox = element(by.css('#game-code-input-box'));
+        var submitButton = element(by.css('#game-join-button'));
 
-    //     inputBox.click();
-    //     inputBox.sendKeys("aaaaaaaaaaaaaaaaaaaaa");
-    //     submitButton.click();
+        inputBox.sendKeys("thisisacode");
 
-    //     expect(inputBox.getAttribute('value')).toEqual('Name must be less than 20 characters');
-    // });
+        inputBox.click();
+        submitButton.click();
 
-    // it('entering a valid name moves the user to the game join page', function() {
+        expect(inputBox.getAttribute('value')).toEqual('Gamecodes should be 4 characters long');
+    });
 
-    //     var inputBox = element(by.css('#player-name-input-box'));
-    //     var submitButton = element(by.css('#submit-button'));
+    it('entering a valid game code moves the user to the game join page', function() {
 
-    //     inputBox.click();
-    //     inputBox.sendKeys("Dave");
-    //     submitButton.click();
+        var inputBox = element(by.css('#game-code-input-box'));
+        var submitButton = element(by.css('#game-join-button'));
 
-    //     expect(browser.getCurrentUrl()).toBe('http://localhost:7777/#/join');
-    // });
+        inputBox.click();
+        inputBox.sendKeys("FAKE");
+        submitButton.click();
+
+        expect(browser.getCurrentUrl()).toBe('http://localhost:7777/#/lobby');
+    });
 });

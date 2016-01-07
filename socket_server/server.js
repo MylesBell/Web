@@ -14,18 +14,27 @@ var MOBILE_CHAN = "mobile";
 
 // Get the logging level from the command line
 var loggingLevel =  process.argv.slice(2)[0];
-loggingLevel = loggingLevel.split("=")[1];
+if(loggingLevel !== undefined){
+    loggingLevel = loggingLevel.split("=")[1];
+} else {
+    loggingLevel = "FULL";
+}
 
-console.log("socket server listening on " + port + " logging set to "+ loggingLevel);
+// Get testing level from command line
+var testingEnabled = process.argv.slice(3)[0];
+if(testingEnabled !== undefined){
+    testingEnabled = testingEnabled.split("=")[1];
+    if(testingEnabled === "TRUE") {testingEnabled = true;}
+} else {
+    testingEnabled = false;
+}
+
+console.log("socket server listening on " + port + " logging set to "+ loggingLevel + " testing is " + testingEnabled);
 
 io.on('connection', function(socket) {
 
     var housekeeping = new logger();
-    if(loggingLevel !== undefined){
-        housekeeping.setLoggingLevel(loggingLevel);
-    } else {
-        housekeeping.setLoggingLevel("FULL");
-    }
+    housekeeping.setLoggingLevel(loggingLevel);
 
     housekeeping.connect(socket, housekeeping.logger);
 
@@ -63,7 +72,12 @@ io.on('connection', function(socket) {
             io.sockets.in(UNITY_CHAN).emit('playerJoin', res);
         } 
 
-        // io.sockets.in(res.uID).emit('gamePlayerJoined', res);
+        // In testing mode, fake the unity server response, as we need to progress in the app
+        // without needing a running unity server
+        if(testingEnabled){
+            console.log("TESTING ENABLED, FAKING UNTIY GAME PLAYER JOINED RESPONSE");
+            io.sockets.in(res.uID).emit('gamePlayerJoined', res);
+        }
   
         callback(res);
     });

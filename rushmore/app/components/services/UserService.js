@@ -17,7 +17,7 @@ angular.module('myApp').factory('UserService', function ($q, NetworkService) {
         
         // check name is not too long or short
         if (gamecode.length !== 4) {
-            deferred.reject({ ok: false, message: "Gamecodes are  4 characters long" });
+            deferred.reject({ ok: false, message: "Gamecodes should be 4 characters long" });
         } else {
             
             // try to add the user to the game
