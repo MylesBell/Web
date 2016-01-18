@@ -31,10 +31,8 @@ angular.module('gameJoinView', ['ngRoute'])
             if (data.uID === UserService.getUserID()) {
                 if (data.team === 0) {
                     UserService.setUserTeam('red-team');
-                    console.log("RED TEAM");
                 } else if (data.team === 1) {
                     UserService.setUserTeam('blue-team');
-                    console.log("BLUE TEAM");
                 }
 
                 // Move player to the game screen

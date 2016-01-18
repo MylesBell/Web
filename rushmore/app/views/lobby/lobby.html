@@ -8,7 +8,7 @@
                 <h1 class="blue-team-lobby-header">Blue Team</h1>
                 <ul>
                     <li ng-repeat="player in players | filter: {team: 1}">
-                      <p>{{player.name}}</p>
+                      <p>{{player.username}}</p>
                     </li>                    
                 </ul>
             </div>
@@ -16,7 +16,7 @@
                 <h1 class="red-team-lobby-header">Red team</h1>
                 <ul>
                     <li ng-repeat="player in players | filter: {team: 0}">
-                      <p>{{player.name}}</p>                  
+                      <p>{{player.username}}</p>                  
                     </li>   
                 </ul>
             </div>
