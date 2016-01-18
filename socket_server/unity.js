@@ -36,15 +36,24 @@ module.exports = {
     },
 
     // Game state updated
-    gamePlayerJoined: function(socket, data, logger){
+    gamePlayerJoined: function(socket, data, logger, playerList){
         var res = {};
+        var playerWhoJoined = {};
+
         res.ok = false;
 
-        if (data.playerID) {
+        playerWhoJoined =  playerList.filter(function(pl) {
+            return pl.uID === data.playerID;
+        })[0];
+
+        if (data.playerID && playerWhoJoined !== undefined) {
             res.ok = true;
-            res.playerID = data.playerID;
+            res.uID = data.playerID;
             res.team = data.teamID;
             res.state = data.state;
+            res.username = playerWhoJoined.username;
+
+            playerWhoJoined.team = data.teamID;
         }
 
         logger.log(socket, logger.loggableModules.GAME_PLAYER_JOIN, res);

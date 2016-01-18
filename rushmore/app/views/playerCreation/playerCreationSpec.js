@@ -11,13 +11,12 @@ describe('Player Creation page', function() {
 
     it("clicking input box clears the text inside", function() {
 
-        browser.waitForAngular()
+        browser.waitForAngular();
 
         var inputBox = element(by.css('#player-name-input-box'));
-                browser.waitForAngular()
 
         inputBox.click();
-        browser.waitForAngular()
+        browser.waitForAngular();
 
         expect(inputBox.getAttribute('value')).toEqual('');
     });

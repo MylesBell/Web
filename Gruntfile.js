@@ -130,13 +130,14 @@ module.exports = function (grunt) {
 
     grunt.registerTask("check", ["jshint"]);
     grunt.registerTask("install", ['bower:install']);
-    grunt.registerTask('e2e-test', ['ngconstant:dev', "express:angular_loc", "express:socket_test", 'selenium_start', 'protractor:e2e']);
+    grunt.registerTask('e2e-test', ["check", 'ngconstant:dev', "express:angular_loc", "express:socket_test", 'selenium_start', 'protractor:e2e']);
     grunt.registerTask("run-socket", ["express:socket"]);
     grunt.registerTask("default", ["check", 'install']);
     grunt.registerTask("run-angular-local", ["default", "ngconstant:dev", "express:angular_loc", "watch:angular"]);
     grunt.registerTask("run-angular-prod", ["default", "ngconstant:prod", "express:angular_prod", "watch:angular"]);
     grunt.registerTask("run-socket-prod", ["default", "express:socket", "watch:socket"]);
-    
+    grunt.registerTask("run-socket-local", ["default", "express:socket_test", "watch:socket"]);
+
     grunt.registerTask("run-concurrent-local", ["concurrent:run"]);
 
 };

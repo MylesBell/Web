@@ -12,12 +12,13 @@ angular.module('myApp').factory('NetworkService', function ($q, socket, StorageS
         // get the  client user id in session storage, if it exists
         // var existingID = StorageService.get("uID");
         // TODO actuallt do this
+        // TODO get userid back from the server
         var existingID = 0;
 
         socket.emit("subscribe", { name: "mobile", existingID: existingID });
     });
     
-    socket.on("locationChnage", function(data){
+    socket.on("locationChange", function(data){
         alertListeners("locationChange", data);
     });
 
@@ -27,6 +28,8 @@ angular.module('myApp').factory('NetworkService', function ($q, socket, StorageS
     
     // called by the sever when a player has their request to join a game granted
     socket.on('gamePlayerJoined', function (data) {
+        console.log("game player joined ");
+        console.log(data);
         alertListeners("gamePlayerJoined", data);
     });
 

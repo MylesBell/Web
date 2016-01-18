@@ -3,10 +3,9 @@
     Registering user with server
     Set username for game
 */
-angular.module('myApp').factory('UserService', function ($q, NetworkService) {
+angular.module('myApp').factory('UserService', function($q, NetworkService) {
 
-
-    
+    var uID = "";
     var userTeam = "";
     var username = "";
 
@@ -14,20 +13,30 @@ angular.module('myApp').factory('UserService', function ($q, NetworkService) {
         var deferred = $q.defer();
 
         gamecode = gamecode.trim();
-        
+
         // check name is not too long or short
         if (gamecode.length !== 4) {
-            deferred.reject({ ok: false, message: "Gamecodes should be 4 characters long" });
+            deferred.reject({
+                ok: false,
+                message: "Gamecodes should be 4 characters long"
+            });
         } else {
-            
+
             // try to add the user to the game
             // may need much more validtion and details being sent here
             NetworkService.send("playerJoinGame", {
-                gamecode: gamecode, username: username
-            }).then(function (res) {
-                deferred.resolve({ ok: true, details: res.details });
-            }).catch(function (err) {
-                deferred.reject({ ok: false, message: err.message });
+                gamecode: gamecode,
+                username: username
+            }).then(function(res) {
+                deferred.resolve({
+                    ok: true,
+                    details: res.details
+                });
+            }).catch(function(err) {
+                deferred.reject({
+                    ok: false,
+                    message: err.message
+                });
             });
         }
 
@@ -38,51 +47,72 @@ angular.module('myApp').factory('UserService', function ($q, NetworkService) {
         Sends the users name to the server to register with the game
         Returns a promise resolved when the server responds with game start info
         
-        If successful, save the userid in the local storage
+        If successful, save the userid in the local storage TODO
     */
     function registerUserWithServer(name) {
 
         var deferred = $q.defer();
-        
+
         // trim leading and trailing whitespace
         name = name.trim();
-        
+
         // check name is not too long or short
         if (name.length === 0) {
-            deferred.reject({ ok: false, message: "Name must be a least one character long" });
-        }
-        else if (name.length > 20) {
-            deferred.reject({ ok: false, message: "Name must be less than 20 characters" });
+            deferred.reject({
+                ok: false,
+                message: "Name must be a least one character long"
+            });
+        } else if (name.length > 20) {
+            deferred.reject({
+                ok: false,
+                message: "Name must be less than 20 characters"
+            });
         } else {
             // Send the user info to the server to register their name
             // may or may not succeed
             NetworkService.send("playerRegister", {
                 username: name
-            }).then(function (res) {
-                username = name; 
-                deferred.resolve({ ok: true, username: name });
-            }).catch(function (err) {
+            }).then(function(res) {
+                username = name;
+                uID = res.uID;     
+                           
+                deferred.resolve({
+                    ok: true,
+                    username: name
+                });
+            }).catch(function(err) {
                 // was an error registering the player
-                deferred.reject({ ok: false, message: err.message });
+                deferred.reject({
+                    ok: false,
+                    message: err.message
+                });
             });
         }
 
         return deferred.promise;
     }
-    
-    function getUserTeam(){
+
+    function getUserTeam() {
         return userTeam;
     }
-    
-    function getUsername(){
+
+    function getUserID() {
+        return uID;
+    }
+
+    function setUserID() {
+        return uID;
+    }
+
+    function getUsername() {
         return username;
     }
-    
-    function setUserTeam(team){
+
+    function setUserTeam(team) {
         userTeam = team;
     }
-    
-    
+
+
     /* --------------------
         PUBLIC API
     ---------------- */
@@ -92,7 +122,9 @@ angular.module('myApp').factory('UserService', function ($q, NetworkService) {
         attemptToJoinGame: attemptToJoinGame,
         setUserTeam: setUserTeam,
         getUserTeam: getUserTeam,
-        getUsername: getUsername
+        getUsername: getUsername,
+        getUserID: getUserID,
+        setUserID: setUserID
     };
 
 });
