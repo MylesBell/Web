@@ -133,15 +133,14 @@ label {
     padding-left: 40px;
     padding-right: 40px; 
     margin: auto;
+    top: 25%;
     position: absolute;
-    top: 20%; left: 0; bottom: 0; right: 0;
     text-align: center;
 }
 
 .controller-container p {
     color: rgba(21,21,21,1);
-    font-size: 20px;
-    letter-spacing: 0.05em;
+    font-size: 18px;
     opacity: 0.8;
     font-weight: 100;
     line-height: 1.2em;
@@ -167,10 +166,9 @@ label {
 
 
 .top-container{
-    height: 150px;
-    padding-top: 90px;
+    height: 120px;
+    padding-top: 60px;
     background-color: #2d3e50;
-
 }
 
 .top-container p {
@@ -180,31 +178,34 @@ label {
 
 .lobby-container{
     overflow-y: scroll; 
+    height: 100%;
+    display:block;
+    overflow:auto;
 }
 
 .lobby-container ul {
     list-style-type: none;
     padding-left: 0px;
-    padding-top: 10px;
 }
 
 .red-team-lobby-header {
-        border-bottom: 3px solid red;
+        border-bottom: 2px solid red;
 }
 .blue-team-lobby-header {
-        border-bottom: 3px solid blue;
+        border-bottom: 2px solid blue;
 }
 
 .lobby-container h1 {
     list-style-type: none;
     padding-left: 0px;
     padding-top: 10px;
+    font-size: 20px;
 }
 
 .lobby-container li {
     list-style-type: none;
     padding-left: 0px;
-    padding-top: 5px;
+    padding-bottom: 5px;
     font-size: 15px;
     color: rgba(21,21,21,1);
 }
@@ -212,7 +213,7 @@ label {
 
 /* This is the input box heading that appears on the blue section */
 .input-box {
-    font-size: 25px;
+    font-size: 20px;
     font-weight: bold;
     text-align: center;
     color: rgba(21,21,21,1);
@@ -229,8 +230,6 @@ label {
     color: rgba(21,21,21,1);
     padding: 0.5em 2em;
     border-radius: 5px;
-    margin-left: 2em;
-    margin-right: 2em;
     font-size: 25px;
     font-weight: 100;
 }
