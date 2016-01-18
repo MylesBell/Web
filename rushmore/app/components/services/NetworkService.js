@@ -52,8 +52,7 @@ angular.module('myApp').factory('NetworkService', function ($q, socket, StorageS
                 deferred.reject(res);
             }
         });
-
-
+        
         return deferred.promise;
     }
 

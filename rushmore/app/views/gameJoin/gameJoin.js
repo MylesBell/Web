@@ -4,7 +4,7 @@
     Move to the game lobby after this
 */
 angular.module('gameJoinView', ['ngRoute'])
-    .controller('GameJoinCtrl', ['$scope', 'UserService', 'LocationService', "NetworkService", function($scope, UserService, LocationService, NetworkService) {
+    .controller('GameJoinCtrl', ['$scope', 'UserService', 'LocationService', "NetworkService", "GameInfoService", function($scope, UserService, LocationService, NetworkService, GameInfoService) {
 
         // The unique game code for each game
         $scope.username = UserService.getUsername();
@@ -34,7 +34,6 @@ angular.module('gameJoinView', ['ngRoute'])
                 } else if (data.team === 1) {
                     UserService.setUserTeam('blue-team');
                 }
-
                 // Move player to the game screen
                 LocationService.setPath('/lobby');
             }

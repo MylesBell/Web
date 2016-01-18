@@ -7,6 +7,7 @@
 angular.module('myApp').factory('GameInfoService', function($q, NetworkService) {
 
     var listenerEventList = [];
+    var playerList = [];
 
     function alertListeners(name, data) {
         listenerEventList.forEach(function(listener) {
@@ -26,7 +27,8 @@ angular.module('myApp').factory('GameInfoService', function($q, NetworkService) 
         alertListeners(data.state, 0);
     }
 
-    function handlePlayerJoinedEvent (data) {
+    function handlePlayerJoinedEvent(data) {
+        playerList = data.playerList;
         alertListeners("playerJoined", data);
     }
 
@@ -35,16 +37,23 @@ angular.module('myApp').factory('GameInfoService', function($q, NetworkService) 
         eventName: "gameStateUpdate",
         call: handleGameStateUpdate
     });
+    // Register to listen to new players joining
     NetworkService.registerListener({
         eventName: "gamePlayerJoined",
         call: handlePlayerJoinedEvent
     });
 
+
+    function getPlayerList() {
+        return playerList;
+    }
+
     /* --------------------
          PUBLIC API
      ---------------- */
     return {
-        registerListener: registerListener
+        registerListener: registerListener,
+        getPlayerList: getPlayerList
     };
 
 });

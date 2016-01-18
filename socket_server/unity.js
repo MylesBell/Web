@@ -52,6 +52,7 @@ module.exports = {
             res.team = data.teamID;
             res.state = data.state;
             res.username = playerWhoJoined.username;
+            res.playerList = playerList;
 
             playerWhoJoined.team = data.teamID;
         }
