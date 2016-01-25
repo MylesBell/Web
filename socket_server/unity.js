@@ -44,7 +44,7 @@ module.exports = {
             return pl.uID === data.playerID;
         })[0];
 
-        if (res.ok === 1 && data.playerID && playerWhoJoined !== undefined) {
+        if (data.ok === 1 && data.playerID && playerWhoJoined !== undefined) {
             res.ok = true;
             res.uID = data.playerID;
             res.team = data.teamID;
