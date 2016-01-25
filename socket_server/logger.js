@@ -1,27 +1,37 @@
 // Require the SocketIO library
 var socketio = require('socket.io');
 
-module.exports = {
+function logger() {
+
+    var self = this;
+    self.loggingLevel = "FULL";
+
     // Log whenever a client joins
-    connect: function(socket, logger){
+    self.connect = function(socket, logger){
         // Handle connect methods later
-        logger.log(socket, logger.loggableModules.CONNECT);
-    },
+        self.logger.log(socket, logger.loggableModules.CONNECT);
+    };
 
     // Log the client disconnects
-    disconnect: function (socket, logger) {
+    self.disconnect = function (socket, logger) {
         // Handle disconnect methods later
-        logger.log(socket, logger.loggableModules.DISCONNECT);
-    },
+        self.logger.log(socket, logger.loggableModules.DISCONNECT);
+    };
 
     // As SocketIO doesn't include namespace protocols,
     // we implement our own room system using joins
-    subscribe: function (socket, data, logger) {
+    self.subscribe = function (socket, data, logger) {
         socket.join(data.name);
-        logger.log(socket, logger.loggableModules.SUBSCRIBE, data);
-    },
+        self.logger.log(socket, logger.loggableModules.SUBSCRIBE, data);
+    };
 
-    logger: {
+    // Set the logging level as
+    // FULL, SILENT
+    self.setLoggingLevel = function(level){
+        self.loggingLevel = level;
+    };
+
+    self.logger = {
         loggableModules : {
             "CONNECT" : "Connected",
             "DISCONNECT" : "Disconnected",
@@ -35,7 +45,12 @@ module.exports = {
             "GAME_PLAYER_JOIN" : "Game Player Joined"
         },
         log: function (socket, method, data) {
-            console.log("[" + socket.id + "] " + method + " : " + JSON.stringify(data));
+            if(self.loggingLevel !== "SILENT") {
+                console.log("[" + socket.id + "] " + method + " : " + JSON.stringify(data));
+            }
         }
-    }
-};
+    };
+
+}
+
+module.exports = logger;

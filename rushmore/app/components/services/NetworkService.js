@@ -12,12 +12,13 @@ angular.module('myApp').factory('NetworkService', function ($q, socket, StorageS
         // get the  client user id in session storage, if it exists
         // var existingID = StorageService.get("uID");
         // TODO actuallt do this
+        // TODO get userid back from the server
         var existingID = 0;
 
         socket.emit("subscribe", { name: "mobile", existingID: existingID });
     });
     
-    socket.on("locationChnage", function(data){
+    socket.on("locationChange", function(data){
         alertListeners("locationChange", data);
     });
 
@@ -45,15 +46,13 @@ angular.module('myApp').factory('NetworkService', function ($q, socket, StorageS
         var deferred = $q.defer();
 
         socket.emit(eventName, msg, function (res) {
-            console.log(res);
             if (res.ok) {
                 deferred.resolve(res);
             } else {
                 deferred.reject(res);
             }
         });
-
-
+        
         return deferred.promise;
     }
 

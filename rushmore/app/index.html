@@ -1,22 +1,15 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html lang="en" class="no-js">
-<!--<![endif]-->
+<html lang="en" ng-app="myApp">
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Rushmore</title>
-    <meta name="description" content="">
     <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
     <link rel="stylesheet" type="text/css" href="css/marketing.css">
 </head>
 
-<body ng-app="myApp">
+<body>
 
 
     <!--[if lt IE 7]>
@@ -34,11 +27,13 @@
 
     <div>Angular seed app: v<span app-version></span></div>
 
-    <!-- In production use:
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
-  -->
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
+    <!-- In production use: -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+ 
+    <!-- <script src="bower_components/angular/angular.js"></script> -->
+      <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular-route.js"></script>
+
+    <!-- <script src="bower_components/angular-route/angular-route.js"></script> -->
     <script src="bower_components/angular-socket-io/socket.js"></script>
     <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
 
@@ -57,7 +52,7 @@
     <script src="components/services/socketFactory.js"></script>
     <script src="components/services/NetworkService.js"></script>
     <script src="components/services/StorageService.js"></script>
-    <script src="components/services/GameStateService.js"></script>
+    <script src="components/services/GameInfoService.js"></script>
     <script src="components/services/InputHandlerService.js"></script>
     <script type="text/javascript" src="components/services/InputHandlerService.js"></script>
     <script type="text/javascript" src="components/services/LocationService.js"></script>

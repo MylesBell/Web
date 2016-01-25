@@ -14,6 +14,7 @@
     "grunt-nodemon": "^0.4.0",
     "grunt-npm-install": "^0.2.0",
     "http-server": "^0.6.1",
+    "jasmine": "^2.4.1",
     "jasmine-core": "^2.3.4",
     "karma": "~0.12",
     "karma-chrome-launcher": "^0.1.12",
@@ -23,11 +24,15 @@
     "protractor": "^2.1.0"
   },
   "scripts": {
-    "test": "grunt check"
+    "test": "grunt e2e-test"
   },
   "dependencies": {
     "angular-local-storage": "^0.2.2",
     "express": "^4.13.3",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-express-server": "^0.5.1",
+    "grunt-protractor-runner": "^3.0.0",
+    "grunt-selenium-webdriver": "^0.2.482",
     "socket.io": "latest"
   }
 }

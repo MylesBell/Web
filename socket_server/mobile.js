@@ -3,7 +3,7 @@ var socketio = require('socket.io');
 
 module.exports = {
     // Register a new user with the system
-    playerRegister: function(socket, data, logger){
+    playerRegister: function(socket, data, logger) {
         var res = {};
         var username;
 
@@ -19,31 +19,39 @@ module.exports = {
         logger.log(socket, logger.loggableModules.PLAYER_REGISTER, res);
         return res;
     },
-    
+
     // add a player to a game
-    playerJoinGame : function(socket, data, logger){
+    playerJoinGame: function(socket, data, logger, playerList) {
         var res = {};
-        
+
         // need to do some game code checking here
-        if(data.gamecode !== ""){
-            // 
+        if (data.gamecode !== "") {
+
             // TODO IF GAME CODE IS CORRECT
             res.ok = true;
             res.gamecode = data.gamecode;
             res.uID = socket.id;
-            res.username = data.username; 
-                   
+            res.username = data.username;
+
+            // Add player to the player list
+            playerList.push({
+                uID: socket.id,
+                username: data.username,
+                gamecode: data.gamecode,
+                team: ""
+            });
+
         } else {
             res.ok = false;
             res.message = "Invalid game code";
         }
-        
+
         logger.log(socket, logger.loggableModules.PLAYER_GAME_JOIN, res);
         return res;
     },
 
     // Direction movement control for heroes
-    playerDirection: function(socket, data, logger){
+    playerDirection: function(socket, data, logger) {
         var res = {};
         var input = {};
 
