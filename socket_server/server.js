@@ -46,7 +46,7 @@ io.on('connection', function(socket) {
     socket.on('disconnect', function(data) {
         var res = mobile.playerLeaveGame(socket, data, housekeeping.logger, playerList);
 
-        // If joining game was successful, tell the unity server to add them to game        
+        // Tell the Unity server they have left the game       
         if (res.ok) {
             io.sockets.in(UNITY_CHAN).emit('playerLeave', res);
         }
