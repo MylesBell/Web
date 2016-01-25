@@ -44,7 +44,12 @@ io.on('connection', function(socket) {
     housekeeping.connect(socket, housekeeping.logger);
 
     socket.on('disconnect', function(data) {
-        housekeeping.disconnect(socket, housekeeping.logger);
+        var res = mobile.playerLeaveGame(socket, data, housekeeping.logger, playerList);
+
+        // If joining game was successful, tell the unity server to add them to game        
+        if (res.ok) {
+            io.sockets.in(UNITY_CHAN).emit('playerLeave', res);
+        }
     });
 
     socket.on('subscribe', function(data) {
