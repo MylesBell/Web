@@ -27,7 +27,7 @@ angular.module('lobbyView', ['ngRoute'])
                 Register for events, when player join the game and when the game starts
             */
             GameInfoService.registerListener({
-                stateName: "playing",
+                stateName: 1,
                 call: handleGameStateChange
             });
             GameInfoService.registerListener({
