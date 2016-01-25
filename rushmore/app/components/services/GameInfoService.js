@@ -24,7 +24,7 @@ angular.module('myApp').factory('GameInfoService', function($q, NetworkService) 
 
     // Tell listeners that the game state has changed
     function handleGameStateUpdate(data) {
-        alertListeners(data.state, 0);
+        alertListeners(data.state, data.state); // name and data are the same for the states
     }
 
     // Tell listeners that a player has joined
