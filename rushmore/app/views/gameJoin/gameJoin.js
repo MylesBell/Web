@@ -25,17 +25,27 @@ angular.module('gameJoinView', ['ngRoute'])
         };
 
         // Called when the player has successfully joined
-        // move to the lobby page and set team
-        // only if this is for THIS player
+        // if this is for THIS player
+        //      move to the lobby page or game page if game already running
+        //       and set team only
         function playerJoinedEvent(data) {
             if (data.uID === UserService.getUserID()) {
+
+                // if game has not started yet
+                if (data.state === 0) {
+                    LocationService.setPath('/lobby');
+                } else if (data.state === 1) {
+                    LocationService.setPath('/game');
+                } else {
+                    console.log("Son you fucked up");
+                }
+
                 if (data.team === 0) {
                     UserService.setUserTeam('red-team');
                 } else if (data.team === 1) {
                     UserService.setUserTeam('blue-team');
                 }
                 // Move player to the game screen
-                LocationService.setPath('/lobby');
             }
         }
         /*

@@ -136,7 +136,8 @@ module.exports = function (grunt) {
     grunt.registerTask("run-angular-local", ["default", "ngconstant:dev", "express:angular_loc", "watch:angular"]);
     grunt.registerTask("run-angular-prod", ["default", "ngconstant:prod", "express:angular_prod", "watch:angular"]);
     grunt.registerTask("run-socket-prod", ["default", "express:socket", "watch:socket"]);
-    grunt.registerTask("run-socket-local", ["default", "express:socket_test", "watch:socket"]);
+    grunt.registerTask("run-socket-test", ["default", "express:socket_test", "watch:socket"]);
+    grunt.registerTask("run-socket-local", ["default", "express:socket", "watch:socket"]);
 
     grunt.registerTask("run-concurrent-local", ["concurrent:run"]);
 

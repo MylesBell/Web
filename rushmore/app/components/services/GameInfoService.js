@@ -22,11 +22,12 @@ angular.module('myApp').factory('GameInfoService', function($q, NetworkService) 
         listenerEventList.push(listenerEvent);
     }
 
-
+    // Tell listeners that the game state has changed
     function handleGameStateUpdate(data) {
         alertListeners(data.state, 0);
     }
 
+    // Tell listeners that a player has joined
     function handlePlayerJoinedEvent(data) {
         playerList = data.playerList;
         alertListeners("playerJoined", data);
