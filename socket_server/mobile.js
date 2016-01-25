@@ -2,6 +2,7 @@
 var socketio = require('socket.io');
 
 module.exports = {
+
     // Register a new user with the system
     playerRegister: function(socket, data, logger) {
         var res = {};
@@ -47,6 +48,21 @@ module.exports = {
         }
 
         logger.log(socket, logger.loggableModules.PLAYER_GAME_JOIN, res);
+        return res;
+    },
+
+    // remove a player from a game
+    playerLeaveGame: function(socket, data, logger, playerList) {
+        var res = {};
+
+        res.ok = true;
+        res.uID = socket.id;
+
+        playerList =  playerList.filter(function(pl) {
+            return pl.uID !== socket.id;
+        });
+
+        logger.log(socket, logger.loggableModules.PLAYER_GAME_LEAVE, res);
         return res;
     },
 
