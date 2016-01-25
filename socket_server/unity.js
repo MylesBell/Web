@@ -40,13 +40,11 @@ module.exports = {
         var res = {};
         var playerWhoJoined = {};
 
-        res.ok = false;
-
         playerWhoJoined =  playerList.filter(function(pl) {
             return pl.uID === data.playerID;
         })[0];
 
-        if (data.playerID && playerWhoJoined !== undefined) {
+        if (data.ok === 1 && data.playerID && playerWhoJoined !== undefined) {
             res.ok = true;
             res.uID = data.playerID;
             res.team = data.teamID;
@@ -55,6 +53,8 @@ module.exports = {
             res.playerList = playerList;
 
             playerWhoJoined.team = data.teamID;
+        } else{
+            console.log("ERROR " + data.msg);
         }
 
         logger.log(socket, logger.loggableModules.GAME_PLAYER_JOIN, res);
