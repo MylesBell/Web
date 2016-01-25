@@ -10,9 +10,11 @@ angular.module('lobbyView', ['ngRoute'])
             $scope.players = GameInfoService.getPlayerList();
 
             // When the game playing event occurs, move from the lobby to the game screen
-            function handleGamePlaying(data) {
-                console.log("Game playing");
-                LocationService.setPath("/game");
+            function handleGameStateChange(data) {
+                console.log("Game State changed" + data);
+                if(data.state === 1){
+                    LocationService.setPath("/game");
+                }
             }
 
             // Updates the player list when a new player joins
@@ -26,7 +28,7 @@ angular.module('lobbyView', ['ngRoute'])
             */
             GameInfoService.registerListener({
                 stateName: "playing",
-                call: handleGamePlaying
+                call: handleGameStateChange
             });
             GameInfoService.registerListener({
                 stateName: "playerJoined",
