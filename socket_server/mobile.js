@@ -51,17 +51,15 @@ module.exports = {
         return res;
     },
 
-    // add a player to a game
+    // remove a player from a game
     playerLeaveGame: function(socket, data, logger, playerList) {
         var res = {};
 
         res.ok = true;
         res.uID = socket.id;
 
-        // Add player to the player list
-        playerList.push({
-            uID: socket.id,
-            team: ""
+        playerList =  playerList.filter(function(pl) {
+            return pl.uID !== socket.id;
         });
 
         logger.log(socket, logger.loggableModules.PLAYER_GAME_LEAVE, res);
