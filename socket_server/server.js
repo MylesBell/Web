@@ -86,7 +86,7 @@ io.on('connection', function(socket) {
             var unityRes = unity.gamePlayerJoined(socket, {
                 playerID: socket.id,
                 teamID: 1,
-                state: "GAMEstateWaiting"
+                state: 0 //the state for idle
             }, housekeeping.logger, playerList);
 
             // Communicate successful join to the joining player and
