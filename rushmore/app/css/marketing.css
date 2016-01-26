@@ -60,7 +60,7 @@ label {
 
 .pure-game-button {
     border-radius: 5px;
-    height: 60px;
+    height: 70%;
     display: flex;
     justify-content: center;
     margin: 20px;
@@ -69,6 +69,10 @@ label {
 .pure-game-button > div {
    align-self: center;
    font-size: large;
+}
+
+.game-button {
+    height: 25%;
 }
 
 
@@ -208,6 +212,14 @@ label {
     padding-bottom: 5px;
     font-size: 15px;
     color: rgba(21,21,21,1);
+}
+
+
+.controls-container {
+    position: absolute;
+    top: 10%;
+    height: 90%;
+    display: table;
 }
 
 
