@@ -54,28 +54,21 @@ label {
 .pure-button {
     background-color: white;
     color: grey;
-    padding: 0.5em 2em;
     border-radius: 5px;
 }
 
 .pure-game-button {
     border-radius: 5px;
-    height: 70%;
-    display: flex;
+    height: 30%;
     justify-content: center;
-    margin: 20px;
+    background-color: #dadfe1;
+    align-self: center;    
+    font-size: 18px;
+    font-weight: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-
-.pure-game-button > div {
-   align-self: center;
-   font-size: large;
-}
-
-.game-button {
-    height: 25%;
-}
-
-
 
 /*
  * -- MENU STYLES --
@@ -104,6 +97,29 @@ label {
 
 .home-menu a {
     color: #6FBEF3;
+}
+
+/* This is the input box heading that appears on the blue section */
+.input-box {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    color: rgba(21,21,21,1);
+    border: 3px solid rgba(21,21,21,1);
+    background-color: #ECF0F1;
+    padding: 1em 1.6em;
+    font-weight: 100;
+    border-radius: 5px;
+    line-height: 1em;
+}
+
+.deploy-button{
+    background-color: white;
+    color: rgba(21,21,21,1);
+    padding: 0.5em 2em;
+    border-radius: 5px;
+    font-size: 25px;
+    font-weight: 100;
 }
 
 
@@ -229,42 +245,42 @@ label {
 
 .stats-container {
     background-color: red;
-    height: 25%;
+    height: 20%;
 }
 
 .controls-container {
-    background-color: blue;
     height: 50%;
+}
+
+.inner-controls-container {
+    width: 90%;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .specials-container {
     background-color: green;
-    height: 25%;
+    height: 30%;
 }
 
 
-
-/* This is the input box heading that appears on the blue section */
-.input-box {
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-    color: rgba(21,21,21,1);
-    border: 3px solid rgba(21,21,21,1);
-    background-color: #ECF0F1;
-    padding: 1em 1.6em;
-    font-weight: 100;
-    border-radius: 5px;
-    line-height: 1em;
+#up-button{
+    width: 60%;
+    /*margin-bottom: -15px;*/
 }
-
-.deploy-button{
-    background-color: white;
-    color: rgba(21,21,21,1);
-    padding: 0.5em 2em;
-    border-radius: 5px;
-    font-size: 25px;
-    font-weight: 100;
+#down-button{
+    width: 60%;
+    /*margin-top: -15px;*/
+}
+#forward-button{
+    width: 50%;
+}
+#backward-button{
+    width: 50%;
 }
 
 .blue-team{
@@ -296,6 +312,12 @@ label {
 .splash-subhead {
     color: white;
 
+}
+
+@media (min-width: 24em){
+   .pure-game-button{
+        font-size: 24px;
+    }
 }
 
 /*
