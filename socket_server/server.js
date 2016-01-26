@@ -43,15 +43,6 @@ io.on('connection', function(socket) {
 
     housekeeping.connect(socket, housekeeping.logger);
 
-    socket.on('disconnect', function(data) {
-        var res = mobile.playerLeaveGame(socket, data, housekeeping.logger, playerList);
-
-        // Tell the Unity server they have left the game       
-        if (res.ok) {
-            io.sockets.in(UNITY_CHAN).emit('playerLeave', res);
-        }
-    });
-
     socket.on('subscribe', function(data) {
         housekeeping.subscribe(socket, data, housekeeping.logger);
     });
@@ -70,6 +61,26 @@ io.on('connection', function(socket) {
 
         // Return the response back to the client, either success or failure, to fufilled the promise
         callback(res);
+    });
+
+    /*
+        Player closes the browser or leaves the game
+
+        Remove them from the player list, update everyone else's player list 
+        and tell unity that player has left
+    */
+    socket.on('disconnect', function(data) {
+        var res = mobile.playerLeaveGame(socket, data, housekeeping.logger, playerList);
+
+        // Communicate disconnect both Unity server and all other players
+        if (res.ok) {
+            io.sockets.in(UNITY_CHAN).emit('playerLeave', res);
+
+            playerList.forEach(function(pl) {
+                io.sockets.in(pl.uID).emit('gamePlayerLeft', res);
+            });
+        }
+
     });
 
     /*
@@ -98,7 +109,6 @@ io.on('connection', function(socket) {
             // Communicate successful join to the joining player and
             // update all other clients in the game with new player
             if (unityRes.ok) {
-                // console.log(playerList);
                 playerList.forEach(function(pl) {
                     io.sockets.in(pl.uID).emit('gamePlayerJoined', unityRes);
                 });
