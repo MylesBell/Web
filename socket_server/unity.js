@@ -6,6 +6,7 @@ module.exports = {
     gamePlayerDied: function(socket, data, logger){
         var res = {};
         res.ok = true;
+        res.playerID = data.playerID;
 
         logger.log(socket, logger.loggableModules.GAME_PLAYER_DIED, res);
         return res;
