@@ -160,19 +160,25 @@ io.on('connection', function(socket) {
         }
     });
 
-    //TODO, actualyl do something here
-    socket.on('playerNearBase', function (data) {
-        console.log(data);
-    })
+    /*
+        Called by Unity when a player is near their base
+
+        Informs the player that are near the base
+        Allows the player to do things like upgrade or switch lanes
+    */
+    socket.on('playerNearBase', function(data) {
+        var res = unity.playerNearBase(socket, data, housekeeping.logger);
+
+        if (res.ok) {
+            io.sockets.in(res.uID).emit("playerNearBase", res);
+        }
+    });
 
     /*
-        Called by Unity Server when a player has successfuly joined the game
+        Called by Unity when a player has successfuly joined the game
 
         Updates that players info to what team they have been asssigned to
         Also broadcasts this event to all clients in that game to update their own player list
-
-        TODO get gamecode back from server
-             
     */
     socket.on('gamePlayerJoined', function(data) {
         var res = unity.gamePlayerJoined(socket, data, housekeeping.logger, playerList);
