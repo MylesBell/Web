@@ -91,7 +91,7 @@ io.on('connection', function(socket) {
             var unityRes = unity.gamePlayerJoined(socket, {
                 playerID: socket.id,
                 teamID: 1,
-                state: 1, //the state for playing
+                state: 0, //the state for playing
                 ok: 1 // code was correct
             }, housekeeping.logger, playerList);
 
