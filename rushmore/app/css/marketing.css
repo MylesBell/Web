@@ -228,13 +228,6 @@ label {
         border-bottom: 2px solid blue;
 }
 
-/*.controls-container {
-    position: absolute;
-    top: 10%;
-    height: 90%;
-    display: table;
-}*/
-
 .game-container {
     height: 90%;
     top: 50px;
@@ -244,17 +237,14 @@ label {
 }
 
 .stats-container {
-    background-color: red;
-    height: 20%;
+    height: 15%;
+    width: 90%;
+    margin: auto;
 }
 
 .controls-container {
-    height: 50%;
-}
-
-.inner-controls-container {
+    height: 55%;
     width: 90%;
-    height: 100%;
     margin: auto;
     display: flex;
     flex-flow: row wrap;
@@ -263,17 +253,35 @@ label {
 }
 
 .specials-container {
-    background-color: green;
+/*    background-color: green;
+*/    
     height: 30%;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.special {
+    border-radius: 50%;
+    width: 25%;
+    float:left;
+    display:block;
+
+    /*height: auto;*/
+    padding-top:20%;
+    background-color: #dadfe1;
 }
 
 
 #up-button{
-    width: 60%;
+    width: 55%;
     /*margin-bottom: -15px;*/
 }
 #down-button{
-    width: 60%;
+    width: 55%;
     /*margin-top: -15px;*/
 }
 #forward-button{
@@ -281,6 +289,21 @@ label {
 }
 #backward-button{
     width: 50%;
+}
+
+.health-bar-container {
+    height: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#health-bar-remaining {
+    border-radius: 5px;
+    background-color: #26A65B;
+    width: 100%;
+    height: 20px;
 }
 
 .blue-team{
@@ -314,6 +337,11 @@ label {
 
 }
 
+@media (max-width: 20em){
+    .special {
+        padding-top: 18%; 
+    }
+}
 @media (min-width: 24em){
    .pure-game-button{
         font-size: 24px;
