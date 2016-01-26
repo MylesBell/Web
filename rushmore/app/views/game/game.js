@@ -7,7 +7,7 @@ angular.module('gameView', ['ngRoute'])
 		Fired when user selects input button on game controller page
 		input can be one of several driections
 		sends this input to the server
-	*/
+	   */
         $scope.inputButtonClicked = function(direction) {
             InputHandlerService.handleInput({
                 direction: direction
@@ -70,3 +70,4 @@ angular.module('gameView', ['ngRoute'])
 
 
     }]);
+

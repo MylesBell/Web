@@ -113,7 +113,6 @@ label {
  */
  
  .main-container {
-
     z-index: 1;
     overflow: hidden;
     /* The following styles are required for the "scroll-over" effect */
@@ -168,7 +167,6 @@ label {
     line-height: 1.2em;
 }
 
-
 .top-container{
     height: 120px;
     padding-top: 60px;
@@ -192,13 +190,6 @@ label {
     padding-left: 0px;
 }
 
-.red-team-lobby-header {
-        border-bottom: 2px solid red;
-}
-.blue-team-lobby-header {
-        border-bottom: 2px solid blue;
-}
-
 .lobby-container h1 {
     list-style-type: none;
     padding-left: 0px;
@@ -214,13 +205,43 @@ label {
     color: rgba(21,21,21,1);
 }
 
+.red-team-lobby-header {
+        border-bottom: 2px solid red;
+}
+.blue-team-lobby-header {
+        border-bottom: 2px solid blue;
+}
 
-.controls-container {
+/*.controls-container {
     position: absolute;
     top: 10%;
     height: 90%;
     display: table;
+}*/
+
+.game-container {
+    height: 90%;
+    top: 50px;
+    position: absolute;
+    width: 100%;
+    bottom: 100%;
 }
+
+.stats-container {
+    background-color: red;
+    height: 25%;
+}
+
+.controls-container {
+    background-color: blue;
+    height: 50%;
+}
+
+.specials-container {
+    background-color: green;
+    height: 25%;
+}
+
 
 
 /* This is the input box heading that appears on the blue section */
