@@ -51,16 +51,21 @@ module.exports = {
         return res;
     },
 
-    // remove a player from a game
+    // remove a player from a game and the player list
     playerLeaveGame: function(socket, data, logger, playerList) {
         var res = {};
 
+
+
+        for (var i = 0; i < playerList.length; i++) {
+            if (playerList[i].uID === socket.id) {
+                playerList.splice(i, 1);
+            }
+        }
+
         res.ok = true;
         res.uID = socket.id;
-
-        playerList =  playerList.filter(function(pl) {
-            return pl.uID !== socket.id;
-        });
+        res.playerList = playerList;
 
         logger.log(socket, logger.loggableModules.PLAYER_GAME_LEAVE, res);
         return res;

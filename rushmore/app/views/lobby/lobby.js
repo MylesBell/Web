@@ -30,8 +30,14 @@ angular.module('lobbyView', ['ngRoute'])
                 stateName: 1,
                 call: handleGameStateChange
             });
+
             GameInfoService.registerListener({
                 stateName: "playerJoined",
+                call: updateCurrentPlayerList
+            });
+
+            GameInfoService.registerListener({
+                stateName: "playerLeft",
                 call: updateCurrentPlayerList
             });
 

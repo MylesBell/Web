@@ -33,15 +33,28 @@ angular.module('myApp').factory('GameInfoService', function($q, NetworkService) 
         alertListeners("playerJoined", data);
     }
 
+    // Tell listeners that a player has left
+    function handlePlayerLeaveEvent(data) {
+        playerList = data.playerList;
+        alertListeners("playerLeft", data);
+    }
+
     // Register to listen to changes in state
     NetworkService.registerListener({
         eventName: "gameStateUpdate",
         call: handleGameStateUpdate
     });
+
     // Register to listen to new players joining
     NetworkService.registerListener({
         eventName: "gamePlayerJoined",
         call: handlePlayerJoinedEvent
+    });
+
+    // Register to listen to players leaving
+    NetworkService.registerListener({
+        eventName: "gamePlayerLeft",
+        call: handlePlayerLeaveEvent
     });
 
 
