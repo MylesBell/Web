@@ -23,6 +23,8 @@ angular.module('myApp').factory('InputHandlerService', function($q, NetworkServi
         // handle switches different 
         if(input.direction === "switch") {
             eventName = "playerSwitchBase";
+        } else if (input.direction === "special") {
+            eventName = "playerSpecial";
         } else {
             eventName = "playerDirection";
         }
