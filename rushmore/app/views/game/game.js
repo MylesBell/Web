@@ -60,7 +60,7 @@ angular.module('gameView', ['ngRoute'])
             $scope.inputButtonClicked("switch");
         }
 
-        function switchLane() {
+        function useSpecial() {
             $scope.inputButtonClicked("special");
         }
 
