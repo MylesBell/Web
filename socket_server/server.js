@@ -159,6 +159,12 @@ io.on('connection', function(socket) {
             io.sockets.in(MOBILE_CHAN).emit('gameStateUpdate', res);
         }
     });
+
+    //TODO, actualyl do something here
+    socket.on('playerNearBase', function (data) {
+        console.log(data);
+    })
+
     /*
         Called by Unity Server when a player has successfuly joined the game
 
