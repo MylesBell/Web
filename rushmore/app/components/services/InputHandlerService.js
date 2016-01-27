@@ -18,6 +18,7 @@ angular.module('myApp').factory('InputHandlerService', function($q, NetworkServi
     */
     function handleInput(input) {
         var deferred = $q.defer();
+        var eventName = "";
 
         NetworkService.send("playerDirection", {
             input: input.direction

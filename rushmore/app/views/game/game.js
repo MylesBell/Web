@@ -21,6 +21,8 @@ angular.module('gameView', ['ngRoute'])
         function handlePlayerNearBaseEvent(data) {
             console.log("PLAYER NEAR BASE");
             console.log(data);
+            $scope.nearBase = !($scope.nearBase);
+
         }
 
         NetworkService.registerListener({
@@ -49,7 +51,11 @@ angular.module('gameView', ['ngRoute'])
             $scope.inputButtonClicked('backward');
         }
 
-        // Enable click & dblclick events, and monitor both.
+        function switchLane() {
+            $scope.inputButtonClicked('switch');
+        }
+
+        // // Enable click & dblclick events, and monitor both.
         var downButton = document.getElementById('down-button');
         var upButton = document.getElementById('up-button');
         var forwardButton = document.getElementById('forward-button');
@@ -66,8 +72,9 @@ angular.module('gameView', ['ngRoute'])
         backwardButton.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', doubleTap(), false);
         backwardButton.addEventListener('tap', backward, false);
         backwardButton.addEventListener('dbltap', backward, false);
-
+        switchButton.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', doubleTap(), false);
+        switchButton.addEventListener('tap', switchLane, false);
+        switchButton.addEventListener('dbltap', switchLane, false);
 
 
     }]);
-

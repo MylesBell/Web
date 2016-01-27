@@ -101,8 +101,8 @@ io.on('connection', function(socket) {
             console.log("TESTING ENABLED, FAKING UNTIY GAME PLAYER JOINED RESPONSE");
             var unityRes = unity.gamePlayerJoined(socket, {
                 playerID: socket.id,
-                teamID: 0,
-                state: 1, //the state for playing
+                teamID: 1,
+                state: 0, //the state for playing
                 ok: 1 // code was correct
             }, housekeeping.logger, playerList);
 
@@ -135,7 +135,12 @@ io.on('connection', function(socket) {
         }
     });
 
-    /* Unity events */
+
+    /* 
+        --------------------------
+        Unity events
+        ------------------------
+    */
     socket.on('gamePlayerRespawn', function(data) {
         var res = unity.gamePlayerRespawn(socket, data, housekeeping.logger);
 
