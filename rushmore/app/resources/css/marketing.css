@@ -254,7 +254,7 @@ label {
     flex-flow: row wrap;
     justify-content: space-around;
     align-items: center;
-    background: #EF4836;     
+    /*background: #EF4836;     */
 }
 
 .special {
@@ -315,8 +315,8 @@ label {
 }
 
 .red-team{
-        /*background: #EF4836;        */
-        background-color: white;
+        background: #EF4836;        
+        /*background-color: white;*/
 }
 
 /* do not group these rules */
