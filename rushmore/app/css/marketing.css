@@ -45,6 +45,7 @@ label {
     display: flex;
     align-items: center;
     justify-content: center;
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* Stop the bounding box when clicking button */
 }
 
 /*
