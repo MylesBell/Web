@@ -39,7 +39,8 @@ module.exports = {
                 uID: socket.id,
                 username: data.username,
                 gamecode: data.gamecode,
-                team: ""
+                team: "",
+                health: 1000 // hardcoded lol
             });
 
         } else {

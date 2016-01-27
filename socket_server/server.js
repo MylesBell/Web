@@ -174,6 +174,14 @@ io.on('connection', function(socket) {
     });
 
     /*
+        Called when a player's health is changed
+    */
+    socket.on('gamePlayerChangeHealth', function(data) {
+        var res = unity.gamePlayerChangeHealth(socket, data, housekeeping.logger, playerList);
+        console.log(res);
+    })
+
+    /*
         Called by Unity when a player is near their base
 
         Informs the player that are near the base
