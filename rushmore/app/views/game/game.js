@@ -65,6 +65,8 @@ angular.module('gameView', ['ngRoute'])
         var upButton = document.getElementById('up-button');
         var forwardButton = document.getElementById('forward-button');
         var backwardButton = document.getElementById('backward-button');
+        var switchButton = document.getElementById('switch-button');
+
         downButton.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', doubleTap(), false);
         downButton.addEventListener('tap', down, false);
         downButton.addEventListener('dbltap', down, false);
