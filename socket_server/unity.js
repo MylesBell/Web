@@ -77,7 +77,7 @@ module.exports = {
         Player has either gained or lost a unit of health by "amount"
     */
     gamePlayerChangeHealth: function(socket, data, logger, playerList) {
-        var res = {}
+        var res = {};
         var player;
 
         player = playerList.filter(function(pl) {
