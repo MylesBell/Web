@@ -2,7 +2,7 @@ angular.module('gameView', ['ngRoute'])
     .controller('GameCtrl', ['$scope', 'InputHandlerService', "NetworkService", "UserService", function($scope, InputHandlerService, NetworkService, UserService) {
 
         $scope.teamClass = UserService.getUserTeam();
-        $scope.nearBase = true;
+        $scope.nearBase = false;
 
         /*
 		Fired when user selects input button on game controller page
@@ -23,11 +23,13 @@ angular.module('gameView', ['ngRoute'])
             console.log("PLAYER NEAR BASE is " + $scope.nearBase);
             console.log(data);
 
+
             if(data.nearBase === 0){
                 $scope.nearBase = false;
             } else {
                 $scope.nearBase = true;
             }
+            console.log($scope.nearBase);
         }
 
         NetworkService.registerListener({

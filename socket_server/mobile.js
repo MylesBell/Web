@@ -89,6 +89,16 @@ module.exports = {
         return res;
     },
 
+
+    playerSwitchBase: function(socket, data, logger) {
+        var res = {};
+
+        res.ok = true;
+        res.uID = socket.id;
+
+        logger.log(socket, logger.loggableModules.PLAYER_DIRECTION, res);
+    },
+
     // Activate a special attack from the player
     playerSpecial: function(socket, data, logger) {
         var res = {};
