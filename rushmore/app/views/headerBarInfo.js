@@ -13,5 +13,6 @@ angular.module('headerBarInfoView', ['ngRoute'])
         $scope.$on('$routeChangeStart', function (next, current) {
              $scope.username = UserService.getUsername();
         });
-        
+
+        $scope.teamClass = UserService.getUserTeam();        
     }]);

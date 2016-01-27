@@ -24,29 +24,6 @@ label {
     color: #34495e;
 }
 
-.pure-img-responsive {
-    max-width: 100%;
-    height: auto;
-}
-
-/*
- * -- LAYOUT STYLES --
- * These are some useful classes which I will need
- */
-.l-box {
-    padding: 1em;
-}
-
-.l-box-lrg {
-    padding: 2em;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-}
-
-.is-center {
-    text-align: center;
-}
-
-
 /*
  * -- PURE BUTTON STYLES --
  * I want my pure-button elements to look a little different
@@ -54,28 +31,21 @@ label {
 .pure-button {
     background-color: white;
     color: grey;
-    padding: 0.5em 2em;
     border-radius: 5px;
 }
 
 .pure-game-button {
     border-radius: 5px;
-    height: 70%;
-    display: flex;
+    height: 30%;
     justify-content: center;
-    margin: 20px;
+    background-color: #dadfe1;
+    align-self: center;    
+    font-size: 18px;
+    font-weight: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-
-.pure-game-button > div {
-   align-self: center;
-   font-size: large;
-}
-
-.game-button {
-    height: 25%;
-}
-
-
 
 /*
  * -- MENU STYLES --
@@ -106,6 +76,29 @@ label {
     color: #6FBEF3;
 }
 
+/* This is the input box heading that appears on the blue section */
+.input-box {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    color: rgba(21,21,21,1);
+    border: 3px solid rgba(21,21,21,1);
+    background-color: #ECF0F1;
+    padding: 1em 1.6em;
+    font-weight: 100;
+    border-radius: 5px;
+    line-height: 1em;
+}
+
+.deploy-button{
+    background-color: white;
+    color: rgba(21,21,21,1);
+    padding: 0.5em 2em;
+    border-radius: 5px;
+    font-size: 25px;
+    font-weight: 100;
+}
+
 
 /*
  * -- SPLASH STYLES --
@@ -113,7 +106,6 @@ label {
  */
  
  .main-container {
-
     z-index: 1;
     overflow: hidden;
     /* The following styles are required for the "scroll-over" effect */
@@ -168,7 +160,6 @@ label {
     line-height: 1.2em;
 }
 
-
 .top-container{
     height: 120px;
     padding-top: 60px;
@@ -192,13 +183,6 @@ label {
     padding-left: 0px;
 }
 
-.red-team-lobby-header {
-        border-bottom: 2px solid red;
-}
-.blue-team-lobby-header {
-        border-bottom: 2px solid blue;
-}
-
 .lobby-container h1 {
     list-style-type: none;
     padding-left: 0px;
@@ -214,44 +198,124 @@ label {
     color: rgba(21,21,21,1);
 }
 
+.red-team-lobby-header {
+        border-bottom: 2px solid red;
+}
+.blue-team-lobby-header {
+        border-bottom: 2px solid blue;
+}
+
+.game-container {
+    height: 90%;
+    top: 50px;
+    position: absolute;
+    width: 100%;
+    bottom: 100%;
+}
+
+.stats-container {
+    height: 15%;
+    width: 90%;
+    margin: auto;
+}
 
 .controls-container {
-    position: absolute;
-    top: 10%;
-    height: 90%;
-    display: table;
+    height: 60%;
+    width: 100%;
+    margin: auto;
+    /*display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;*/
 }
 
-
-/* This is the input box heading that appears on the blue section */
-.input-box {
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-    color: rgba(21,21,21,1);
-    border: 3px solid rgba(21,21,21,1);
-    background-color: #ECF0F1;
-    padding: 1em 1.6em;
-    font-weight: 100;
-    border-radius: 5px;
-    line-height: 1em;
+.context-controls-container {
+    height: 10%;
+    background-color: red;
 }
 
-.deploy-button{
-    background-color: white;
-    color: rgba(21,21,21,1);
-    padding: 0.5em 2em;
+.movement-controls-container {
+    height: 100%;
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.specials-container {
+    height: 25%;
+    width: 100%;
+    margin: auto;
+    margin-top: 20px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+    background: #EF4836;     
+}
+
+.special {
+    border-radius: 50%;
+    width: 20%;
+    float:left;
+    display:block;
+    padding-top:15%;
+    background-color: #dadfe1;
+}
+
+#switch-button {
+    width: 20%;
+}
+
+#up-button{
+    width: 50%;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+}
+#down-button{
+    width: 50%;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+}
+#forward-button{
+    width: 50%;
+    border-bottom-left-radius: 50%;
+    border-top-left-radius: 50%;
+    border-bottom-right-radius: 0%;
+    border-top-right-radius: 0%;
+}
+#backward-button{
+    width: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-bottom-left-radius: 0%;
+    border-top-left-radius: 0%;
+}
+
+.health-bar-container {
+    height: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#health-bar-remaining {
     border-radius: 5px;
-    font-size: 25px;
-    font-weight: 100;
+    background-color: #26A65B;
+    width: 100%;
+    height: 20px;
 }
 
 .blue-team{
-        background: #1f8dd6;        
+        background: #4183D7;        
 }
 
 .red-team{
-        background: red;        
+        /*background: #EF4836;        */
+        background-color: white;
 }
 
 /* do not group these rules */
@@ -275,6 +339,21 @@ label {
 .splash-subhead {
     color: white;
 
+}
+
+@media (max-width: 20em){ /* For the iphone 4 at 320px wide */
+    .special {
+        padding-top: 13%; 
+    }
+
+    .specials-container {
+        margin-top: 10px;
+    }
+}
+@media (min-width: 24em){
+   .pure-game-button{
+        font-size: 24px;
+    }
 }
 
 /*

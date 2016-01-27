@@ -38,6 +38,10 @@ angular.module('myApp').factory('NetworkService', function($q, socket, StorageSe
         alertListeners("gamePlayerLeft", data);
     });
 
+    socket.on("playerNearBase", function(data) {
+        alertListeners("playerNearBase", data);
+    });
+
     function alertListeners(eventName, eventData) {
         listenerEventList.forEach(function(listener) {
             if (listener.eventName === eventName) {

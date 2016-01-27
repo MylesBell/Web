@@ -62,4 +62,15 @@ module.exports = {
         return res;
     },
 
+    playerNearBase: function (socket, data, logger) {
+        var res = {};
+
+        res.uID = data.playerID;
+        res.nearBase = data.nearBase;
+        res.ok = true;
+
+        logger.log(socket, logger.loggableModules.PLAYER_NEAR_BASE, res);
+        return res;
+    }
+
 };

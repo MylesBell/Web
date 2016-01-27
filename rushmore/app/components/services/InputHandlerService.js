@@ -18,8 +18,16 @@ angular.module('myApp').factory('InputHandlerService', function($q, NetworkServi
     */
     function handleInput(input) {
         var deferred = $q.defer();
+        var eventName = "";
 
-        NetworkService.send("playerDirection", {
+        // handle switches different 
+        if(input.direction === "switch") {
+            eventName = "playerSwitchBase";
+        } else {
+            eventName = "playerDirection";
+        }
+
+        NetworkService.send(eventName, {
             input: input.direction
         });
         deferred.resolve({ok:true});
