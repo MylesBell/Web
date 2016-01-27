@@ -2,6 +2,7 @@ angular.module('gameView', ['ngRoute'])
     .controller('GameCtrl', ['$scope', 'InputHandlerService', "NetworkService", "UserService", function($scope, InputHandlerService, NetworkService, UserService) {
 
         $scope.teamClass = UserService.getUserTeam();
+        $scope.nearBase = true;
 
         /*
 		Fired when user selects input button on game controller page
@@ -19,7 +20,7 @@ angular.module('gameView', ['ngRoute'])
         };
 
         function handlePlayerNearBaseEvent(data) {
-            console.log("PLAYER NEAR BASE");
+            console.log("PLAYER NEAR BASE is " + $scope.nearBase);
             console.log(data);
             $scope.nearBase = !($scope.nearBase);
 
@@ -52,7 +53,7 @@ angular.module('gameView', ['ngRoute'])
         }
 
         function switchLane() {
-            $scope.inputButtonClicked('switch');
+            $scope.inputButtonClicked("switch");
         }
 
         // // Enable click & dblclick events, and monitor both.
