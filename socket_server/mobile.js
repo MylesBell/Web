@@ -84,4 +84,14 @@ module.exports = {
         return res;
     },
 
+    // Activate a special attack from the player
+    playerSpecial: function(socket, data, logger) {
+        var res = {};
+        res.ok = true;
+
+        logger.log(socket, logger.loggableModules.PLAYER_SPECIAL, res);
+        return res;
+    },
+
+
 };
