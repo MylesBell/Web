@@ -88,6 +88,7 @@ module.exports = {
     playerSpecial: function(socket, data, logger) {
         var res = {};
         res.ok = true;
+        res.uID = socket.id;
 
         logger.log(socket, logger.loggableModules.PLAYER_SPECIAL, res);
         return res;
