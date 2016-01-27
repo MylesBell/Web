@@ -20,21 +20,26 @@ angular.module('gameView', ['ngRoute'])
         };
 
         function handlePlayerNearBaseEvent(data) {
-            console.log("PLAYER NEAR BASE is " + $scope.nearBase);
-            console.log(data);
-
-
-            if(data.nearBase === 0){
+            if (data.nearBase === 0) {
                 $scope.nearBase = false;
             } else {
                 $scope.nearBase = true;
             }
-            console.log($scope.nearBase);
+        }
+
+        function handlePlayerChangeHealth(data) {
+            $scope.playerHealth = data.playerHealth;
+            console.log($scope.playerHealth);
         }
 
         NetworkService.registerListener({
             eventName: "playerNearBase",
             call: handlePlayerNearBaseEvent
+        });
+
+        NetworkService.registerListener({
+            eventName: "playerChangeHealth",
+            call: handlePlayerChangeHealth
         });
 
         /*

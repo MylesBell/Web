@@ -179,6 +179,10 @@ io.on('connection', function(socket) {
     socket.on('gamePlayerChangeHealth', function(data) {
         var res = unity.gamePlayerChangeHealth(socket, data, housekeeping.logger, playerList);
         console.log(res);
+
+        if(res.ok) {
+            io.sockets.in(res.uID).emit("playerChangeHealth", res);
+        }
     });
 
     /*

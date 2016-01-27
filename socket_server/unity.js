@@ -83,7 +83,7 @@ module.exports = {
         player = playerList.filter(function(pl) {
             return pl.uID === data.playerID;
         })[0];
-
+        
         player.health = player.health + data.amount;
 
         res.uID = player.uID;
