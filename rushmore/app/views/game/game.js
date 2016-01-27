@@ -74,6 +74,9 @@ angular.module('gameView', ['ngRoute'])
         var switchButton = document.getElementById('switch-button');
         var specialButton1 = document.getElementById('special-button-1');
 
+        // specialButton1.style.backgroundImage = "url(../../resources/images/flame.png)";
+        // specialButton1.style.backgroundColor = "#F22613";
+
         downButton.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', doubleTap(), false);
         downButton.addEventListener('tap', down, false);
         downButton.addEventListener('dbltap', down, false);

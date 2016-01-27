@@ -46,7 +46,16 @@ label {
     align-items: center;
     justify-content: center;
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* Stop the bounding box when clicking button */
+    box-shadow: 0 0 0 1px rgba(0,0,0,.15) inset,0 0 6px rgba(0,0,0,.1) inset;
 }
+
+.pure-game-button:active {
+    background-image: linear-gradient(transparent,rgba(0,0,0,.05) 30%,rgba(0,0,0,.3));
+}
+
+.pure-game-button:hover {
+/*    background-image: linear-gradient(transparent,rgba(0,0,0,.00) 40%,rgba(0,0,0,.01));
+*/}
 
 /*
  * -- MENU STYLES --
@@ -254,17 +263,39 @@ label {
     flex-flow: row wrap;
     justify-content: space-around;
     align-items: center;
-    /*background: #EF4836;     */
 }
 
 .special {
+    width: 25%;
+    height: 80%;
+}
+
+.special-circle {
     border-radius: 50%;
-    width: 20%;
+    width: 100%;
     float:left;
     display:block;
-    padding-top:15%;
+    padding-top:100%;
     background-color: #dadfe1;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.15) inset,0 0 6px rgba(0,0,0,.1) inset;
+
+  
 }
+
+.special-fire {
+    background-image: url("../images/flame_red.png");
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+.special-fire:active {
+    background-image: -webkit-linear-gradient(transparent, rgba(0,0,0,.1) 30%, rgba(0,0,0,.3)), url("../images/flame_red.png");
+    background-image: -o-linear-gradient(transparent, rgba(0,0,0,.1) 30%, rgba(0,0,0,.3)), url("../images/flame_red.png");
+    background-image: linear-gradient(transparent, rgba(0,0,0,.1) 30%, rgba(0,0,0,.3)), url("../images/flame_red.png");
+    background-size: 100%; 
+}
+
 
 #switch-button {
     width: 20%;
@@ -315,7 +346,7 @@ label {
 }
 
 .red-team{
-        background: #EF4836;        
+        background: #F22613;        
         /*background-color: white;*/
 }
 
@@ -343,9 +374,6 @@ label {
 }
 
 @media (max-width: 20em){ /* For the iphone 4 at 320px wide */
-    .special {
-        padding-top: 13%; 
-    }
 
     .specials-container {
         margin-top: 10px;
