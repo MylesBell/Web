@@ -3,7 +3,6 @@ angular.module('gameView', ['ngRoute'])
 
         $scope.teamClass = UserService.getUserTeam();
         $scope.nearBase = false;
-        $scope.playerHealth = 1000;
 
         var downButton = document.getElementById('down-button');
         var upButton = document.getElementById('up-button');
@@ -28,6 +27,7 @@ angular.module('gameView', ['ngRoute'])
             });
         };
 
+        // Either show or hide the switch lane button
         function handlePlayerNearBaseEvent(data) {
             if (data.nearBase === 0) {
                 $scope.nearBase = false;
@@ -36,8 +36,8 @@ angular.module('gameView', ['ngRoute'])
             }
         }
 
+        // Reduce the width of the health bar to the fraction of remaining health
         function handlePlayerChangeHealth(data) {
-            // $scope.playerHealth = data.playerHealth;
             var width = 100 * (data.playerHealth / 1000);
             width = width.toString() + "%"; 
             healthBar.style.width = width;
