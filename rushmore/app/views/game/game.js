@@ -62,12 +62,17 @@ angular.module('gameView', ['ngRoute'])
             $scope.inputButtonClicked("switch");
         }
 
+        function useSpecial() {
+            $scope.inputButtonClicked("special");
+        }
+
         // // Enable click & dblclick events, and monitor both.
         var downButton = document.getElementById('down-button');
         var upButton = document.getElementById('up-button');
         var forwardButton = document.getElementById('forward-button');
         var backwardButton = document.getElementById('backward-button');
         var switchButton = document.getElementById('switch-button');
+        var specialButton1 = document.getElementById('special-button-1');
 
         downButton.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', doubleTap(), false);
         downButton.addEventListener('tap', down, false);
@@ -84,6 +89,9 @@ angular.module('gameView', ['ngRoute'])
         switchButton.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', doubleTap(), false);
         switchButton.addEventListener('tap', switchLane, false);
         switchButton.addEventListener('dbltap', switchLane, false);
+        specialButton1.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', doubleTap(), false);
+        specialButton1.addEventListener('tap', useSpecial, false);
+        specialButton1.addEventListener('dbltap', useSpecial, false);
 
 
     }]);
