@@ -22,8 +22,12 @@ angular.module('gameView', ['ngRoute'])
         function handlePlayerNearBaseEvent(data) {
             console.log("PLAYER NEAR BASE is " + $scope.nearBase);
             console.log(data);
-            $scope.nearBase = !($scope.nearBase);
 
+            if(data.nearBase === 0){
+                $scope.nearBase = false;
+            } else {
+                $scope.nearBase = true;
+            }
         }
 
         NetworkService.registerListener({
