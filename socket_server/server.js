@@ -102,7 +102,7 @@ io.on('connection', function(socket) {
             var unityRes = unity.gamePlayerJoined(socket, {
                 playerID: socket.id,
                 teamID: 1,
-                state: 0, //the state for idle (needed for testing)
+                state: 1, //the state for idle (needed for testing)
                 ok: 1 // code was correct
             }, housekeeping.logger, playerList);
 
@@ -132,6 +132,14 @@ io.on('connection', function(socket) {
 
         if (res.ok) {
             io.sockets.in(UNITY_CHAN).emit('playerDirection', res);
+        }
+    });
+
+    socket.on('playerSwitchBase', function(data) {
+        var res = mobile.playerDirection(socket, data, housekeeping.logger);
+
+        if (res.ok) {
+            io.sockets.in(UNITY_CHAN).emit('playerSwitchBase', res);
         }
     });
 
