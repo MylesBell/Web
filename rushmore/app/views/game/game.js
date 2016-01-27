@@ -2,6 +2,7 @@ angular.module('gameView', ['ngRoute'])
     .controller('GameCtrl', ['$scope', 'InputHandlerService', "NetworkService", "UserService", function($scope, InputHandlerService, NetworkService, UserService) {
 
         $scope.teamClass = UserService.getUserTeam();
+        $scope.teamClass = "blue-team";
         $scope.nearBase = false;
 
         /*
