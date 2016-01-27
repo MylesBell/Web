@@ -118,6 +118,15 @@ io.on('connection', function(socket) {
         callback(res);
     });
 
+
+    socket.on('playerSpecial', function(data) {
+        var res = mobile.playerSpecial(socket, data, housekeeping.logger);
+
+        if (res.ok) {
+            io.sockets.in(UNITY_CHAN).emit('playerSpecial', res);
+        }
+    });
+
     socket.on('playerDirection', function(data) {
         var res = mobile.playerDirection(socket, data, housekeeping.logger);
 
@@ -150,7 +159,6 @@ io.on('connection', function(socket) {
             io.sockets.in(MOBILE_CHAN).emit('gameStateUpdate', res);
         }
     });
-
     /*
         Called by Unity Server when a player has successfuly joined the game
 
