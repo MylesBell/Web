@@ -3,6 +3,15 @@ angular.module('gameView', ['ngRoute'])
 
         $scope.teamClass = UserService.getUserTeam();
         $scope.nearBase = false;
+        $scope.playerHealth = 1000;
+
+        var downButton = document.getElementById('down-button');
+        var upButton = document.getElementById('up-button');
+        var forwardButton = document.getElementById('forward-button');
+        var backwardButton = document.getElementById('backward-button');
+        var switchButton = document.getElementById('switch-button');
+        var specialButton1 = document.getElementById('special-button-1');
+        var healthBar = document.getElementById("health-bar-remaining");
 
         /*
 		Fired when user selects input button on game controller page
@@ -29,7 +38,9 @@ angular.module('gameView', ['ngRoute'])
 
         function handlePlayerChangeHealth(data) {
             $scope.playerHealth = data.playerHealth;
-            console.log($scope.playerHealth);
+            var width = 100 * (playerHealth / 1000);
+            width = width.toString() + "%"; 
+            healthBar.style.width = width;
         }
 
         NetworkService.registerListener({
@@ -72,12 +83,7 @@ angular.module('gameView', ['ngRoute'])
         }
 
         // // Enable click & dblclick events, and monitor both.
-        var downButton = document.getElementById('down-button');
-        var upButton = document.getElementById('up-button');
-        var forwardButton = document.getElementById('forward-button');
-        var backwardButton = document.getElementById('backward-button');
-        var switchButton = document.getElementById('switch-button');
-        var specialButton1 = document.getElementById('special-button-1');
+        
 
         downButton.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', doubleTap(), false);
         downButton.addEventListener('tap', down, false);
