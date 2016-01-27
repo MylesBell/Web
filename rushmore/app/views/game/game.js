@@ -37,8 +37,8 @@ angular.module('gameView', ['ngRoute'])
         }
 
         function handlePlayerChangeHealth(data) {
-            $scope.playerHealth = data.playerHealth;
-            var width = 100 * (playerHealth / 1000);
+            // $scope.playerHealth = data.playerHealth;
+            var width = 100 * (data.playerHealth / 1000);
             width = width.toString() + "%"; 
             healthBar.style.width = width;
         }
