@@ -79,7 +79,7 @@ angular.module('gameView', ['ngRoute'])
         function playerRespawnTimeOver(){
             $scope.timeToRespawn = "Now";
             $scope.playerDead = false;
-            handlePlayerChangeHealth({playerHealth:1000});
+            handlePlayerChangeHealth({playerHealth:1000, maxHealth: 1000});
             setTeamBackground();
         }
 
