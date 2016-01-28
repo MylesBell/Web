@@ -58,14 +58,14 @@ angular.module('gameView', ['ngRoute'])
             healthBar.style.width = width;
         }
 
+        // THe player has died on the server
+        // Change to the respawn screen and start the respawn timer
+        // THe timeleft is the time from now until when they should respawn (sent by the server)
         function handleGamePlayerDied(data) {
-            console.log("PLAYER DIED, time left: ");
-
+            // use ceil to get rid of the decimal places
             var timeLeft = Math.ceil(data.respawnTimestamp) - Math.ceil((Date.now() / 1000));
 
-            console.log(timeLeft);
-            console.log(data);
-
+            // show the respawn screen
             $scope.teamClassCSS = "dead-team";
             $scope.playerDead = true;
             $scope.timeToRespawn = timeLeft; // should be timeleft
@@ -75,6 +75,7 @@ angular.module('gameView', ['ngRoute'])
         }
 
         // TODO Needs to be confirmed with the server
+        // Shows the player controls again, sets the health bar to full and puts background on again
         function playerRespawnTimeOver(){
             $scope.timeToRespawn = "Now";
             $scope.playerDead = false;
@@ -83,7 +84,7 @@ angular.module('gameView', ['ngRoute'])
         }
 
         // When called, will reduced the time to respawn by 1 each second
-        // will clear it'self when it gets to 0
+        // will clear it'self when it gets to 0, then call the respawn function
         function respawnTimerUpdate() {
             $scope.timeToRespawn = $scope.timeToRespawn - 1;
             if ($scope.timeToRespawn <= 0) {
@@ -92,9 +93,9 @@ angular.module('gameView', ['ngRoute'])
             }
         }
 
+        // Send from the server when the player respawns, not used at the moment
         function handleGamePlayerRespawn(data) {
             console.log("Player respawned on the server");
-            console.log(data);            
         }
 
         NetworkService.registerListener({
