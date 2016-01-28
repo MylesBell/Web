@@ -7,11 +7,8 @@ angular.module('gameView', ['ngRoute'])
         $scope.playerDead = false;
         $scope.timeToRespawn = 10;
 
-        $scope.specialDisabled = -1;
-
         var respawnTimer;
         var timeToRespawn = 5;
-        var specialCooldownTime = 5;
 
         var downButton = document.getElementById('down-button');
         var upButton = document.getElementById('up-button');
@@ -22,6 +19,7 @@ angular.module('gameView', ['ngRoute'])
 
         setTeamBackground();
 
+        // TODO put this somewhere else
         $scope.specialPowers = [{
             class: "special-fire",
             enabled: "",
@@ -55,7 +53,7 @@ angular.module('gameView', ['ngRoute'])
             if ($scope.teamClass === 1) {
                 $scope.teamClassCSS = "blue-team";
             } else {
-                $scope.teamClassCSS = "blue-team";
+                $scope.teamClassCSS = "red-team";
             }
         }
 
@@ -123,24 +121,20 @@ angular.module('gameView', ['ngRoute'])
         // handle when a special button is clicked
         // grey/hide button and set timer, when cooldown over reset the special button
         function handleSpecialClicked(specialUsed) {
+            if (specialUsed.enabled === "") {
 
-            $scope.inputButtonClicked("special");
+                // set the disabled class for the special object in markup
+                specialUsed.enabled = "special-disabled";
+                $scope.inputButtonClicked("special");
 
-            var special;
 
-            $scope.specialPowers.forEach(function(sp) {
-                if (sp.index === specialUsed) {
-                    special = sp;
-                    special.enabled = "special-disabled";
-                }
-            });
-
-            console.log(specialUsed);
-
-            SpecialPowerManagerService.specialButtonUsed(special).then(function(special) {
-                special.enabled = "";
-            });
-
+                // take off the disbaled css when the timeout is over
+                SpecialPowerManagerService.specialButtonUsed(specialUsed).then(function(special) {
+                    special.enabled = "";
+                });
+            } else {
+                // special is still cooling down
+            }
         }
 
         $scope.useSpecial = function(specialNumber) {

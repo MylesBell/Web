@@ -101,7 +101,7 @@ io.on('connection', function(socket) {
             console.log("TESTING ENABLED, FAKING UNTIY GAME PLAYER JOINED RESPONSE");
             var unityRes = unity.gamePlayerJoined(socket, {
                 playerID: socket.id,
-                teamID: 1,
+                teamID: 0,
                 state: 1, // 0 the state for idle (needed for testing)
                 ok: 1 // code was correct
             }, housekeeping.logger, playerList);
