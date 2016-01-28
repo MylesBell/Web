@@ -8,6 +8,7 @@ angular.module('gameView', ['ngRoute'])
         $scope.timeToRespawn = 10;
 
         var respawnTimer;
+        var timeToRespawn = 5;
 
         var downButton = document.getElementById('down-button');
         var upButton = document.getElementById('up-button');
@@ -87,15 +88,17 @@ angular.module('gameView', ['ngRoute'])
         // will clear it'self when it gets to 0, then call the respawn function
         function respawnTimerUpdate() {
             $scope.timeToRespawn = $scope.timeToRespawn - 1;
-            if ($scope.timeToRespawn <= 0) {
+            timeToRespawn = timeToRespawn - 1;
+            if (timeToRespawn <= 0) {
                 $interval.cancel(respawnTimer);
-                playerRespawnTimeOver();
+                console.log("timer is done");
             }
         }
 
         // Send from the server when the player respawns, not used at the moment
         function handleGamePlayerRespawn(data) {
             console.log("Player respawned on the server");
+            playerRespawnTimeOver();
         }
 
         NetworkService.registerListener({
