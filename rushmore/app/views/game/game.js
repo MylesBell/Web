@@ -126,9 +126,9 @@ angular.module('gameView', ['ngRoute'])
             $scope.inputButtonClicked('up');
 
             // REMOVE THIS
-            handleGamePlayerDied({
-                respawnTimestamp: "1453987486.7269"
-            });
+            // handleGamePlayerDied({
+            //     respawnTimestamp: "1453987486.7269"
+            // });
         }
 
         function down() {
