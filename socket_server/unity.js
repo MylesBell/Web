@@ -67,6 +67,7 @@ module.exports = {
 
             if(data.maxHealth !== undefined){
                 playerWhoJoined.health = maxHealth;
+                playerWhoJoined.maxHealth = maxHealth;
                 console.log(playerWhoJoined);
             }
 
