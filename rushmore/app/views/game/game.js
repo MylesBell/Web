@@ -125,11 +125,6 @@ angular.module('gameView', ['ngRoute'])
 
         function up() {
             $scope.inputButtonClicked('up');
-
-            // REMOVE THIS
-            // handleGamePlayerDied({
-            //     respawnTimestamp: "1453987486.7269"
-            // });
         }
 
         function down() {
@@ -153,9 +148,6 @@ angular.module('gameView', ['ngRoute'])
         }
 
         // // Enable click & dblclick events, and monitor both.
-
-
-
         downButton.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', doubleTap(), false);
         downButton.addEventListener('tap', down, false);
         downButton.addEventListener('dbltap', down, false);
