@@ -42,6 +42,10 @@ angular.module('myApp').factory('NetworkService', function($q, socket, StorageSe
         alertListeners("playerNearBase", data);
     });
 
+    socket.on("playerChangeHealth", function(data){
+        alertListeners("playerChangeHealth", data);
+    });
+
     function alertListeners(eventName, eventData) {
         listenerEventList.forEach(function(listener) {
             if (listener.eventName === eventName) {

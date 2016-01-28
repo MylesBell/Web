@@ -5,6 +5,14 @@ angular.module('gameView', ['ngRoute'])
         $scope.teamClass = "blue-team";
         $scope.nearBase = false;
 
+        var downButton = document.getElementById('down-button');
+        var upButton = document.getElementById('up-button');
+        var forwardButton = document.getElementById('forward-button');
+        var backwardButton = document.getElementById('backward-button');
+        var switchButton = document.getElementById('switch-button');
+        var specialButton1 = document.getElementById('special-button-1');
+        var healthBar = document.getElementById("health-bar-remaining");
+
         /*
 		Fired when user selects input button on game controller page
 		input can be one of several driections
@@ -20,20 +28,30 @@ angular.module('gameView', ['ngRoute'])
             });
         };
 
+        // Either show or hide the switch lane button
         function handlePlayerNearBaseEvent(data) {
-            console.log("PLAYER NEAR BASE is " + $scope.nearBase);
-            console.log(data);
-
-            if(data.nearBase === 0){
+            if (data.nearBase === 0) {
                 $scope.nearBase = false;
             } else {
                 $scope.nearBase = true;
             }
         }
 
+        // Reduce the width of the health bar to the fraction of remaining health
+        function handlePlayerChangeHealth(data) {
+            var width = 100 * (data.playerHealth / 1000);
+            width = width.toString() + "%"; 
+            healthBar.style.width = width;
+        }
+
         NetworkService.registerListener({
             eventName: "playerNearBase",
             call: handlePlayerNearBaseEvent
+        });
+
+        NetworkService.registerListener({
+            eventName: "playerChangeHealth",
+            call: handlePlayerChangeHealth
         });
 
         /*
@@ -66,12 +84,7 @@ angular.module('gameView', ['ngRoute'])
         }
 
         // // Enable click & dblclick events, and monitor both.
-        var downButton = document.getElementById('down-button');
-        var upButton = document.getElementById('up-button');
-        var forwardButton = document.getElementById('forward-button');
-        var backwardButton = document.getElementById('backward-button');
-        var switchButton = document.getElementById('switch-button');
-        var specialButton1 = document.getElementById('special-button-1');
+        
 
 
         downButton.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', doubleTap(), false);
