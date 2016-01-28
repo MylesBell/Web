@@ -53,7 +53,7 @@ angular.module('gameView', ['ngRoute'])
 
         // Reduce the width of the health bar to the fraction of remaining health
         function handlePlayerChangeHealth(data) {
-            var width = 100 * (data.playerHealth / 1000);
+            var width = 100 * (data.playerHealth / data.maxHealth);
             width = width.toString() + "%";
             healthBar.style.width = width;
         }

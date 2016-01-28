@@ -19,15 +19,15 @@ module.exports = {
         var res = {};
         var player;
 
-        res.ok = true;
-        res.uID = data.playerID;
-        res.playerHealth = 1000;
-
         player = playerList.filter(function(pl) {
             return pl.uID === data.playerID;
         })[0];
 
-        player.health = 1000;
+        player.health = player.maxHealth;
+
+        res.ok = true;
+        res.uID = data.playerID;
+        res.playerHealth = player.maxHealth;
 
         logger.log(socket, logger.loggableModules.GAME_PLAYER_RESPAWN, res);
         return res;
@@ -69,7 +69,11 @@ module.exports = {
                 playerWhoJoined.health = data.maxHealth;
                 playerWhoJoined.maxHealth = data.maxHealth;
                 console.log(playerWhoJoined);
+            } else { // TODO this won't be undefined later when we merge stuff
+                playerWhoJoined.health = 1000;
+                playerWhoJoined.maxHealth = 1000;
             }
+
 
             playerWhoJoined.team = data.teamID;
         } else{
@@ -106,6 +110,7 @@ module.exports = {
 
         res.uID = player.uID;
         res.playerHealth = player.health;
+        res.maxHealth = player.maxHealth;
         res.ok = true;
 
         logger.log(socket, logger.loggableModules.PLAYER_HEALTH_CHANGE, res);
