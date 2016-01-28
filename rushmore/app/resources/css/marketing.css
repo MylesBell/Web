@@ -291,7 +291,7 @@ label {
     background-position: 50% 50%;
 }
 
-.special-heart {
+.special-heal {
     background-image: url("../images/heart_green.png");
     background-size: 70%;
     background-repeat: no-repeat;
@@ -311,13 +311,19 @@ label {
     width: 60%;
 }
 
+.special-disabled {
+    box-shadow: 0 0 0 1px rgba(0,0,0,.15) inset,0 0 6px rgba(0,0,0,.1) inset;
+    padding-top: 60%;
+    width: 60%;
+}
+
 .special-fire:active {
     box-shadow: 0 0 0 1px rgba(0,0,0,.15) inset,0 0 6px rgba(0,0,0,.1) inset;
     padding-top: 60%;
     width: 60%;
 }
 
-.special-heart:active {
+.special-heal:active {
     box-shadow: 0 0 0 1px rgba(0,0,0,.15) inset,0 0 6px rgba(0,0,0,.1) inset;
     padding-top: 60%;
     width: 60%;

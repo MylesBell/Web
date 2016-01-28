@@ -29,18 +29,9 @@
                 </div>                
             </div>  
             <div class="pure-u-1 specials-container">
-                <div class="special">
-                    <div id="special-button-1" class="special-circle special-fire">
-                        
+                <div class="special" ng-repeat="special in specialPowers">
+                    <div id="special-button-1" class="special-circle" ng-class="special.class" ng-click="useSpecial(special.index)">            
                     </div>              
-                </div>
-                <div class="special">
-                    <div id="special-button-2" class="special-circle special-invisible">
-                        
-                    </div>              
-                </div>
-                <div class="special">
-                    <div id="special-button-3" class="special-circle special-heart"></div>              
                 </div>
             </div>  
         </div>   
