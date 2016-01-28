@@ -161,7 +161,7 @@ io.on('connection', function(socket) {
         var res = unity.gamePlayerDied(socket, data, housekeeping.logger);
 
         if (res.ok) {
-            io.sockets.in(MOBILE_CHAN).emit('gamePlayerDied', res);
+            io.sockets.in(res.uID).emit('gamePlayerDied', res);
         }
     });
 

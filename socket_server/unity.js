@@ -6,7 +6,7 @@ module.exports = {
     gamePlayerDied: function(socket, data, logger){
         var res = {};
         res.ok = true;
-        res.playerID = data.playerID;
+        res.uID = data.playerID;
         res.respawnTimestamp = data.respawnTimestamp;
 
         logger.log(socket, logger.loggableModules.GAME_PLAYER_DIED, res);
