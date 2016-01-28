@@ -71,6 +71,27 @@ module.exports = {
 
         logger.log(socket, logger.loggableModules.PLAYER_NEAR_BASE, res);
         return res;
+    },
+
+    /*
+        Player has either gained or lost a unit of health by "amount"
+    */
+    gamePlayerChangeHealth: function(socket, data, logger, playerList) {
+        var res = {};
+        var player;
+
+        player = playerList.filter(function(pl) {
+            return pl.uID === data.playerID;
+        })[0];
+        
+        player.health = player.health + data.amount;
+
+        res.uID = player.uID;
+        res.playerHealth = player.health;
+        res.ok = true;
+
+        logger.log(socket, logger.loggableModules.PLAYER_HEALTH_CHANGE, res);
+        return res;
     }
 
 };
