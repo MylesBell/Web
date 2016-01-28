@@ -50,6 +50,10 @@ angular.module('myApp').factory('NetworkService', function($q, socket, StorageSe
         alertListeners("gamePlayerDied", data);
     });
 
+    socket.on("gamePlayerRespawn", function(data) {
+        alertListeners("gamePlayerRespawn", data);
+    });
+
     function alertListeners(eventName, eventData) {
         listenerEventList.forEach(function(listener) {
             if (listener.eventName === eventName) {

@@ -17,6 +17,7 @@ module.exports = {
     gamePlayerRespawn: function(socket, data, logger){
         var res = {};
         res.ok = true;
+        res.uID = data.playerID;
 
         logger.log(socket, logger.loggableModules.GAME_PLAYER_RESPAWN, res);
         return res;

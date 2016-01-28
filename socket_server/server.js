@@ -153,7 +153,7 @@ io.on('connection', function(socket) {
         var res = unity.gamePlayerRespawn(socket, data, housekeeping.logger);
 
         if (res.ok) {
-            io.sockets.in(MOBILE_CHAN).emit('gamePlayerRespawn', res);
+            io.sockets.in(res.uID).emit('gamePlayerRespawn', res);
         }
     });
 
