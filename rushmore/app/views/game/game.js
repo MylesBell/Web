@@ -94,7 +94,7 @@ angular.module('gameView', ['ngRoute'])
 
         function handleGamePlayerRespawn(data) {
             console.log("Player respawned on the server");
-            console.log(data);
+            console.log(data);            
         }
 
         NetworkService.registerListener({

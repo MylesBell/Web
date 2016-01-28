@@ -13,11 +13,21 @@ module.exports = {
         return res;
     },
 
-    // Player died in game
-    gamePlayerRespawn: function(socket, data, logger){
+    // Player came back to life in the game
+    // set the players health back to max
+    gamePlayerRespawn: function(socket, data, logger, playerList){
         var res = {};
+        var player;
+
         res.ok = true;
         res.uID = data.playerID;
+        res.playerHealth = 1000;
+
+        player = playerList.filter(function(pl) {
+            return pl.uID === data.playerID;
+        })[0];
+
+        player.health = 1000;
 
         logger.log(socket, logger.loggableModules.GAME_PLAYER_RESPAWN, res);
         return res;

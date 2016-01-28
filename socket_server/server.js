@@ -150,7 +150,7 @@ io.on('connection', function(socket) {
         ------------------------
     */
     socket.on('gamePlayerRespawn', function(data) {
-        var res = unity.gamePlayerRespawn(socket, data, housekeeping.logger);
+        var res = unity.gamePlayerRespawn(socket, data, housekeeping.logger, playerList);
 
         if (res.ok) {
             io.sockets.in(res.uID).emit('gamePlayerRespawn', res);
