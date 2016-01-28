@@ -2,7 +2,8 @@
         <div class="game-container pure-g">
             <div class="pure-u-1 stats-container">
                 <div class="health-bar-container">
-                    <div id="health-bar-remaining">                        
+                    <div id="health-bar-remaining"> 
+                        <img src="../../resources/images/heart_white.png" height="100%" width="auto">
                     </div>
                 </div>
             </div> 
@@ -12,31 +13,34 @@
                         SWI
                     </div>
                     <div id='up-button' class="pure-button pure-game-button">
-                        UP
+                        <img class="control-direction-image" src="../../resources/images/up_black.png" height="96" width="96">    
                     </div> 
-                    <div id="switch-button" class="pure-button pure-game-button" ng-style="{'visibility': nearBase?'visible':'hidden'}">
-                        UPG
+                    <div id="switch-button" class="pure-button pure-game-button" ng-style="{'visibility': nearBase?'visible':'hidden'}">                         
                     </div>
-                    <div  id='forward-button' class="pure-button pure-game-button">
-                        LEFT
-                    </div>   
                     <div  id='backward-button' class="pure-button pure-game-button">
-                        RIGHT
+                         <img class="control-direction-image" src="../../resources/images/left_black.png" height="96" width="96">
+                    </div>   
+                    <div  id='forward-button' class="pure-button pure-game-button">
+                         <img class="control-direction-image" src="../../resources/images/right_black.png" height="96" width="96">
                     </div> 
                     <div  id='down-button' class="pure-button pure-game-button">
-                        DOWN
+                         <img class="control-direction-image" src="../../resources/images/down_black.png" height="96" width="96">
                     </div>   
                 </div>                
             </div>  
             <div class="pure-u-1 specials-container">
-                <div id="special-button-1" class="special">
-                    Special 1
+                <div class="special">
+                    <div id="special-button-1" class="special-circle special-fire">
+                        
+                    </div>              
                 </div>
-                <div id="special-button-2" class="special" style="margin-bottom: 30px;">
-                    Special 2
+                <div class="special">
+                    <div id="special-button-2" class="special-circle special-invisible">
+                        
+                    </div>              
                 </div>
-                <div id="special-button-3" class="special">
-                    Special 3
+                <div class="special">
+                    <div id="special-button-3" class="special-circle special-heart"></div>              
                 </div>
             </div>  
         </div>   

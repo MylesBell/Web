@@ -2,6 +2,7 @@ angular.module('gameView', ['ngRoute'])
     .controller('GameCtrl', ['$scope', 'InputHandlerService', "NetworkService", "UserService", function($scope, InputHandlerService, NetworkService, UserService) {
 
         $scope.teamClass = UserService.getUserTeam();
+        $scope.teamClass = "blue-team";
         $scope.nearBase = false;
 
         var downButton = document.getElementById('down-button');
@@ -84,6 +85,7 @@ angular.module('gameView', ['ngRoute'])
 
         // // Enable click & dblclick events, and monitor both.
         
+
 
         downButton.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', doubleTap(), false);
         downButton.addEventListener('tap', down, false);
