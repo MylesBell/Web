@@ -62,7 +62,7 @@ angular.module('gameView', ['ngRoute'])
         NetworkService.registerListener({
             eventName: "gamePlayerDied",
             call : handleGamePlayerDied
-        })
+        });
 
         /*
             Code to handle double click events on webkit (IOS) browsers        
