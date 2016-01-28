@@ -30,7 +30,7 @@
             </div>  
             <div class="pure-u-1 specials-container">
                 <div class="special" ng-repeat="special in specialPowers">
-                    <div id="special-button-1" class="special-circle" ng-class="special.class" ng-click="useSpecial(special.index)">            
+                    <div id="special-button-1" class="special-circle" ng-class="[special.class, special.enabled]" ng-click="useSpecial(special.index)">            
                     </div>              
                 </div>
             </div>  

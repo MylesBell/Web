@@ -18,24 +18,21 @@ angular.module('gameView', ['ngRoute'])
         var forwardButton = document.getElementById('forward-button');
         var backwardButton = document.getElementById('backward-button');
         var switchButton = document.getElementById('switch-button');
-        var specialButton1 = document.getElementById('special-button-1');
-        var specialButton2 = document.getElementById('special-button-2');
-        var specialButton3 = document.getElementById('special-button-3');
         var healthBar = document.getElementById("health-bar-remaining");
 
         setTeamBackground();
 
         $scope.specialPowers = [{
             class: "special-fire",
-            enabled: true,
+            enabled: "",
             index: 1
         }, {
             class: "special-heal",
-            enabled: true,
+            enabled: "",
             index: 2
         }, {
             class: "special-invisible",
-            enabled: true,
+            enabled: "",
             index: 3
         }];
 
@@ -127,14 +124,28 @@ angular.module('gameView', ['ngRoute'])
         // grey/hide button and set timer, when cooldown over reset the special button
         function handleSpecialClicked(specialUsed) {
 
-            $scope.specialDisabled = specialUsed;
+            $scope.inputButtonClicked("special");
+
+            var special;
+
+            $scope.specialPowers.forEach(function(sp) {
+                if (sp.index === specialUsed) {
+                    special = sp;
+                    special.enabled = "special-disabled";
+                }
+            });
+
             console.log(specialUsed);
 
-            SpecialPowerManagerService.specialButtonUsed().then(function() {
-                $scope.specialDisabled = -1;
+            SpecialPowerManagerService.specialButtonUsed(special).then(function(special) {
+                special.enabled = "";
             });
 
         }
+
+        $scope.useSpecial = function(specialNumber) {
+            handleSpecialClicked(specialNumber); // TODO made this generic to other special button
+        };
 
         NetworkService.registerListener({
             eventName: "playerNearBase",
@@ -181,10 +192,7 @@ angular.module('gameView', ['ngRoute'])
             $scope.inputButtonClicked("switch");
         }
 
-        $scope.useSpecial = function(specialNumber) {
-            $scope.inputButtonClicked("special");
-            handleSpecialClicked(specialNumber); // TODO made this generic to other special button
-        }
+
 
         // // Enable click & dblclick events, and monitor both.
         downButton.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', doubleTap(), false);
@@ -202,26 +210,5 @@ angular.module('gameView', ['ngRoute'])
         switchButton.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', doubleTap(), false);
         switchButton.addEventListener('tap', switchLane, false);
         switchButton.addEventListener('dbltap', switchLane, false);
-        // specialButton1.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', doubleTap(), false);
-        // specialButton1.addEventListener('tap', function() {
-        //     useSpecial(1);
-        // }, false);
-        // specialButton1.addEventListener('dbltap', function() {
-        //     useSpecial(1);
-        // }, false);
-        // specialButton2.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', doubleTap(), false);
-        // specialButton2.addEventListener('tap', function() {
-        //     useSpecial(2);
-        // }, false);
-        // specialButton2.addEventListener('dbltap', function() {
-        //     useSpecial(2);
-        // }, false);
-        // specialButton3.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', doubleTap(), false);
-        // specialButton3.addEventListener('tap', function() {
-        //     useSpecial(3);
-        // }, false);
-        // specialButton3.addEventListener('dbltap', function() {
-        //     useSpecial(3);
-        // }, false);
 
     }]);

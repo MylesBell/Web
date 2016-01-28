@@ -6,12 +6,13 @@ angular.module('myApp').factory('SpecialPowerManagerService', function($q, $inte
 
     var cooldownTIme = 5000;
 
-    var specialButtonUsed = function() {
+    var specialButtonUsed = function(special) {
         var deferred = $q.defer();
 
         var specialCooldownTimer = $interval(function() {
+            var spec = special;
             $interval.cancel(specialCooldownTimer);
-            deferred.resolve();
+            deferred.resolve(spec);
         }, cooldownTIme);
 
         return deferred.promise;
