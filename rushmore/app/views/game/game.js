@@ -7,8 +7,13 @@ angular.module('gameView', ['ngRoute'])
         $scope.playerDead = false;
         $scope.timeToRespawn = 10;
 
+        $scope.special1Enabled = true;
+        $scope.special2Enabled = true;
+        $scope.special3Enabled = true;
+
         var respawnTimer;
         var timeToRespawn = 5;
+        var specialCooldownTime = 5;
 
         var downButton = document.getElementById('down-button');
         var upButton = document.getElementById('up-button');
@@ -99,6 +104,12 @@ angular.module('gameView', ['ngRoute'])
         function handleGamePlayerRespawn(data) {
             console.log("Player respawned on the server");
             playerRespawnTimeOver();
+        }
+
+        // handle when a special button is clicked
+        // grey/hide button and set timer, when cooldown over reset the special button
+        function handleSpecialClicked(data){
+            
         }
 
         NetworkService.registerListener({
