@@ -1,9 +1,13 @@
 angular.module('gameView', ['ngRoute'])
-    .controller('GameCtrl', ['$scope', 'InputHandlerService', "NetworkService", "UserService", function($scope, InputHandlerService, NetworkService, UserService) {
+    .controller('GameCtrl', ['$scope', 'InputHandlerService', "NetworkService", "UserService", "$interval", function($scope, InputHandlerService, NetworkService, UserService, $interval) {
 
         $scope.teamClass = UserService.getUserTeam();
-        $scope.teamClass = "blue-team";
+        $scope.teamClassCSS = "blue-team";
         $scope.nearBase = false;
+        $scope.playerDead = false;
+        $scope.timeToRespawn = 10;
+
+        var respawnTimer;
 
         var downButton = document.getElementById('down-button');
         var upButton = document.getElementById('up-button');
@@ -12,6 +16,8 @@ angular.module('gameView', ['ngRoute'])
         var switchButton = document.getElementById('switch-button');
         var specialButton1 = document.getElementById('special-button-1');
         var healthBar = document.getElementById("health-bar-remaining");
+
+        setTeamBackground();
 
         /*
 		Fired when user selects input button on game controller page
@@ -28,6 +34,14 @@ angular.module('gameView', ['ngRoute'])
             });
         };
 
+        function setTeamBackground(){
+            if($scope.teamClass === 1){
+                $scope.teamClassCSS = "blue-team";
+            } else {
+                $scope.teamClassCSS = "blue-team";
+            }
+        }
+
         // Either show or hide the switch lane button
         function handlePlayerNearBaseEvent(data) {
             if (data.nearBase === 0) {
@@ -39,9 +53,49 @@ angular.module('gameView', ['ngRoute'])
 
         // Reduce the width of the health bar to the fraction of remaining health
         function handlePlayerChangeHealth(data) {
-            var width = 100 * (data.playerHealth / 1000);
-            width = width.toString() + "%"; 
+            var width = 100 * (data.playerHealth / data.maxHealth);
+            width = width.toString() + "%";
             healthBar.style.width = width;
+        }
+
+        // THe player has died on the server
+        // Change to the respawn screen and start the respawn timer
+        // THe timeleft is the time from now until when they should respawn (sent by the server)
+        function handleGamePlayerDied(data) {
+            // use ceil to get rid of the decimal places
+            var timeLeft = Math.ceil(data.respawnTimestamp) - Math.ceil((Date.now() / 1000));
+
+            // show the respawn screen
+            $scope.teamClassCSS = "dead-team";
+            $scope.playerDead = true;
+            $scope.timeToRespawn = timeLeft; // should be timeleft
+
+            // Set and start the the respawn timer 
+            respawnTimer = $interval(respawnTimerUpdate, 1000);  
+        }
+
+        // TODO Needs to be confirmed with the server
+        // Shows the player controls again, sets the health bar to full and puts background on again
+        function playerRespawnTimeOver(){
+            $scope.timeToRespawn = "Now";
+            $scope.playerDead = false;
+            handlePlayerChangeHealth({playerHealth:1000});
+            setTeamBackground();
+        }
+
+        // When called, will reduced the time to respawn by 1 each second
+        // will clear it'self when it gets to 0, then call the respawn function
+        function respawnTimerUpdate() {
+            $scope.timeToRespawn = $scope.timeToRespawn - 1;
+            if ($scope.timeToRespawn <= 0) {
+                $interval.cancel(respawnTimer);
+                playerRespawnTimeOver();
+            }
+        }
+
+        // Send from the server when the player respawns, not used at the moment
+        function handleGamePlayerRespawn(data) {
+            console.log("Player respawned on the server");
         }
 
         NetworkService.registerListener({
@@ -52,6 +106,16 @@ angular.module('gameView', ['ngRoute'])
         NetworkService.registerListener({
             eventName: "playerChangeHealth",
             call: handlePlayerChangeHealth
+        });
+
+        NetworkService.registerListener({
+            eventName: "gamePlayerDied",
+            call: handleGamePlayerDied
+        });
+
+        NetworkService.registerListener({
+            eventName: "gamePlayerRespawn",
+            call: handleGamePlayerRespawn
         });
 
         /*
@@ -84,9 +148,6 @@ angular.module('gameView', ['ngRoute'])
         }
 
         // // Enable click & dblclick events, and monitor both.
-        
-
-
         downButton.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', doubleTap(), false);
         downButton.addEventListener('tap', down, false);
         downButton.addEventListener('dbltap', down, false);

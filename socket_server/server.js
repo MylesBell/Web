@@ -129,7 +129,7 @@ io.on('connection', function(socket) {
 
     socket.on('playerDirection', function(data) {
         var res = mobile.playerDirection(socket, data, housekeeping.logger);
-
+        console.log(res);
         if (res.ok) {
             io.sockets.in(UNITY_CHAN).emit('playerDirection', res);
         }
@@ -150,10 +150,10 @@ io.on('connection', function(socket) {
         ------------------------
     */
     socket.on('gamePlayerRespawn', function(data) {
-        var res = unity.gamePlayerRespawn(socket, data, housekeeping.logger);
+        var res = unity.gamePlayerRespawn(socket, data, housekeeping.logger, playerList);
 
         if (res.ok) {
-            io.sockets.in(MOBILE_CHAN).emit('gamePlayerRespawn', res);
+            io.sockets.in(res.uID).emit('gamePlayerRespawn', res);
         }
     });
 

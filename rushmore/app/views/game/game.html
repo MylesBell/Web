@@ -1,5 +1,5 @@
-<div class="main-container" ng-class="teamClass">
-        <div class="game-container pure-g">
+<div class="main-container" ng-class="teamClassCSS">
+        <div class="game-container pure-g" ng-show="!playerDead">
             <div class="pure-u-1 stats-container">
                 <div class="health-bar-container">
                     <div id="health-bar-remaining"> 
@@ -44,4 +44,19 @@
                 </div>
             </div>  
         </div>   
+        <div class="death-container pure-g" ng-show="playerDead">
+            <div id="death-text-container" class="pure-u-1">
+                YOU DIED
+            </div> 
+
+            <div id="death-timer-container" class="pure-u-1">
+                <div id="respawn-text">
+                    Respawn in...
+                </div>
+                <div id="death-timer">
+                    {{timeToRespawn}}
+                </div>
+            </div> 
+
+        </div>
 </div>

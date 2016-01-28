@@ -371,14 +371,54 @@ label {
     align-items: center;
 }
 
+.death-container {
+    height: 90%;
+    top: 50px;
+    position: absolute;
+    width: 100%;
+    bottom: 100%;
+    font-size: 40px;
+    font-weight: bold;
+    color: #ECF0F1;
+    padding: 1em 1.6em;
+    font-weight: 100;
+}
+
+#death-text-container {
+    width: 90%;
+    height: 40%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#death-timer-container {
+    width: 90%;
+    height: 40%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-flow: column wrap;
+}
+
+#respawn-text {
+    font-size: 20px;
+}
+
 .blue-team{
         background: #4183D7;        
 }
 
 .red-team{
-        background: #D91E18;  /* thunderbird      */
-        /*background-color: white;*/
+        background: #D91E18;
 }
+
+.dead-team{
+    background: #95A5A6;
+}
+
 
 /* do not group these rules */
 *::-webkit-input-placeholder {
