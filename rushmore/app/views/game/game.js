@@ -45,8 +45,11 @@ angular.module('gameView', ['ngRoute'])
         }
 
         function handleGamePlayerDied(data) {
-            console.log("PLAYER DIED");
+            console.log("PLAYER DIED, time left: ");
+            var timeLeft = (Date.now() / 1000) - data.respawnTimestamp;
+            console.log(timeLeft);
             console.log(data);
+
         }
 
         NetworkService.registerListener({
