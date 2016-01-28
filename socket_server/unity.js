@@ -65,6 +65,11 @@ module.exports = {
             res.username = playerWhoJoined.username;
             res.playerList = playerList;
 
+            if(data.maxHealth !== undefined){
+                playerWhoJoined.health = maxHealth;
+                console.log(playerWhoJoined);
+            }
+
             playerWhoJoined.team = data.teamID;
         } else{
             console.log("ERROR " + data.msg);
