@@ -56,8 +56,6 @@ module.exports = {
     playerLeaveGame: function(socket, data, logger, playerList) {
         var res = {};
 
-
-
         for (var i = 0; i < playerList.length; i++) {
             if (playerList[i].uID === socket.id) {
                 playerList.splice(i, 1);

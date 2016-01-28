@@ -44,6 +44,11 @@ angular.module('gameView', ['ngRoute'])
             healthBar.style.width = width;
         }
 
+        function handleGamePlayerDied(data) {
+            console.log("PLAYER DIED");
+            console.log(data);
+        }
+
         NetworkService.registerListener({
             eventName: "playerNearBase",
             call: handlePlayerNearBaseEvent
@@ -53,6 +58,11 @@ angular.module('gameView', ['ngRoute'])
             eventName: "playerChangeHealth",
             call: handlePlayerChangeHealth
         });
+
+        NetworkService.registerListener({
+            eventName: "gamePlayerDied",
+            call : handleGamePlayerDied
+        })
 
         /*
             Code to handle double click events on webkit (IOS) browsers        

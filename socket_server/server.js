@@ -129,7 +129,7 @@ io.on('connection', function(socket) {
 
     socket.on('playerDirection', function(data) {
         var res = mobile.playerDirection(socket, data, housekeeping.logger);
-
+        console.log(res);
         if (res.ok) {
             io.sockets.in(UNITY_CHAN).emit('playerDirection', res);
         }
