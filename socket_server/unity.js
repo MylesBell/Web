@@ -64,6 +64,7 @@ module.exports = {
             res.state = data.state;
             res.username = playerWhoJoined.username;
             res.playerList = playerList;
+            res.joinSuccess = true;
 
             if(data.maxHealth !== undefined){
                 playerWhoJoined.health = data.maxHealth;
@@ -77,6 +78,12 @@ module.exports = {
 
             playerWhoJoined.team = data.teamID;
         } else{
+            if(data.ok === 0){
+                res.ok = true;
+                res.joinSuccess = false;
+                res.uID = data.playerID;
+                res.message = "Wrong Code";
+            }
             console.log("ERROR " + data.msg);
         }
 

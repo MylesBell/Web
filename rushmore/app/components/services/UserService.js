@@ -3,20 +3,22 @@
     Registering user with server
     Set username for game
 */
-angular.module('myApp').factory('UserService', function($q, NetworkService) {
+angular.module('myApp').factory('UserService', function($q, NetworkService, LocationService) {
 
     var uID = "";
     var userTeam = "";
     var username = "";
 
+    var joinPromise;
+
     function attemptToJoinGame(gamecode) {
-        var deferred = $q.defer();
+        joinPromise = $q.defer();
 
         gamecode = gamecode.trim();
 
         // check name is not too long or short
         if (gamecode.length !== 4) {
-            deferred.reject({
+            joinPromise.reject({
                 ok: false,
                 message: "Gamecodes should be 4 characters long"
             });
@@ -27,20 +29,15 @@ angular.module('myApp').factory('UserService', function($q, NetworkService) {
             NetworkService.send("playerJoinGame", {
                 gamecode: gamecode,
                 username: username
-            }).then(function(res) {
-                deferred.resolve({
-                    ok: true,
-                    details: res.details
-                });
             }).catch(function(err) {
-                deferred.reject({
+                joinPromise.reject({
                     ok: false,
                     message: err.message
                 });
             });
         }
 
-        return deferred.promise;
+        return joinPromise.promise;
     }
 
     /* 
@@ -60,12 +57,12 @@ angular.module('myApp').factory('UserService', function($q, NetworkService) {
         if (name.length === 0) {
             deferred.reject({
                 ok: false,
-                message: "Name must be a least one character long"
+                message: "Too Short"
             });
         } else if (name.length > 20) {
             deferred.reject({
                 ok: false,
-                message: "Name must be less than 20 characters"
+                message: "Too Long"
             });
         } else {
             // Send the user info to the server to register their name
@@ -74,8 +71,8 @@ angular.module('myApp').factory('UserService', function($q, NetworkService) {
                 username: name
             }).then(function(res) {
                 username = name;
-                uID = res.uID;     
-                           
+                uID = res.uID;
+
                 deferred.resolve({
                     ok: true,
                     username: name
@@ -112,6 +109,51 @@ angular.module('myApp').factory('UserService', function($q, NetworkService) {
         userTeam = team;
     }
 
+    /*
+        Register with the network service to listen to  when the player has joined the game
+    */
+    NetworkService.registerListener({
+        eventName: "gamePlayerJoined",
+        call: playerJoinedEvent
+    });
+
+    // Called when the player has successfully joined
+    // if this is for THIS player
+    //      move to the lobby page or game page if game already running
+    //       and set team only
+    function playerJoinedEvent(data) {
+        if (data.uID === uID) {
+
+            console.log(data);
+
+            if (data.joinSuccess) {
+                // if game has not started yet
+                if (data.state === 0) {
+                    LocationService.setPath('/lobby');
+                } else if (data.state === 1) {
+                    LocationService.setPath('/game');
+                } else {
+                    console.log("Son you fucked up");
+                }
+
+                //set team background colour
+                if (data.team === 0) {
+                    userTeam = 'red-team';
+                } else if (data.team === 1) {
+                    userTeam =  'blue-team';
+                }
+
+                joinPromise.resolve(data);
+
+
+            } else {
+                // $scope.gamecode = "Wrong Code";
+                // $scope.enableInput = true;
+
+                joinPromise.reject(data);
+            }
+        }
+    }
 
     /* --------------------
         PUBLIC API

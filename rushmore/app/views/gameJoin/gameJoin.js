@@ -15,13 +15,17 @@ angular.module('gameJoinView', ['ngRoute'])
             UserService.attemptToJoinGame($scope.gamecode).then(function(res) {
                 // the code was was valid and sent to the unity server
                 // However the user HAS NOT YET joined, until the unity server confirms this
-                $scope.gamecode = "Joining game...";
-                $scope.enableInput = false;
+
 
             }).catch(function(res) {
                 // the code or joining was invalid, tell the user that
+                console.log(res);
                 $scope.gamecode = res.message;
+                $scope.enableInput = true;
             });
+
+            $scope.gamecode = "Joining game...";
+            $scope.enableInput = false;
         };
 
         // Called when the player has successfully joined
@@ -31,29 +35,29 @@ angular.module('gameJoinView', ['ngRoute'])
         function playerJoinedEvent(data) {
             if (data.uID === UserService.getUserID()) {
 
-                // if game has not started yet
-                if (data.state === 0) {
-                    LocationService.setPath('/lobby');
-                } else if (data.state === 1) {
-                    LocationService.setPath('/game');
-                } else {
-                    console.log("Son you fucked up");
-                }
+                console.log(data);
+                if (data.joinSuccess) {
+                    // if game has not started yet
+                    if (data.state === 0) {
+                        LocationService.setPath('/lobby');
+                    } else if (data.state === 1) {
+                        LocationService.setPath('/game');
+                    } else {
+                        console.log("Son you fucked up");
+                    }
 
-                if (data.team === 0) {
-                    UserService.setUserTeam('red-team');
-                } else if (data.team === 1) {
-                    UserService.setUserTeam('blue-team');
+                    //set team background colour
+                    if (data.team === 0) {
+                        UserService.setUserTeam('red-team');
+                    } else if (data.team === 1) {
+                        UserService.setUserTeam('blue-team');
+                    }
+                } else {
+                    $scope.gamecode = "Wrong Code";
+                    $scope.enableInput = true;
                 }
-                // Move player to the game screen
             }
         }
-        /*
-            Register with the network service to listen to  when the player has joined the game
-        */
-        NetworkService.registerListener({
-            eventName: "gamePlayerJoined",
-            call: playerJoinedEvent
-        });
+
 
     }]);
