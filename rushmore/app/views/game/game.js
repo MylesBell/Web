@@ -50,7 +50,7 @@ angular.module('gameView', ['ngRoute'])
         };
 
         function setTeamBackground() {
-            if ($scope.teamClass === 1) {
+            if ($scope.teamClass === "blue-team") {
                 $scope.teamClassCSS = "blue-team";
             } else {
                 $scope.teamClassCSS = "red-team";
