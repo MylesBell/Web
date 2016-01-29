@@ -17,6 +17,9 @@ angular.module('gameView', ['ngRoute'])
         var switchButton = document.getElementById('switch-button');
         var healthBar = document.getElementById("health-bar-remaining");
 
+        var container = document.getElementById('game-container');
+
+
         setTeamBackground();
 
         // TODO put this somewhere else
@@ -50,9 +53,13 @@ angular.module('gameView', ['ngRoute'])
         };
 
         function setTeamBackground() {
+            var mainContainer = document.getElementById('main-container');
             if ($scope.teamClass === "blue-team") {
+                mainContainer.className += " blue-team";
                 $scope.teamClassCSS = "blue-team";
             } else {
+                mainContainer.className += " red-team";
+
                 $scope.teamClassCSS = "red-team";
             }
         }

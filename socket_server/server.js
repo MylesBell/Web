@@ -102,13 +102,14 @@ io.on('connection', function(socket) {
             var unityRes = unity.gamePlayerJoined(socket, {
                 playerID: socket.id,
                 teamID: 1,
-                state: 0, // 0 the state for idle (needed for testing)                
+                state: 1, // 0 the state for idle (needed for testing)                
                 ok: 1 // code was correct
             }, housekeeping.logger, playerList);
 
             // Communicate successful join to the joining player and
             // update all other clients in the game with new player
             if (unityRes.ok) {
+                console.log(unityRes);
                 playerList.forEach(function(pl) {
                     io.sockets.in(pl.uID).emit('gamePlayerJoined', unityRes);
                 });

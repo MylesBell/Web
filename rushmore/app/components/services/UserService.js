@@ -72,7 +72,6 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
             }).then(function(res) {
                 username = name;
                 uID = res.uID;
-
                 deferred.resolve({
                     ok: true,
                     username: name
@@ -87,6 +86,28 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
         }
 
         return deferred.promise;
+    }
+
+    // Called when the player has successfully joined
+    // if this is for THIS player
+    //      move to the lobby page or game page if game already running
+    //       and set team only
+    function handlePlayerJoinedEvent(data) {
+        if (data.uID === uID) {
+            if (data.joinSuccess) {               
+                //set team background colour
+                if (data.team === 0) {
+                    userTeam = 'red-team';
+                } else if (data.team === 1) {
+                    userTeam =  'blue-team';
+                }
+
+                joinPromise.resolve(data);
+
+            } else {
+                joinPromise.reject(data);
+            }
+        }
     }
 
     function getUserTeam() {
@@ -114,46 +135,10 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
     */
     NetworkService.registerListener({
         eventName: "gamePlayerJoined",
-        call: playerJoinedEvent
+        call: handlePlayerJoinedEvent
     });
 
-    // Called when the player has successfully joined
-    // if this is for THIS player
-    //      move to the lobby page or game page if game already running
-    //       and set team only
-    function playerJoinedEvent(data) {
-        if (data.uID === uID) {
 
-            console.log(data);
-
-            if (data.joinSuccess) {
-                // if game has not started yet
-                if (data.state === 0) {
-                    LocationService.setPath('/lobby');
-                } else if (data.state === 1) {
-                    LocationService.setPath('/game');
-                } else {
-                    console.log("Son you fucked up");
-                }
-
-                //set team background colour
-                if (data.team === 0) {
-                    userTeam = 'red-team';
-                } else if (data.team === 1) {
-                    userTeam =  'blue-team';
-                }
-
-                joinPromise.resolve(data);
-
-
-            } else {
-                // $scope.gamecode = "Wrong Code";
-                // $scope.enableInput = true;
-
-                joinPromise.reject(data);
-            }
-        }
-    }
 
     /* --------------------
         PUBLIC API
