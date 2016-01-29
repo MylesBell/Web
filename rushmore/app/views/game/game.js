@@ -4,7 +4,7 @@ angular.module('gameView', ['ngRoute'])
         $scope.teamClass = UserService.getUserTeam();
         $scope.teamClassCSS = "blue-team";
         $scope.nearBase = false;
-        $scope.playerDead = false;
+        $scope.playerDead = true;
         $scope.timeToRespawn = 10;
 
         var respawnTimer;
@@ -50,7 +50,7 @@ angular.module('gameView', ['ngRoute'])
         };
 
         function setTeamBackground() {
-            if ($scope.teamClass === 1) {
+            if ($scope.teamClass === "blue-team") {
                 $scope.teamClassCSS = "blue-team";
             } else {
                 $scope.teamClassCSS = "red-team";
