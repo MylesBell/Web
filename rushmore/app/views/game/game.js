@@ -19,7 +19,6 @@ angular.module('gameView', ['ngRoute'])
 
         var container = document.getElementById('game-container');
 
-
         setTeamBackground();
 
         // TODO put this somewhere else

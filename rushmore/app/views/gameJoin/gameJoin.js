@@ -11,8 +11,8 @@ angular.module('gameJoinView', ['ngRoute'])
         $scope.gamecode = "Enter Game Code";
         $scope.enableInput = true;
 
-        var deployButton = document.getElementById('game-join-button');
-        deployButton.addEventListener("click", fullscreen);
+        var codeForm = document.getElementById('game-code-submit-form');
+        codeForm.addEventListener("submit", fullscreen);
 
         $scope.joinGame = function() {
             UserService.attemptToJoinGame($scope.gamecode).then(function(res) {

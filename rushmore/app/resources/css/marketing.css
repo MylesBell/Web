@@ -398,11 +398,11 @@ label {
 }
 
 .blue-team{
-        background: #4183D7;        
+        background: #4183D7 !important;        
 }
 
 .red-team{
-        background: #D91E18;
+        background: #D91E18  !important;
 }
 
 .dead-team{
