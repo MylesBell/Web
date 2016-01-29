@@ -60,12 +60,12 @@ angular.module('myApp').factory('UserService', function($q, NetworkService) {
         if (name.length === 0) {
             deferred.reject({
                 ok: false,
-                message: "Name must be a least one character long"
+                message: "Too Short"
             });
         } else if (name.length > 20) {
             deferred.reject({
                 ok: false,
-                message: "Name must be less than 20 characters"
+                message: "Too Long"
             });
         } else {
             // Send the user info to the server to register their name

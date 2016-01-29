@@ -38,7 +38,7 @@ describe('Player Creation page', function() {
         inputBox.click();
         submitButton.click();
 
-        expect(inputBox.getAttribute('value')).toEqual('Name must be a least one character long');
+        expect(inputBox.getAttribute('value')).toEqual('Too Short');
     });
 
     it('entering a name over 20 characters shows error on page', function() {
@@ -50,7 +50,7 @@ describe('Player Creation page', function() {
         inputBox.sendKeys("aaaaaaaaaaaaaaaaaaaaa");
         submitButton.click();
 
-        expect(inputBox.getAttribute('value')).toEqual('Name must be less than 20 characters');
+        expect(inputBox.getAttribute('value')).toEqual('Too Long');
     });
 
     it('entering a valid name moves the user to the game join page', function() {
