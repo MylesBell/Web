@@ -44,7 +44,7 @@ module.exports = {
             });
 
         } else {
-            res.ok = false;
+            res.ok = true;
             res.message = "Invalid game code";
         }
 
