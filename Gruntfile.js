@@ -125,6 +125,13 @@ module.exports = function (grunt) {
                 options: {
                     spawn: false // for grunt-contrib-watch v0.5.0+, "nospawn: true" for lower versions. Without this option specified express won't be reloaded
                 } 
+            },
+            socket_test: {
+               files: ['socket_server/*.js'],
+                tasks: ['express:socket_test'],
+                options: {
+                    spawn: false // for grunt-contrib-watch v0.5.0+, "nospawn: true" for lower versions. Without this option specified express won't be reloaded
+                } 
             }
         },
         selenium_start: {
@@ -145,7 +152,7 @@ module.exports = function (grunt) {
     grunt.registerTask("run-angular-local", ["default", "ngconstant:dev", "express:angular_loc", "watch:angular"]);
     grunt.registerTask("run-angular-prod", ["default", "ngconstant:prod", "express:angular_prod", "watch:angular"]);
     grunt.registerTask("run-socket-prod", ["default", "express:socket", "watch:socket"]);
-    grunt.registerTask("run-socket-test", ["default", "express:socket_test", "watch:socket"]);
+    grunt.registerTask("run-socket-test", ["default", "express:socket_test", "watch:socket_test"]);
     grunt.registerTask("run-socket-local", ["default", "express:socket", "watch:socket"]);
 
     grunt.registerTask("run-concurrent-local", ["concurrent:run"]);
