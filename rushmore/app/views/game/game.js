@@ -1,5 +1,5 @@
 angular.module('gameView', ['ngRoute'])
-    .controller('GameCtrl', ['$scope', 'InputHandlerService', "NetworkService", "UserService", "$interval", function($scope, InputHandlerService, NetworkService, UserService, $interval) {
+    .controller('GameCtrl', ['$scope', 'InputHandlerService', "NetworkService", "UserService", "$interval", "SpecialPowerManagerService", function($scope, InputHandlerService, NetworkService, UserService, $interval, SpecialPowerManagerService) {
 
         $scope.teamClass = UserService.getUserTeam();
         $scope.teamClassCSS = "blue-team";
@@ -15,10 +15,24 @@ angular.module('gameView', ['ngRoute'])
         var forwardButton = document.getElementById('forward-button');
         var backwardButton = document.getElementById('backward-button');
         var switchButton = document.getElementById('switch-button');
-        var specialButton1 = document.getElementById('special-button-1');
         var healthBar = document.getElementById("health-bar-remaining");
 
         setTeamBackground();
+
+        // TODO put this somewhere else
+        $scope.specialPowers = [{
+            class: "special-fire",
+            enabled: "",
+            index: 1
+        }, {
+            class: "special-heal",
+            enabled: "",
+            index: 2
+        }, {
+            class: "special-invisible",
+            enabled: "",
+            index: 3
+        }];
 
         /*
 		Fired when user selects input button on game controller page
@@ -35,11 +49,11 @@ angular.module('gameView', ['ngRoute'])
             });
         };
 
-        function setTeamBackground(){
-            if($scope.teamClass === 1){
+        function setTeamBackground() {
+            if ($scope.teamClass === 1) {
                 $scope.teamClassCSS = "blue-team";
             } else {
-                $scope.teamClassCSS = "blue-team";
+                $scope.teamClassCSS = "red-team";
             }
         }
 
@@ -72,15 +86,18 @@ angular.module('gameView', ['ngRoute'])
             $scope.timeToRespawn = timeLeft; // should be timeleft
 
             // Set and start the the respawn timer 
-            respawnTimer = $interval(respawnTimerUpdate, 1000);  
+            respawnTimer = $interval(respawnTimerUpdate, 1000);
         }
 
         // TODO Needs to be confirmed with the server
         // Shows the player controls again, sets the health bar to full and puts background on again
-        function playerRespawnTimeOver(){
+        function playerRespawnTimeOver() {
             $scope.timeToRespawn = "Now";
             $scope.playerDead = false;
-            handlePlayerChangeHealth({playerHealth:1000, maxHealth: 1000});
+            handlePlayerChangeHealth({
+                playerHealth: 1000,
+                maxHealth: 1000
+            });
             setTeamBackground();
         }
 
@@ -100,6 +117,29 @@ angular.module('gameView', ['ngRoute'])
             console.log("Player respawned on the server");
             playerRespawnTimeOver();
         }
+
+        // handle when a special button is clicked
+        // grey/hide button and set timer, when cooldown over reset the special button
+        function handleSpecialClicked(specialUsed) {
+            if (specialUsed.enabled === "") {
+
+                // set the disabled class for the special object in markup
+                specialUsed.enabled = "special-disabled";
+                $scope.inputButtonClicked("special");
+
+
+                // take off the disbaled css when the timeout is over
+                SpecialPowerManagerService.specialButtonUsed(specialUsed).then(function(special) {
+                    special.enabled = "";
+                });
+            } else {
+                // special is still cooling down
+            }
+        }
+
+        $scope.useSpecial = function(specialNumber) {
+            handleSpecialClicked(specialNumber); // TODO made this generic to other special button
+        };
 
         NetworkService.registerListener({
             eventName: "playerNearBase",
@@ -146,9 +186,7 @@ angular.module('gameView', ['ngRoute'])
             $scope.inputButtonClicked("switch");
         }
 
-        function useSpecial() {
-            $scope.inputButtonClicked("special");
-        }
+
 
         // // Enable click & dblclick events, and monitor both.
         downButton.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', doubleTap(), false);
@@ -166,9 +204,5 @@ angular.module('gameView', ['ngRoute'])
         switchButton.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', doubleTap(), false);
         switchButton.addEventListener('tap', switchLane, false);
         switchButton.addEventListener('dbltap', switchLane, false);
-        specialButton1.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', doubleTap(), false);
-        specialButton1.addEventListener('tap', useSpecial, false);
-        specialButton1.addEventListener('dbltap', useSpecial, false);
-
 
     }]);
