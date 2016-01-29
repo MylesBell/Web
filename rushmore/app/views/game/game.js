@@ -4,7 +4,7 @@ angular.module('gameView', ['ngRoute'])
         $scope.teamClass = UserService.getUserTeam();
         $scope.teamClassCSS = "blue-team";
         $scope.nearBase = false;
-        $scope.playerDead = false;
+        $scope.playerDead = true;
         $scope.timeToRespawn = 10;
 
         var respawnTimer;
