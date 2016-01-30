@@ -19,6 +19,13 @@ angular.module('gameView', ['ngRoute'])
 
         var container = document.getElementById('game-container');
 
+        window.oncontextmenu = function(event) {
+            console.log("Prevented long press");
+            event.preventDefault();
+            event.stopPropagation();
+            return false;
+        };
+
         setTeamBackground();
 
         // TODO put this somewhere else
