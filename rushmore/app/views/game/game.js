@@ -166,7 +166,6 @@ angular.module('gameView', ['ngRoute'])
             var container = document.getElementById('game-container');
             container.style.height = "100%";
             container.style.top = "0px";
-            document.getElementById('')
         }
 
         // Shows the player controls again, sets the health bar to full and puts background on again
