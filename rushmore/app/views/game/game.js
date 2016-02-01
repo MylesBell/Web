@@ -132,6 +132,9 @@ angular.module('gameView', ['ngRoute'])
             if (remainingHealth < 0.5) {
                 healthBar.style.backgroundColor = "#D35400"; //burnt ornage
                 lostHealthBar.style.backgroundColor = "#EB974E"; // sea buckthorn
+            } else {
+                healthBar.style.backgroundColor = "#26A65B"; //burnt ornage
+                lostHealthBar.style.backgroundColor = "#90C695"; // sea buckthorn
             }
 
             reaminingWidth = reaminingWidth.toString() + "%";
