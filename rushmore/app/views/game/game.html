@@ -1,56 +1,53 @@
-<!-- <div class="main-container" ng-class="teamClassCSS">
- -->        <div id="game-container" class="pure-g" ng-show="!playerDead">
-            <div class="pure-u-1 stats-container">
-                <div class="health-bar-container">
-                    <div id="health-bar-remaining"> 
-                        <img src="../../resources/images/heart_white.png" height="100%" width="auto">
-                    </div>
-                    <div id="health-bar-lost"> 
-                        
-                    </div>
-                </div>
-            </div> 
-            <div class="pure-u-1 controls-container">
-                <div class="movement-controls-container">
-                    <div id="switch-button" class="pure-button pure-game-button" ng-style="{'visibility': nearBase?'visible':'hidden'}">
-                        SWI
-                    </div>
-                    <div id='up-button' class="pure-button pure-game-button">
-                        <img class="control-direction-image" src="../../resources/images/up_black.png" height="96" width="96">    
-                    </div> 
-                    <div id="switch-button" class="pure-button pure-game-button" ng-style="{'visibility': nearBase?'visible':'hidden'}">                         
-                    </div>
-                    <div  id='backward-button' class="pure-button pure-game-button">
-                         <img class="control-direction-image" src="../../resources/images/left_black.png" height="96" width="96">
-                    </div>   
-                    <div  id='forward-button' class="pure-button pure-game-button">
-                         <img class="control-direction-image" src="../../resources/images/right_black.png" height="96" width="96">
-                    </div> 
-                    <div  id='down-button' class="pure-button pure-game-button">
-                         <img class="control-direction-image" src="../../resources/images/down_black.png" height="96" width="96">
-                    </div>   
-                </div>                
-            </div>  
-            <div class="pure-u-1 specials-container">
-                <div class="special" ng-repeat="special in specialPowers">
-                    <div id="special-button-1" class="special-circle" ng-class="[special.class, special.enabled]" ng-click="useSpecial(special)">            
-                    </div>              
-                </div>
-            </div>  
-        </div>   
-        <div class="death-container pure-g" ng-show="playerDead">
-            <div id="death-text-container" class="pure-u-1">
-                YOU DIED
-            </div> 
-
-            <div id="death-timer-container" class="pure-u-1">
-                <div id="respawn-text">
-                    Respawn in...
-                </div>
-                <div id="death-timer">
-                    {{timeToRespawn}}
-                </div>
-            </div> 
-
+<div id="game-container" class="pure-g" ng-show="!playerDead">
+    <div class="pure-u-1 stats-container">
+        <div class="health-bar-container">
+            <div id="health-bar-remaining"> 
+                <img src="../../resources/images/heart_white.png" height="100%" width="auto">
+            </div>
+            <div id="health-bar-lost"> 
+                
+            </div>
         </div>
-<!-- </div> -->
+    </div> 
+    <div class="pure-u-1 controls-container">
+        <div class="movement-controls-container">
+            <div id="switch-button" class="pure-button pure-game-button" ng-style="{'visibility': nearBase?'visible':'hidden'}">
+                SWI
+            </div>
+            <div id='up-button' class="pure-button pure-game-button">
+                <img class="control-direction-image" src="../../resources/images/up_black.png" height="96" width="96">    
+            </div> 
+            <div id="switch-button" class="pure-button pure-game-button" ng-style="{'visibility': nearBase?'visible':'hidden'}">                         
+            </div>
+            <div  id='backward-button' class="pure-button pure-game-button">
+                 <img class="control-direction-image" src="../../resources/images/left_black.png" height="96" width="96">
+            </div>   
+            <div  id='forward-button' class="pure-button pure-game-button">
+                 <img class="control-direction-image" src="../../resources/images/right_black.png" height="96" width="96">
+            </div> 
+            <div  id='down-button' class="pure-button pure-game-button">
+                 <img class="control-direction-image" src="../../resources/images/down_black.png" height="96" width="96">
+            </div>   
+        </div>                
+    </div>  
+    <div class="pure-u-1 specials-container">
+        <div class="special" ng-repeat="special in specialPowers">
+            <div id="special-button-1" class="special-circle" ng-class="[special.class, special.enabled]" ng-click="useSpecial(special)">            
+            </div>              
+        </div>
+    </div>  
+</div>   
+<div class="death-container pure-g" ng-show="playerDead">
+    <div id="death-text-container" class="pure-u-1">
+        YOU DIED
+    </div> 
+
+    <div id="death-timer-container" class="pure-u-1">
+        <div id="respawn-text">
+            Respawn in...
+        </div>
+        <div id="death-timer">
+            {{timeToRespawn}}
+        </div>
+    </div> 
+</div>

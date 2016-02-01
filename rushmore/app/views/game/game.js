@@ -25,6 +25,7 @@ angular.module('gameView', ['ngRoute'])
         };
 
         setTeamBackground();
+        fillGameContainerSize();
 
         // TODO put this somewhere else
         $scope.specialPowers = [{
@@ -158,6 +159,14 @@ angular.module('gameView', ['ngRoute'])
                 mainContainer.className += " red-team";
                 $scope.teamClassCSS = "red-team";
             }
+        }
+
+        function fillGameContainerSize(){
+            console.log("setting full screen");
+            var container = document.getElementById('game-container');
+            container.style.height = "100%";
+            container.style.top = "0px";
+            document.getElementById('')
         }
 
         // Shows the player controls again, sets the health bar to full and puts background on again
