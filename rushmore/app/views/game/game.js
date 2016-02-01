@@ -15,9 +15,11 @@ angular.module('gameView', ['ngRoute'])
         var forwardButton = document.getElementById('forward-button');
         var backwardButton = document.getElementById('backward-button');
         var switchButton = document.getElementById('switch-button');
-        var healthBar = document.getElementById("health-bar-remaining");
 
         setTeamBackground();
+
+        // REMOve
+        // handlePlayerChangeHealth({playerHealth:480, maxHealth: 1000});
 
         // TODO put this somewhere else
         $scope.specialPowers = [{
@@ -68,9 +70,23 @@ angular.module('gameView', ['ngRoute'])
 
         // Reduce the width of the health bar to the fraction of remaining health
         function handlePlayerChangeHealth(data) {
-            var width = 100 * (data.playerHealth / data.maxHealth);
-            width = width.toString() + "%";
-            healthBar.style.width = width;
+            var healthBar = document.getElementById("health-bar-remaining");
+            var lostHealthBar = document.getElementById("health-bar-lost");
+
+            var remainingHealth = (data.playerHealth / data.maxHealth);
+
+            var reaminingWidth = 100 * remainingHealth;
+            var lostWidth = 100 * (1 - remainingHealth);
+
+            if(remainingHealth < 0.5){
+                healthBar.style.backgroundColor = "#D35400";//burnt ornage
+                lostHealthBar.style.backgroundColor = "#EB974E";// sea buckthorn
+            }
+
+            reaminingWidth = reaminingWidth.toString() + "%";
+            lostWidth = lostWidth.toString() + "%";
+            healthBar.style.width = reaminingWidth;
+            lostHealthBar.style.width = lostWidth;
         }
 
         // THe player has died on the server
