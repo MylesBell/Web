@@ -11,11 +11,20 @@ angular.module('gameJoinView', ['ngRoute'])
         $scope.gamecode = "Enter Game Code";
         $scope.enableInput = true;
 
+        var codeForm = document.getElementById('game-code-submit-form');
+        codeForm.addEventListener("submit", fullscreen);
+
         $scope.joinGame = function() {
             UserService.attemptToJoinGame($scope.gamecode).then(function(res) {
                 // the code was was valid and sent to the unity server
-                // However the user HAS NOT YET joined, until the unity server confirms this
-
+                // the user has joined move they to either game or lobby
+                if (res.state === 0) {
+                    LocationService.setPath('/lobby');
+                } else if (res.state === 1) {
+                    LocationService.setPath('/game');
+                } else {
+                    console.log("Son you fucked up");
+                }
 
             }).catch(function(res) {
                 // the code or joining was invalid, tell the user that
@@ -28,36 +37,17 @@ angular.module('gameJoinView', ['ngRoute'])
             $scope.enableInput = false;
         };
 
-        // Called when the player has successfully joined
-        // if this is for THIS player
-        //      move to the lobby page or game page if game already running
-        //       and set team only
-        function playerJoinedEvent(data) {
-            if (data.uID === UserService.getUserID()) {
-
-                console.log(data);
-                if (data.joinSuccess) {
-                    // if game has not started yet
-                    if (data.state === 0) {
-                        LocationService.setPath('/lobby');
-                    } else if (data.state === 1) {
-                        LocationService.setPath('/game');
-                    } else {
-                        console.log("Son you fucked up");
-                    }
-
-                    //set team background colour
-                    if (data.team === 0) {
-                        UserService.setUserTeam('red-team');
-                    } else if (data.team === 1) {
-                        UserService.setUserTeam('blue-team');
-                    }
-                } else {
-                    $scope.gamecode = "Wrong Code";
-                    $scope.enableInput = true;
-                }
+        function fullscreen() {
+            var mainContainer = document.getElementById('main-container');
+            if (mainContainer.requestFullscreen) {
+                mainContainer.requestFullscreen();
+            } else if (mainContainer.msRequestFullscreen) {
+                mainContainer.msRequestFullscreen();
+            } else if (mainContainer.mozRequestFullScreen) {
+                mainContainer.mozRequestFullScreen();
+            } else if (mainContainer.webkitRequestFullscreen) {
+                mainContainer.webkitRequestFullscreen();
             }
         }
-
 
     }]);
