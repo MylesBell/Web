@@ -101,7 +101,7 @@ module.exports = {
     /*
         A player has moved near to the base
     */
-    playerNearBase: function (socket, data, logger) {
+    gamePlayerNearBase: function (socket, data, logger) {
         var res = {};
 
         res.uID = data.playerID;
