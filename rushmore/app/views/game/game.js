@@ -47,13 +47,13 @@ angular.module('gameView', ['ngRoute'])
         */
 
         NetworkService.registerListener({
-            eventName: "playerNearBase",
-            call: handlePlayerNearBaseEvent
+            eventName: "gamePlayerNearBase",
+            call: handleGamePlayerNearBaseEvent
         });
 
         NetworkService.registerListener({
-            eventName: "playerChangeHealth",
-            call: handlePlayerChangeHealth
+            eventName: "gamePlayerChangeHealth",
+            call: handleGamePlayerChangeHealth
         });
 
         NetworkService.registerListener({
@@ -112,7 +112,7 @@ angular.module('gameView', ['ngRoute'])
         }
 
         // Either show or hide the switch lane button
-        function handlePlayerNearBaseEvent(data) {
+        function handleGamePlayerNearBaseEvent(data) {
             if (data.nearBase === 0) {
                 $scope.nearBase = false;
             } else {
@@ -121,7 +121,7 @@ angular.module('gameView', ['ngRoute'])
         }
 
         // Reduce the width of the health bar to the fraction of remaining health
-        function handlePlayerChangeHealth(data) {
+        function handleGamePlayerChangeHealth(data) {
             var healthBar = document.getElementById("health-bar-remaining");
             var lostHealthBar = document.getElementById("health-bar-lost");
 
@@ -172,7 +172,7 @@ angular.module('gameView', ['ngRoute'])
         function playerRespawnTimeOver() {
             $scope.timeToRespawn = "Now";
             $scope.playerDead = false;
-            handlePlayerChangeHealth({
+            handleGamePlayerChangeHealth({
                 playerHealth: 1000,
                 maxHealth: 1000
             });

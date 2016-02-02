@@ -38,12 +38,12 @@ angular.module('myApp').factory('NetworkService', function($q, socket, StorageSe
         alertListeners("gamePlayerLeft", data);
     });
 
-    socket.on("playerNearBase", function(data) {
-        alertListeners("playerNearBase", data);
+    socket.on("gamePlayerNearBase", function(data) {
+        alertListeners("gamePlayerNearBase", data);
     });
 
-    socket.on("playerChangeHealth", function(data){
-        alertListeners("playerChangeHealth", data);
+    socket.on("gamePlayerChangeHealth", function(data){
+        alertListeners("gamePlayerChangeHealth", data);
     });
 
     socket.on("gamePlayerDied", function(data) {

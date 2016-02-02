@@ -1,39 +1,48 @@
-// Require the SocketIO library
-var socketio = require('socket.io');
+/*
+ *
+ * Unity Interface for SocketIO server
+ *
+*/
 
+// Require dependencies for interface
+var socketio = require('socket.io');
+var utils = require('./utils');
+
+// Export these functions for external access from other interfaces
 module.exports = {
-    // Player died in game
+
+    /* 
+        Player has died in the game
+    */
     gamePlayerDied: function(socket, data, logger){
         var res = {};
         res.ok = true;
         res.uID = data.playerID;
         res.respawnTimestamp = data.respawnTimestamp;
 
-        logger.log(socket, logger.loggableModules.GAME_PLAYER_DIED, res);
-        return res;
+        return logger.log(socket, logger.loggableModules.GAME_PLAYER_DIED, res);
     },
 
-    // Player came back to life in the game
-    // set the players health back to max
+    /* 
+        Player has respawned in the game
+    */
     gamePlayerRespawn: function(socket, data, logger, playerList){
         var res = {};
         var player;
 
-        player = playerList.filter(function(pl) {
-            return pl.uID === data.playerID;
-        })[0];
-
+        player = utils.playerFromUID(data.playerID, playerList);
         player.health = player.maxHealth;
 
         res.ok = true;
         res.uID = data.playerID;
         res.playerHealth = player.maxHealth;
 
-        logger.log(socket, logger.loggableModules.GAME_PLAYER_RESPAWN, res);
-        return res;
+        return logger.log(socket, logger.loggableModules.GAME_PLAYER_RESPAWN, res);
     },
 
-    // Game state updated
+    /* 
+        The game state has been updated
+    */
     gameStateUpdate: function(socket, data, logger){
         var res = {};
         res.ok = false;
@@ -44,18 +53,17 @@ module.exports = {
             res.winner = data.winner;
         }
 
-        logger.log(socket, logger.loggableModules.GAME_STATE_UPDATE, res);
-        return res;
+        return logger.log(socket, logger.loggableModules.GAME_STATE_UPDATE, res);
     },
 
-    // Game state updated
+    /* 
+        The new player has joined the game
+    */
     gamePlayerJoined: function(socket, data, logger, playerList){
         var res = {};
         var playerWhoJoined = {};
 
-        playerWhoJoined =  playerList.filter(function(pl) {
-            return pl.uID === data.playerID;
-        })[0];
+        playerWhoJoined = utils.playerFromUID(data.playerID, playerList);
 
         if (data.ok === 1 && data.playerID && playerWhoJoined !== undefined) {
             res.ok = true;
@@ -87,31 +95,30 @@ module.exports = {
             console.log("ERROR " + data.msg);
         }
 
-        logger.log(socket, logger.loggableModules.GAME_PLAYER_JOIN, res);
-        return res;
+        return logger.log(socket, logger.loggableModules.GAME_PLAYER_JOIN, res);
     },
 
-    playerNearBase: function (socket, data, logger) {
+    /*
+        A player has moved near to the base
+    */
+    gamePlayerNearBase: function (socket, data, logger) {
         var res = {};
 
         res.uID = data.playerID;
         res.nearBase = data.nearBase;
         res.ok = true;
 
-        logger.log(socket, logger.loggableModules.PLAYER_NEAR_BASE, res);
-        return res;
+        return logger.log(socket, logger.loggableModules.PLAYER_NEAR_BASE, res);
     },
 
     /*
-        Player has either gained or lost a unit of health by "amount"
+        A player has either gained or lost a unit of health by "amount"
     */
     gamePlayerChangeHealth: function(socket, data, logger, playerList) {
         var res = {};
         var player;
 
-        player = playerList.filter(function(pl) {
-            return pl.uID === data.playerID;
-        })[0];
+        player = utils.playerFromUID(data.playerID, playerList);
         
         player.health = player.health + data.amount;
 
@@ -120,8 +127,7 @@ module.exports = {
         res.maxHealth = player.maxHealth;
         res.ok = true;
 
-        logger.log(socket, logger.loggableModules.PLAYER_HEALTH_CHANGE, res);
-        return res;
+        return logger.log(socket, logger.loggableModules.PLAYER_HEALTH_CHANGE, res);
     }
 
 };

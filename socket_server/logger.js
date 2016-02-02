@@ -1,23 +1,17 @@
-// Require the SocketIO library
+/*
+ *
+ * Internal logging for SocketIO server
+ *
+*/
+
+// Require dependencies for interface
 var socketio = require('socket.io');
 
 function logger() {
-
     var self = this;
+
+    // Default to full logging printouts
     self.loggingLevel = "FULL";
-
-    // Log whenever a client joins
-    self.connect = function(socket, logger){
-        // Handle connect methods later
-        self.logger.log(socket, logger.loggableModules.CONNECT);
-    };
-
-    // As SocketIO doesn't include namespace protocols,
-    // we implement our own room system using joins
-    self.subscribe = function (socket, data, logger) {
-        socket.join(data.name);
-        self.logger.log(socket, logger.loggableModules.SUBSCRIBE, data);
-    };
 
     // Set the logging level as
     // FULL, SILENT
@@ -26,6 +20,7 @@ function logger() {
     };
 
     self.logger = {
+        // These loggable modules allow us to have better display notifications for the logged events
         loggableModules : {
             "CONNECT" : "Connected",
             "SUBSCRIBE" : "Subscribed",
@@ -33,6 +28,7 @@ function logger() {
             "PLAYER_GAME_JOIN" : "Player Game Join",
             "PLAYER_GAME_LEAVE" : "Player Game Leave",
             "PLAYER_DIRECTION" : "Player Direction",
+            "PLAYER_SWITCH_BASE" : "Player Switch Base",
             "PLAYER_SPECIAL" : "Player Special",
             "GAME_PLAYER_DIED" : "Game Player Died",
             "GAME_PLAYER_RESPAWN" : "Game Player Respawn",
@@ -45,9 +41,13 @@ function logger() {
             if(self.loggingLevel !== "SILENT") {
                 console.log("[" + socket.id + "] " + method + " : " + JSON.stringify(data));
             }
+
+            // Return the recieved data so we can return directly from log() outside the interface
+            return data;
         }
     };
 
 }
 
+// Export the entire logger class
 module.exports = logger;
