@@ -256,71 +256,89 @@ angular.module('gameView', ['ngRoute'])
         var offsetX = canvas.offsetLeft;
         var offsetY = canvas.offsetTop;
 
+        var centerX;
+        var centerY;
+
         // Make it visually fill the positioned parent
-        canvas.style.width = '100%';
-        canvas.style.height = '100%';
+        canvas.style.width = '90%';
+        canvas.style.height = '90%';
         // ...then set the internal size to match
         canvas.width = canvas.offsetWidth;
         canvas.height = canvas.offsetHeight;
 
+        centerX = canvas.width / 2;
+        centerY = canvas.height / 2;
+
         var joystickRadius = 25;
-        var padRadius = canvas.width / 2;
+        var padRadius = centerX;
+        var deadZoneRadius = 40;
 
         var id; // the animation frame
+        var animate = false;
 
         var joystick = {
             width: joystickRadius * 2,
             height: joystickRadius * 2,
-            x: ((canvas.height / 2) - joystickRadius),
-            y: ((canvas.height / 2) - joystickRadius)
+            x: (centerX - joystickRadius),
+            y: (centerY - joystickRadius),
+            enabled: false,
+            distToCenter: 0
         };
 
 
         ctx.fillStyle = "white";
         ctx.beginPath();
-        ctx.arc(canvas.width / 2, canvas.height / 2, padRadius, 0, Math.PI * 2, true); // Outer circle
+        ctx.arc(centerX, centerY, padRadius, 0, Math.PI * 2, true); // Outer circle
         ctx.stroke();
         ctx.fill();
 
         ctx.fillRect(joystick.x, joystick.y, joystick.width, joystick.height);
 
+        drawPad();
+
         // bind either touch or mouse events
         canvas.addEventListener("mousedown", function(e) {
 
             // Update the knob position to mouse postion
-            updateKnobPostion(e)
+            animate = true;
+            updateKnobPostion(e);
             canvas.addEventListener("mousemove", updateKnobPostion);
 
             // Start the drawing loop for elemnents on the canvas 
-            id = requestAnimationFrame(draw);
-        })
+            id = window.requestAnimationFrame(draw);
+        });
 
         // Bind touch events for mobile
         canvas.addEventListener("touchstart", function(e) {
 
             // update the knob position to touch postion
+            animate = true;
             updateKnobPostion(e);
             canvas.addEventListener("touchmove", updateKnobPostion);
 
             // Start the drawing loop for elemnents on the canvas 
-            id = requestAnimationFrame(draw);
+            id = window.requestAnimationFrame(draw);
         });
 
         // Bind event for user letting go of knob with mouse
         // stop the updating of the canvas and remove movement event listener
         canvas.addEventListener("mouseup", function(e) {
-            console.log("mouseup");
-            canvas.removeEventListener("mousemove", updateKnobPostion);
-            cancelAnimationFrame(id);
+            stopKnobUpdate();
         });
 
         // Bind event for user letting go of knob with mouse
         // stop the updating of the canvas and remove movement event listener
         canvas.addEventListener("touchend", function(e) {
-            console.log("touchend");
-            canvas.removeEventListener("touchmove", updateKnobPostion);
-            cancelAnimationFrame(id);
+            stopKnobUpdate();
         });
+
+        function stopKnobUpdate() {
+            canvas.removeEventListener("mousemove", updateKnobPostion);
+            canvas.removeEventListener("touchmove", updateKnobPostion);
+            animate = false;
+            joystick.enabled = false;
+            window.cancelAnimationFrame(id);
+        }
 
         // Update the postion of the knob to the touch or mouse down position
         function updateKnobPostion(e) {
@@ -334,10 +352,14 @@ angular.module('gameView', ['ngRoute'])
             var newX = pos.x - joystickRadius;
             var newY = pos.y - joystickRadius;
 
-            //check if outside the pad circle area
+            // check if outside the pad circle area
             // given by r^2 = (x - x_c)^2 + (y - y_c)^2
-            var joystickDisp = Math.sqrt(Math.pow((pos.x - canvas.width / 2), 2) + Math.pow((pos.y - canvas.height / 2), 2));
+            var joystickDisp = Math.sqrt(Math.pow((pos.x - centerX), 2) + Math.pow((pos.y - centerY), 2));
 
+            joystick.distToOrigin = joystickDisp;
+            joystick.enabled = true;
+
+            // Only draw if inside the pad
             if (joystickDisp > padRadius) {
 
             } else {
@@ -360,34 +382,115 @@ angular.module('gameView', ['ngRoute'])
             };
         }
 
+        // Draw all the elements to the screen
         function draw() {
 
             // clear the canvas of any elemnt
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+            // Draw the pad and movement zones
+            drawPad();
+
+            // Draw the knob
+            if (joystick.enabled) {
+                ctx.fillStyle = "black";
+                ctx.strokeStyle = "black";
+                ctx.beginPath();
+                ctx.arc(joystick.x + joystickRadius, joystick.y + joystickRadius, joystickRadius, 0, Math.PI * 2, true); // joystick knob
+                ctx.stroke();
+                ctx.fill();
+                // Draw line to knob from center of pad
+                ctx.beginPath();
+                ctx.moveTo(centerX, centerY);
+                ctx.lineTo(joystick.x + joystickRadius, joystick.y + joystickRadius);
+                ctx.stroke();
+            }
+
+            if (animate) {
+                requestAnimationFrame(draw)
+            };
+        }
+
+        // Draw the control pad with the sectors for movement
+        function drawPad() {
+
             // Draw the pad
             ctx.fillStyle = "white";
             ctx.strokeStyle = "white";
             ctx.beginPath();
-            ctx.arc(canvas.width / 2, canvas.height / 2, canvas.width / 2, 0, Math.PI * 2, true); // Outer circle
+            ctx.arc(centerX, centerY, centerX, 0, Math.PI * 2, true); // Outer circle
             ctx.stroke();
             ctx.fill();
 
-            // Draw the knob
             ctx.fillStyle = "black";
             ctx.strokeStyle = "black";
-            ctx.beginPath();
-            ctx.arc(joystick.x + joystickRadius, joystick.y + joystickRadius, joystickRadius, 0, Math.PI * 2, true); // joystick knob
-            ctx.stroke();
+
+            // get which pad the knob is in
+            // get angle from point to hoiztonal and compare to the arc of each the pad zone
+            var deltaX = joystick.x + joystickRadius - centerX;
+            var deltaY = joystick.y + joystickRadius - centerY
+            var angleToOrigin = Math.atan2(deltaY, deltaX);
+            var distToOrigin
+
+            // Handle either side of the x-axis, sorry about this future me
+            if (angleToOrigin < 0) {
+                angleToOrigin = ((Math.PI) - angleToOrigin * (-1)) + Math.PI;
+            } // handle the top half of the circle, where the angle to origin is negaitve
+            if (angleToOrigin > (337.5) * Math.PI / 180) {
+                angleToOrigin = (337.5 - 360) * Math.PI / 180;
+            } // to handle the negative starting arc of the east button
+
+            /* 
+                draw arcs on pad 
+            */
+
+            // The size of each arc 
+            var arcAngle = 45;
+            var arcAngleRad = arcAngle * (Math.PI / 180);
+
+            var radOffset = (-22.5) * (Math.PI / 180);
+            var startingAngle = 0;
+
+            // var startAngleRad = (startingAngle) * (Math.PI / 180);
+
+            // the start and end drawing angles
+            var startAngleRad = radOffset;
+            var endAngleRad = (startAngleRad + (arcAngle * (Math.PI / 180))) % (Math.PI * 2);
+
+            // Draw the movement pads, colour the one the touch is in
+            for (var i = 0; i < 8; i++) {
+
+                if (angleToOrigin >= startAngleRad && angleToOrigin <= endAngleRad && joystick.distToOrigin > deadZoneRadius && joystick.enabled) {
+                    ctx.fillStyle = "red";
+                } else {
+                    ctx.fillStyle = "white";
+                }
+
+                ctx.lineWidth = 2;
+                ctx.beginPath(0);
+                ctx.moveTo(centerX, centerY);
+
+                ctx.arc(centerX, centerY, padRadius, startAngleRad, endAngleRad);
+                ctx.moveTo(centerX, centerY);
+                ctx.closePath();
+                ctx.fill();
+                ctx.stroke();
+
+                var temp = startAngleRad;
+                startAngleRad = endAngleRad % (Math.PI * 2);
+                endAngleRad = (endAngleRad + arcAngleRad) % (Math.PI * 2);
+            }
+
+            // Draw the deadzone             
+            ctx.fillStyle = "white";
+
+            ctx.beginPath(0);
+            ctx.arc(centerX, centerY, deadZoneRadius, 0, 2 * Math.PI);
             ctx.fill();
-
-            // Draw line to knob from center of pad
-            ctx.beginPath();
-            ctx.moveTo(canvas.width / 2, canvas.height / 2);
-            ctx.lineTo(joystick.x + joystickRadius, joystick.y + joystickRadius);
             ctx.stroke();
+            ctx.closePath();
 
-            requestAnimationFrame(draw);
+            ctx.lineWidth = 1;
         }
 
 

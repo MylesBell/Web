@@ -233,10 +233,10 @@ label {
     height: 60%;
     width: 100%;
     margin: auto;
-    /*display: flex;
+    display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
-    align-items: center;*/
+    align-items: center;
 }
 
 .context-controls-container {
