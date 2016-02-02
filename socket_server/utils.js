@@ -19,14 +19,19 @@ module.exports = {
         return player;
     },
 
-    // Log whenever a client joins
+    /*
+    	Log whenever a client joins
+
+    	NOTE: We do not join them at this point as we implement
+    	our own version of namespacing
+    */
     connect : function(socket, logger){
-        // Handle connect methods later due to lack of namespaces
         logger.log(socket, logger.loggableModules.CONNECT);
     },
 
-    // As SocketIO doesn't include namespace protocols,
-    // we implement our own room system using joins
+    /*
+     	Join client to a namespace
+    */
     subscribe : function (socket, data, logger) {
         socket.join(data.name);
         logger.log(socket, logger.loggableModules.SUBSCRIBE, data);
