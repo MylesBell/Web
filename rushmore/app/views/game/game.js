@@ -196,6 +196,7 @@ angular.module('gameView', ['ngRoute'])
 
         //  Fired when user selects input button on game controller page
         // input can be one of several driections or powers, sends this input to the server
+        // TODO rename this function to movement changed
         $scope.inputButtonClicked = function(direction) {
             InputHandlerService.handleInput({
                 direction: direction
@@ -272,6 +273,8 @@ angular.module('gameView', ['ngRoute'])
         var joystickRadius = 25;
         var padRadius = centerX;
         var deadZoneRadius = 40;
+
+        var movementDirection = -1;
 
         var id; // the animation frame
         var animate = false;
@@ -457,12 +460,18 @@ angular.module('gameView', ['ngRoute'])
             var startAngleRad = radOffset;
             var endAngleRad = (startAngleRad + (arcAngle * (Math.PI / 180)));
 
+            var newMovement = -1;
+
             // Draw the movement pads, colour the one the touch is in
+            // Also set the movement direction to the currently highlighted pad
             for (var i = 0; i < 8; i++) {
+
 
                 // if the knob is inside the movements arcs, outside deadzone and enabled
                 if (angleToOrigin >= startAngleRad && angleToOrigin <= endAngleRad && joystick.distToOrigin > deadZoneRadius && joystick.enabled) {
                     ctx.fillStyle = "red";
+                    // set movement direction
+                    newMovement = i;
                 } else {
                     ctx.fillStyle = "white";
                 }
@@ -480,6 +489,24 @@ angular.module('gameView', ['ngRoute'])
                 var temp = startAngleRad;
                 startAngleRad = endAngleRad % (Math.PI * 2);
                 endAngleRad = (endAngleRad + arcAngleRad);
+            }
+
+            // Update the current movement to the arc selected
+            // Check if the movement changed or stayed the same
+            if (movementDirection === newMovement) {
+                // still in same movement arc, send no event
+            } else if (movementDirection !== newMovement && newMovement !== -1) {
+                // moved knob to a new location
+                console.log(newMovement);
+                movementDirection = newMovement;
+                $scope.inputButtonClicked(movementDirection);
+            } else if (movementDirection !== newMovement && newMovement === -1) {
+                // console.log("dead zone");
+                movementDirection = newMovement;
+                if (newMovement === -1) {
+                    console.log("dead zone");
+                }
+                $scope.inputButtonClicked(movementDirection);
             }
 
             // Draw the deadzone             

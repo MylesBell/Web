@@ -32,7 +32,7 @@ angular.module('myApp').factory('InputHandlerService', function($q, NetworkServi
         NetworkService.send(eventName, {
             input: input.direction
         });
-        deferred.resolve({ok:true});
+        deferred.resolve({ok:true, direction:input.direction});
 
         return deferred.promise;
     }

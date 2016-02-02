@@ -229,6 +229,16 @@ label {
     margin: auto;
 }
 
+#joystick-container {
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
 #controls-container {
     height: 60%;
     width: 100%;
