@@ -1,6 +1,8 @@
 // Require the SocketIO library
 var socketio = require('socket.io');
 
+var utils = require('./utils');
+
 module.exports = {
     // Player died in game
     gamePlayerDied: function(socket, data, logger){
@@ -19,10 +21,7 @@ module.exports = {
         var res = {};
         var player;
 
-        player = playerList.filter(function(pl) {
-            return pl.uID === data.playerID;
-        })[0];
-
+        player = utils.playerFromUID(data.playerID, playerList);
         player.health = player.maxHealth;
 
         res.ok = true;
@@ -53,9 +52,7 @@ module.exports = {
         var res = {};
         var playerWhoJoined = {};
 
-        playerWhoJoined =  playerList.filter(function(pl) {
-            return pl.uID === data.playerID;
-        })[0];
+        playerWhoJoined = utils.playerFromUID(data.playerID, playerList);
 
         if (data.ok === 1 && data.playerID && playerWhoJoined !== undefined) {
             res.ok = true;
@@ -109,9 +106,7 @@ module.exports = {
         var res = {};
         var player;
 
-        player = playerList.filter(function(pl) {
-            return pl.uID === data.playerID;
-        })[0];
+        player = utils.playerFromUID(data.playerID, playerList);
         
         player.health = player.health + data.amount;
 
