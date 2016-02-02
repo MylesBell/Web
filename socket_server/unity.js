@@ -4,13 +4,16 @@
  *
 */
 
-// Require the SocketIO library
+// Require dependencies for interface
 var socketio = require('socket.io');
-
 var utils = require('./utils');
 
+// Export these functions for external access from other interfaces
 module.exports = {
-    // Player died in game
+
+    /* 
+        Player has died in the game
+    */
     gamePlayerDied: function(socket, data, logger){
         var res = {};
         res.ok = true;
@@ -20,8 +23,9 @@ module.exports = {
         return logger.log(socket, logger.loggableModules.GAME_PLAYER_DIED, res);
     },
 
-    // Player came back to life in the game
-    // set the players health back to max
+    /* 
+        Player has respawned in the game
+    */
     gamePlayerRespawn: function(socket, data, logger, playerList){
         var res = {};
         var player;
@@ -36,7 +40,9 @@ module.exports = {
         return logger.log(socket, logger.loggableModules.GAME_PLAYER_RESPAWN, res);
     },
 
-    // Game state updated
+    /* 
+        The game state has been updated
+    */
     gameStateUpdate: function(socket, data, logger){
         var res = {};
         res.ok = false;
@@ -50,7 +56,9 @@ module.exports = {
         return logger.log(socket, logger.loggableModules.GAME_STATE_UPDATE, res);
     },
 
-    // Game state updated
+    /* 
+        The new player has joined the game
+    */
     gamePlayerJoined: function(socket, data, logger, playerList){
         var res = {};
         var playerWhoJoined = {};
@@ -90,6 +98,9 @@ module.exports = {
         return logger.log(socket, logger.loggableModules.GAME_PLAYER_JOIN, res);
     },
 
+    /*
+        A player has moved near to the base
+    */
     playerNearBase: function (socket, data, logger) {
         var res = {};
 
@@ -101,7 +112,7 @@ module.exports = {
     },
 
     /*
-        Player has either gained or lost a unit of health by "amount"
+        A player has either gained or lost a unit of health by "amount"
     */
     gamePlayerChangeHealth: function(socket, data, logger, playerList) {
         var res = {};
