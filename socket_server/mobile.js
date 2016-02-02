@@ -6,12 +6,10 @@ module.exports = {
     // Register a new user with the system
     playerRegister: function(socket, data, logger) {
         var res = {};
-        var username; // Can remove this variable
 
         if (data.username !== "") {
-            username = data.username;
             res.ok = true;
-            res.username = username;
+            res.username = data.username;
             res.uID = socket.id;
         } else {
             res.ok = false;
