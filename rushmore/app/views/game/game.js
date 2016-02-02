@@ -332,6 +332,7 @@ angular.module('gameView', ['ngRoute'])
             stopKnobUpdate();
         });
 
+        // stop aniamtion, hide the control knob and remove movement event listeners
         function stopKnobUpdate() {
             canvas.removeEventListener("mousemove", updateKnobPostion);
             canvas.removeEventListener("touchmove", updateKnobPostion);
@@ -407,8 +408,8 @@ angular.module('gameView', ['ngRoute'])
             }
 
             if (animate) {
-                requestAnimationFrame(draw)
-            };
+                requestAnimationFrame(draw);
+            }
         }
 
         // Draw the control pad with the sectors for movement
@@ -428,9 +429,8 @@ angular.module('gameView', ['ngRoute'])
             // get which pad the knob is in
             // get angle from point to hoiztonal and compare to the arc of each the pad zone
             var deltaX = joystick.x + joystickRadius - centerX;
-            var deltaY = joystick.y + joystickRadius - centerY
+            var deltaY = joystick.y + joystickRadius - centerY;
             var angleToOrigin = Math.atan2(deltaY, deltaX);
-            var distToOrigin
 
             // Handle either side of the x-axis, sorry about this future me
             if (angleToOrigin < 0) {
@@ -455,11 +455,12 @@ angular.module('gameView', ['ngRoute'])
 
             // the start and end drawing angles
             var startAngleRad = radOffset;
-            var endAngleRad = (startAngleRad + (arcAngle * (Math.PI / 180))) % (Math.PI * 2);
+            var endAngleRad = (startAngleRad + (arcAngle * (Math.PI / 180)));
 
             // Draw the movement pads, colour the one the touch is in
             for (var i = 0; i < 8; i++) {
 
+                // if the knob is inside the movements arcs, outside deadzone and enabled
                 if (angleToOrigin >= startAngleRad && angleToOrigin <= endAngleRad && joystick.distToOrigin > deadZoneRadius && joystick.enabled) {
                     ctx.fillStyle = "red";
                 } else {
@@ -478,7 +479,7 @@ angular.module('gameView', ['ngRoute'])
 
                 var temp = startAngleRad;
                 startAngleRad = endAngleRad % (Math.PI * 2);
-                endAngleRad = (endAngleRad + arcAngleRad) % (Math.PI * 2);
+                endAngleRad = (endAngleRad + arcAngleRad);
             }
 
             // Draw the deadzone             
