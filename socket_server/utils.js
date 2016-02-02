@@ -4,7 +4,7 @@
  *
 */
 
-// Require the SocketIO library
+// Require dependencies for interface
 var socketio = require('socket.io');
 
 module.exports = {
@@ -17,6 +17,19 @@ module.exports = {
         })[0];
 
         return player;
-    }
+    },
+
+    // Log whenever a client joins
+    connect : function(socket, logger){
+        // Handle connect methods later due to lack of namespaces
+        logger.log(socket, logger.loggableModules.CONNECT);
+    };
+
+    // As SocketIO doesn't include namespace protocols,
+    // we implement our own room system using joins
+    subscribe : function (socket, data, logger) {
+        socket.join(data.name);
+        logger.log(socket, logger.loggableModules.SUBSCRIBE, data);
+    };
 
 };

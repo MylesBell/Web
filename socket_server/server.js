@@ -9,6 +9,7 @@ var socketio = require('socket.io');
 var logger = require('./logger');
 var mobile = require('./mobile');
 var unity = require('./unity');
+var utils = require('./utils');
 
 var port = 1337;
 
@@ -47,10 +48,10 @@ io.on('connection', function(socket) {
     var housekeeping = new logger();
     housekeeping.setLoggingLevel(loggingLevel);
 
-    housekeeping.connect(socket, housekeeping.logger);
+    utils.connect(socket, housekeeping.logger);
 
     socket.on('subscribe', function(data) {
-        housekeeping.subscribe(socket, data, housekeeping.logger);
+        utils.subscribe(socket, data, housekeeping.logger);
     });
 
     /* 
