@@ -1,3 +1,9 @@
+/*
+ *
+ * Mobile interface for SocketIO server
+ *
+*/
+
 // Require the SocketIO library
 var socketio = require('socket.io');
 

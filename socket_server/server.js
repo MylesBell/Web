@@ -1,3 +1,9 @@
+/*
+ *
+ * SocketIO generic socket interfaces
+ *
+*/
+
 // Require the SocketIO library
 var socketio = require('socket.io');
 var logger = require('./logger');
