@@ -36,7 +36,7 @@ module.exports = {
     /*
         Remove a player from the player list
     */
-    addPlayerToList: function(playerID, playerList) {
+    removePlayerFromList: function(playerID, playerList) {
         for (var i = 0; i < playerList.length; i++) {
             if (playerList[i].uID === playerID) {
                 playerList.splice(i, 1);
