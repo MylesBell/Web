@@ -6,6 +6,7 @@
 
 // Export these functions for external access from other interfaces
 var socketio = require('socket.io');
+var utils = require('./utils');
 
 module.exports = {
 
@@ -32,23 +33,16 @@ module.exports = {
     playerJoinGame: function(socket, data, logger, playerList) {
         var res = {};
 
-        // need to do some game code checking here
+        // Check that they have entered a non-blank gamecode
         if (data.gamecode !== "") {
 
-            // TODO IF GAME CODE IS CORRECT
             res.ok = true;
             res.gamecode = data.gamecode;
             res.uID = socket.id;
             res.username = data.username;
 
             // Add player to the player list
-            playerList.push({
-                uID: socket.id,
-                username: data.username,
-                gamecode: data.gamecode,
-                team: "",
-                health: 1000 // hardcoded lol
-            });
+            utils.addPlayerToList(socket.id, playerList);
 
         } else {
             res.ok = true;
@@ -64,11 +58,8 @@ module.exports = {
     playerLeaveGame: function(socket, data, logger, playerList) {
         var res = {};
 
-        for (var i = 0; i < playerList.length; i++) {
-            if (playerList[i].uID === socket.id) {
-                playerList.splice(i, 1);
-            }
-        }
+        // Remove the player from the player list
+        utils.removePlayerFromList(socket.id, playerList);
 
         res.ok = true;
         res.uID = socket.id;
@@ -84,6 +75,7 @@ module.exports = {
         var res = {};
         var input = {};
 
+        // If they have supplied a valid direction
         if (data.direction !== "") {
             input = data.input;
             res.ok = true;
@@ -105,7 +97,7 @@ module.exports = {
         res.ok = true;
         res.uID = socket.id;
 
-        return logger.log(socket, logger.loggableModules.PLAYER_DIRECTION, res);
+        return logger.log(socket, logger.loggableModules.PLAYER_SWITCH_BASE, res);
     },
 
     /*

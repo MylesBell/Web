@@ -8,7 +8,7 @@
 var socketio = require('socket.io');
 
 module.exports = {
-	
+
     /*
         Determine the player object from the provided playerID
     */
@@ -18,6 +18,30 @@ module.exports = {
         })[0];
 
         return player;
+    },
+
+    /*
+        Add a player to the player list
+    */
+    addPlayerToList: function(playerID, playerList) {
+        playerList.push({
+            uID: playerID,
+            username: data.username,
+            gamecode: data.gamecode,
+            team: "",
+            health: 1000
+        });
+    },
+
+    /*
+        Remove a player from the player list
+    */
+    addPlayerToList: function(playerID, playerList) {
+        for (var i = 0; i < playerList.length; i++) {
+            if (playerList[i].uID === playerID) {
+                playerList.splice(i, 1);
+            }
+        }
     },
 
     /*

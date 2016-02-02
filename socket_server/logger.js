@@ -28,6 +28,7 @@ function logger() {
             "PLAYER_GAME_JOIN" : "Player Game Join",
             "PLAYER_GAME_LEAVE" : "Player Game Leave",
             "PLAYER_DIRECTION" : "Player Direction",
+            "PLAYER_SWITCH_BASE" : "Player Switch Base",
             "PLAYER_SPECIAL" : "Player Special",
             "GAME_PLAYER_DIED" : "Game Player Died",
             "GAME_PLAYER_RESPAWN" : "Game Player Respawn",
