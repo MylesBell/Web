@@ -23,13 +23,13 @@ module.exports = {
     connect : function(socket, logger){
         // Handle connect methods later due to lack of namespaces
         logger.log(socket, logger.loggableModules.CONNECT);
-    };
+    },
 
     // As SocketIO doesn't include namespace protocols,
     // we implement our own room system using joins
     subscribe : function (socket, data, logger) {
         socket.join(data.name);
         logger.log(socket, logger.loggableModules.SUBSCRIBE, data);
-    };
+    }
 
 };
