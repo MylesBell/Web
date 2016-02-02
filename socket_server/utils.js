@@ -23,7 +23,7 @@ module.exports = {
     /*
         Add a player to the player list
     */
-    addPlayerToList: function(playerID, playerList) {
+    addPlayerToList: function(playerID, playerList, data) {
         playerList.push({
             uID: playerID,
             username: data.username,

@@ -42,7 +42,7 @@ module.exports = {
             res.username = data.username;
 
             // Add player to the player list
-            utils.addPlayerToList(socket.id, playerList);
+            utils.addPlayerToList(socket.id, playerList, data);
 
         } else {
             res.ok = true;
