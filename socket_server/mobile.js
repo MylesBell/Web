@@ -4,12 +4,14 @@
  *
 */
 
-// Require the SocketIO library
+// Export these functions for external access from other interfaces
 var socketio = require('socket.io');
 
 module.exports = {
 
-    // Register a new user with the system
+    /* 
+        Register a new user with the system
+    */
     playerRegister: function(socket, data, logger) {
         var res = {};
 
@@ -24,7 +26,9 @@ module.exports = {
         return logger.log(socket, logger.loggableModules.PLAYER_REGISTER, res);
     },
 
-    // add a player to a game
+    /* 
+        Add a player to a game
+    */
     playerJoinGame: function(socket, data, logger, playerList) {
         var res = {};
 
@@ -54,7 +58,9 @@ module.exports = {
         return logger.log(socket, logger.loggableModules.PLAYER_GAME_JOIN, res);
     },
 
-    // remove a player from a game and the player list
+    /* 
+        Remove a player from a game and the player list
+    */
     playerLeaveGame: function(socket, data, logger, playerList) {
         var res = {};
 
@@ -71,7 +77,9 @@ module.exports = {
         return logger.log(socket, logger.loggableModules.PLAYER_GAME_LEAVE, res);
     },
 
-    // Direction movement control for heroes
+    /*
+        Direction movement control for heroes
+    */
     playerDirection: function(socket, data, logger) {
         var res = {};
         var input = {};
@@ -88,7 +96,9 @@ module.exports = {
         return logger.log(socket, logger.loggableModules.PLAYER_DIRECTION, res);
     },
 
-
+    /* 
+        Switch the player to the other base
+    */
     playerSwitchBase: function(socket, data, logger) {
         var res = {};
 
@@ -98,7 +108,9 @@ module.exports = {
         return logger.log(socket, logger.loggableModules.PLAYER_DIRECTION, res);
     },
 
-    // Activate a special attack from the player
+    /*
+        Activate a special attack from the player
+    */
     playerSpecial: function(socket, data, logger) {
         var res = {};
         res.ok = true;
