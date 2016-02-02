@@ -9,8 +9,8 @@
             </div>
         </div>
     </div> 
-    <div class="pure-u-1 controls-container">
-        <div class="movement-controls-container">
+    <div id="controls-container" class="pure-u-1">
+        <!-- <div class="movement-controls-container">
             <div id="switch-button" class="pure-button pure-game-button" ng-style="{'visibility': nearBase?'visible':'hidden'}">
                 SWI
             </div>
@@ -28,7 +28,10 @@
             <div  id='down-button' class="pure-button pure-game-button">
                  <img class="control-direction-image" src="../../resources/images/down_black.png" height="96" width="96">
             </div>   
-        </div>                
+        </div>   -->   
+        <canvas id="joystick-canvas" style="width:100%;height:100%;background-color:blue">
+        Get a better browser, bro.
+        </canvas>           
     </div>  
     <div class="pure-u-1 specials-container">
         <div class="special" ng-repeat="special in specialPowers">

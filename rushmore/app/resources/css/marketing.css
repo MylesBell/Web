@@ -229,7 +229,7 @@ label {
     margin: auto;
 }
 
-.controls-container {
+#controls-container {
     height: 60%;
     width: 100%;
     margin: auto;

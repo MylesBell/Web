@@ -161,7 +161,7 @@ angular.module('gameView', ['ngRoute'])
             }
         }
 
-        function fillGameContainerSize(){
+        function fillGameContainerSize() {
             console.log("setting full screen");
             var container = document.getElementById('game-container');
             container.style.height = "100%";
@@ -233,20 +233,113 @@ angular.module('gameView', ['ngRoute'])
         };
 
         // // Enable click & dblclick events, and monitor both.
-        downButton.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', doubleTap(), false);
-        downButton.addEventListener('tap', down, false);
-        downButton.addEventListener('dbltap', down, false);
-        upButton.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', doubleTap(), false);
-        upButton.addEventListener('tap', up, false);
-        upButton.addEventListener('dbltap', up, false);
-        forwardButton.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', doubleTap(), false);
-        forwardButton.addEventListener('tap', forward, false);
-        forwardButton.addEventListener('dbltap', forward, false);
-        backwardButton.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', doubleTap(), false);
-        backwardButton.addEventListener('tap', backward, false);
-        backwardButton.addEventListener('dbltap', backward, false);
-        switchButton.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', doubleTap(), false);
-        switchButton.addEventListener('tap', switchLane, false);
-        switchButton.addEventListener('dbltap', switchLane, false);
+        // downButton.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', doubleTap(), false);
+        // downButton.addEventListener('tap', down, false);
+        // downButton.addEventListener('dbltap', down, false);
+        // upButton.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', doubleTap(), false);
+        // upButton.addEventListener('tap', up, false);
+        // upButton.addEventListener('dbltap', up, false);
+        // forwardButton.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', doubleTap(), false);
+        // forwardButton.addEventListener('tap', forward, false);
+        // forwardButton.addEventListener('dbltap', forward, false);
+        // backwardButton.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', doubleTap(), false);
+        // backwardButton.addEventListener('tap', backward, false);
+        // backwardButton.addEventListener('dbltap', backward, false);
+        // switchButton.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', doubleTap(), false);
+        // switchButton.addEventListener('tap', switchLane, false);
+        // switchButton.addEventListener('dbltap', switchLane, false);
+
+
+        var canvas = document.getElementById('joystick-canvas');
+        var ctx = canvas.getContext("2d");
+
+        var offsetX = canvas.offsetLeft;
+        var offsetY = canvas.offsetTop;
+
+        // Make it visually fill the positioned parent
+        canvas.style.width = '100%';
+        canvas.style.height = '100%';
+        // ...then set the internal size to match
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+
+        var radius = 15;
+        var id; // the animation frame
+
+        var joystick = {
+            width: radius * 2,
+            height: radius * 2,
+            x: ((canvas.height / 2) - radius),
+            y: ((canvas.height / 2) - radius)
+        };
+
+        // canvas.width = canvas.style.width;
+        // console.log(parseInt(canvas.getPropertyValue('height'), 10));
+        ctx.fillRect(joystick.x, joystick.y, joystick.width, joystick.height);
+
+        ctx.fillStyle = "white";
+        ctx.beginPath();
+        ctx.arc(75, 75, 50, 0, Math.PI * 2, true); // Outer circle
+        ctx.stroke();
+        ctx.fill();
+
+        canvas.addEventListener("mousedown", function(e) {
+            console.log("mouse down");
+
+            var pos = getMousePos(canvas.getBoundingClientRect(), e);
+            joystick.x = pos.x - radius;
+            joystick.y = pos.y - radius;
+
+            canvas.addEventListener("mousemove", mousemove);
+
+            // Start the drawing loop for elemnents on the canvas 
+            id = requestAnimationFrame(draw);
+
+        });
+
+        function mousemove(e) {
+            // console.log("mouse move");
+            // console.log(e);
+            var pos = getMousePos(canvas.getBoundingClientRect(), e);
+            joystick.x = pos.x - radius;
+            joystick.y = pos.y - radius;
+        }
+
+        function getMousePos(rect, evt) {
+            return {
+                x: evt.clientX - rect.left,
+                y: evt.clientY - rect.top
+            };
+        }
+
+        canvas.addEventListener("mouseup", function(e) {
+            console.log("mouseup");
+            canvas.removeEventListener("mousemove", mousemove);
+            cancelAnimationFrame(id);
+        });
+
+        function draw() {
+
+            // clear the canvas of any elemnt
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = "white";
+            ctx.strokeStyle = "white";
+            ctx.beginPath();
+            ctx.arc(canvas.width / 2, canvas.height / 2, canvas.width/2, 0, Math.PI * 2, true); // Outer circle
+            ctx.stroke();
+            ctx.fill();
+
+            ctx.fillStyle = "black";
+            ctx.strokeStyle = "black";
+            ctx.beginPath();
+            ctx.arc(joystick.x + radius, joystick.y + radius, radius, 0, Math.PI * 2, true); // Outer circle
+            ctx.stroke();
+            ctx.fill();
+
+            requestAnimationFrame(draw);
+        }
+
+
 
     }]);

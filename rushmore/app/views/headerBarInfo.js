@@ -8,7 +8,7 @@ angular.module('headerBarInfoView', ['ngRoute'])
         // The unique game code for each game
         $scope.username = UserService.getUsername();
         $scope.teamClass = UserService.getUserTeam();
-        $scope.hideHeader = false;
+        $scope.hideHeader = true; // REMOVE THIS FOR PULLLLL
 
 
         // Get the name when the url changes (so that we update when the user enters their 
