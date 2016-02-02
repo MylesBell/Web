@@ -11,8 +11,7 @@ module.exports = {
         res.uID = data.playerID;
         res.respawnTimestamp = data.respawnTimestamp;
 
-        logger.log(socket, logger.loggableModules.GAME_PLAYER_DIED, res);
-        return res;
+        return logger.log(socket, logger.loggableModules.GAME_PLAYER_DIED, res);
     },
 
     // Player came back to life in the game
@@ -28,8 +27,7 @@ module.exports = {
         res.uID = data.playerID;
         res.playerHealth = player.maxHealth;
 
-        logger.log(socket, logger.loggableModules.GAME_PLAYER_RESPAWN, res);
-        return res;
+        return logger.log(socket, logger.loggableModules.GAME_PLAYER_RESPAWN, res);
     },
 
     // Game state updated
@@ -43,8 +41,7 @@ module.exports = {
             res.winner = data.winner;
         }
 
-        logger.log(socket, logger.loggableModules.GAME_STATE_UPDATE, res);
-        return res;
+        return logger.log(socket, logger.loggableModules.GAME_STATE_UPDATE, res);
     },
 
     // Game state updated
@@ -84,8 +81,7 @@ module.exports = {
             console.log("ERROR " + data.msg);
         }
 
-        logger.log(socket, logger.loggableModules.GAME_PLAYER_JOIN, res);
-        return res;
+        return logger.log(socket, logger.loggableModules.GAME_PLAYER_JOIN, res);
     },
 
     playerNearBase: function (socket, data, logger) {
@@ -95,8 +91,7 @@ module.exports = {
         res.nearBase = data.nearBase;
         res.ok = true;
 
-        logger.log(socket, logger.loggableModules.PLAYER_NEAR_BASE, res);
-        return res;
+        return logger.log(socket, logger.loggableModules.PLAYER_NEAR_BASE, res);
     },
 
     /*
@@ -115,8 +110,7 @@ module.exports = {
         res.maxHealth = player.maxHealth;
         res.ok = true;
 
-        logger.log(socket, logger.loggableModules.PLAYER_HEALTH_CHANGE, res);
-        return res;
+        return logger.log(socket, logger.loggableModules.PLAYER_HEALTH_CHANGE, res);
     }
 
 };

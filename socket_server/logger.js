@@ -45,6 +45,7 @@ function logger() {
             if(self.loggingLevel !== "SILENT") {
                 console.log("[" + socket.id + "] " + method + " : " + JSON.stringify(data));
             }
+            return data;
         }
     };
 

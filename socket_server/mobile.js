@@ -17,8 +17,7 @@ module.exports = {
             res.ok = false;
         }
 
-        logger.log(socket, logger.loggableModules.PLAYER_REGISTER, res);
-        return res;
+        return logger.log(socket, logger.loggableModules.PLAYER_REGISTER, res);
     },
 
     // add a player to a game
@@ -48,8 +47,7 @@ module.exports = {
             res.message = "Invalid game code";
         }
 
-        logger.log(socket, logger.loggableModules.PLAYER_GAME_JOIN, res);
-        return res;
+        return logger.log(socket, logger.loggableModules.PLAYER_GAME_JOIN, res);
     },
 
     // remove a player from a game and the player list
@@ -66,8 +64,7 @@ module.exports = {
         res.uID = socket.id;
         res.playerList = playerList;
 
-        logger.log(socket, logger.loggableModules.PLAYER_GAME_LEAVE, res);
-        return res;
+        return logger.log(socket, logger.loggableModules.PLAYER_GAME_LEAVE, res);
     },
 
     // Direction movement control for heroes
@@ -84,8 +81,7 @@ module.exports = {
             res.ok = false;
         }
 
-        logger.log(socket, logger.loggableModules.PLAYER_DIRECTION, res);
-        return res;
+        return logger.log(socket, logger.loggableModules.PLAYER_DIRECTION, res);
     },
 
 
@@ -95,7 +91,7 @@ module.exports = {
         res.ok = true;
         res.uID = socket.id;
 
-        logger.log(socket, logger.loggableModules.PLAYER_DIRECTION, res);
+        return logger.log(socket, logger.loggableModules.PLAYER_DIRECTION, res);
     },
 
     // Activate a special attack from the player
@@ -104,8 +100,7 @@ module.exports = {
         res.ok = true;
         res.uID = socket.id;
 
-        logger.log(socket, logger.loggableModules.PLAYER_SPECIAL, res);
-        return res;
+        return logger.log(socket, logger.loggableModules.PLAYER_SPECIAL, res);
     },
 
 
