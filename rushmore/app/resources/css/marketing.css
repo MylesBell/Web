@@ -124,7 +124,7 @@ label {
     top: 0;
     left: 0;
     position: fixed !important;
-    background: #ECF0F1; 
+    background: white; 
  }
 
 .controller-container {
@@ -223,9 +223,9 @@ label {
     bottom: 100%;
 }
 
-.stats-container {
+#stats-container {
     height: 15%;
-    width: 90%;
+    width: 100%;
     margin: auto;
 }
 
@@ -240,7 +240,7 @@ label {
 }
 
 #controls-container {
-    height: 60%;
+    height: 65%;
     width: 100%;
     margin: auto;
     display: flex;
@@ -265,14 +265,14 @@ label {
 }
 
 .specials-container {
-    height: 25%;
+    height: 20%;
     width: 100%;
     margin: auto;
     margin-top: 10px;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
-    align-items: center;
+    /*align-items: center;*/
 }
 
 .special {
@@ -285,7 +285,7 @@ label {
 }
 
 .special-circle {
-    border-radius: 50%;
+    border-radius: 20%;
     width: 100%;
     float:left;
     display:block;
@@ -326,20 +326,14 @@ label {
     -webkit-filter: grayscale(1);
 }
 
-#special-button-1 {
-    /*margin-bottom: 60px;*/
-}
-#special-button-3 {
-    /*margin-bottom: 60px;*/
-}
-
-
 #switch-button {
     width: 20%;
 }
 
 .health-bar-container {
     height: 100%;
+    width: 90%;
+    margin: auto;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -373,8 +367,7 @@ label {
 }
 
 .death-container {
-    height: 90%;
-    top: 50px;
+    height: 100%;
     position: absolute;
     width: 100%;
     bottom: 100%;
@@ -383,6 +376,7 @@ label {
     color: #ECF0F1;
     padding: 1em 1.6em;
     font-weight: 100;
+    background-color: grey;
 }
 
 #death-text-container {

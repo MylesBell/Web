@@ -109,7 +109,7 @@ io.on('connection', function(socket) {
             // Communicate successful join to the joining player and
             // update all other clients in the game with new player
             if (unityRes.ok) {
-                console.log(unityRes);
+                // console.log(unityRes);
                 playerList.forEach(function(pl) {
                     io.sockets.in(pl.uID).emit('gamePlayerJoined', unityRes);
                 });
@@ -130,7 +130,7 @@ io.on('connection', function(socket) {
 
     socket.on('playerDirection', function(data) {
         var res = mobile.playerDirection(socket, data, housekeeping.logger);
-        console.log(res);
+
         if (res.ok) {
             io.sockets.in(UNITY_CHAN).emit('playerDirection', res);
         }

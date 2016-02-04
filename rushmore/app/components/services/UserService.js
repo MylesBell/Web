@@ -9,13 +9,24 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
     var userTeam = "";
     var username = "";
     var teamColor = "white";
-    var teamHighlight = "grey"
+    var teamHighlight = "grey";
     var joinPromise;
 
+    var colors = {
+        blue: {
+            dark: "#3A539B", // chambray
+            primary:  "#446CB3", // san marino
+            highlight:  "#59ABE3",
+        },
+        red: {
+            dark: "#96281B",
+            primary: "#D91E18",
+            highlight: "#E74C3C"
+        }
+    };
 
-    // REMOVE THIS
-    teamColor = "#4183D7"; // royal blue
-    teamHighlight = "#59ABE3";
+    var teamColors = colors.red;
+
 
     function attemptToJoinGame(gamecode) {
         joinPromise = $q.defer();
@@ -108,14 +119,14 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
                     teamHighlight = "#E74C3C"; // cinnabar
                 } else if (data.team === 1) {
                     userTeam = 'blue-team';
-                    teamColor = "#4183D7"; // royal blue
+                    teamColor = "#22A7F0"; // royal blue
                     teamHighlight = "#59ABE3";
                 }
 
                 // teamColor =  "white";
 
                 // REMOVE THIS
-                teamColor = "#4183D7"; // royal blue
+                teamColor = "#22A7F0"; // royal blue
                 teamHighlight = "#59ABE3";
                 console.log(userTeam);
 
@@ -148,10 +159,7 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
     }
 
     function getTeamColor() {
-        return {
-            primary: teamColor,
-            highlight: teamHighlight
-        }
+        return teamColors;
     }
 
     /*

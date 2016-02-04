@@ -31,7 +31,7 @@ angular.module('gameView', ['ngRoute'])
         $scope.specialPowers = [{
             class: "special-fire",
             enabled: "",
-            index: 1            
+            index: 1
         }, {
             class: "special-heal",
             enabled: "",
@@ -151,12 +151,18 @@ angular.module('gameView', ['ngRoute'])
 
         // Change the background colour of the container to the teams colours
         function setTeamBackground() {
+            var colors = UserService.getTeamColor();
+
             var mainContainer = document.getElementById('main-container');
+            var controlsContainer = document.getElementById('controls-container');
+            var statsContainer = document.getElementById('stats-container');
+
+            controlsContainer.style.backgroundColor = colors.primary;
+            statsContainer.style.backgroundColor = colors.dark;
+
             if ($scope.teamClass === "blue-team") {
-                mainContainer.className += " blue-team";
                 $scope.teamClassCSS = "blue-team";
             } else {
-                mainContainer.className += " red-team";
                 $scope.teamClassCSS = "red-team";
             }
         }
