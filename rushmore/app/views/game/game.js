@@ -31,7 +31,7 @@ angular.module('gameView', ['ngRoute'])
         $scope.specialPowers = [{
             class: "special-fire",
             enabled: "",
-            index: 1
+            index: 1            
         }, {
             class: "special-heal",
             enabled: "",

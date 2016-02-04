@@ -276,7 +276,7 @@ label {
 }
 
 .special {
-    width: 22%;
+    width: 20%;
     height: 80%;
     display: flex;
     flex-flow: row wrap;
@@ -292,27 +292,31 @@ label {
     padding-top:100%;
     background-color: #dadfe1;
     box-shadow: 0px 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /*box-shadow: 10px 10px 0px 0px rgba(0,0,0,0.52);*/
 }
 
 .special-fire {
-    background-image: url("../images/flame_red.png");
+    background-image: url("../images/flame_white.png");
     background-size: 70%;
     background-repeat: no-repeat;
     background-position: 50% 50%;
+    background-color: #D91E18;
 }
 
 .special-heal {
-    background-image: url("../images/heart_green.png");
+    background-image: url("../images/heart_white.png");
     background-size: 70%;
     background-repeat: no-repeat;
     background-position: 50% 65%;
+    background-color: #26A65B;
 }
 
 .special-invisible {
-    background-image: url("../images/eye_purple.png");
+    background-image: url("../images/eye_white.png");
     background-size: 70%;
     background-repeat: no-repeat;
     background-position: 50% 50%;
+    background-color: #8E44AD;
 }
 
 .special-disabled {
@@ -322,35 +326,16 @@ label {
     -webkit-filter: grayscale(1);
 }
 
+#special-button-1 {
+    /*margin-bottom: 60px;*/
+}
+#special-button-3 {
+    /*margin-bottom: 60px;*/
+}
 
 
 #switch-button {
     width: 20%;
-}
-
-#up-button{
-    width: 50%;
-    border-top-left-radius: 50%;
-    border-top-right-radius: 50%;
-}
-#down-button{
-    width: 50%;
-    border-bottom-left-radius: 50%;
-    border-bottom-right-radius: 50%;
-}
-#forward-button{
-    width: 48%;
-    border-bottom-right-radius: 50%;
-    border-top-right-radius: 50%;
-    border-bottom-left-radius: 0%;
-    border-top-left-radius: 0%;
-}
-#backward-button{
-    width: 48%;
-    border-top-left-radius: 50%;
-    border-bottom-left-radius: 50%;
-    border-bottom-right-radius: 0%;
-    border-top-right-radius: 0%;
 }
 
 .health-bar-container {
@@ -424,11 +409,13 @@ label {
 }
 
 .blue-team{
-        background: #4183D7 !important;        
+         background: #ECF0F1;
+        /*background: #4183D7 !important;        */
 }
 
 .red-team{
-        background: #D91E18  !important;
+        background: #ECF0F1;
+        /*background: #D91E18  !important;*/
 }
 
 .dead-team{

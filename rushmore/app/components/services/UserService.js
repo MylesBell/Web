@@ -8,8 +8,14 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
     var uID = "";
     var userTeam = "";
     var username = "";
-
+    var teamColor = "white";
+    var teamHighlight = "grey"
     var joinPromise;
+
+
+    // REMOVE THIS
+    teamColor = "#4183D7"; // royal blue
+    teamHighlight = "#59ABE3";
 
     function attemptToJoinGame(gamecode) {
         joinPromise = $q.defer();
@@ -94,13 +100,24 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
     //       and set team only
     function handlePlayerJoinedEvent(data) {
         if (data.uID === uID) {
-            if (data.joinSuccess) {               
+            if (data.joinSuccess) {
                 //set team background colour
                 if (data.team === 0) {
                     userTeam = 'red-team';
+                    teamColor = "#D91E18";
+                    teamHighlight = "#E74C3C"; // cinnabar
                 } else if (data.team === 1) {
-                    userTeam =  'blue-team';
+                    userTeam = 'blue-team';
+                    teamColor = "#4183D7"; // royal blue
+                    teamHighlight = "#59ABE3";
                 }
+
+                // teamColor =  "white";
+
+                // REMOVE THIS
+                teamColor = "#4183D7"; // royal blue
+                teamHighlight = "#59ABE3";
+                console.log(userTeam);
 
                 joinPromise.resolve(data);
 
@@ -130,6 +147,13 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
         userTeam = team;
     }
 
+    function getTeamColor() {
+        return {
+            primary: teamColor,
+            highlight: teamHighlight
+        }
+    }
+
     /*
         Register with the network service to listen to  when the player has joined the game
     */
@@ -151,7 +175,8 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
         getUserTeam: getUserTeam,
         getUsername: getUsername,
         getUserID: getUserID,
-        setUserID: setUserID
+        setUserID: setUserID,
+        getTeamColor: getTeamColor
     };
 
 });
