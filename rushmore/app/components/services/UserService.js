@@ -25,7 +25,8 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
         }
     };
 
-    var teamColors = colors.red;
+    //remove this
+    var teamColors = colors.blue;
 
 
     function attemptToJoinGame(gamecode) {
@@ -115,20 +116,11 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
                 //set team background colour
                 if (data.team === 0) {
                     userTeam = 'red-team';
-                    teamColor = "#D91E18";
-                    teamHighlight = "#E74C3C"; // cinnabar
+                    teamColors = colors.red;
                 } else if (data.team === 1) {
                     userTeam = 'blue-team';
-                    teamColor = "#22A7F0"; // royal blue
-                    teamHighlight = "#59ABE3";
+                    teamColors = colors.blue;
                 }
-
-                // teamColor =  "white";
-
-                // REMOVE THIS
-                teamColor = "#22A7F0"; // royal blue
-                teamHighlight = "#59ABE3";
-                console.log(userTeam);
 
                 joinPromise.resolve(data);
 

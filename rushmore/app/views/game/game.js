@@ -156,9 +156,11 @@ angular.module('gameView', ['ngRoute'])
             var mainContainer = document.getElementById('main-container');
             var controlsContainer = document.getElementById('controls-container');
             var statsContainer = document.getElementById('stats-container');
+            var specialsContainer = document.getElementById('specials-container');
 
             controlsContainer.style.backgroundColor = colors.primary;
             statsContainer.style.backgroundColor = colors.dark;
+            specialsContainer.style.backgroundColor = colors.primary;
 
             if ($scope.teamClass === "blue-team") {
                 $scope.teamClassCSS = "blue-team";

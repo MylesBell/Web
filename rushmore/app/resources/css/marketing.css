@@ -249,30 +249,14 @@ label {
     align-items: center;
 }
 
-.context-controls-container {
-    height: 10%;
-    background-color: red;
-}
-
-.movement-controls-container {
-    height: 100%;
-    width: 90%;
+#specials-container {
+    height: 20%;
+    width: 100%;
     margin: auto;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
     align-items: center;
-}
-
-.specials-container {
-    height: 20%;
-    width: 100%;
-    margin: auto;
-    margin-top: 10px;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    /*align-items: center;*/
 }
 
 .special {
@@ -285,7 +269,7 @@ label {
 }
 
 .special-circle {
-    border-radius: 20%;
+    border-radius: 40%;
     width: 100%;
     float:left;
     display:block;
@@ -296,27 +280,27 @@ label {
 }
 
 .special-fire {
-    background-image: url("../images/flame_white.png");
+    background-image: url("../images/flame_red.png");
     background-size: 70%;
     background-repeat: no-repeat;
     background-position: 50% 50%;
-    background-color: #D91E18;
+    background-color: white;
 }
 
 .special-heal {
-    background-image: url("../images/heart_white.png");
+    background-image: url("../images/heart_green.png");
     background-size: 70%;
     background-repeat: no-repeat;
     background-position: 50% 65%;
-    background-color: #26A65B;
+    background-color: white;
 }
 
 .special-invisible {
-    background-image: url("../images/eye_white.png");
+    background-image: url("../images/eye_purple.png");
     background-size: 70%;
     background-repeat: no-repeat;
     background-position: 50% 50%;
-    background-color: #8E44AD;
+    background-color: white;
 }
 
 .special-disabled {
@@ -324,6 +308,14 @@ label {
     padding-top: 60%;
     width: 60%;
     -webkit-filter: grayscale(1);
+}
+
+#special-button-1 {
+    margin-bottom: 60px;
+}
+
+#special-button-3 {
+    margin-bottom: 60px;
 }
 
 #switch-button {
@@ -397,6 +389,7 @@ label {
     align-items: center;
     flex-flow: column wrap;
 }
+
 
 #respawn-text {
     font-size: 20px;

@@ -7,9 +7,13 @@ angular.module('gameView')
         $scope.inputButtonClicked = function(direction) {
             InputHandlerService.handleInput({
                 direction: direction
-            }).catch(function(res) {
-            });
+            }).catch(function(res) {});
         };
+
+        NetworkService.registerListener({
+            eventName: "playerNearBase",
+            call: handlePlayerNearBaseEvent
+        });
 
 
         // Redraw the canvas when the window is resize, for example when going into fullscreen
@@ -29,7 +33,7 @@ angular.module('gameView')
             // redraw the pad
             drawPad();
 
-        })
+        });
 
         /*
             Canvas Setup            
@@ -60,16 +64,25 @@ angular.module('gameView')
 
         var id; // the animation frame
         var animate = false; // whether to be animating or not
+        var switchEnabled = false; // wheter to enable the switch button or not
+        var switchCooldown = 2000; // time between clicking switch button allow (as it can happen once a frame)
 
+        // The switch image is loaded right at the start, instead of every frame
+        var switchImage = new Image();
+        var switchImageLoaded = false
+        switchImage.src = '../../resources/images/switch_black.png';
+        switchImage.onload = function() {
+            switchImageLoaded = true;
+        };
+       
         // The joystick object, storing it's positon information in the pad
         var joystick = {
             width: joystickRadius * 2,
             height: joystickRadius * 2,
-            x: (centerX - joystickRadius),
-            y: (centerY - joystickRadius),
-            enabled: false, // whether to draw it or not
-            distToCenter: 0,
-            down: false
+            x: (centerX - joystickRadius), // center of the cirlce not the top left
+            y: (centerY - joystickRadius), // center not the top
+            distToCenter: 0, // disatnce from the center of the pad
+            down: false // whether it is currently selected or not
         };
 
         // Make it visually fill the positioned parent
@@ -89,7 +102,10 @@ angular.module('gameView')
 
         // Draw the pad initally on the canvas
         drawPad();
+        drawKnob();
+        drawSwitchBaseButton();
 
+        draw();
         /*
             Bind mouse and touch event listeners
         */
@@ -133,6 +149,16 @@ angular.module('gameView')
             stopKnobUpdate();
         });
 
+        // Handle the switch event being selected
+        function handleSwitchButtonClicked() {
+            $scope.inputButtonClicked("switch");
+            switchEnabled = false;
+        }
+
+        function handlePlayerNearBaseEvent(){
+            switchEnabled = true;
+        }
+
 
         /*
             Update Fuctions
@@ -158,14 +184,18 @@ angular.module('gameView')
 
             joystick.distToOrigin = joystickDisp;
 
+            //check if we clicked on the switch lane button
+            if (pos.x > 10 && pos.x < 70 && pos.y > 10 && pos.y < 70 && switchEnabled) { // TODO make this robost
+                handleSwitchButtonClicked();
+            }
 
             // Only draw if inside the pad
             if (joystickDisp > padRadius) {} else {
                 joystick.x = newX;
                 joystick.y = newY;
-                joystick.enabled = true;
                 joystick.down = true;
             }
+
         }
 
         // stop aniamtion, hide the control knob and remove movement event listeners
@@ -173,7 +203,6 @@ angular.module('gameView')
             canvas.removeEventListener("mousemove", updateKnobPostion);
             canvas.removeEventListener("touchmove", updateKnobPostion);
             animate = false;
-            joystick.enabled = false;
             joystick.down = false;
             window.cancelAnimationFrame(id);
         }
@@ -230,10 +259,15 @@ angular.module('gameView')
 
             // clear the canvas of any elemnt
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+            // ctx.clearRect(joystick.x, joystick.y, joystick.width, joystick.height)
 
-            // Draw the pad and movement zones and knob
+            // Draw the pad, movement zones and knob
             drawPad();
             drawKnob();
+
+            if (switchEnabled) {
+                drawSwitchBaseButton();
+            }
 
             if (animate) {
                 requestAnimationFrame(draw);
@@ -245,18 +279,29 @@ angular.module('gameView')
             ctx.strokeStyle = primaryColor;
 
             // Draw the knob
-            // joystick.enabled = true;
             if (joystick.down) {
                 ctx.beginPath();
                 ctx.arc(joystick.x + joystickRadius, joystick.y + joystickRadius, joystickRadius, 0, Math.PI * 2, true); // joystick knob
                 ctx.stroke();
                 ctx.fill();
             } else {
+                // draw knob in center if not currently selected
                 ctx.beginPath();
                 ctx.arc(centerX, centerY, joystickRadius, 0, Math.PI * 2, true); // joystick knob
                 ctx.stroke();
                 ctx.fill();
             }
+        }
+
+        // TODO make this responsive and hide when not available
+        function drawSwitchBaseButton() {
+
+            ctx.fillStyle = "white";
+            ctx.beginPath();
+            ctx.arc(45, 45, 35, 0, Math.PI * 2, true);
+            ctx.stroke();
+            ctx.fill();
+            ctx.drawImage(switchImage, 10, 10, 70, 70);
         }
 
         // Draw the control pad with the sectors for movement
@@ -308,14 +353,13 @@ angular.module('gameView')
 
 
                 // if the knob is inside the movements arcs, outside deadzone and enabled
-                if (angleToOrigin >= startAngleRad && angleToOrigin <= endAngleRad && joystick.distToOrigin > deadZoneRadius && joystick.distToOrigin < padRadius && joystick.enabled) {
-                    // ctx.fillStyle = highlightColor;
+                if (angleToOrigin >= startAngleRad && angleToOrigin <= endAngleRad && joystick.distToOrigin > deadZoneRadius && joystick.distToOrigin < padRadius && joystick.down) {
                     ctx.fillStyle = "#ECECEC";
                     ctx.strokeStyle = "#ECECEC";
-                    // set movement direction
+
+                    // set movement direction using what section of the circle we are in
                     newMovement = i;
                 } else {
-                    // ctx.fillStyle = primaryColor;
                     ctx.fillStyle = "white";
                     ctx.strokeStyle = "white";
                 }

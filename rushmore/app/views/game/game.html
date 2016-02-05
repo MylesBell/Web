@@ -11,12 +11,12 @@
     </div> 
     <div id="controls-container" class="pure-u-1">        
         <div id="joystick-container" ng-controller="JoystickController" >
-            <canvas id="joystick-canvas" style="width:90%;height:90%;" > 
+            <canvas id="joystick-canvas" > 
             Get a better browser, bro.
             </canvas>     
         </div>              
     </div>  
-    <div class="pure-u-1 specials-container">
+    <div id="specials-container" class="pure-u-1">
         <div class="special" ng-repeat="special in specialPowers">
             <div id="special-button-{{special.index}}" class="special-circle" ng-class="[special.class, special.enabled]" ng-click="useSpecial(special)">            
             </div>              
