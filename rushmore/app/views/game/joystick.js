@@ -67,6 +67,10 @@ angular.module('gameView')
         var switchEnabled = false; // wheter to enable the switch button or not
         var switchCooldown = 2000; // time between clicking switch button allow (as it can happen once a frame)
 
+        // Health as told by the server
+        var currentHealth;
+        var maxHealth;
+
         // The switch image is loaded right at the start, instead of every frame
         var switchImage = new Image();
         var switchImageLoaded = false;
@@ -74,7 +78,7 @@ angular.module('gameView')
         switchImage.onload = function() {
             switchImageLoaded = true;
         };
-       
+
         // The joystick object, storing it's positon information in the pad
         var joystick = {
             width: joystickRadius * 2,
@@ -97,7 +101,7 @@ angular.module('gameView')
         centerY = canvas.height / 2;
 
         // scale pad radius from center
-        padRadius = centerX * 0.8;
+        padRadius = centerX * 0.85;
 
 
         // Draw the pad initally on the canvas
@@ -128,6 +132,8 @@ angular.module('gameView')
 
             e.preventDefault();
 
+            console.log("touch down");
+
             // update the knob position to touch postion
             animate = true;
             updateKnobPostion(e);
@@ -155,7 +161,7 @@ angular.module('gameView')
             switchEnabled = false;
         }
 
-        function handlePlayerNearBaseEvent(){
+        function handlePlayerNearBaseEvent() {
             switchEnabled = true;
             console.log("PLAYER NEAR BASE");
         }
@@ -264,6 +270,7 @@ angular.module('gameView')
 
             // Draw the pad, movement zones and knob
             drawPad();
+            drawPlayerHealthRing();
             drawKnob();
 
             if (switchEnabled) {
@@ -277,7 +284,8 @@ angular.module('gameView')
 
         function drawKnob() {
             ctx.fillStyle = darkColor;
-            ctx.strokeStyle = primaryColor;
+            ctx.strokeStyle = darkColor;
+            ctx.lineWidth = 0;
 
             // Draw the knob
             if (joystick.down) {
@@ -296,7 +304,6 @@ angular.module('gameView')
 
         // TODO make this responsive and hide when not available
         function drawSwitchBaseButton() {
-
             ctx.fillStyle = "white";
             ctx.beginPath();
             ctx.arc(45, 45, 35, 0, Math.PI * 2, true);
@@ -305,11 +312,28 @@ angular.module('gameView')
             ctx.drawImage(switchImage, 10, 10, 70, 70);
         }
 
+        function drawPlayerHealthRing() {
+
+            ctx.fillStyle = darkColor;
+            ctx.strokeStyle = "#26A65B";
+            ctx.lineWidth = 10;
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, padRadius * 0.85, 4.01426, 5.41052, true);
+            ctx.stroke();
+
+            ctx.strokeStyle = "#59ABE3";
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, padRadius * 0.65,  4.01426, 5.41052, true);
+            ctx.stroke();
+            // ctx.fill();
+        }
+
         // Draw the control pad with the sectors for movement
         function drawPad() {
 
             ctx.fillStyle = "white";
             ctx.strokeStyle = primaryColor;
+            ctx.lineWidth = 0;
             ctx.beginPath();
             ctx.arc(centerX, centerY, padRadius, 0, Math.PI * 2, true); // Outer circle
             ctx.stroke();
