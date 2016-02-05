@@ -69,7 +69,7 @@ angular.module('gameView')
 
         // The switch image is loaded right at the start, instead of every frame
         var switchImage = new Image();
-        var switchImageLoaded = false
+        var switchImageLoaded = false;
         switchImage.src = '../../resources/images/switch_black.png';
         switchImage.onload = function() {
             switchImageLoaded = true;
