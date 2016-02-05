@@ -86,7 +86,6 @@ angular.module('gameView', ['ngRoute'])
                 specialUsed.enabled = "special-disabled";
                 $scope.inputButtonClicked("special");
 
-
                 // take off the disbaled css when the timeout is over
                 SpecialPowerManagerService.specialButtonUsed(specialUsed).then(function(special) {
                     special.enabled = "";
@@ -170,13 +169,13 @@ angular.module('gameView', ['ngRoute'])
         }
 
         function fillGameContainerSize() {
-            console.log("setting full screen");
             var container = document.getElementById('game-container');
             container.style.height = "100%";
             container.style.top = "0px";
         }
 
         // Shows the player controls again, sets the health bar to full and puts background on again
+        // Can only be alled by a unity event, not on client side
         function playerRespawnTimeOver() {
             $scope.timeToRespawn = "Now";
             $scope.playerDead = false;
@@ -194,7 +193,7 @@ angular.module('gameView', ['ngRoute'])
             timeToRespawn = timeToRespawn - 1;
             if (timeToRespawn <= 0) {
                 $interval.cancel(respawnTimer);
-                console.log("timer is done");
+                console.log("respawn timer is done");
             }
         }
 

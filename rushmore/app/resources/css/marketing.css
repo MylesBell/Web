@@ -362,7 +362,7 @@ label {
     height: 100%;
     position: absolute;
     width: 100%;
-    bottom: 100%;
+    top: 0;
     font-size: 40px;
     font-weight: bold;
     color: #ECF0F1;

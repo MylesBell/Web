@@ -157,6 +157,7 @@ angular.module('gameView')
 
         function handlePlayerNearBaseEvent(){
             switchEnabled = true;
+            console.log("PLAYER NEAR BASE");
         }
 
 
