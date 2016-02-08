@@ -8,8 +8,6 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
     var uID = "";
     var userTeam = "";
     var username = "";
-    var teamColor = "white";
-    var teamHighlight = "grey";
     var joinPromise;
 
     var colors = {
@@ -25,7 +23,7 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
         }
     };
 
-    //remove this
+    // set to an inital value, changed when the user is assigned a team
     var teamColors = colors.blue;
 
 
