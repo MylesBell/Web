@@ -86,7 +86,6 @@ angular.module('gameView', ['ngRoute'])
                 specialUsed.enabled = "special-disabled";
                 $scope.inputButtonClicked("special");
 
-
                 // take off the disbaled css when the timeout is over
                 SpecialPowerManagerService.specialButtonUsed(specialUsed).then(function(special) {
                     special.enabled = "";
@@ -151,24 +150,32 @@ angular.module('gameView', ['ngRoute'])
 
         // Change the background colour of the container to the teams colours
         function setTeamBackground() {
+            var colors = UserService.getTeamColor();
+
             var mainContainer = document.getElementById('main-container');
+            var controlsContainer = document.getElementById('controls-container');
+            var statsContainer = document.getElementById('stats-container');
+            var specialsContainer = document.getElementById('specials-container');
+
+            controlsContainer.style.backgroundColor = colors.primary;
+            statsContainer.style.backgroundColor = colors.dark;
+            specialsContainer.style.backgroundColor = colors.primary;
+
             if ($scope.teamClass === "blue-team") {
-                mainContainer.className += " blue-team";
                 $scope.teamClassCSS = "blue-team";
             } else {
-                mainContainer.className += " red-team";
                 $scope.teamClassCSS = "red-team";
             }
         }
 
-        function fillGameContainerSize(){
-            console.log("setting full screen");
+        function fillGameContainerSize() {
             var container = document.getElementById('game-container');
             container.style.height = "100%";
             container.style.top = "0px";
         }
 
         // Shows the player controls again, sets the health bar to full and puts background on again
+        // Can only be alled by a unity event, not on client side
         function playerRespawnTimeOver() {
             $scope.timeToRespawn = "Now";
             $scope.playerDead = false;
@@ -186,7 +193,7 @@ angular.module('gameView', ['ngRoute'])
             timeToRespawn = timeToRespawn - 1;
             if (timeToRespawn <= 0) {
                 $interval.cancel(respawnTimer);
-                console.log("timer is done");
+                console.log("respawn timer is done");
             }
         }
 
@@ -196,6 +203,7 @@ angular.module('gameView', ['ngRoute'])
 
         //  Fired when user selects input button on game controller page
         // input can be one of several driections or powers, sends this input to the server
+        // TODO rename this function to movement changed
         $scope.inputButtonClicked = function(direction) {
             InputHandlerService.handleInput({
                 direction: direction
@@ -206,23 +214,6 @@ angular.module('gameView', ['ngRoute'])
             });
         };
 
-        var HAS_TOUCH = ('ontouchstart' in window);
-
-        function up() {
-            $scope.inputButtonClicked('up');
-        }
-
-        function down() {
-            $scope.inputButtonClicked('down');
-        }
-
-        function forward() {
-            $scope.inputButtonClicked('forward');
-        }
-
-        function backward() {
-            $scope.inputButtonClicked('backward');
-        }
 
         function switchLane() {
             $scope.inputButtonClicked("switch");
@@ -231,22 +222,5 @@ angular.module('gameView', ['ngRoute'])
         $scope.useSpecial = function(specialNumber) {
             handleSpecialClicked(specialNumber); // TODO made this generic to other special button
         };
-
-        // // Enable click & dblclick events, and monitor both.
-        downButton.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', doubleTap(), false);
-        downButton.addEventListener('tap', down, false);
-        downButton.addEventListener('dbltap', down, false);
-        upButton.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', doubleTap(), false);
-        upButton.addEventListener('tap', up, false);
-        upButton.addEventListener('dbltap', up, false);
-        forwardButton.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', doubleTap(), false);
-        forwardButton.addEventListener('tap', forward, false);
-        forwardButton.addEventListener('dbltap', forward, false);
-        backwardButton.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', doubleTap(), false);
-        backwardButton.addEventListener('tap', backward, false);
-        backwardButton.addEventListener('dbltap', backward, false);
-        switchButton.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', doubleTap(), false);
-        switchButton.addEventListener('tap', switchLane, false);
-        switchButton.addEventListener('dbltap', switchLane, false);
 
     }]);

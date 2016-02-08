@@ -124,7 +124,7 @@ label {
     top: 0;
     left: 0;
     position: fixed !important;
-    background: #ECF0F1; 
+    background: white; 
  }
 
 .controller-container {
@@ -223,30 +223,15 @@ label {
     bottom: 100%;
 }
 
-.stats-container {
+#stats-container {
     height: 15%;
-    width: 90%;
-    margin: auto;
-}
-
-.controls-container {
-    height: 60%;
     width: 100%;
     margin: auto;
-    /*display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    align-items: center;*/
 }
 
-.context-controls-container {
-    height: 10%;
-    background-color: red;
-}
-
-.movement-controls-container {
+#joystick-container {
     height: 100%;
-    width: 90%;
+    width: 100%;
     margin: auto;
     display: flex;
     flex-flow: row wrap;
@@ -254,11 +239,20 @@ label {
     align-items: center;
 }
 
-.specials-container {
-    height: 25%;
+#controls-container {
+    height: 65%;
     width: 100%;
     margin: auto;
-    margin-top: 10px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#specials-container {
+    height: 20%;
+    width: 100%;
+    margin: auto;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
@@ -266,7 +260,7 @@ label {
 }
 
 .special {
-    width: 22%;
+    width: 20%;
     height: 80%;
     display: flex;
     flex-flow: row wrap;
@@ -275,13 +269,14 @@ label {
 }
 
 .special-circle {
-    border-radius: 50%;
+    border-radius: 40%;
     width: 100%;
     float:left;
     display:block;
     padding-top:100%;
     background-color: #dadfe1;
     box-shadow: 0px 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /*box-shadow: 10px 10px 0px 0px rgba(0,0,0,0.52);*/
 }
 
 .special-fire {
@@ -289,6 +284,7 @@ label {
     background-size: 70%;
     background-repeat: no-repeat;
     background-position: 50% 50%;
+    background-color: white;
 }
 
 .special-heal {
@@ -296,6 +292,7 @@ label {
     background-size: 70%;
     background-repeat: no-repeat;
     background-position: 50% 65%;
+    background-color: white;
 }
 
 .special-invisible {
@@ -303,6 +300,7 @@ label {
     background-size: 70%;
     background-repeat: no-repeat;
     background-position: 50% 50%;
+    background-color: white;
 }
 
 .special-disabled {
@@ -312,39 +310,22 @@ label {
     -webkit-filter: grayscale(1);
 }
 
+#special-button-1 {
+    margin-bottom: 60px;
+}
 
+#special-button-3 {
+    margin-bottom: 60px;
+}
 
 #switch-button {
     width: 20%;
 }
 
-#up-button{
-    width: 50%;
-    border-top-left-radius: 50%;
-    border-top-right-radius: 50%;
-}
-#down-button{
-    width: 50%;
-    border-bottom-left-radius: 50%;
-    border-bottom-right-radius: 50%;
-}
-#forward-button{
-    width: 48%;
-    border-bottom-right-radius: 50%;
-    border-top-right-radius: 50%;
-    border-bottom-left-radius: 0%;
-    border-top-left-radius: 0%;
-}
-#backward-button{
-    width: 48%;
-    border-top-left-radius: 50%;
-    border-bottom-left-radius: 50%;
-    border-bottom-right-radius: 0%;
-    border-top-right-radius: 0%;
-}
-
 .health-bar-container {
     height: 100%;
+    width: 90%;
+    margin: auto;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -378,16 +359,16 @@ label {
 }
 
 .death-container {
-    height: 90%;
-    top: 50px;
+    height: 100%;
     position: absolute;
     width: 100%;
-    bottom: 100%;
+    top: 0;
     font-size: 40px;
     font-weight: bold;
     color: #ECF0F1;
     padding: 1em 1.6em;
     font-weight: 100;
+    background-color: grey;
 }
 
 #death-text-container {
@@ -409,16 +390,19 @@ label {
     flex-flow: column wrap;
 }
 
+
 #respawn-text {
     font-size: 20px;
 }
 
 .blue-team{
-        background: #4183D7 !important;        
+         background: #ECF0F1;
+        /*background: #4183D7 !important;        */
 }
 
 .red-team{
-        background: #D91E18  !important;
+        background: #ECF0F1;
+        /*background: #D91E18  !important;*/
 }
 
 .dead-team{

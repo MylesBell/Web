@@ -8,8 +8,24 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
     var uID = "";
     var userTeam = "";
     var username = "";
-
     var joinPromise;
+
+    var colors = {
+        blue: {
+            dark: "#3A539B", // chambray
+            primary:  "#446CB3", // san marino
+            highlight:  "#59ABE3",
+        },
+        red: {
+            dark: "#96281B",
+            primary: "#D91E18",
+            highlight: "#E74C3C"
+        }
+    };
+
+    // set to an inital value, changed when the user is assigned a team
+    var teamColors = colors.blue;
+
 
     function attemptToJoinGame(gamecode) {
         joinPromise = $q.defer();
@@ -94,12 +110,14 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
     //       and set team only
     function handlePlayerJoinedEvent(data) {
         if (data.uID === uID) {
-            if (data.joinSuccess) {               
+            if (data.joinSuccess) {
                 //set team background colour
                 if (data.team === 0) {
                     userTeam = 'red-team';
+                    teamColors = colors.red;
                 } else if (data.team === 1) {
-                    userTeam =  'blue-team';
+                    userTeam = 'blue-team';
+                    teamColors = colors.blue;
                 }
 
                 joinPromise.resolve(data);
@@ -130,6 +148,10 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
         userTeam = team;
     }
 
+    function getTeamColor() {
+        return teamColors;
+    }
+
     /*
         Register with the network service to listen to  when the player has joined the game
     */
@@ -151,7 +173,8 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
         getUserTeam: getUserTeam,
         getUsername: getUsername,
         getUserID: getUserID,
-        setUserID: setUserID
+        setUserID: setUserID,
+        getTeamColor: getTeamColor
     };
 
 });
