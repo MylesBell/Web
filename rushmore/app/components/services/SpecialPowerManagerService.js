@@ -9,10 +9,17 @@ angular.module('myApp').factory('SpecialPowerManagerService', function($q, $inte
     var specialButtonUsed = function(special) {
         var deferred = $q.defer();
 
+        special.enabled = "special-disabled";
+
         var specialCooldownTimer = $interval(function() {
-            var spec = special;
+            // capture special used in closue to allow multple timeouts
+            var spec = special;         
+
+            // Cancle timer and reset special
             $interval.cancel(specialCooldownTimer);
+            spec.enabled = "";
             deferred.resolve(spec);
+            
         }, cooldownTIme);
 
         return deferred.promise;
@@ -21,7 +28,7 @@ angular.module('myApp').factory('SpecialPowerManagerService', function($q, $inte
     /* --------------------
          PUBLIC API
      ---------------- */
-    return {        
+    return {
         specialButtonUsed: specialButtonUsed
     };
 
