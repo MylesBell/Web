@@ -87,19 +87,23 @@ angular.module('gameView', ['ngRoute'])
                 // get the element that the finger is over
                 var touchedElementId = (document.elementFromPoint(touch.clientX, touch.clientY)).id;
 
+
+
                 // either tell the canvas to start listening to events for the joystick
                 if (touchedElementId === "joystick-canvas") {
                     $rootScope.$emit("canvas.touch.start", e);
-                } else if (touchedElementId.indexOf("special") > -1){
+                } else if (touchedElementId.indexOf("special") > -1) {
                     // or handle special powers being selected
-                    $scope.specialPowers.forEach(function(sp){
-                        if(touchedElementId.indexOf(sp.index) > -1) {
-                            handleSpecialClicked(sp);
-                        } 
-                    });
+                    $scope.specialPowers.forEach(handleSpecial);
                 }
             }
         });
+
+        function handleSpecial(sp) {
+            if (touchedElementId.indexOf(sp.index) > -1) {
+                handleSpecialClicked(sp);
+            }
+        }
 
         /*
             Handle game events sent by the server or UI
