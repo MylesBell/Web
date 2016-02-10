@@ -15,23 +15,34 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
             dark: "#3A539B", // chambray
             primary: "#446CB3", // san marino
             highlight: "#59ABE3", // Picton Blue
-            light: "#C5EFF7" // Humming bird
+            light: "#C5EFF7", // Humming bird
+            health: {
+                player: {
+                    remaining: "#87D37C", // gossip
+                    lost: "#90C695" // Dark sea grenn
+                },
+                base: {
+                    lost: "#C5EFF7", // Humming bird
+                    remaining: "#59ABE3", // Picton Blue
+                }
+            }
         },
         red: {
             dark: "#96281B",
             primary: "#D91E18",
-            highlight: "#E74C3C"
-        },
-        health: {
-            player: {
-                remaining: "#87D37C", // gossip
-                lost: "#90C695" // Dark sea grenn
-            },
-            base: {
-                lost: "#C5EFF7", // Humming bird
-                remaining: "#59ABE3", // Picton Blue
+            highlight: "#E74C3C",
+            health: {
+                player: {
+                    remaining: "#87D37C", // gossip
+                    lost: "#90C695" // Dark sea grenn
+                },
+                base: {
+                    lost: "#C5EFF7", // Humming bird
+                    remaining: "#59ABE3", // Picton Blue
+                }
             }
-        }
+        },
+
     };
 
     // set to an inital value, changed when the user is assigned a team

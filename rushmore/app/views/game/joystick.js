@@ -76,8 +76,8 @@ angular.module('gameView')
         var primaryColor = teamColors.primary;
         var highlightColor = teamColors.highlight;
         var darkColor = teamColors.dark;
-        var playerHealthColorRemaining;
-        var playerHealthColorLost;
+        
+        var playerHealthColorLost = teamColors.health.player.lost;
         var baseHealthColorReamining;
         var baseHealthColorLost;
 
@@ -337,8 +337,8 @@ angular.module('gameView')
             // get angle from the top (270 degree) position
             var startAngle = ((3/2) * Math.PI) + healthLostRad;
             var endAngle = ((3/2) * Math.PI) - healthLostRad;
-            ctx.fillStyle = darkColor;
-            ctx.strokeStyle = "#26A65B";
+            ctx.fillStyle =  teamColors.health.player.remaining;  // darkColor;
+            ctx.strokeStyle =  teamColors.health.player.remaining;     //  "#26A65B"; // eucalyptus
             ctx.lineWidth = 10;
             ctx.beginPath();
             ctx.arc(centerX, centerY, padRadius * 0.85, endAngle, startAngle, true);
@@ -349,7 +349,6 @@ angular.module('gameView')
             ctx.beginPath();
             ctx.arc(centerX, centerY, padRadius * 0.65, 4.01426, 5.41052, true);
             ctx.stroke();
-
         }
 
         // Draw the control pad with the sectors for movement
