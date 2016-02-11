@@ -1,5 +1,5 @@
 angular.module('gameView')
-    .controller('JoystickController', ['$scope', 'InputHandlerService', "NetworkService", "UserService", "$interval", function($scope, InputHandlerService, NetworkService, UserService, $interval) {
+    .controller('JoystickController', ['$scope', 'InputHandlerService', "NetworkService", "UserService", "$rootScope", function($scope, InputHandlerService, NetworkService, UserService, $rootScope) {
 
         //  Fired when user selects input button on game controller page
         // input can be one of several driections or powers, sends this input to the server
@@ -128,38 +128,29 @@ angular.module('gameView')
         drawSwitchBaseButton();
         drawPlayerHealthRing();
         draw();
+
+
         /*
             Bind mouse and touch event listeners
         */
-        // bind either touch or mouse events
-        canvas.addEventListener("mousedown", function(e) {
 
-            e.preventDefault();
-
-            // Update the knob position to mouse postion
-            animate = true;
-            updateKnobPostion(e);
-            canvas.addEventListener("mousemove", updateKnobPostion);
-
-            // Start the drawing loop for elemnents on the canvas 
-            id = window.requestAnimationFrame(draw);
+        // Listen to events from the root scope
+        // this is from the game controller when a touch start occurs
+        // rootscope allows communiation between controllers effectivly
+        $rootScope.$on("canvas.touch.start", function(e, args) {
+            handleTouchStart(args);
         });
 
-        // Bind touch events for mobile
-        canvas.addEventListener("touchstart", function(e) {
-
-            e.preventDefault();
-
-            console.log("touch down");
-
+        function handleTouchStart(event) {
             // update the knob position to touch postion
             animate = true;
-            updateKnobPostion(e);
+            updateKnobPostion(event);
             canvas.addEventListener("touchmove", updateKnobPostion);
 
             // Start the drawing loop for elemnents on the canvas 
             id = window.requestAnimationFrame(draw);
-        });
+        }
+
 
         // Bind event for user letting go of knob with mouse
         // stop the updating of the canvas and remove movement event listener
