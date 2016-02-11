@@ -48,6 +48,19 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
     // set to an inital value, changed when the user is assigned a team
     var teamColors = colors.blue;
 
+    function alertListeners(eventName, eventData) {
+        listenerEventList.forEach(function(listener) {
+            if (listener.eventName === eventName) {
+                var call = listener.call;
+                call(eventData);
+            }
+        }, this);
+    }
+
+    function registerListener(listenerEvent) {
+        listenerEventList.push(listenerEvent);
+    }
+
 
     function attemptToJoinGame(gamecode) {
         joinPromise = $q.defer();
@@ -184,6 +197,7 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
 
 
 
+
     /* --------------------
         PUBLIC API
     ---------------- */
@@ -196,7 +210,8 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
         getUsername: getUsername,
         getUserID: getUserID,
         setUserID: setUserID,
-        getTeamColor: getTeamColor
+        getTeamColor: getTeamColor,
+        registerListener: registerListener
     };
 
 });

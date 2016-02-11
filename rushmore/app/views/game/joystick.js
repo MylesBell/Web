@@ -10,6 +10,9 @@ angular.module('gameView')
             }).catch(function(res) {});
         };
 
+        /*
+            Listen to network events 
+        */
         NetworkService.registerListener({
             eventName: "playerNearBase",
             call: handlePlayerNearBaseEvent
@@ -18,6 +21,11 @@ angular.module('gameView')
         NetworkService.registerListener({
             eventName: "gamePlayerChangeHealth",
             call: handleGamePlayerChangeHealth
+        });
+
+        NetworkService.registerListener({
+            eventName: "gamePlayerRespawn",
+            call: handleGamePlayerRespawn
         });
 
 
@@ -76,7 +84,7 @@ angular.module('gameView')
         var primaryColor = teamColors.primary;
         var highlightColor = teamColors.highlight;
         var darkColor = teamColors.dark;
-        
+
         var playerHealthColorLost = teamColors.health.player.lost;
         var baseHealthColorReamining;
         var baseHealthColorLost;
@@ -165,6 +173,7 @@ angular.module('gameView')
             stopKnobUpdate();
         });
 
+
         // Handle the switch event being selected
         function handleSwitchButtonClicked() {
             $scope.inputButtonClicked("switch");
@@ -185,6 +194,15 @@ angular.module('gameView')
 
             //update the whole canvas with updated health ring
             draw();
+        }
+
+        // Sent from the server when the player respawns in the game, starts the respawn process
+        function handleGamePlayerRespawn(data) {
+            console.log("Player respawned on the server");
+            handleGamePlayerChangeHealth({
+                playerHealth: 1000, // TODO make this not constant
+                maxHealth: 1000
+            });
         }
 
         /*
@@ -335,16 +353,16 @@ angular.module('gameView')
 
             // caluclate the size of health ring to draw based on the health lost
             // get angle from the top (270 degree) position
-            var startAngle = ((3/2) * Math.PI) + healthLostRad;
-            var endAngle = ((3/2) * Math.PI) - healthLostRad;
-            ctx.fillStyle =  teamColors.health.player.remaining;  // darkColor;
-            ctx.strokeStyle =  teamColors.health.player.remaining;     //  "#26A65B"; // eucalyptus
+            var startAngle = ((3 / 2) * Math.PI) + healthLostRad;
+            var endAngle = ((3 / 2) * Math.PI) - healthLostRad;
+            ctx.fillStyle = teamColors.health.player.remaining; // darkColor;
+            ctx.strokeStyle = teamColors.health.player.remaining; //  "#26A65B"; // eucalyptus
             ctx.lineWidth = 10;
             ctx.beginPath();
             ctx.arc(centerX, centerY, padRadius * 0.85, endAngle, startAngle, true);
             ctx.stroke();
 
-            
+
             ctx.strokeStyle = "#59ABE3";
             ctx.beginPath();
             ctx.arc(centerX, centerY, padRadius * 0.65, 4.01426, 5.41052, true);
