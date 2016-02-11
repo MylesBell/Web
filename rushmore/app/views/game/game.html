@@ -1,4 +1,4 @@
-<div id="game-container" class="pure-g" ng-show="!playerDead">
+<div id="game-container" class="pure-g" ng-show="!playerDead && !gameOver">
     <div class="pure-u-1" id="stats-container">
         <div class="health-bar-container">
             <!-- <div id="health-bar-remaining"> 
@@ -8,7 +8,7 @@
                 
             </div> -->
         </div>
-    </div> 
+    </div>
     <div id="controls-container" class="pure-u-1">        
         <div id="joystick-container" ng-controller="JoystickController" >
             <canvas id="joystick-canvas" > 
@@ -23,8 +23,8 @@
         </div>
     </div>  
 </div>   
-<div class="death-container pure-g" ng-show="playerDead">
-    <div id="death-text-container" class="pure-u-1">
+<div id="death-container" class="state-container pure-g" ng-show="playerDead">
+    <div id="death-text-container" class="state-text-container pure-u-1">
         YOU DIED
     </div> 
 
@@ -34,6 +34,20 @@
         </div>
         <div id="death-timer">
             {{timeToRespawn}}
+        </div>
+    </div> 
+</div>
+<div id="game-over-container" class="state-container pure-g" ng-show="gameOver" ng-class="{'blue-team' : winner, 'red-team' : !winner}">
+    <div id="game-over-text-container" class="state-text-container pure-u-1">
+        Game over
+    </div> 
+
+    <div id="death-timer-container" class="pure-u-1">
+        <div id="respawn-text">
+            The winner was
+        </div>
+        <div id="death-timer">
+            {{winnerTeam}}
         </div>
     </div> 
 </div>

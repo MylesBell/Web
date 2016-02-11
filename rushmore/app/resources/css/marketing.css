@@ -358,8 +358,16 @@ label {
     box-shadow: 0px 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.death-container {
-    height: 100%;
+#death-container {
+    background-color: grey; 
+}
+
+#game-over-container {
+    background-color: pink; 
+}
+
+.state-container{
+   height: 100%;
     position: absolute;
     width: 100%;
     top: 0;
@@ -368,17 +376,8 @@ label {
     color: #ECF0F1;
     padding: 1em 1.6em;
     font-weight: 100;
-    background-color: grey;
 }
 
-#death-text-container {
-    width: 100%;
-    height: 40%;
-    margin: auto;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
 
 #death-timer-container {
     width: 90%;
@@ -390,19 +389,28 @@ label {
     flex-flow: column wrap;
 }
 
+.state-text-container {
+    width: 100%;
+    height: 40%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
 
 #respawn-text {
     font-size: 20px;
 }
 
 .blue-team{
-         background: #ECF0F1;
-        /*background: #4183D7 !important;        */
+         /*background: #ECF0F1;*/
+        background: #4183D7 !important;        
 }
 
 .red-team{
-        background: #ECF0F1;
-        /*background: #D91E18  !important;*/
+        /*background: #ECF0F1;*/
+        background: #D91E18  !important;
 }
 
 .dead-team{

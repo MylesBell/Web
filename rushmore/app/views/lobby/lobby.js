@@ -11,7 +11,7 @@ angular.module('lobbyView', ['ngRoute'])
 
             // When the game playing event occurs, move from the lobby to the game screen
             function handleGameStateChange(data) {
-                if(data.state === 1){
+                if(data.state === 1){ // 1 is playing
                     LocationService.setPath("/game");
                 }
             }

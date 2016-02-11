@@ -6,6 +6,8 @@ angular.module('gameView', ['ngRoute'])
         $scope.nearBase = false;
         $scope.playerDead = false;
         $scope.timeToRespawn = 5;
+        $scope.gameOver = false;  
+        $scope.winner = "";
 
         var respawnTimer; // TODO put this into a timer service
         var timeToRespawn = 5;
@@ -56,6 +58,11 @@ angular.module('gameView', ['ngRoute'])
         NetworkService.registerListener({
             eventName: "gamePlayerRespawn",
             call: handleGamePlayerRespawn
+        });
+
+        NetworkService.registerListener({
+            eventName: "gameStateUpdate",
+            call: handleGameStateUpdate
         });
 
         /*
@@ -143,6 +150,15 @@ angular.module('gameView', ['ngRoute'])
             } else {
                 $scope.nearBase = true;
             }
+        }
+
+        // handle the game state changing to game over
+        function handleGameStateUpdate(data){
+            if(data.state === 2) {
+                // winner, 1 is blue , 0 is red
+                $scope.winnerTeam = data.winner === 0 ? "Red Team" : "Blue Team";
+                $scope.winner = data.winner;
+            }            
         }
 
         /*
