@@ -10,11 +10,8 @@ angular.module('gameView', ['ngRoute'])
         var respawnTimer; // TODO put this into a timer service
         var timeToRespawn = 5;
 
-        var downButton = document.getElementById('down-button');
-        var upButton = document.getElementById('up-button');
-        var forwardButton = document.getElementById('forward-button');
-        var backwardButton = document.getElementById('backward-button');
         var switchButton = document.getElementById('switch-button');
+        var mainContainer = document.getElementById('main-container');
 
         // Catch and prevent long presses when users are pressing buttons
         window.oncontextmenu = function(event) {
@@ -74,7 +71,6 @@ angular.module('gameView', ['ngRoute'])
             This allows for multitouch of the joytick and specials at the same time
         */
 
-        var mainContainer = document.getElementById('main-container');
         mainContainer.addEventListener('touchstart', function(e) {
 
             // Prevent pull down to refresh and etc
@@ -87,14 +83,16 @@ angular.module('gameView', ['ngRoute'])
                 // get the element that the finger is over
                 var touchedElementId = (document.elementFromPoint(touch.clientX, touch.clientY)).id;
 
-
-
                 // either tell the canvas to start listening to events for the joystick
                 if (touchedElementId === "joystick-canvas") {
                     $rootScope.$emit("canvas.touch.start", e);
                 } else if (touchedElementId.indexOf("special") > -1) {
                     // or handle special powers being selected
-                    $scope.specialPowers.forEach(handleSpecial);
+                    $scope.specialPowers.forEach(function(sp) {
+                        if (touchedElementId.indexOf(sp.index) > -1) {
+                            handleSpecialClicked(sp);
+                        }
+                    });
                 }
             }
         });

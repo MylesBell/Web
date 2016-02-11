@@ -194,6 +194,8 @@ angular.module('gameView')
                 playerHealth: 1000, // TODO make this not constant
                 maxHealth: 1000
             });
+            healthLostRad = 0.0001; // number of rads removed from the semi circle of health i.e 45 degress is 75% health
+
         }
 
         /*
