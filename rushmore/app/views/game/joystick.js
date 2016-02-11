@@ -185,7 +185,8 @@ angular.module('gameView')
             var remainingHealthRatio = (data.playerHealth / data.maxHealth);
 
             // how many rads is removed from the health using remaining ratio
-            playerHealthLostRad = toRadians(180 * (1 - remainingHealthRatio));
+            // add small delta to lost is not 0, and will not draw a ring
+            playerHealthLostRad = toRadians(180 * (1 - remainingHealthRatio) + 0.000001);
 
             //update the whole canvas with updated health ring
             draw();
@@ -194,14 +195,13 @@ angular.module('gameView')
         // Sent from the server when the player respawns in the game, starts the respawn process
         function handleGamePlayerRespawn(data) {
             console.log("Player respawned on the server");
-            playerHealthLostRad = 0.0001; // number of rads removed from the semi circle of health i.e 45 degress is 75% health
             handleGamePlayerChangeHealth({
                 playerHealth: 1000, // TODO make this not constant
                 maxHealth: 1000
             });
         }
 
-        function handleGameBaseChangeHealth(data){
+        function handleGameBaseChangeHealth(data) {
             console.log(data);
             // get fraction of health remaining
             var remainingHealthRatio = (data.currentBaseHealth / data.maxBaseHealth);
