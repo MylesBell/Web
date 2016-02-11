@@ -10,9 +10,22 @@ angular.module('gameView')
             }).catch(function(res) {});
         };
 
+        /*
+            Listen to network events 
+        */
         NetworkService.registerListener({
             eventName: "playerNearBase",
             call: handlePlayerNearBaseEvent
+        });
+
+        NetworkService.registerListener({
+            eventName: "gamePlayerChangeHealth",
+            call: handleGamePlayerChangeHealth
+        });
+
+        NetworkService.registerListener({
+            eventName: "gamePlayerRespawn",
+            call: handleGamePlayerRespawn
         });
 
 
@@ -46,12 +59,6 @@ angular.module('gameView')
         var centerX;
         var centerY;
 
-        // set the colours
-        var teamColors = UserService.getTeamColor();
-        var primaryColor = teamColors.primary;
-        var highlightColor = teamColors.highlight;
-        var darkColor = teamColors.dark;
-
         // Size of the control knob
         var joystickRadius = 40;
         // Radius of the control pad
@@ -70,6 +77,17 @@ angular.module('gameView')
         // Health as told by the server
         var currentHealth;
         var maxHealth;
+        var healthLostRad = 0.0001; // number of rads removed from the semi circle of health i.e 45 degress is 75% health
+
+        // set the colours
+        var teamColors = UserService.getTeamColor();
+        var primaryColor = teamColors.primary;
+        var highlightColor = teamColors.highlight;
+        var darkColor = teamColors.dark;
+
+        var playerHealthColorLost = teamColors.health.player.lost;
+        var baseHealthColorReamining;
+        var baseHealthColorLost;
 
         // The switch image is loaded right at the start, instead of every frame
         var switchImage = new Image();
@@ -108,7 +126,7 @@ angular.module('gameView')
         drawPad();
         drawKnob();
         drawSwitchBaseButton();
-
+        drawPlayerHealthRing();
         draw();
 
 
@@ -119,11 +137,11 @@ angular.module('gameView')
         // Listen to events from the root scope
         // this is from the game controller when a touch start occurs
         // rootscope allows communiation between controllers effectivly
-        $rootScope.$on("canvas.touch.start", function(e, args){
+        $rootScope.$on("canvas.touch.start", function(e, args) {
             handleTouchStart(args);
         });
 
-        function handleTouchStart(event){
+        function handleTouchStart(event) {
             // update the knob position to touch postion
             animate = true;
             updateKnobPostion(event);
@@ -143,8 +161,9 @@ angular.module('gameView')
         // Bind event for user letting go of knob with mouse
         // stop the updating of the canvas and remove movement event listener
         canvas.addEventListener("touchend", function(e) {
-            stopKnobUpdate();            
+            stopKnobUpdate();
         });
+
 
         // Handle the switch event being selected
         function handleSwitchButtonClicked() {
@@ -157,6 +176,25 @@ angular.module('gameView')
             console.log("PLAYER NEAR BASE");
         }
 
+        function handleGamePlayerChangeHealth(data) {
+            // get fraction of health remaining
+            var remainingHealthRatio = (data.playerHealth / data.maxHealth);
+
+            // how many rads is removed from the health using remaining ratio
+            healthLostRad = toRadians(180 * (1 - remainingHealthRatio));
+
+            //update the whole canvas with updated health ring
+            draw();
+        }
+
+        // Sent from the server when the player respawns in the game, starts the respawn process
+        function handleGamePlayerRespawn(data) {
+            console.log("Player respawned on the server");
+            handleGamePlayerChangeHealth({
+                playerHealth: 1000, // TODO make this not constant
+                maxHealth: 1000
+            });
+        }
 
         /*
             Update Fuctions
@@ -234,14 +272,16 @@ angular.module('gameView')
                 movDir = newMoveDir;
                 $scope.inputButtonClicked(movDir);
             } else if (movDir !== newMoveDir && newMoveDir === -1) {
-                // moved into the deadzone
+                // dead zone
                 movDir = newMoveDir;
-                if (newMoveDir === -1) {
-                }
                 $scope.inputButtonClicked(movDir);
             }
 
             return movDir;
+        }
+
+        function toRadians(degrees) {
+            return degrees * (Math.PI / 180);
         }
 
         /*
@@ -256,13 +296,13 @@ angular.module('gameView')
             // clear the canvas of any elemnt
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Draw the pad, movement zones and knob
+            // Draw the pad, movement zones, knob and health
             drawPad();
             drawPlayerHealthRing();
             drawKnob();
 
             if (switchEnabled) {
-                drawSwitchBaseButton();
+                drawSwitchBaseButton(); // TODO this will be disabled soon
             }
 
             if (animate) {
@@ -302,18 +342,22 @@ angular.module('gameView')
 
         function drawPlayerHealthRing() {
 
-            ctx.fillStyle = darkColor;
-            ctx.strokeStyle = "#26A65B";
+            // caluclate the size of health ring to draw based on the health lost
+            // get angle from the top (270 degree) position
+            var startAngle = ((3 / 2) * Math.PI) + healthLostRad;
+            var endAngle = ((3 / 2) * Math.PI) - healthLostRad;
+            ctx.fillStyle = teamColors.health.player.remaining; // darkColor;
+            ctx.strokeStyle = teamColors.health.player.remaining; //  "#26A65B"; // eucalyptus
             ctx.lineWidth = 10;
             ctx.beginPath();
-            ctx.arc(centerX, centerY, padRadius * 0.85, 4.01426, 5.41052, true);
+            ctx.arc(centerX, centerY, padRadius * 0.85, endAngle, startAngle, true);
             ctx.stroke();
+
 
             ctx.strokeStyle = "#59ABE3";
             ctx.beginPath();
-            ctx.arc(centerX, centerY, padRadius * 0.65,  4.01426, 5.41052, true);
+            ctx.arc(centerX, centerY, padRadius * 0.65, 4.01426, 5.41052, true);
             ctx.stroke();
-            // ctx.fill();
         }
 
         // Draw the control pad with the sectors for movement

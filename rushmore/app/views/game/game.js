@@ -51,7 +51,7 @@ angular.module('gameView', ['ngRoute'])
             call: handleGamePlayerNearBaseEvent
         });
 
-        NetworkService.registerListener({
+        UserService.registerListener({
             eventName: "gamePlayerChangeHealth",
             call: handleGamePlayerChangeHealth
         });
@@ -156,26 +156,27 @@ angular.module('gameView', ['ngRoute'])
 
         // Reduce the width of the health bar to the fraction of remaining health
         function handleGamePlayerChangeHealth(data) {
-            var healthBar = document.getElementById("health-bar-remaining");
-            var lostHealthBar = document.getElementById("health-bar-lost");
+            // var healthBar = document.getElementById("health-bar-remaining");
+            // var lostHealthBar = document.getElementById("health-bar-lost");
 
-            var remainingHealth = (data.playerHealth / data.maxHealth);
+            // var remainingHealth = (data.playerHealth / data.maxHealth);
 
-            var reaminingWidth = 100 * remainingHealth;
-            var lostWidth = 100 * (1 - remainingHealth);
+            // var reaminingWidth = 100 * remainingHealth;
+            // var lostWidth = 100 * (1 - remainingHealth);
 
-            if (remainingHealth < 0.5) {
-                healthBar.style.backgroundColor = "#D35400"; //burnt ornage
-                lostHealthBar.style.backgroundColor = "#EB974E"; // sea buckthorn
-            } else {
-                healthBar.style.backgroundColor = "#26A65B"; //burnt ornage
-                lostHealthBar.style.backgroundColor = "#90C695"; // sea buckthorn
-            }
+            // if (remainingHealth < 0.5) {
+            //     healthBar.style.backgroundColor = "#D35400"; //burnt ornage
+            //     lostHealthBar.style.backgroundColor = "#EB974E"; // sea buckthorn
+            // } else {
+            //     healthBar.style.backgroundColor = "#26A65B"; //burnt ornage
+            //     lostHealthBar.style.backgroundColor = "#90C695"; // sea buckthorn
+            // }
 
-            reaminingWidth = reaminingWidth.toString() + "%";
-            lostWidth = lostWidth.toString() + "%";
-            healthBar.style.width = reaminingWidth;
-            lostHealthBar.style.width = lostWidth;
+            // reaminingWidth = reaminingWidth.toString() + "%";
+            // lostWidth = lostWidth.toString() + "%";
+            // healthBar.style.width = reaminingWidth;
+            // lostHealthBar.style.width = lostWidth;
+            console.log(data);
         }
 
 
