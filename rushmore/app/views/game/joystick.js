@@ -198,7 +198,6 @@ angular.module('gameView')
         }
 
         function handleGameBaseChangeHealth(data) {
-            console.log(data);
             // get fraction of health remaining
             var remainingHealthRatio = (data.currentBaseHealth / data.maxBaseHealth);
 
