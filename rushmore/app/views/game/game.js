@@ -157,9 +157,13 @@ angular.module('gameView', ['ngRoute'])
         function handleGameStateUpdate(data){
             if(data.state === 2) {
                 // winner, 1 is blue , 0 is red
+                $scope.gameOver = true;  
                 $scope.winnerTeam = data.winner === 0 ? "Red Team" : "Blue Team";
                 $scope.winner = data.winner;
-            }            
+            } else if(data.state == 1) {
+                // game player, remove the game over thing
+                $scope.gameOver = false;  
+            }           
         }
 
         /*
