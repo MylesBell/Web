@@ -66,6 +66,7 @@ module.exports = {
         playerWhoJoined = utils.playerFromUID(data.playerID, playerList);
 
         if (data.ok === 1 && data.playerID && playerWhoJoined !== undefined) {
+            
             res.ok = true;
             res.uID = data.playerID;
             res.team = data.teamID;
@@ -73,18 +74,22 @@ module.exports = {
             res.username = playerWhoJoined.username;
             res.playerList = playerList;
             res.joinSuccess = true;
-
-            if(data.maxHealth !== undefined){
-                playerWhoJoined.health = data.maxHealth;
-                playerWhoJoined.maxHealth = data.maxHealth;
-                console.log(playerWhoJoined);
-            } else { // TODO this won't be undefined later when we merge stuff
-                playerWhoJoined.health = 1000;
-                playerWhoJoined.maxHealth = 1000;
-            }
-
-
+            res.baseMaxHealth = data.baseMaxHealth;
+            
+            playerWhoJoined.health = data.playerMaxHealth;
+            playerWhoJoined.maxHealth = data.playerMaxHealth;
             playerWhoJoined.team = data.teamID;
+
+
+            // if(data.playerMaxHealth !== undefined){
+            //     playerWhoJoined.health = data.playerMaxHealth;
+            //     playerWhoJoined.maxHealth = data.playerMaxHealth;
+            //     console.log(playerWhoJoined);
+            // } else { // TODO this won't be undefined later when we merge stuff
+            //     playerWhoJoined.health = 1000;
+            //     playerWhoJoined.maxHealth = 1000;
+            // }
+
         } else{
             if(data.ok === 0){
                 res.ok = true;
@@ -120,14 +125,32 @@ module.exports = {
 
         player = utils.playerFromUID(data.playerID, playerList);
         
+        //update the players health on the server 
         player.health = player.health + data.amount;
 
+        // send back the updated health
         res.uID = player.uID;
         res.playerHealth = player.health;
         res.maxHealth = player.maxHealth;
         res.ok = true;
 
         return logger.log(socket, logger.loggableModules.PLAYER_HEALTH_CHANGE, res);
+    },
+
+    /*
+        Player's base has changed health
+    */
+    gameBaseChangeHealth: function(socket, data, logger) {
+        var res = {};
+        var player;
+
+        res.uID = data.playerID;
+        res.currentBaseHealth = data.currentHealth;
+        res.maxBaseHealth = data.maxHealth;
+        res.ok = true;
+
+        return logger.log(socket, logger.loggableModules.BASE_HEALTH_CHANGE, res);
     }
+
 
 };

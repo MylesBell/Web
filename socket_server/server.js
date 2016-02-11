@@ -2,7 +2,7 @@
  *
  * SocketIO generic socket interfaces
  *
-*/
+ */
 
 // Require the dependencies for this interface
 var socketio = require('socket.io');
@@ -221,7 +221,7 @@ io.on('connection', function(socket) {
     socket.on('gamePlayerChangeHealth', function(data) {
         var res = unity.gamePlayerChangeHealth(socket, data, housekeeping.logger, playerList);
 
-        if(res.ok) {
+        if (res.ok) {
             io.sockets.in(res.uID).emit("gamePlayerChangeHealth", res);
         }
     });
@@ -239,6 +239,17 @@ io.on('connection', function(socket) {
             io.sockets.in(res.uID).emit("gamePlayerNearBase", res);
         }
     });
+
+    /*
+        Players base's health has changed
+    */
+    socket.on("gameBaseChangeHealth", function(data) {
+        var res = unity.gameBaseChangeHealth(socket, data, housekeeping.logger);
+
+        if(res.ok) {
+            io.sockets.in(res.uID).emit("gameBaseChangeHealth", res);
+        }
+    }); 
 
     /*
         A player has successfully joined the game

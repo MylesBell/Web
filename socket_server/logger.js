@@ -35,7 +35,8 @@ function logger() {
             "GAME_STATE_UPDATE" : "Game State Update",
             "GAME_PLAYER_JOIN" : "Game Player Joined",
             "PLAYER_NEAR_BASE" : "Player Near Base",
-            "PLAYER_HEALTH_CHANGE" : "Player Health Change" 
+            "PLAYER_HEALTH_CHANGE" : "Player Health Change",
+            "BASE_HEALTH_CHANGE" : "Base Health Change" 
         },
         log: function (socket, method, data) {
             if(self.loggingLevel !== "SILENT") {

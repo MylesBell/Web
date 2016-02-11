@@ -28,6 +28,11 @@ angular.module('gameView')
             call: handleGamePlayerRespawn
         });
 
+        NetworkService.registerListener({
+            eventName: "gameBaseChangeHealth",
+            call: handleGameBaseChangeHealth
+        });
+
 
         // Redraw the canvas when the window is resize, for example when going into fullscreen
         window.addEventListener("resize", function() {
@@ -193,6 +198,10 @@ angular.module('gameView')
                 playerHealth: 1000, // TODO make this not constant
                 maxHealth: 1000
             });
+        }
+
+        function handleGameBaseChangeHealth(data){
+            console.log(data);
         }
 
         /*
