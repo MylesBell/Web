@@ -9,7 +9,6 @@ machine:
     version: 5.1.0
 test:
   pre:
-    - ./node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update
+    # - ./node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update
     - grunt install
-    - sudo apt-get upgrade google-chrome-stable --fix-missing
 
