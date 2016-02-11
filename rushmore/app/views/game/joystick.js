@@ -195,13 +195,6 @@ angular.module('gameView')
                 playerHealth: 1000, // TODO make this not constant
                 maxHealth: 1000
             });
-
-            // var remainingHealthRatio = (data.playerHealth / data.maxHealth);
-
-            // // how many rads is removed from the health using remaining ratio
-            // // add small delta to lost is not 0, and will not draw a ring
-            // playerHealthLostRad = toRadians(180 * (1 - remainingHealthRatio)) + 0.001;
-            // alert(playerHealthLostRad);
         }
 
         function handleGameBaseChangeHealth(data) {

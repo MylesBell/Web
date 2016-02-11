@@ -49,7 +49,7 @@ module.exports = {
 
         if (data.state) {
             res.ok = true;
-            res.state = data.state;
+            res.state = data.state; // idle 0, 1 is playing, 2 end (game over)
             res.winner = data.winner;
         }
 
