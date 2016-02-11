@@ -1,10 +1,15 @@
 /*
     Service that handles movement between pages
 */
-angular.module('myApp').factory('LocationService', function ($q, $location, NetworkService) {
+angular.module('myApp').factory('LocationService', function ($q, $rootScope, $location, NetworkService) {
 
 
-
+    $rootScope.$on("$locationChangeStart",function(event, next, current){
+        // Don't let them screw up by pressing back if they're in the game
+        if(current.indexOf("#/game") > -1){
+            event.preventDefault();
+        }
+    });
     
     // register for socket events that change the path
     NetworkService.registerListener({ eventName: "locationChange", call: setPath });
