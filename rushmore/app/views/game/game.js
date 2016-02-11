@@ -5,7 +5,7 @@ angular.module('gameView', ['ngRoute'])
         $scope.teamClassCSS = "blue-team";
         $scope.nearBase = false;
         $scope.playerDead = false;
-        $scope.timeToRespawn = 10;
+        $scope.timeToRespawn = 5;
 
         var respawnTimer; // TODO put this into a timer service
         var timeToRespawn = 5;
@@ -46,11 +46,6 @@ angular.module('gameView', ['ngRoute'])
         NetworkService.registerListener({
             eventName: "gamePlayerNearBase",
             call: handleGamePlayerNearBaseEvent
-        });
-
-        NetworkService.registerListener({
-            eventName: "gamePlayerChangeHealth",
-            call: handleGamePlayerChangeHealth
         });
 
         NetworkService.registerListener({
@@ -105,12 +100,6 @@ angular.module('gameView', ['ngRoute'])
             Handle game events sent by the server or UI
         */
 
-        // Sent from the server when the player respawns in the game, starts the respawn process
-        function handleGamePlayerRespawn(data) {
-            console.log("Player respawned on the server");
-            playerRespawnTimeOver();
-        }
-
         // handle when a special button is clicked
         function handleSpecialClicked(specialUsed) {
 
@@ -141,6 +130,12 @@ angular.module('gameView', ['ngRoute'])
             respawnTimer = $interval(respawnTimerUpdate, 1000);
         }
 
+        // Sent from the server when the player respawns in the game, starts the respawn process
+        function handleGamePlayerRespawn(data) {
+            console.log("Player respawned on the server");
+            playerRespawnTimeOver();
+        }
+
         // Either show or hide the switch lane button
         function handleGamePlayerNearBaseEvent(data) {
             if (data.nearBase === 0) {
@@ -149,32 +144,6 @@ angular.module('gameView', ['ngRoute'])
                 $scope.nearBase = true;
             }
         }
-
-        // Reduce the width of the health bar to the fraction of remaining health
-        function handleGamePlayerChangeHealth(data) {
-            // var healthBar = document.getElementById("health-bar-remaining");
-            // var lostHealthBar = document.getElementById("health-bar-lost");
-
-            // var remainingHealth = (data.playerHealth / data.maxHealth);
-
-            // var reaminingWidth = 100 * remainingHealth;
-            // var lostWidth = 100 * (1 - remainingHealth);
-
-            // if (remainingHealth < 0.5) {
-            //     healthBar.style.backgroundColor = "#D35400"; //burnt ornage
-            //     lostHealthBar.style.backgroundColor = "#EB974E"; // sea buckthorn
-            // } else {
-            //     healthBar.style.backgroundColor = "#26A65B"; //burnt ornage
-            //     lostHealthBar.style.backgroundColor = "#90C695"; // sea buckthorn
-            // }
-
-            // reaminingWidth = reaminingWidth.toString() + "%";
-            // lostWidth = lostWidth.toString() + "%";
-            // healthBar.style.width = reaminingWidth;
-            // lostHealthBar.style.width = lostWidth;
-            console.log(data);
-        }
-
 
         /*
             Helper functions 
@@ -211,10 +180,6 @@ angular.module('gameView', ['ngRoute'])
         function playerRespawnTimeOver() {
             $scope.timeToRespawn = "Now";
             $scope.playerDead = false;
-            handleGamePlayerChangeHealth({
-                playerHealth: 1000,
-                maxHealth: 1000
-            });
             setTeamBackground();
         }
 
@@ -229,10 +194,6 @@ angular.module('gameView', ['ngRoute'])
             }
         }
 
-        /*
-            Code to handle double click events on webkit (IOS) browsers        
-        */
-
         //  Fired when user selects input button on game controller page
         // input can be one of several driections or powers, sends this input to the server
         // TODO rename this function to movement changed
@@ -245,7 +206,6 @@ angular.module('gameView', ['ngRoute'])
                 console.log(res);
             });
         };
-
 
         $scope.useSpecial = function(special) {
             handleSpecialClicked(special);
