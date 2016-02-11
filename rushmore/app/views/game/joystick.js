@@ -128,12 +128,8 @@ angular.module('gameView')
         padRadius = centerX * 0.85;
 
 
-        // Draw the pad initally on the canvas
-        drawPad();
-        drawKnob();
-        drawSwitchBaseButton();
-        drawPlayerHealthRing();
-        draw();
+        // Draw all stuff on the campus
+        updateAll();
 
 
         /*
@@ -189,7 +185,7 @@ angular.module('gameView')
             playerHealthLostRad = toRadians(180 * (1 - remainingHealthRatio)) + 0.001;
 
             //update the whole canvas with updated health ring
-            draw();
+            updateAll();
         }
 
         // Sent from the server when the player respawns in the game, starts the respawn process
@@ -210,7 +206,7 @@ angular.module('gameView')
             baseHealthLostRad = toRadians(180 * (1 - remainingHealthRatio));
 
             //update the whole canvas with updated health ring
-            draw();
+            updateAll();
         }
 
         /*
@@ -310,6 +306,14 @@ angular.module('gameView')
         // Draw all the elements to the screen
         function draw() {
 
+            updateAll();            
+
+            if (animate) {
+                requestAnimationFrame(draw);
+            }
+        }
+
+        function updateAll(){
             // clear the canvas of any elemnt
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -320,10 +324,6 @@ angular.module('gameView')
 
             if (switchEnabled) {
                 drawSwitchBaseButton(); // TODO this will be disabled soon
-            }
-
-            if (animate) {
-                requestAnimationFrame(draw);
             }
         }
 
