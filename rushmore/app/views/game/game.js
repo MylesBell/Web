@@ -88,19 +88,17 @@ angular.module('gameView', ['ngRoute'])
                     $rootScope.$emit("canvas.touch.start", e);
                 } else if (touchedElementId.indexOf("special") > -1) {
                     // or handle special powers being selected
-                    $scope.specialPowers.forEach(function(sp) {
-                        if (touchedElementId.indexOf(sp.index) > -1) {
-                            handleSpecialClicked(sp);
-                        }
-                    });
+                    clickSpecial(touchedElementId);
                 }
             }
         });
 
-        function handleSpecial(sp) {
-            if (touchedElementId.indexOf(sp.index) > -1) {
-                handleSpecialClicked(sp);
-            }
+        function clickSpecial(touchedElementId) {
+            $scope.specialPowers.forEach(function(sp) {
+                if (touchedElementId.indexOf(sp.index) > -1) {
+                    handleSpecialClicked(sp);
+                }
+            });
         }
 
         /*
