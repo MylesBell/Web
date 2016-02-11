@@ -134,7 +134,6 @@ angular.module('gameView', ['ngRoute'])
             $scope.timeToRespawn = "Now";
             $scope.playerDead = false;
             setTeamBackground();
-            playerRespawnTimeOver();
         }
 
         // Either show or hide the switch lane button
