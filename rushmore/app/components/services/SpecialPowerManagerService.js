@@ -10,7 +10,7 @@ angular.module('myApp').factory('SpecialPowerManagerService', function($q, $inte
         var deferred = $q.defer();
 
         // vibrate the phone for 200 miliseconds
-        window.navigator.vibrate(1000);
+        navigator.vibrate(1000);
 
         special.enabled = "special-disabled";
 
