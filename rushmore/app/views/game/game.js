@@ -7,7 +7,7 @@ angular.module('gameView', ['ngRoute'])
         $scope.playerDead = false;
         $scope.timeToRespawn = 5;
         $scope.gameOver = false;  
-        $scope.winner = ""
+        $scope.winner = "";
 
         var respawnTimer; // TODO put this into a timer service
         var timeToRespawn = 5;
