@@ -1,5 +1,5 @@
 angular.module('gameView', ['ngRoute'])
-    .controller('GameCtrl', ['$scope', 'InputHandlerService', "NetworkService", "UserService", "$interval", "SpecialPowerManagerService", function($scope, InputHandlerService, NetworkService, UserService, $interval, SpecialPowerManagerService) {
+    .controller('GameCtrl', ['$scope', 'InputHandlerService', "NetworkService", "UserService", "$interval", "SpecialPowerManagerService", "$rootScope", function($scope, InputHandlerService, NetworkService, UserService, $interval, SpecialPowerManagerService, $rootScope) {
 
         $scope.teamClass = UserService.getUserTeam();
         $scope.teamClassCSS = "blue-team";
@@ -66,9 +66,47 @@ angular.module('gameView', ['ngRoute'])
             call: handleGamePlayerRespawn
         });
 
+        /*
+            Attach event listeners to page to handle touches to both the canvas and other UI elements
+            Touch events captured here are emitted on the root scope as a communication channel
+            Other components (joystick) can then listen to the root scope and act when an event occurs
+
+            This allows for multitouch of the joytick and specials at the same time
+        */
+
+        var mainContainer = document.getElementById('main-container');
+        mainContainer.addEventListener('touchstart', function(e) {
+
+            // Prevent pull down to refresh and etc
+            e.preventDefault();
+
+            // handle every touch point on the screen
+            for (var i = 0; i < e.touches.length; i++) {
+                var touch = e.touches[i];
+
+                // get the element that the finger is over
+                var touchedElementId = (document.elementFromPoint(touch.clientX, touch.clientY)).id;
+
+
+
+                // either tell the canvas to start listening to events for the joystick
+                if (touchedElementId === "joystick-canvas") {
+                    $rootScope.$emit("canvas.touch.start", e);
+                } else if (touchedElementId.indexOf("special") > -1) {
+                    // or handle special powers being selected
+                    $scope.specialPowers.forEach(handleSpecial);
+                }
+            }
+        });
+
+        function handleSpecial(sp) {
+            if (touchedElementId.indexOf(sp.index) > -1) {
+                handleSpecialClicked(sp);
+            }
+        }
 
         /*
-            Handle game events sent by the server
+            Handle game events sent by the server or UI
         */
 
         // Sent from the server when the player respawns in the game, starts the respawn process
@@ -78,17 +116,14 @@ angular.module('gameView', ['ngRoute'])
         }
 
         // handle when a special button is clicked
-        // grey/hide button and set timer, when cooldown over reset the special button
         function handleSpecialClicked(specialUsed) {
-            if (specialUsed.enabled === "") {
 
+            if (specialUsed.enabled === "") {
                 // set the disabled class for the special object in markup
-                specialUsed.enabled = "special-disabled";
                 $scope.inputButtonClicked("special");
 
-                // take off the disbaled css when the timeout is over
                 SpecialPowerManagerService.specialButtonUsed(specialUsed).then(function(special) {
-                    special.enabled = "";
+                    // don't need to do anything here
                 });
             } else {
                 // special is still cooling down
@@ -215,12 +250,8 @@ angular.module('gameView', ['ngRoute'])
         };
 
 
-        function switchLane() {
-            $scope.inputButtonClicked("switch");
-        }
-
-        $scope.useSpecial = function(specialNumber) {
-            handleSpecialClicked(specialNumber); // TODO made this generic to other special button
+        $scope.useSpecial = function(special) {
+            handleSpecialClicked(special);
         };
 
     }]);
