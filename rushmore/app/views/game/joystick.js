@@ -373,7 +373,7 @@ angular.module('gameView')
             startAngle = ((3 / 2) * Math.PI) + baseHealthLostRad;
             endAngle = ((3 / 2) * Math.PI) - baseHealthLostRad;
             ctx.strokeStyle = teamColors.health.base.remaining;
-            ctx.strokeStyle = teamColors.health.player.remaining;
+            ctx.fillStyle = teamColors.health.base.remaining;
             ctx.beginPath();
             ctx.arc(centerX, centerY, padRadius * 0.65, endAngle, startAngle, true);
             ctx.stroke();
