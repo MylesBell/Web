@@ -10,7 +10,7 @@ angular.module('gameView', ['ngRoute'])
         $scope.winner = "";
 
         var respawnTimer; // TODO put this into a timer service
-        var timeToRespawn = 5;
+        var respawnTime = $scope.timeToRespawn;
 
         var switchButton = document.getElementById('switch-button');
         var mainContainer = document.getElementById('main-container');
@@ -125,13 +125,11 @@ angular.module('gameView', ['ngRoute'])
         // Called when The player has died on the server, Change to the respawn screen and start the respawn timer
         // The timeleft is the time from now until when they should respawn (timestamp sent by the server)
         function handleGamePlayerDied(data) {
-            // use ceil to get rid of the decimal places
-            var timeLeft = Math.ceil(data.respawnTimestamp) - Math.ceil((Date.now() / 1000));
 
             // show the respawn screen
             $scope.teamClassCSS = "dead-team";
             $scope.playerDead = true;
-            $scope.timeToRespawn = timeLeft; // should be timeleft
+            $scope.timeToRespawn = respawnTime; // should be timeleft
 
             // Set and start the the respawn timer 
             respawnTimer = $interval(respawnTimerUpdate, 1000);
@@ -140,10 +138,13 @@ angular.module('gameView', ['ngRoute'])
         // Sent from the server when the player respawns in the game, starts the respawn process
         function handleGamePlayerRespawn(data) {
             console.log("Player respawned on the server");
-            playerRespawnTimeOver();
+            $scope.timeToRespawn = "Now";
+            $scope.playerDead = false;
+            setTeamBackground();
         }
 
         // Either show or hide the switch lane button
+        // Can only be alled by a unity event, not on client side
         function handleGamePlayerNearBaseEvent(data) {
             if (data.nearBase === 0) {
                 $scope.nearBase = false;
@@ -191,20 +192,11 @@ angular.module('gameView', ['ngRoute'])
             container.style.top = "0px";
         }
 
-        // Shows the player controls again, sets the health bar to full and puts background on again
-        // Can only be alled by a unity event, not on client side
-        function playerRespawnTimeOver() {
-            $scope.timeToRespawn = "Now";
-            $scope.playerDead = false;
-            setTeamBackground();
-        }
-
         // When called, will reduced the time to respawn by 1 each second
         // will clear itself when it gets to 0 BUT not call the respawn, this only on the server's command
         function respawnTimerUpdate() {
             $scope.timeToRespawn = $scope.timeToRespawn - 1;
-            timeToRespawn = timeToRespawn - 1;
-            if (timeToRespawn <= 0) {
+            if ($scope.timeToRespawn <= 0) {
                 $interval.cancel(respawnTimer);
                 console.log("respawn timer is done");
             }

@@ -42,7 +42,7 @@ angular.module('myApp').factory('NetworkService', function($q, socket, StorageSe
         alertListeners("gamePlayerNearBase", data);
     });
 
-    socket.on("gamePlayerChangeHealth", function(data){
+    socket.on("gamePlayerChangeHealth", function(data) {
         alertListeners("gamePlayerChangeHealth", data);
     });
 
@@ -52,6 +52,10 @@ angular.module('myApp').factory('NetworkService', function($q, socket, StorageSe
 
     socket.on("gamePlayerRespawn", function(data) {
         alertListeners("gamePlayerRespawn", data);
+    });
+
+    socket.on("gameBaseChangeHealth", function(data) {
+        alertListeners("gameBaseChangeHealth", data);
     });
 
     function alertListeners(eventName, eventData) {

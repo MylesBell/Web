@@ -28,9 +28,9 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
             }
         },
         red: {
-            dark: "#96281B",
-            primary: "#D91E18",
-            highlight: "#E74C3C",
+            dark: "#96281B", //old brick
+            primary: "#D91E18", // thunderbrid
+            highlight: "#E74C3C", //cinnabar
             health: {
                 player: {
                     remaining: "#87D37C", // gossip
@@ -38,7 +38,7 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
                 },
                 base: {
                     lost: "#C5EFF7", // Humming bird
-                    remaining: "#59ABE3", // Picton Blue
+                    remaining: "#E74C3C", //cinnabar
                 }
             }
         },

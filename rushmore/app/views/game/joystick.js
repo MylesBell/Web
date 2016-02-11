@@ -28,6 +28,11 @@ angular.module('gameView')
             call: handleGamePlayerRespawn
         });
 
+        NetworkService.registerListener({
+            eventName: "gameBaseChangeHealth",
+            call: handleGameBaseChangeHealth
+        });
+
 
         // Redraw the canvas when the window is resize, for example when going into fullscreen
         window.addEventListener("resize", function() {
@@ -77,7 +82,8 @@ angular.module('gameView')
         // Health as told by the server
         var currentHealth;
         var maxHealth;
-        var healthLostRad = 0.0001; // number of rads removed from the semi circle of health i.e 45 degress is 75% health
+        var playerHealthLostRad = 0.0001; // number of rads removed from the semi circle of health i.e 45 degress is 75% health
+        var baseHealthLostRad = 0.0001;
 
         // set the colours
         var teamColors = UserService.getTeamColor();
@@ -122,12 +128,8 @@ angular.module('gameView')
         padRadius = centerX * 0.85;
 
 
-        // Draw the pad initally on the canvas
-        drawPad();
-        drawKnob();
-        drawSwitchBaseButton();
-        drawPlayerHealthRing();
-        draw();
+        // Draw all stuff on the campus
+        updateAll();
 
 
         /*
@@ -179,20 +181,31 @@ angular.module('gameView')
             var remainingHealthRatio = (data.playerHealth / data.maxHealth);
 
             // how many rads is removed from the health using remaining ratio
-            healthLostRad = toRadians(180 * (1 - remainingHealthRatio));
+            // add small delta to lost is not 0, and will not draw a ring
+            playerHealthLostRad = toRadians(180 * (1 - remainingHealthRatio)) + 0.02;
 
             //update the whole canvas with updated health ring
-            draw();
+            updateAll();
         }
 
         // Sent from the server when the player respawns in the game, starts the respawn process
         function handleGamePlayerRespawn(data) {
             console.log("Player respawned on the server");
-            healthLostRad = 0.0001; // number of rads removed from the semi circle of health i.e 45 degress is 75% health
             handleGamePlayerChangeHealth({
                 playerHealth: 1000, // TODO make this not constant
                 maxHealth: 1000
             });
+        }
+
+        function handleGameBaseChangeHealth(data) {
+            // get fraction of health remaining
+            var remainingHealthRatio = (data.currentBaseHealth / data.maxBaseHealth);
+
+            // how many rads is removed from the health using remaining ratio
+            baseHealthLostRad = toRadians(180 * (1 - remainingHealthRatio));
+
+            //update the whole canvas with updated health ring
+            updateAll();
         }
 
         /*
@@ -292,6 +305,14 @@ angular.module('gameView')
         // Draw all the elements to the screen
         function draw() {
 
+            updateAll();            
+
+            if (animate) {
+                requestAnimationFrame(draw);
+            }
+        }
+
+        function updateAll(){
             // clear the canvas of any elemnt
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -302,10 +323,6 @@ angular.module('gameView')
 
             if (switchEnabled) {
                 drawSwitchBaseButton(); // TODO this will be disabled soon
-            }
-
-            if (animate) {
-                requestAnimationFrame(draw);
             }
         }
 
@@ -343,19 +360,21 @@ angular.module('gameView')
 
             // caluclate the size of health ring to draw based on the health lost
             // get angle from the top (270 degree) position
-            var startAngle = ((3 / 2) * Math.PI) + healthLostRad;
-            var endAngle = ((3 / 2) * Math.PI) - healthLostRad;
-            ctx.fillStyle = teamColors.health.player.remaining; // darkColor;
-            ctx.strokeStyle = teamColors.health.player.remaining; //  "#26A65B"; // eucalyptus
+            var startAngle = ((3 / 2) * Math.PI) + playerHealthLostRad;
+            var endAngle = ((3 / 2) * Math.PI) - playerHealthLostRad;
+            ctx.fillStyle = teamColors.health.player.remaining;
+            ctx.strokeStyle = teamColors.health.player.remaining;
             ctx.lineWidth = 10;
             ctx.beginPath();
             ctx.arc(centerX, centerY, padRadius * 0.85, endAngle, startAngle, true);
             ctx.stroke();
 
-
-            ctx.strokeStyle = "#59ABE3";
+            startAngle = ((3 / 2) * Math.PI) + baseHealthLostRad;
+            endAngle = ((3 / 2) * Math.PI) - baseHealthLostRad;
+            ctx.strokeStyle = teamColors.health.base.remaining;
+            ctx.fillStyle = teamColors.health.base.remaining;
             ctx.beginPath();
-            ctx.arc(centerX, centerY, padRadius * 0.65, 4.01426, 5.41052, true);
+            ctx.arc(centerX, centerY, padRadius * 0.65, endAngle, startAngle, true);
             ctx.stroke();
         }
 
