@@ -5,10 +5,10 @@ angular.module('gameView', ['ngRoute'])
         $scope.teamClassCSS = "blue-team";
         $scope.nearBase = false;
         $scope.playerDead = false;
-        $scope.timeToRespawn = 10;
+        $scope.timeToRespawn = 5;
 
         var respawnTimer; // TODO put this into a timer service
-        var respawnTime = 10;
+        var respawnTime = $scope.timeToRespawn;
 
         var switchButton = document.getElementById('switch-button');
         var mainContainer = document.getElementById('main-container');
