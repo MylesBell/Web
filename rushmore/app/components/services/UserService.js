@@ -197,7 +197,6 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
 
 
 
-
     /* --------------------
         PUBLIC API
     ---------------- */
@@ -210,8 +209,7 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
         getUsername: getUsername,
         getUserID: getUserID,
         setUserID: setUserID,
-        getTeamColor: getTeamColor,
-        registerListener: registerListener
+        getTeamColor: getTeamColor
     };
 
 });
