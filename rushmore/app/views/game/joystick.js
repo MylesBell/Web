@@ -151,7 +151,6 @@ angular.module('gameView')
             id = window.requestAnimationFrame(draw);
         }
 
-
         // Bind event for user letting go of knob with mouse
         // stop the updating of the canvas and remove movement event listener
         canvas.addEventListener("mouseup", function(e) {
@@ -163,7 +162,6 @@ angular.module('gameView')
         canvas.addEventListener("touchend", function(e) {
             stopKnobUpdate();
         });
-
 
         // Handle the switch event being selected
         function handleSwitchButtonClicked() {
@@ -397,8 +395,6 @@ angular.module('gameView')
             var radOffset = (-22.5) * (Math.PI / 180);
             var startingAngle = 0;
 
-            // var startAngleRad = (startingAngle) * (Math.PI / 180);
-
             // the start and end drawing angles
             var startAngleRad = radOffset;
             var endAngleRad = (startAngleRad + (arcAngle * (Math.PI / 180)));
@@ -408,8 +404,6 @@ angular.module('gameView')
             // Draw the movement pads, colour the one the touch is in
             // Also set the movement direction to the currently highlighted pad
             for (var i = 0; i < 8; i++) {
-
-
                 // if the knob is inside the movements arcs, outside deadzone and enabled
                 if (angleToOrigin >= startAngleRad && angleToOrigin <= endAngleRad && joystick.distToOrigin > deadZoneRadius && joystick.distToOrigin < padRadius && joystick.down) {
                     ctx.fillStyle = "#ECECEC";
