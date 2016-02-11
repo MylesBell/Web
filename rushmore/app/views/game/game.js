@@ -51,7 +51,7 @@ angular.module('gameView', ['ngRoute'])
             call: handleGamePlayerNearBaseEvent
         });
 
-        UserService.registerListener({
+        NetworkService.registerListener({
             eventName: "gamePlayerChangeHealth",
             call: handleGamePlayerChangeHealth
         });
