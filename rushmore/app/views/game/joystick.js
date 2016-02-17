@@ -446,7 +446,7 @@ angular.module('gameView')
                 ctx.fill();
 
                 // Update start and end to draw new rad by arcAngleRad
-                var temp = startAngleRad;Ï
+                var temp = startAngleRad;
                 startAngleRad = endAngleRad % (Math.PI * 2);
                 endAngleRad = (endAngleRad + arcAngleRad);
             }

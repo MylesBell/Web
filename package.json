@@ -33,6 +33,23 @@
     "grunt-express-server": "^0.5.1",
     "grunt-protractor-runner": "^3.0.0",
     "grunt-selenium-webdriver": "^0.2.482",
-    "socket.io": "latest"
+    "socket.io": "latest",
+    "bower": "^1.6.3",
+    "grunt": "^0.4.5",
+    "grunt-bower-task": "^0.4.0",
+    "grunt-concurrent": "^2.1.0",
+    "grunt-contrib-jshint": "^0.11.3",
+    "grunt-ng-constant": "^1.1.0",
+    "grunt-nodemon": "^0.4.0",
+    "grunt-npm-install": "^0.2.0",
+    "http-server": "^0.6.1",
+    "jasmine": "^2.4.1",
+    "jasmine-core": "^2.3.4",
+    "karma": "~0.12",
+    "karma-chrome-launcher": "^0.1.12",
+    "karma-firefox-launcher": "^0.1.6",
+    "karma-jasmine": "^0.3.5",
+    "karma-junit-reporter": "^0.2.2",
+    "protractor": "^2.1.0"
   }
 }

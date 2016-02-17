@@ -10,8 +10,14 @@ angular.module('myApp').factory('SpecialPowerManagerService', function($q, $inte
     var specialButtonUsed = function(special) {
         var deferred = $q.defer();
 
-        // vibrate the phone for 200 miliseconds
-        window.navigator.vibrate(vibrateTime);
+        // Get the vibrate api if it exists, else make the function false
+        var vibrate = window.navigator.vibrate || false;
+
+        if (vibrate) {
+            vibrate(vibrateTime);
+        } else {
+            // no vibrate, do nothing, sucks for iOS
+        }
 
         special.enabled = "special-disabled";
 

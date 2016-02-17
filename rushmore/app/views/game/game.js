@@ -160,7 +160,7 @@ angular.module('gameView', ['ngRoute'])
                 $scope.gameOver = true;  
                 $scope.winnerTeam = data.winner === 0 ? "Red Team" : "Blue Team";
                 $scope.winner = data.winner;
-            } else if(data.state == 1) {
+            } else if(data.state === 1) {
                 // game player, remove the game over thing
                 $scope.gameOver = false;  
             }           
