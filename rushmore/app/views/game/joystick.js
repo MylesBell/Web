@@ -33,38 +33,6 @@ angular.module('gameView')
             call: handleGameBaseChangeHealth
         });
 
-
-        // Redraw the canvas when the window is resize, for example when going into fullscreen
-        window.addEventListener("resize", function() {
-
-            console.log("resizing");
-
-
-            // Make it visually fill the positioned parent
-            canvas.style.width = '100%';
-            canvas.style.height = '100%';
-            // ...then set the internal size to match
-            canvas.width = canvas.offsetWidth;
-            canvas.height = canvas.offsetHeight;
-
-            // Get the center coords of the canvas
-            centerX = canvas.width / 2;
-            centerY = canvas.height / 2;
-
-            padRadius = centerX * 0.85
-
-            // ensure the pad circle fits inside the resized canvas
-            fitPadToCanvas();
-
-            console.log(canvas.height);
-            console.log(padRadius);
-            console.log("done resize");
-
-            // redraw the pad
-            updateAll();
-
-        });
-
         /*
             Canvas Setup            
         */
@@ -125,29 +93,7 @@ angular.module('gameView')
             down: false // whether it is currently selected or not
         };
 
-        // Make it visually fill the positioned parent
-        canvas.style.width = '100%';
-        canvas.style.height = '100%';
-        // ...then set the internal size to match
-        canvas.width = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
-
-        // Get the center coords of the canvas
-        centerX = canvas.width / 2;
-        centerY = canvas.height / 2;
-
-        // scale pad radius from center
-        padRadius = centerX * 0.85;
-
-        fitPadToCanvas();
-
-        console.log(canvas.width);
-        console.log(padRadius);
-        console.log(centerX);
-
-
-        // Draw all stuff on the campus
-        updateAll();
+        resizeCanvas();
 
 
         /*
@@ -182,6 +128,9 @@ angular.module('gameView')
         canvas.addEventListener("touchend", function(e) {
             stopKnobUpdate();
         });
+
+        // Redraw the canvas when the window is resize, for example when going into fullscreen
+        window.addEventListener("resize", resizeCanvas);
 
         // Handle the switch event being selected
         function handleSwitchButtonClicked() {
@@ -231,12 +180,32 @@ angular.module('gameView')
                 Update the joystick location from the mouse or touch events
         */
 
-        function fitPadToCanvas() {
+        function resizeCanvas() {
+
+            // Make it visually fill the positioned parent
+            canvas.style.width = '100%';
+            canvas.style.height = '100%';
+            // ...then set the internal size to match
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+
+            // Get the center coords of the canvas
+            centerX = canvas.width / 2;
+            centerY = canvas.height / 2;
+
+            // scale pad radius from center
+            padRadius = centerX * 0.85;
+
+
             // Handle the canvas being wider than it is tall (i.e landscape mode)
             if (padRadius > (canvas.height / 2)) {
                 console.log("canvas too big, resizing");
                 padRadius = (canvas.height / 2) - joystickRadius / 2;
             }
+
+            // Draw all stuff on the campus
+            updateAll();
+
         }
 
         // Update the postion of the knob to the touch or mouse down position
