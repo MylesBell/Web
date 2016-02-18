@@ -39,6 +39,7 @@ angular.module('gameView')
 
             console.log("resizing");
 
+
             // Make it visually fill the positioned parent
             canvas.style.width = '100%';
             canvas.style.height = '100%';
@@ -50,8 +51,17 @@ angular.module('gameView')
             centerX = canvas.width / 2;
             centerY = canvas.height / 2;
 
+            padRadius = centerX * 0.85
+
+            // ensure the pad circle fits inside the resized canvas
+            fitPadToCanvas();
+
+            console.log(canvas.height);
+            console.log(padRadius);
+            console.log("done resize");
+
             // redraw the pad
-            drawPad();
+            updateAll();
 
         });
 
@@ -129,14 +139,11 @@ angular.module('gameView')
         // scale pad radius from center
         padRadius = centerX * 0.85;
 
-        // Handle the canvas being wider than it is tall (i.e landscape mode)
-        if(padRadius > (canvas.height / 2)) {
-            console.log("canvas too big, resizing");
-            padRadius = (canvas.height / 2) - joystickRadius/2 ;
-        }
+        fitPadToCanvas();
 
-        console.log(canvas.height);
+        console.log(canvas.width);
         console.log(padRadius);
+        console.log(centerX);
 
 
         // Draw all stuff on the campus
@@ -223,6 +230,14 @@ angular.module('gameView')
             Update Fuctions
                 Update the joystick location from the mouse or touch events
         */
+
+        function fitPadToCanvas() {
+            // Handle the canvas being wider than it is tall (i.e landscape mode)
+            if (padRadius > (canvas.height / 2)) {
+                console.log("canvas too big, resizing");
+                padRadius = (canvas.height / 2) - joystickRadius / 2;
+            }
+        }
 
         // Update the postion of the knob to the touch or mouse down position
         function updateKnobPostion(e) {
@@ -316,14 +331,14 @@ angular.module('gameView')
         // Draw all the elements to the screen
         function draw() {
 
-            updateAll();            
+            updateAll();
 
             if (animate) {
                 requestAnimationFrame(draw);
             }
         }
 
-        function updateAll(){
+        function updateAll() {
             // clear the canvas of any elemnt
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
