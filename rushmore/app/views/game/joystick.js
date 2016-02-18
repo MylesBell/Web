@@ -37,6 +37,8 @@ angular.module('gameView')
         // Redraw the canvas when the window is resize, for example when going into fullscreen
         window.addEventListener("resize", function() {
 
+            console.log("resizing");
+
             // Make it visually fill the positioned parent
             canvas.style.width = '100%';
             canvas.style.height = '100%';
@@ -132,6 +134,9 @@ angular.module('gameView')
             console.log("canvas too big, resizing");
             padRadius = (canvas.height / 2) - joystickRadius/2 ;
         }
+
+        console.log(canvas.height);
+        console.log(padRadius);
 
 
         // Draw all stuff on the campus
