@@ -8,7 +8,8 @@ angular.module('headerBarInfoView', ['ngRoute'])
         // The unique game code for each game
         $scope.username = UserService.getUsername();
         $scope.teamClass = UserService.getUserTeam();
-        $scope.hideHeader = true; 
+        $scope.hideHeader = false; 
+        $scope.shitters = "shitters";
 
         // Get the name when the url changes (so that we update when the user enters their 
         // name on the first screen)
@@ -23,6 +24,7 @@ angular.module('headerBarInfoView', ['ngRoute'])
 
         function handlePlayerJoinGame(){
             $scope.hideHeader = true;
+            console.log("wtf");
         }
 
     }]);
