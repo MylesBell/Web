@@ -65,7 +65,7 @@ angular.module('gameView')
         var centerY;
 
         // Size of the control knob
-        var joystickRadius = 40;
+        var joystickRadius = 30;
         // Radius of the control pad
         var padRadius;
         // Radius of the deadzone in center
@@ -126,6 +126,12 @@ angular.module('gameView')
 
         // scale pad radius from center
         padRadius = centerX * 0.85;
+
+        // Handle the canvas being wider than it is tall (i.e landscape mode)
+        if(padRadius > (canvas.height / 2)) {
+            console.log("canvas too big, resizing");
+            padRadius = (canvas.height / 2) - joystickRadius/2 ;
+        }
 
 
         // Draw all stuff on the campus
