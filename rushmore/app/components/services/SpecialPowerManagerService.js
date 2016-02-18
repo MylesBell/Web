@@ -10,11 +10,8 @@ angular.module('myApp').factory('SpecialPowerManagerService', function($q, $inte
     var specialButtonUsed = function(special) {
         var deferred = $q.defer();
 
-        // Get the vibrate api if it exists, else make the function false
-        var vibrate = window.navigator.vibrate || false;
-
-        if (vibrate) {
-            vibrate(vibrateTime);
+        if (window.navigator.vibrate !== undefined ) {
+            window.navigator.vibrate(vibrateTime);
         } else {
             // no vibrate, do nothing, sucks for iOS
         }
