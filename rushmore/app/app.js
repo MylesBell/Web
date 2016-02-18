@@ -8,9 +8,16 @@ angular.module('myApp', [
     "lobbyView",
     "btford.socket-io",
     "LocalStorageModule",
-    "config"
+    "config",
+    "ngIdle",
 ]).
-config(['$routeProvider', function($routeProvider) {
+config(function($routeProvider, IdleProvider, KeepaliveProvider, TitleProvider) {
+    // configure Idle settings
+    IdleProvider.idle(5); // in seconds
+    IdleProvider.timeout(600); // in seconds
+    KeepaliveProvider.interval(2); // in seconds
+    TitleProvider.enabled(false);
+
     $routeProvider.when('/game', {
         templateUrl: 'views/game/game.html',
         controller: 'GameCtrl'
@@ -26,4 +33,8 @@ config(['$routeProvider', function($routeProvider) {
     }).otherwise({
         redirectTo: '/'
     });
-}]);
+}).
+run(function(Idle){
+    // start watching when the app runs. also starts the Keepalive service by default.
+    Idle.watch();
+});
