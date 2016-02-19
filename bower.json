@@ -11,5 +11,8 @@
     "angular-mocks": "~1.4.0",
     "angular-socket-io": "~0.7.0",
     "angular-local-storage": "~0.2.3"
+  },
+  "resolutions": {
+    "angular": "1.4.7"
   }
 }
