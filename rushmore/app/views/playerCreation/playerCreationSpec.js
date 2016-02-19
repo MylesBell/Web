@@ -9,6 +9,14 @@ describe('Player Creation page', function() {
         expect(browser.getTitle()).toEqual('Rushmore');
     });
 
+    it('Header bar should be present', function() {
+
+        browser.waitForAngular();
+
+        expect(element(by.id('header-bar')).isDisplayed()).toBe(true);
+        // expect(false).toBe(true);
+    });
+
     it("clicking input box clears the text inside", function() {
 
         browser.waitForAngular();
