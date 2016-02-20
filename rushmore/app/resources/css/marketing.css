@@ -135,12 +135,12 @@ label {
     background: white; 
  }
 
-.controller-container {
-    /* absolute center .splash within .splash-container */
+/*.controller-container {
+     absolute center .splash within .splash-container 
     width: 100%;
     margin: auto;
     text-align: center;
-}
+}*/
 
 .bottom-container {
     width: 100%;
@@ -152,7 +152,7 @@ label {
     text-align: center;
 }
 
-.controller-container p {
+#main-container p {
     color: rgba(21,21,21,1);
     font-size: 18px;
     opacity: 0.8;
@@ -160,7 +160,7 @@ label {
     line-height: 1.2em;
 }
 
-.controller-container h1{
+#main-container h1{
     color: rgba(21,21,21,1);
     font-size: 25px;
     margin-bottom: 0px;
@@ -170,7 +170,7 @@ label {
     line-height: 1.2em;
 }
 
-.controller-container h2{
+#main-container h2{
     color: rgba(21,21,21,1);
     font-size: 25px;
     margin-bottom: 0px;
@@ -178,13 +178,13 @@ label {
     line-height: 1.2em;
 }
 
-.top-container{
+#top-container{
     height: 120px;
-    padding-top: 60px;
+    padding: 60px;
     background-color: #2d3e50;
 }
 
-.top-container p {
+#top-container p {
    color: white;
    font-size: 20px; 
 }

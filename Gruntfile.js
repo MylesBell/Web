@@ -95,6 +95,12 @@ module.exports = function (grunt) {
                 options: {
                     logConcurrentOutput: true
                 }
+            },
+            run_dev: {
+                tasks: ['run-angular-local', 'run-socket-test'],
+                options: {
+                    logConcurrentOutput: true
+                }
             }
         },
         protractor: {
@@ -156,5 +162,6 @@ module.exports = function (grunt) {
     grunt.registerTask("run-socket-local", ["default", "express:socket", "watch:socket"]);
 
     grunt.registerTask("run-concurrent-local", ["concurrent:run"]);
+    grunt.registerTask("run-concurrent-dev", ["concurrent:run_dev"]);
 
 };
