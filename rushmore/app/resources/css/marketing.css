@@ -189,6 +189,16 @@ label {
    font-size: 20px; 
 }
 
+#tutorial-container {
+    background-color: #446CB3;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
 .lobby-container{
     overflow-y: scroll; 
     height: 100%;
