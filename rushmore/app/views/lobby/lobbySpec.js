@@ -1,5 +1,5 @@
 describe('Lobby page', function() {
-    it('should have a title', function() {
+    it('can get to the lobby', function() {
 
         //navigate to the website
         browser.get('http://localhost:7777/');

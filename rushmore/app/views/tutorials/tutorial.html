@@ -1,5 +1,5 @@
 <div id="tutorial-container">
-    <div id="tutorial1" class="tutorial-page" ng-repeat="tutorial in tutorials" ng-show="tutorial.tutIndex === currentTutorialIndex">
+    <div id="tutorial-{{tutorial.tutIndex}}" class="tutorial-page" ng-repeat="tutorial in tutorials" ng-show="tutorial.tutIndex === currentTutorialIndex">
         <div class="tutorial-lesson" ng-repeat="lesson in tutorial.lessons" ng-class="{'tutorial-left': lesson.alignLeft}" >
             <div class="tutorial-text">
                 {{lesson.lessonText}}
@@ -10,7 +10,7 @@
         </div>
     </div> 
     <div id="tutorial-controls">
-        <div  ng-click="prev()" style="width: 20%;">
+        <div id="tutorial-prev-button" ng-click="prev()" style="width: 20%;">
             {{prevText}}
         </div>
         <div id="tutorial-progress-indicator">
@@ -21,7 +21,7 @@
             <div class="tutorial-progress-dot" ng-class="{'tutorial-progress-dot-active': currentTutorialIndex === 2}">                
             </div>
         </div>
-        <div ng-click="next()"  style="width: 20%;">
+        <div id="tutorial-next-button" ng-click="next()" style="width: 20%;">
             {{nextText}}
         </div>
     </div>    
