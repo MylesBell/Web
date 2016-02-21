@@ -29,6 +29,7 @@ angular.module('headerBarInfoView', ['ngRoute'])
         // useful for refreshing on the same page
         if (LocationService.getPath() !== "/" && LocationService.getPath() !== "/join") {
             $scope.hideHeader = true;
+            console.log("wtf");
         }
 
     }]);
