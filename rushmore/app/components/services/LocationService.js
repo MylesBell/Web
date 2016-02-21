@@ -21,13 +21,18 @@ angular.module('myApp').factory('LocationService', function ($q, $rootScope, $lo
         console.log(path);
         $location.path(path);
     }
+
+    function getPath() {
+        return $location.url();
+    }
     
    /* --------------------
         PUBLIC API
     ---------------- */
 
     return {
-        setPath: setPath
+        setPath: setPath,
+        getPath: getPath
     };
 
 });

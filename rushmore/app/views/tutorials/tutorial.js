@@ -11,10 +11,11 @@ angular.module('tutorialView', ['ngRoute'])
     
    
     $scope.next = function() {
+        console.log("NEXT");
 
-        currentStep += 1;
+        $scope.currentStep += 1;
 
-        if(currentStep < tutorialSteps) {
+        if($scope.currentStep < $scope.tutorialSteps) {
             // move to the next tutorial
         } else {
             // finished tutorial, go to the lobby

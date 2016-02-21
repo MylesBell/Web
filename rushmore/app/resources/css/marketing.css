@@ -175,23 +175,22 @@ label {
 
 #top-container{
     height: 120px;
-    padding: 60px;
+    padding: 40px;
     background-color: #2d3e50;
 }
 
 #top-container p {
    color: white;
-   font-size: 20px; 
+   font-size: 18px; 
 }
 
 #tutorial-container {
     background-color: #446CB3;
-    height: 90%;
-    top: 10%;
+    height: 100%;
+    top: 0%;
     width: 100%;    
     position: absolute;
     color: white;
-
 }
 
 .tutorial-page {
@@ -214,22 +213,28 @@ label {
 }
 
 .tutorial-lesson {
+    height: 30%;
+    width: 100%;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
     align-items: center;
-    font-size: 20px;
-}
-
-.tutorial-lesson {
-    height: 30%;
-    width: 100%;
+    font-size: 16px;
 }
 
 .tutorial-lesson img {
     height: 100px;
     width: auto;
 }
+
+.tutorial-text {
+    width: 40%;
+    text-align: center;
+ }
+
+ .tutorial-image {
+    width: 40%;
+ }
 
 .tutorial-left {
     flex-flow: row-reverse wrap;
@@ -246,31 +251,31 @@ label {
 
 .tutorial-progress-dot {
     border-radius: 50%;
-    width: 20px;
-    height: 20px;    
+    width: 10px;
+    height: 10px;    
     background-color: white;
 }
 
-.lobby-container{
+#lobby-container{
     overflow-y: scroll; 
     height: 100%;
     display:block;
     overflow:auto;
 }
 
-.lobby-container ul {
+#lobby-container ul {
     list-style-type: none;
     padding-left: 0px;
 }
 
-.lobby-container h1 {
+#lobby-container h1 {
     list-style-type: none;
     padding-left: 0px;
     padding-top: 10px;
     font-size: 20px;
 }
 
-.lobby-container li {
+#lobby-container li {
     list-style-type: none;
     padding-left: 0px;
     padding-bottom: 5px;
