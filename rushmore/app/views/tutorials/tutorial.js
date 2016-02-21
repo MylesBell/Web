@@ -9,54 +9,64 @@ angular.module('tutorialView', ['ngRoute'])
         $scope.tutorialSteps = 3;
         $scope.currentTutorialIndex = 0;
         $scope.nextText = "NEXT";
+        $scope.prevText = "";
 
         $scope.tutorials = [{
             numLessons: 3,
             tutIndex: 0,
             lessons: [{
                 lessonIndex: 0,
-                lessonText: "You are a powerful hero",
-                lessonImage: "../../resources/images/eye_black.png"
+                lessonText: "You control a powerful hero",
+                lessonImage: "../../resources/images/eye_black.png",
+                alignLeft: true
             }, {
                 lessonIndex: 1,
                 lessonText: "Destroy the enemy base to win",
-                lessonImage: "../../resources/images/eye_black.png"
+                lessonImage: "../../resources/images/eye_black.png",
+                alignLeft: false
             }, {
                 lessonIndex: 2,
-                lessonText: "Kill enemy grunts to increase your power",
-                lessonImage: "../../resources/images/heart_green.png"
+                lessonText: "Stop your base from being destroyed",
+                lessonImage: "../../resources/images/heart_black.png",
+                alignLeft: true
             }]
-        },{
+        }, {
             numLessons: 3,
             tutIndex: 1,
             lessons: [{
-                lessonIndex: 0,
-                lessonText: "FUCKING GAY BOY",
-                lessonImage: "../../resources/images/heart_black.png"
-            }, {
                 lessonIndex: 1,
-                lessonText: "You are a powerful hero",
-                lessonImage: "../../resources/images/eye_black.png"
+                lessonText: "You will auto-attack nearby enemies",
+                lessonImage: "../../resources/images/eye_black.png",
+                alignLeft: false
             }, {
                 lessonIndex: 2,
-                lessonText: "I'M A STINKY POOP",
-                lessonImage: "../../resources/images/eye_purple.png"
+                lessonText: "Activate special abilites to help you in battle",
+                lessonImage: "../../resources/images/eye_purple.png",
+                alignLeft: true
+            }, {
+                lessonIndex: 2,
+                lessonText: "Defeating grunts increases your power",
+                lessonImage: "../../resources/images/heart_green.png",
+                alignLeft: false
             }]
-        },{
+        }, {
             numLessons: 3,
             tutIndex: 2,
             lessons: [{
                 lessonIndex: 0,
-                lessonText: "ANOTHER ONE",
-                lessonImage: "../../resources/images/eye_black.png"
+                lessonText: "Deating ",
+                lessonImage: "../../resources/images/eye_black.png",
+                alignLeft: true
             }, {
                 lessonIndex: 1,
                 lessonText: "You are a powerful hero",
-                lessonImage: "../../resources/images/flame_red.png"
+                lessonImage: "../../resources/images/flame_red.png",
+                alignLeft: false
             }, {
                 lessonIndex: 2,
                 lessonText: "The key to success is the key",
-                lessonImage: "../../resources/images/eye_black.png"
+                lessonImage: "../../resources/images/eye_black.png",
+                alignLeft: true
             }]
         }];
 
@@ -65,9 +75,10 @@ angular.module('tutorialView', ['ngRoute'])
                 // move to the next tutorial
                 $scope.currentTutorialIndex += 1;
                 $scope.nextText = "NEXT";
+                $scope.prevText = "PREV";
 
                 // Indicate they can move to the lobby on the last tutorial page
-                if($scope.currentTutorialIndex + 1 === $scope.tutorialSteps) {
+                if ($scope.currentTutorialIndex + 1 === $scope.tutorialSteps) {
                     $scope.nextText = "LOBBY";
                 }
 
@@ -82,8 +93,13 @@ angular.module('tutorialView', ['ngRoute'])
                 // move to the next tutorial
                 $scope.currentTutorialIndex -= 1;
                 $scope.nextText = "NEXT";
+
+                if($scope.currentTutorialIndex === 0){
+                    $scope.prevText = "";
+                }
             } else {
-                // Can't go back any further 
+                // Can't go back any further
+                $scope.prevText = ""; 
             }
         };
 

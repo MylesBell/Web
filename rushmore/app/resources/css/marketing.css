@@ -9,7 +9,7 @@
 body {
     line-height: 1.7em;
     color: #7f8c8d;
-    font-size: 13px;
+    font-size: 18px;
 }
 
 h1,
@@ -219,7 +219,7 @@ label {
     flex-flow: row wrap;
     justify-content: space-around;
     align-items: center;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .tutorial-lesson img {
@@ -241,7 +241,7 @@ label {
 }
 
 #tutorial-progress-indicator {
-    width: 40%;
+    width: 30%;
     height: 100%;
     display: flex;
     flex-flow: row wrap;
@@ -253,6 +253,10 @@ label {
     border-radius: 50%;
     width: 10px;
     height: 10px;    
+    background-color: grey;
+}
+
+.tutorial-progress-dot-active {
     background-color: white;
 }
 
