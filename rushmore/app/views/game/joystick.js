@@ -33,26 +33,6 @@ angular.module('gameView')
             call: handleGameBaseChangeHealth
         });
 
-
-        // Redraw the canvas when the window is resize, for example when going into fullscreen
-        window.addEventListener("resize", function() {
-
-            // Make it visually fill the positioned parent
-            canvas.style.width = '100%';
-            canvas.style.height = '100%';
-            // ...then set the internal size to match
-            canvas.width = canvas.offsetWidth;
-            canvas.height = canvas.offsetHeight;
-
-            // Get the center coords of the canvas
-            centerX = canvas.width / 2;
-            centerY = canvas.height / 2;
-
-            // redraw the pad
-            drawPad();
-
-        });
-
         /*
             Canvas Setup            
         */
@@ -65,7 +45,7 @@ angular.module('gameView')
         var centerY;
 
         // Size of the control knob
-        var joystickRadius = 40;
+        var joystickRadius = 30;
         // Radius of the control pad
         var padRadius;
         // Radius of the deadzone in center
@@ -113,23 +93,7 @@ angular.module('gameView')
             down: false // whether it is currently selected or not
         };
 
-        // Make it visually fill the positioned parent
-        canvas.style.width = '100%';
-        canvas.style.height = '100%';
-        // ...then set the internal size to match
-        canvas.width = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
-
-        // Get the center coords of the canvas
-        centerX = canvas.width / 2;
-        centerY = canvas.height / 2;
-
-        // scale pad radius from center
-        padRadius = centerX * 0.85;
-
-
-        // Draw all stuff on the campus
-        updateAll();
+        resizeCanvas();
 
 
         /*
@@ -164,6 +128,9 @@ angular.module('gameView')
         canvas.addEventListener("touchend", function(e) {
             stopKnobUpdate();
         });
+
+        // Redraw the canvas when the window is resize, for example when going into fullscreen
+        window.addEventListener("resize", resizeCanvas);
 
         // Handle the switch event being selected
         function handleSwitchButtonClicked() {
@@ -212,6 +179,34 @@ angular.module('gameView')
             Update Fuctions
                 Update the joystick location from the mouse or touch events
         */
+
+        function resizeCanvas() {
+
+            // Make it visually fill the positioned parent
+            canvas.style.width = '100%';
+            canvas.style.height = '100%';
+            // ...then set the internal size to match
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+
+            // Get the center coords of the canvas
+            centerX = canvas.width / 2;
+            centerY = canvas.height / 2;
+
+            // scale pad radius from center
+            padRadius = centerX * 0.85;
+
+
+            // Handle the canvas being wider than it is tall (i.e landscape mode)
+            if (padRadius > (canvas.height / 2)) {
+                console.log("canvas too big, resizing");
+                padRadius = (canvas.height / 2) - joystickRadius / 2;
+            }
+
+            // Draw all stuff on the campus
+            updateAll();
+
+        }
 
         // Update the postion of the knob to the touch or mouse down position
         function updateKnobPostion(e) {
@@ -305,14 +300,14 @@ angular.module('gameView')
         // Draw all the elements to the screen
         function draw() {
 
-            updateAll();            
+            updateAll();
 
             if (animate) {
                 requestAnimationFrame(draw);
             }
         }
 
-        function updateAll(){
+        function updateAll() {
             // clear the canvas of any elemnt
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 

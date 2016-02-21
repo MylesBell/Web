@@ -80,6 +80,15 @@ module.exports = function (grunt) {
                     }
                 }
             },
+            dev_local_wifi: {
+                // use this for configuring when setting up over our local wifi
+                constants: {
+                    ENV: {
+                        name: 'development',
+                        socketIOEndpoint: 'http://192.168.1.3:1337'
+                    }
+                }
+            },
             prod: {
                 constants: {
                     ENV: {
@@ -149,6 +158,7 @@ module.exports = function (grunt) {
     grunt.registerTask("run-socket", ["express:socket"]);
     grunt.registerTask("default", ["check", 'install']);
     grunt.registerTask("run-angular-local-phone", ["default", "ngconstant:dev_phone", "express:angular_loc", "watch:angular"]);
+    grunt.registerTask("run-angular-local-wifi", ["default", "ngconstant:dev_local_wifi", "express:angular_loc", "watch:angular"]);
     grunt.registerTask("run-angular-local", ["default", "ngconstant:dev", "express:angular_loc", "watch:angular"]);
     grunt.registerTask("run-angular-prod", ["default", "ngconstant:prod", "express:angular_prod", "watch:angular"]);
     grunt.registerTask("run-socket-prod", ["default", "express:socket", "watch:socket"]);

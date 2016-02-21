@@ -1,6 +1,6 @@
 <div id="game-join-container" class="controller-container">
     <form id="game-code-submit-form" class="pure-g bottom-container" ng-submit="joinGame()" >               
-        <input id="game-code-input-box" class="input-box pure-u-1 pure-u-md-1-2" type="text" ng-model="gamecode" ng-click="gamecode = ''" ng-disabled="!enableInput"/>
+        <input id="game-code-input-box" class="input-box pure-u-1 pure-u-md-1-2" type="text" ng-model="gamecode" ng-click="gamecode = ''" ng-disabled="!enableInput" style="text-transform: lowercase;"/>
         <p class="splash-subhead pure-u-1 pure-u-md-1-2" style="padding-top:20px">
             {{username}}, the fight needs you. </br>
             Enter the game code shown on the monitors to join a side, then deploy into battle!

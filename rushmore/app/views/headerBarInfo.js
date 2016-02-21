@@ -23,6 +23,7 @@ angular.module('headerBarInfoView', ['ngRoute'])
 
         function handlePlayerJoinGame(){
             $scope.hideHeader = true;
+            console.log("wtf");
         }
 
     }]);
