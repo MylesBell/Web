@@ -97,15 +97,4 @@ describe('Tutorial page', function() {
         expect(element(by.id("tutorial-2")).isDisplayed()).toBe(false);
     });
 
-    // it("User's name should be shown in the lobby list", function() {
-
-    //     // there may be more than one from previous tests
-    //     element.all(by.repeater('playerBlue in players')).last().getText().then(function(text){
-    //         expect(text).toEqual("Dave");
-    //     });
-
-    //     browser.waitForAngular();
-
-    // });
-
 });

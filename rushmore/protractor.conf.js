@@ -1,11 +1,11 @@
 exports.config = {
     framework: 'jasmine',
     specs: [
-        // "app/views/playerCreation/playerCreationSpec.js",
-        // "app/views/game/gameSpec.js",
-        // "app/views/gameJoin/gameJoinSpec.js",
+        "app/views/playerCreation/playerCreationSpec.js",
+        "app/views/game/gameSpec.js",
+        "app/views/gameJoin/gameJoinSpec.js",
         "app/views/tutorials/tutorialSpec.js",
-        // "app/views/lobby/lobbySpec.js"
+        "app/views/lobby/lobbySpec.js"
     ],
     jasmineNodeOpts: {
         isVerbose: true
