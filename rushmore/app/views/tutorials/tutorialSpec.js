@@ -24,7 +24,7 @@ describe('Tutorial page', function() {
     });
 
     it("Prev text should be blank", function() {
-        expect(element(by.binding('prevText')).getText()).toBe("");
+        expect(element(by.binding('prevText')).getText()).toBe("SKIP");
     });
 
     it("Next text should be next", function() {
@@ -67,8 +67,8 @@ describe('Tutorial page', function() {
         expect(element(by.id("tutorial-2")).isDisplayed()).toBe(false);
     });
 
-    it("Prev button should hide again", function() {
-        expect(element(by.binding('prevText')).getText()).toBe("");
+    it("Prev button should go to skip again", function() {
+        expect(element(by.binding('prevText')).getText()).toBe("SKIP");
     });
 
     it("Can advance to the last tutorial and see the lobby button", function() {

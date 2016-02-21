@@ -27,9 +27,13 @@ angular.module('headerBarInfoView', ['ngRoute'])
 
         // Hide the header bar if we're not in the first few pages
         // useful for refreshing on the same page
-        if (LocationService.getPath() !== "/" && LocationService.getPath() !== "/join") {
+        if (LocationService.getPath() === "/" || LocationService.getPath() === "/join") {
+            $scope.hideHeader = false;
+        }
+
+        // TODO make this not shit
+        if (LocationService.getPath() === "/tutorial" || LocationService.getPath() === "/lobby" || LocationService.getPath() === "/game") {
             $scope.hideHeader = true;
-            console.log("wtf");
         }
 
     }]);

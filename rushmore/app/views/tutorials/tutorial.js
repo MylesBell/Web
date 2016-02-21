@@ -9,8 +9,9 @@ angular.module('tutorialView', ['ngRoute'])
         $scope.tutorialSteps = 3;
         $scope.currentTutorialIndex = 0;
         $scope.nextText = "NEXT";
-        $scope.prevText = "";
+        $scope.prevText = "SKIP";
 
+        // TODO pull this out to a service
         $scope.tutorials = [{
             numLessons: 3,
             tutIndex: 0,
@@ -82,6 +83,10 @@ angular.module('tutorialView', ['ngRoute'])
                     $scope.nextText = "LOBBY";
                 }
 
+                if ($scope.currentTutorialIndex === 0) {
+                    $scope.prevText = "SKIP";
+                }
+
             } else {
                 // finished tutorial, go to the lobby
                 LocationService.setPath('/lobby');
@@ -94,12 +99,15 @@ angular.module('tutorialView', ['ngRoute'])
                 $scope.currentTutorialIndex -= 1;
                 $scope.nextText = "NEXT";
 
-                if($scope.currentTutorialIndex === 0){
-                    $scope.prevText = "";
+                if ($scope.currentTutorialIndex === 0) {
+                    $scope.prevText = "SKIP";
                 }
             } else {
-                // Can't go back any further
-                $scope.prevText = ""; 
+                // Can't go back any further, this is the skip button now
+                $scope.prevText = "SKIP";
+
+                // skip to the lobby
+                LocationService.setPath('/lobby');
             }
         };
 
