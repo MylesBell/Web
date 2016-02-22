@@ -18,30 +18,39 @@ angular.module('tutorialView', ['ngRoute'])
             tutIndex: 0,
             tutorialTitle: "You are a powerful hero",
             tutorialText: "Defeating enemy grunts and heros will make you stronger",
-            tutorialImage: "../../resources/images/base_cowboy.png",
+            tutorialImage: {
+                image: "../../resources/images/base_cowboy.png",
+                offset_x: "50%"
+            },
             visible: true
         }, {
             tutIndex: 1,
             tutorialTitle: "Destroy the enemy's base to win",
-            tutorialText: "Your team's grunts will help to keep the enemy from your gates",
-            tutorialImage: "../../resources/images/base_cowboy.png",
+            tutorialText: "Enemy grunts and heros will spawn from their base",
+            tutorialImage: {
+                image: "../../resources/images/grunts_blue_base_behind.png",
+                offset_x: "80%"
+            },
             visible: false
         }, {
             tutIndex: 2,
             tutorialText: "Deating ",
-            tutorialImage: "../../resources/images/base_cowboy.png",
+            tutorialImage: {
+                image: "../../resources/images/grunt_red_base_behind.png",
+                offset_x: "50%"
+            },
             visible: false
         }];
 
         $scope.getStyle = function(tut) {
             var style = {
-                background_image: "linear-gradient(to bottom, rgba(255,255,255,0) 70%,rgba(0,0,0,0.6) 100%), url('" + tut.tutorialImage + "')"
+                background_image: "linear-gradient(to bottom, rgba(255,255,255,0) 70%,rgba(0,0,0,0.6) 100%), url('" + tut.tutorialImage.image + "')",
+                background_position_x: tut.tutorialImage.offset_x
             };
             return style;
         };
 
         $scope.next = function() {
-
             if ($scope.currentTutorialIndex + 1 < $scope.tutorialSteps) {
 
                 $scope.nextText = "NEXT";
@@ -52,30 +61,16 @@ angular.module('tutorialView', ['ngRoute'])
                 prevTutPage.classList.add("tutorial-anim-page-slide-left");
 
                 // when the animation ends, hide the old tutorial page
-                prevTutPage.addEventListener("transitionend", function() {
-                    $scope.tutorials[$scope.currentTutorialIndex].visible = false;
-
-                    // move to the next tutorial
-                    $scope.currentTutorialIndex += 1;
-                    $scope.$apply();
-
-                    //Update the navgation text
-                    if ($scope.currentTutorialIndex === $scope.tutorialSteps) {
-                        // Indicate they can move to the lobby on the last tutorial page
-                        $scope.nextText = "TO LOBBY";
-                    }
-
-                    if ($scope.currentTutorialIndex === 0) {
-                        // allow skipping on the first page
-                        $scope.prevText = "SKIP";
-                    }
-                });
+                prevTutPage.addEventListener("transitionend", afterNextTransition);
 
                 // animate the next lesson moving in
                 var nextTutPage = document.getElementById("tutorial-" + ($scope.currentTutorialIndex + 1));
                 // set the next lesson to visible
                 $scope.tutorials[$scope.currentTutorialIndex + 1].visible = true;
                 nextTutPage.classList.add("tutorial-anim-page-slide-in-left");
+                nextTutPage.addEventListener("animationend", function() {
+                    nextTutPage.classList.remove("tutorial-anim-page-slide-in-left");
+                });
 
             } else {
                 // finished tutorial, go to the lobby
@@ -83,21 +78,65 @@ angular.module('tutorialView', ['ngRoute'])
             }
         };
 
+        function afterNextTransition() {
+            var prevTutPage = document.getElementById("tutorial-" + $scope.currentTutorialIndex);
+            prevTutPage.removeEventListener("transitionend", afterNextTransition);
+            prevTutPage.classList.remove("tutorial-anim-page-slide-left");
+            
+            $scope.tutorials[$scope.currentTutorialIndex].visible = false;
+            // move to the next tutorial
+            $scope.currentTutorialIndex += 1;
+
+            //Update the navgation text
+            if ($scope.currentTutorialIndex + 1 === $scope.tutorialSteps) {
+                // Indicate they can move to the lobby on the last tutorial page
+                $scope.nextText = "TO LOBBY";
+            }
+            $scope.$apply();
+        }
+
+        function afterPrevTransition() {            
+            var prevTutPage = document.getElementById("tutorial-" + $scope.currentTutorialIndex);
+            prevTutPage.removeEventListener("transitionend", afterPrevTransition);
+            prevTutPage.classList.remove("tutorial-anim-page-slide-right");
+
+            $scope.tutorials[$scope.currentTutorialIndex].visible = false;
+            // move to the next tutorial
+            $scope.currentTutorialIndex -= 1;
+
+            if ($scope.currentTutorialIndex === 0) {
+                // allow skipping on the first page
+                $scope.prevText = "SKIP";
+            }
+            $scope.$apply();
+        }
+
         $scope.prev = function() {
             console.log("prev");
             if ($scope.currentTutorialIndex > 0) {
                 // move to the next tutorial
-                $scope.currentTutorialIndex -= 1;
+
                 $scope.nextText = "NEXT";
 
-                if ($scope.currentTutorialIndex === 0) {
-                    $scope.prevText = "SKIP";
-                }
-            } else {
-                // Can't go back any further, this is the skip button now
-                $scope.prevText = "SKIP";
+                // animate the current page moving out
+                var prevTutPage = document.getElementById("tutorial-" + $scope.currentTutorialIndex);
+                prevTutPage.classList.add("tutorial-anim-page-slide-right");
 
-                // skip to the lobby
+                // when the animation ends, hide the old tutorial page
+                prevTutPage.addEventListener("transitionend", afterPrevTransition);
+
+                // animate the next lesson moving in
+                var nextTutPage = document.getElementById("tutorial-" + ($scope.currentTutorialIndex - 1));
+                $scope.tutorials[$scope.currentTutorialIndex - 1].visible = true;
+
+                // set the next lesson to visible
+                nextTutPage.classList.add("tutorial-anim-page-slide-in-right");
+                nextTutPage.addEventListener("animationend", function() {
+                    nextTutPage.classList.remove("tutorial-anim-page-slide-in-right");
+                });
+
+            } else {
+                 // skip to the lobby
                 LocationService.setPath('/lobby');
             }
         };

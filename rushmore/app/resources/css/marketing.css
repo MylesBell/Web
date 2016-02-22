@@ -266,17 +266,32 @@ h1, h2, h3, h4, h5, h6, label {
 }
 
 .tutorial-anim-page-slide-left{
-    transition: 2s;
+    transition: 0.8s;
     transform: translateX(-100%);
+}
+
+.tutorial-anim-page-slide-right{
+    transition: 0.8s;
+    transform: translateX(100%);
 }
 
 .tutorial-anim-page-slide-in-left{
     animation-name: anim-page-slide-in-left;
-    animation-duration: 2s;
+    animation-duration: 0.8s;
+}
+
+.tutorial-anim-page-slide-in-right{
+    animation-name: anim-page-slide-in-right;
+    animation-duration: 0.8s;
 }
 
 @keyframes anim-page-slide-in-left {
     0% {transform: translateX(100%);position: absolute;top: 0px;height:90%;}
+    100% {transform: translateX(0%);position: absolute;top: 0px;height:90%;}
+}
+
+@keyframes anim-page-slide-in-right {
+    0% {transform: translateX(-100%);position: absolute;top: 0px;height:90%;}
     100% {transform: translateX(0%);position: absolute;top: 0px;height:90%;}
 }
 
