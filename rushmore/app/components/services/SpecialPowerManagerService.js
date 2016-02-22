@@ -2,7 +2,7 @@
     Service that provides an interface for sending and recieving messages over the network,
     connects to mobile server using socketio client
 */
-angular.module('myApp').factory('SpecialPowerManagerService', function($q, $interval) {
+angular.module('myApp').factory('SpecialPowerManagerService', function($q, $interval, InputHandlerService) {
 
     var cooldownTIme = 5000;
     var vibrateTime = 200;
@@ -10,14 +10,20 @@ angular.module('myApp').factory('SpecialPowerManagerService', function($q, $inte
     var specialButtonUsed = function(special) {
         var deferred = $q.defer();
 
+        // Vibrate the phone 
         if (window.navigator.vibrate !== undefined ) {
             window.navigator.vibrate(vibrateTime);
         } else {
             // no vibrate, do nothing, sucks for iOS
         }
 
+        // Add the disabled css class to the button
         special.enabled = "special-disabled";
 
+        // Fire the special event to the server
+        InputHandlerService.handleSpecial(special);
+
+        // Set a cooldown timer for the special before it can be used again
         var specialCooldownTimer = $interval(function() {
             // capture special used in closue to allow multple timeouts
             var spec = special;
