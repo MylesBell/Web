@@ -13,62 +13,20 @@ angular.module('tutorialView', ['ngRoute'])
 
         // TODO pull this out to a service
         $scope.tutorials = [{
-            numLessons: 3,
             tutIndex: 0,
-            lessons: [{
-                lessonIndex: 0,
-                lessonText: "You control a powerful hero",
-                lessonImage: "../../resources/images/eye_black.png",
-                alignLeft: true
-            }, {
-                lessonIndex: 1,
-                lessonText: "Destroy the enemy base to win",
-                lessonImage: "../../resources/images/eye_black.png",
-                alignLeft: false
-            }, {
-                lessonIndex: 2,
-                lessonText: "Stop your base from being destroyed",
-                lessonImage: "../../resources/images/heart_black.png",
-                alignLeft: true
-            }]
+            tutorialTitle: "You are a powerful hero",
+            tutorialText: "Defeating enemy grunts and heros will make you stronger",
+            tutorialImage: "../../resources/images/eye_black.png",
         }, {
-            numLessons: 3,
             tutIndex: 1,
-            lessons: [{
-                lessonIndex: 1,
-                lessonText: "You will auto-attack nearby enemies",
-                lessonImage: "../../resources/images/eye_black.png",
-                alignLeft: false
-            }, {
-                lessonIndex: 2,
-                lessonText: "Activate special abilites to help you in battle",
-                lessonImage: "../../resources/images/eye_purple.png",
-                alignLeft: true
-            }, {
-                lessonIndex: 2,
-                lessonText: "Defeating grunts increases your power",
-                lessonImage: "../../resources/images/heart_green.png",
-                alignLeft: false
-            }]
+            tutorialTitle: "Destroy the enemy base to win",
+            tutorialText: "Prevent your base from taking damage or you will lose",
+            tutorialImage: "../../resources/images/eye_black.png",
+
         }, {
-            numLessons: 3,
             tutIndex: 2,
-            lessons: [{
-                lessonIndex: 0,
-                lessonText: "Deating ",
-                lessonImage: "../../resources/images/eye_black.png",
-                alignLeft: true
-            }, {
-                lessonIndex: 1,
-                lessonText: "You are a powerful hero",
-                lessonImage: "../../resources/images/flame_red.png",
-                alignLeft: false
-            }, {
-                lessonIndex: 2,
-                lessonText: "The key to success is the key",
-                lessonImage: "../../resources/images/eye_black.png",
-                alignLeft: true
-            }]
+            tutorialText: "Deating ",
+            tutorialImage: "../../resources/images/eye_black.png",
         }];
 
         $scope.next = function() {
