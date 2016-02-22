@@ -14,14 +14,14 @@
     </div>
     
     <div id="tutorial-controls">
-        <div id="tutorial-prev-button" ng-click="prev()" style="width: 25%; text-align: center;">
+        <div id="tutorial-prev-button" class="tutorial-controls-button" ng-click="prev()">
             {{prevText}}
         </div>
         <div id="tutorial-progress-indicator">
             <div class="tutorial-progress-dot" ng-class="{'tutorial-progress-dot-active': currentTutorialIndex === {{tutorial.tutIndex}} }" ng-repeat="tutorial in tutorials" >
             </div>
         </div>
-        <div id="tutorial-next-button" ng-click="next()" style="width: 25%; text-align: center;">
+        <div id="tutorial-next-button" class="tutorial-controls-button" ng-click="next()">
             {{nextText}}
         </div>
     </div>    

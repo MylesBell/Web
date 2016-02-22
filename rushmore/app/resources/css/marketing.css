@@ -208,6 +208,29 @@ h1, h2, h3, h4, h5, h6, label {
     align-items: center;
 }
 
+.tutorial-controls-button:active {
+    background-color: #5D1F19;
+}
+
+.tutorial-controls-button {
+    width: 25%;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#tutorial-progress-indicator {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
 .tutorial-lesson {
     height: 30%;
     width: 100%;
@@ -221,9 +244,6 @@ h1, h2, h3, h4, h5, h6, label {
 #lessons-container {
     width: 100%;
     height: 90%;
-   /* display: flex;
-    flex-flow: row;
-    align-items: center;*/
 }
 
 .tutorial-lesson img {
@@ -240,7 +260,7 @@ h1, h2, h3, h4, h5, h6, label {
 .tutorial-title {
     width: 80%;
     text-align: center;
-    font-size: 25px;
+    font-size: 30px;
  }
 
  .tutorial-image {
@@ -254,15 +274,6 @@ h1, h2, h3, h4, h5, h6, label {
 
 .tutorial-left {
     flex-flow: row-reverse wrap;
-}
-
-#tutorial-progress-indicator {
-    width: 30%;
-    height: 100%;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    align-items: center;
 }
 
 .tutorial-anim-page-slide-left{

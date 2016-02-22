@@ -5,8 +5,7 @@
 angular.module('tutorialView', ['ngRoute'])
     .controller('TutorialCtrl', ['$scope', 'UserService', 'LocationService', function($scope, UserService, LocationService) {
 
-
-        $scope.tutorialSteps = 3;
+        $scope.tutorialSteps = 6;
         $scope.currentTutorialIndex = 0;
         $scope.nextText = "NEXT";
         $scope.prevText = "SKIP";
@@ -16,8 +15,8 @@ angular.module('tutorialView', ['ngRoute'])
         // TODO pull this out to a service
         $scope.tutorials = [{
             tutIndex: 0,
-            tutorialTitle: "You are a powerful hero",
-            tutorialText: "Defeating enemy grunts and heros will make you stronger",
+            tutorialTitle: "Vikings and Cowboys are locked in endless war",
+            tutorialText: "As a hero, fight alongside your allies to destroy the COWBOYS",
             tutorialImage: {
                 image: "../../resources/images/base_cowboy.png",
                 offset_x: "50%"
@@ -26,7 +25,7 @@ angular.module('tutorialView', ['ngRoute'])
         }, {
             tutIndex: 1,
             tutorialTitle: "Destroy the enemy's base to win",
-            tutorialText: "Enemy grunts and heros will spawn from their base",
+            tutorialText: "Heros and grunts continiously spawn from each team's base",
             tutorialImage: {
                 image: "../../resources/images/grunts_blue_base_behind.png",
                 offset_x: "80%"
@@ -34,13 +33,35 @@ angular.module('tutorialView', ['ngRoute'])
             visible: false
         }, {
             tutIndex: 2,
-            tutorialText: "Deating ",
+            tutorialTitle: "Use your special powers to help in combat",
+            tutorialText: "Defeating enemy grunts and heros will make you and your powers stronger",
             tutorialImage: {
                 image: "../../resources/images/grunt_red_base_behind.png",
                 offset_x: "50%"
             },
             visible: false
+        },{
+            tutIndex: 3,
+            tutorialTitle: "Work with your allies to co-ordinate attacks",
+            tutorialText: "Combine unique powers with friends for maximum destruction",
+            tutorialImage: {
+                image: "../../resources/images/base_cowboy.png",
+                offset_x: "50%"
+            },
+            visible: false
+        }, {
+            tutIndex: 4,
+            tutorialTitle: "Another tutorial side here",
+            tutorialText: "More text that gives more detial about the above text if needed",
+            tutorialImage: {
+                image: "../../resources/images/grunts_blue_base_behind.png",
+                offset_x: "80%"
+            },
+            visible: false
         }];
+
+        $scope.tutorialSteps = $scope.tutorials.length;
+
 
         $scope.getStyle = function(tut) {
             var style = {
@@ -141,18 +162,11 @@ angular.module('tutorialView', ['ngRoute'])
             }
         };
 
-        $scope.skip = function() {
-            LocationService.setPath('/lobby');
-        };
-
         // Change the background colour of the container to the teams colours
         function setTeamBackground() {
             var colors = UserService.getTeamColor();
-
             var tutorialsControlContainer = document.getElementById('tutorial-controls');
-
             tutorialsControlContainer.style.backgroundColor = colors.dark;
-
         }
 
     }]);
