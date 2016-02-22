@@ -415,10 +415,10 @@ h1, h2, h3, h4, h5, h6, label {
     width: 60%;
     -webkit-filter: grayscale(1);
 }
-#special-button-1 {
+#special-button-0 {
     margin-bottom: 60px;
 }
-#special-button-3 {
+#special-button-2 {
     margin-bottom: 60px;
 }
 .health-bar-container {

@@ -9,7 +9,8 @@ angular.module('myApp').factory('InputHandlerService', function($q, NetworkServi
     ---------------- */
 
     return {
-        handleInput: handleInput
+        handleInput: handleInput,
+        handleSpecial: handleSpecial
     };
 
     /* 
@@ -21,7 +22,7 @@ angular.module('myApp').factory('InputHandlerService', function($q, NetworkServi
         var eventName = "";
 
         // handle switches different 
-        if(input.direction === "switch") {
+        if (input.direction === "switch") {
             eventName = "playerSwitchBase";
         } else if (input.direction === "special") {
             eventName = "playerSpecial";
@@ -32,9 +33,19 @@ angular.module('myApp').factory('InputHandlerService', function($q, NetworkServi
         NetworkService.send(eventName, {
             input: input.direction
         });
-        deferred.resolve({ok:true, direction:input.direction});
+        deferred.resolve({
+            ok: true,
+            direction: input.direction
+        });
 
         return deferred.promise;
+    }
+
+    function handleSpecial(sp) {
+        NetworkService.send("playerSpecial", {
+            input: "special",
+            specialUsedIndex: sp.index
+        });
     }
 
 });
