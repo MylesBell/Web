@@ -20,7 +20,7 @@ angular.module('tutorialView', ['ngRoute'])
         }, {
             tutIndex: 1,
             tutorialTitle: "Destroy the enemy base to win",
-            tutorialText: "Prevent your base from taking damage or you will lose",
+            tutorialText: "Your team's grunts will help to keep the enemy from your gates",
             tutorialImage: "../../resources/images/eye_black.png",
 
         }, {

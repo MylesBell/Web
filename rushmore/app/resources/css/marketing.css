@@ -67,6 +67,10 @@ h1, h2, h3, h4, h5, h6, label {
     text-align: center;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.10);
     background: #2d3e50;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
 }
 .pure-menu.pure-menu-fixed {
 
@@ -80,6 +84,8 @@ h1, h2, h3, h4, h5, h6, label {
     color: white;
     font-weight: 400;
     font-size: 120%;
+    text-decoration: none;
+    padding: .3em 1em;
 }
 .home-menu a {
     color: #6FBEF3;
@@ -97,6 +103,7 @@ h1, h2, h3, h4, h5, h6, label {
     font-weight: 100;
     border-radius: 5px;
     line-height: 1em;
+    font: inherit;
 }
 .deploy-button {
     background-color: white;
@@ -105,6 +112,7 @@ h1, h2, h3, h4, h5, h6, label {
     border-radius: 5px;
     font-size: 25px;
     font-weight: 100;
+    font: inherit;
 }
 
 /*
