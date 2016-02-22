@@ -19,7 +19,7 @@ angular.module('tutorialView', ['ngRoute'])
             tutorialImage: "../../resources/images/eye_black.png",
         }, {
             tutIndex: 1,
-            tutorialTitle: "Destroy the enemy base to win",
+            tutorialTitle: "Destroy the enemy's base to win",
             tutorialText: "Your team's grunts will help to keep the enemy from your gates",
             tutorialImage: "../../resources/images/eye_black.png",
 
