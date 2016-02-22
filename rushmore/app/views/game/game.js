@@ -29,15 +29,15 @@ angular.module('gameView', ['ngRoute'])
         // TODO put this somewhere else
         $scope.specialPowers = [{
             class: "special-fire",
-            enabled: "",
+            enabled: true,
             index: 0
         }, {
             class: "special-heal",
-            enabled: "",
+            enabled: true,
             index: 1
         }, {
             class: "special-invisible",
-            enabled: "",
+            enabled: true,
             index: 2
         }];
 
@@ -75,8 +75,6 @@ angular.module('gameView', ['ngRoute'])
 
         mainContainer.addEventListener('touchstart', function(e) {
 
-            console.log("touch start");
-
             // Prevent pull down to refresh and etc
             e.preventDefault();
 
@@ -86,7 +84,6 @@ angular.module('gameView', ['ngRoute'])
 
                 // get the element that the finger is over
                 var touchedElementId = (document.elementFromPoint(touch.clientX, touch.clientY)).id;
-                console.log(touchedElementId);
 
                 // either tell the canvas to start listening to events for the joystick
                 if (touchedElementId === "joystick-canvas") {
@@ -94,34 +91,9 @@ angular.module('gameView', ['ngRoute'])
                 } else if (touchedElementId.indexOf("special") > -1) {
                     // or handle special powers being selected
                     clickSpecial(touchedElementId);
-                    console.log("clicked special");
                 }
             }
         });
-
-        // mainContainer.addEventListener('mousedown', function(e) {
-
-        //     console.log("mouse down");
-
-        //     // Prevent pull down to refresh and etc
-        //     e.preventDefault();
-
-        //     // handle every touch point on the screen
-        //     for (var i = 0; i < e.touches.length; i++) {
-        //         var touch = e.touches[i];
-
-        //         // get the element that the finger is over
-        //         var touchedElementId = (document.elementFromPoint(touch.clientX, touch.clientY)).id;
-
-        //         // either tell the canvas to start listening to events for the joystick
-        //         if (touchedElementId === "joystick-canvas") {
-        //             $rootScope.$emit("canvas.touch.start", e);
-        //         } else if (touchedElementId.indexOf("special") > -1) {
-        //             // or handle special powers being selected
-        //             clickSpecial(touchedElementId);
-        //         }
-        //     }
-        // });
 
         function clickSpecial(touchedElementId) {
             $scope.specialPowers.forEach(function(sp) {
@@ -137,7 +109,12 @@ angular.module('gameView', ['ngRoute'])
 
         // handle when a special button is clicked
         function handleSpecialClicked(specialUsed) {
-            if (specialUsed.enabled === "") {
+            if (specialUsed.enabled === true) {
+
+                // Change the css of the button and apply the changes (for some reason agaulr doens't want to update this)
+                specialUsed.enabled = false;
+                $scope.$apply();
+
                 SpecialPowerManagerService.specialButtonUsed(specialUsed).then(function(special) {
                     // don't need to do anything here
                 });

@@ -1,12 +1,6 @@
 <div id="game-container" class="pure-g" ng-show="!playerDead && !gameOver">
     <div class="pure-u-1" id="stats-container">
         <div class="health-bar-container">
-            <!-- <div id="health-bar-remaining"> 
-                <img src="../../resources/images/heart_white.png" height="100%" width="auto">
-            </div>
-            <div id="health-bar-lost"> 
-                
-            </div> -->
         </div>
     </div>
     <div id="controls-container" class="pure-u-1">        
@@ -18,7 +12,7 @@
     </div>  
     <div id="specials-container" class="pure-u-1">
         <div class="special" ng-repeat="special in specialPowers">
-            <div id="special-button-{{special.index}}" class="special-circle" ng-class="[special.class, special.enabled]" ng-click="useSpecial(special)">            
+            <div id="special-button-{{special.index}}" class="special-circle {{special.class}}" ng-class="{'special-disabled': !special.enabled}" ng-click="useSpecial(special)">            
             </div>              
         </div>
     </div>  

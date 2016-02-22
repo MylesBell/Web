@@ -17,9 +17,6 @@ angular.module('myApp').factory('SpecialPowerManagerService', function($q, $inte
             // no vibrate, do nothing, sucks for iOS
         }
 
-        // Add the disabled css class to the button
-        special.enabled = "special-disabled";
-
         // Fire the special event to the server
         InputHandlerService.handleSpecial(special);
 
@@ -30,7 +27,7 @@ angular.module('myApp').factory('SpecialPowerManagerService', function($q, $inte
 
             // Cancle timer and reset special
             $interval.cancel(specialCooldownTimer);
-            spec.enabled = "";
+            spec.enabled = true;
             deferred.resolve(spec);
 
         }, cooldownTIme);
