@@ -1,5 +1,6 @@
 <div id="tutorial-container">
-    <div id="tutorial-{{tutorial.tutIndex}}" class="tutorial-page" ng-repeat="tutorial in tutorials" ng-show="tutorial.tutIndex === currentTutorialIndex" style="background-size: cover; background-position-x: 40%; background-image: linear-gradient(to bottom, rgba(255,255,255,0) 70%,rgba(0,0,0,0.6) 100%), url('../../resources/images/base_cowboy.png')" >
+    <div id="lessons-container">
+        <div id="tutorial-{{tutorial.tutIndex}}" class="tutorial-page" ng-repeat="tutorial in tutorials" ng-show="tutorial.visible" ng-style="getStyle(tutorial)">
             <div class="tutorial-title">
                 {{tutorial.tutorialTitle}}
             </div>
@@ -10,19 +11,17 @@
                 {{tutorial.tutorialText}}
             </div>
     </div> 
+    </div>
+    
     <div id="tutorial-controls">
-        <div id="tutorial-prev-button" ng-click="prev()" style="width: 20%;">
+        <div id="tutorial-prev-button" ng-click="prev()" style="width: 25%; text-align: center;">
             {{prevText}}
         </div>
         <div id="tutorial-progress-indicator">
-            <div class="tutorial-progress-dot" ng-class="{'tutorial-progress-dot-active': currentTutorialIndex === 0}">                
-            </div>
-            <div class="tutorial-progress-dot" ng-class="{'tutorial-progress-dot-active': currentTutorialIndex === 1}">                
-            </div>
-            <div class="tutorial-progress-dot" ng-class="{'tutorial-progress-dot-active': currentTutorialIndex === 2}">                
+            <div class="tutorial-progress-dot" ng-class="{'tutorial-progress-dot-active': currentTutorialIndex === {{tutorial.tutIndex}} }" ng-repeat="tutorial in tutorials" >
             </div>
         </div>
-        <div id="tutorial-next-button" ng-click="next()" style="width: 20%;">
+        <div id="tutorial-next-button" ng-click="next()" style="width: 25%; text-align: center;">
             {{nextText}}
         </div>
     </div>    

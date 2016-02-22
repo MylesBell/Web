@@ -187,12 +187,15 @@ h1, h2, h3, h4, h5, h6, label {
 }
 
 .tutorial-page {
-    height: 90%;
+    height: 100%;
     width: 100%;  
     display: flex;
     flex-flow: column wrap;
     justify-content: space-around;
     align-items: center;
+    background-size: cover;
+    background-position-x: 40%;
+    position: relative;    
 }
 
 #tutorial-controls {
@@ -213,6 +216,14 @@ h1, h2, h3, h4, h5, h6, label {
     justify-content: space-around;
     align-items: center;
     font-size: 18px;
+}
+
+#lessons-container {
+    width: 100%;
+    height: 90%;
+   /* display: flex;
+    flex-flow: row;
+    align-items: center;*/
 }
 
 .tutorial-lesson img {
@@ -252,6 +263,21 @@ h1, h2, h3, h4, h5, h6, label {
     flex-flow: row wrap;
     justify-content: space-around;
     align-items: center;
+}
+
+.tutorial-anim-page-slide-left{
+    transition: 2s;
+    transform: translateX(-100%);
+}
+
+.tutorial-anim-page-slide-in-left{
+    animation-name: anim-page-slide-in-left;
+    animation-duration: 2s;
+}
+
+@keyframes anim-page-slide-in-left {
+    0% {transform: translateX(100%);position: absolute;top: 0px;height:90%;}
+    100% {transform: translateX(0%);position: absolute;top: 0px;height:90%;}
 }
 
 .tutorial-progress-dot {
@@ -532,6 +558,11 @@ h1, h2, h3, h4, h5, h6, label {
     .specials-container {
         margin-top: 0px;
     }
+
+    #tutorial-controls {
+        font-size: 16px;
+    }
+
 }
 @media (min-width:24em) {
     .pure-game-button {
