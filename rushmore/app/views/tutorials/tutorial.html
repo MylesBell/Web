@@ -18,7 +18,7 @@
             {{prevText}}
         </div>
         <div id="tutorial-progress-indicator">
-            <div class="tutorial-progress-dot" ng-class="{'tutorial-progress-dot-active': currentTutorialIndex === {{tutorial.tutIndex}} }" ng-repeat="tutorial in tutorials" >
+            <div class="tutorial-progress-dot" ng-class="{'tutorial-progress-dot-active': currentTutorialIndex === {{tut.tutIndex}} }" ng-repeat="tut in tutorials" >
             </div>
         </div>
         <div id="tutorial-next-button" class="tutorial-controls-button" ng-click="next()">

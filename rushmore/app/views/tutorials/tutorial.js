@@ -5,7 +5,7 @@
 angular.module('tutorialView', ['ngRoute'])
     .controller('TutorialCtrl', ['$scope', 'UserService', 'LocationService', function($scope, UserService, LocationService) {
 
-        $scope.tutorialSteps = 6;
+        $scope.tutorialSteps = 5;
         $scope.currentTutorialIndex = 0;
         $scope.nextText = "NEXT";
         $scope.prevText = "SKIP";

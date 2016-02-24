@@ -1,3 +1,5 @@
+/*jshint loopfunc: true */
+
 describe('Tutorial page', function() {
     it('can get to the tutorial page', function() {
 
@@ -31,15 +33,9 @@ describe('Tutorial page', function() {
         expect(element(by.binding('nextText')).getText()).toBe("NEXT");
     });
 
-    it("Should be 9 tutorial lessons overall", function() {
-        element.all(by.repeater('lesson in tutorial.lessons')).then(function(result) {
-            expect(result.length).toBe(9);
-        });
-    });
-
-    it("Should be 3 tutorial pages", function() {
+    it("Should be 5 tutorial pages", function() {
         element.all(by.repeater('tutorial in tutorials')).then(function(result) {
-            expect(result.length).toBe(3);
+            expect(result.length).toBe(5);
         });
     });
 
@@ -49,22 +45,71 @@ describe('Tutorial page', function() {
         expect(element(by.id("tutorial-2")).isDisplayed()).toBe(false);
     });
 
-    it("Can move to the 2nd tutorial page and view only the 2nd tutorial", function() {
+    it("Next button moves to the 2nd tutorial page and view only the 2nd tutorial", function() {
         element(by.id('tutorial-next-button')).click();
 
-        expect(element(by.id("tutorial-0")).isDisplayed()).toBe(false);
-        expect(element(by.id("tutorial-1")).isDisplayed()).toBe(true);
-        expect(element(by.id("tutorial-2")).isDisplayed()).toBe(false);
+        var EC = protractor.ExpectedConditions;
+
+        // Tut 1 should be dispayed
+        var tut1Displayed = function() {
+            return element(by.id("tutorial-1")).isDisplayed().then(function(displayed) {
+                return displayed;
+            });
+        };
+
+        // Tut 0 should be hidden
+        var tut0Hidden = function() {
+            return element(by.id("tutorial-0")).isDisplayed().then(function(displayed) {
+                return !displayed;
+            });
+        };
+
+        var condition = EC.and(tut1Displayed, tut0Hidden);
+
+        // Wait for the animations to complete
+        browser.wait(condition, 10000);
+
+        var expectedDisplayedStates = [false, true, false, false, false];
+
+        // Check the expected values
+        for (var i = 0; i < expectedDisplayedStates; i++) {
+            expect(element(by.id("tutorial-" + i)).isDisplayed()).toBe(expectedDisplayedStates[i]);
+        }
     });
 
-    it("Prev button should work and show text", function() {
+    it("Prev button should show last tutorial correctly", function() {
+
         expect(element(by.binding('prevText')).getText()).toBe("PREV");
 
         element(by.id('tutorial-prev-button')).click();
 
-        expect(element(by.id("tutorial-0")).isDisplayed()).toBe(true);
-        expect(element(by.id("tutorial-1")).isDisplayed()).toBe(false);
-        expect(element(by.id("tutorial-2")).isDisplayed()).toBe(false);
+        var EC = protractor.ExpectedConditions;
+
+        // Tut 1 should be dispayed
+        var tut1Hidden = function() {
+            return element(by.id("tutorial-1")).isDisplayed().then(function(displayed) {
+                return !displayed;
+            });
+        };
+
+        // Tut 0 should be hidden
+        var tut0Displayed = function() {
+            return element(by.id("tutorial-0")).isDisplayed().then(function(displayed) {
+                return displayed;
+            });
+        };
+
+        var condition = EC.and(tut0Displayed, tut1Hidden);
+
+        // Wait for the animations to complete
+        browser.wait(condition, 10000);
+
+        var expectedDisplayedStates = [true, false, false, false, false];
+
+        // Check the expected values
+        for (var i = 0; i < expectedDisplayedStates; i++) {
+            expect(element(by.id("tutorial-" + i)).isDisplayed()).toBe(expectedDisplayedStates[i]);
+        }
     });
 
     it("Prev button should go to skip again", function() {
@@ -73,16 +118,65 @@ describe('Tutorial page', function() {
 
     it("Can advance to the last tutorial and see the lobby button", function() {
 
-        element(by.id('tutorial-next-button')).click();
-        element(by.id('tutorial-next-button')).click();
+        var tutorialSize = 5;
 
-        expect(element(by.binding('nextText')).getText()).toBe("LOBBY");
-        expect(element(by.id("tutorial-0")).isDisplayed()).toBe(false);
-        expect(element(by.id("tutorial-1")).isDisplayed()).toBe(false);
-        expect(element(by.id("tutorial-2")).isDisplayed()).toBe(true);
+        // Here be promises magic
+
+        for (var i = 0; i < tutorialSize - 1; i++) {
+
+            element(by.id('tutorial-next-button')).click();
+
+            // console.log("from:" + i + " to: " + (i + 1));
+
+            var EC = protractor.ExpectedConditions;
+
+            // Next tutorial should be dispayed
+            var tutNextDisplayed = (function() {
+
+                // cature the current value of i in a closure so that when the promise fufills i is set to the value
+                // it was when the test was set, not the last value i ever was
+                var capturedI = i;
+
+                return function() {
+                    return element(by.id("tutorial-" + (capturedI + 1))).isDisplayed().then(function(displayed) {
+                        return displayed;
+                    });
+                };
+
+            })();
+
+            // Previous tutorial should be hidden
+            var tutPrevHidden = (function() {
+
+                var capturedI = i;
+
+                return function() {
+
+                    return element(by.id("tutorial-" + capturedI)).isDisplayed().then(function(displayed) {
+                        return !displayed;
+                    });
+                };
+
+            })();
+
+            var condition = EC.and(tutNextDisplayed, tutPrevHidden);
+
+            // Wait for the animations to complete
+            browser.wait(condition, 10000);
+
+            // Check the expected values
+            for (var j = 0; j < tutorialSize; j++) {
+                var expectedValue = (j === (i + 1)) ? true : false;
+                // console.log("page: " + j + " current active page: " + (i + 1) + " displayed: " + expectedValue);
+                expect(element(by.id("tutorial-" + j)).isDisplayed()).toBe(expectedValue);
+            }
+        }
+
     });
 
     it("Can go to the lobby page", function() {
+        expect(element(by.binding('nextText')).getText()).toBe("TO LOBBY");
+
         element(by.id('tutorial-next-button')).click();
 
         expect(browser.getCurrentUrl()).toBe('http://localhost:7777/#/lobby');
@@ -92,9 +186,12 @@ describe('Tutorial page', function() {
         browser.navigate().back();
 
         expect(browser.getCurrentUrl()).toBe('http://localhost:7777/#/tutorial');
-        expect(element(by.id("tutorial-0")).isDisplayed()).toBe(true);
-        expect(element(by.id("tutorial-1")).isDisplayed()).toBe(false);
-        expect(element(by.id("tutorial-2")).isDisplayed()).toBe(false);
+        var expectedDisplayedStates = [true, false, false, false, false];
+
+        // Check the expected values
+        for (var i = 0; i < expectedDisplayedStates; i++) {
+            expect(element(by.id("tutorial-" + i)).isDisplayed()).toBe(expectedDisplayedStates[i]);
+        }
     });
 
 });

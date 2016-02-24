@@ -28,7 +28,7 @@ angular.module('lobbyView', ['ngRoute'])
                 } else {
                     console.error("Tried joining game but game state wasn't 1 but " + GameInfoService.getState());
                 }
-            }
+            };
 
             // TODO test this with a real game
             if(GameInfoService.getState() === 1){
