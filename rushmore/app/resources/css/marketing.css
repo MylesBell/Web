@@ -31,23 +31,14 @@ h1, h2, h3, h4, h5, h6, label {
         -ms-flex-pack: center;
             justify-content: center;
     background-color: #dadfe1;
-<<<<<<< HEAD
-    align-self: center;
-=======
     -webkit-align-self: center;
         -ms-flex-item-align: center;
             align-self: center;    
->>>>>>> master
     font-size: 18px;
     font-weight: 100;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-<<<<<<< HEAD
-    align-items: center;
-    justify-content: center;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* Stop the bounding box when clicking button */
-=======
     -webkit-align-items: center;
         -ms-flex-align: center;
             align-items: center;
@@ -55,7 +46,6 @@ h1, h2, h3, h4, h5, h6, label {
         -ms-flex-pack: center;
             justify-content: center;
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* Stop the bounding box when clicking button */
->>>>>>> master
     box-shadow: 0px 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .pure-game-button:active {
