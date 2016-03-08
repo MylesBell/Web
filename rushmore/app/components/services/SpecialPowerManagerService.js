@@ -35,18 +35,11 @@ angular.module('myApp').factory('SpecialPowerManagerService', function($q, $inte
         return deferred.promise;
     };
 
-    // Returns an array of specials
-    // Each special has a class
-    // var setupSpecialPowers = function(specials) {
-    //     var allSpecials = 
-    // };
-
     /* --------------------
          PUBLIC API
      ---------------- */
     return {
         specialButtonUsed: specialButtonUsed,
-        setupSpecialPowers: setupSpecialPowers
     };
 
 });

@@ -156,7 +156,7 @@ function getSpecialData(specials) {
         var definedSpecial = specialsJSON.items[i];
 
         for (var j = 0; j < specials.length; j++) {
-            if (definedSpecial.id === specials[i]){
+            if (definedSpecial.id === specials[j]){
                 specialObjects.push(definedSpecial);
             }
         }
