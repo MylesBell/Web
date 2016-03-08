@@ -93,7 +93,7 @@ module.exports = function (grunt) {
                 constants: {
                     ENV: {
                         name: 'production',
-                        socketIOEndpoint: 'http://icantmiss.com:1337'
+                        socketIOEndpoint: 'http://watchfreenfl.com:1337'
                     }
                 }
             }            
