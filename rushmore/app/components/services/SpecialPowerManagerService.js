@@ -37,9 +37,9 @@ angular.module('myApp').factory('SpecialPowerManagerService', function($q, $inte
 
     // Returns an array of specials
     // Each special has a class
-    var setupSpecialPowers = function(specials) {
-        var allSpecials = 
-    };
+    // var setupSpecialPowers = function(specials) {
+    //     var allSpecials = 
+    // };
 
     /* --------------------
          PUBLIC API
