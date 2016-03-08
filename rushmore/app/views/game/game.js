@@ -26,20 +26,9 @@ angular.module('gameView', ['ngRoute'])
         setTeamBackground();
         fillGameContainerSize();
 
-        // TODO put this somewhere else
-        $scope.specialPowers = [{
-            class: "special-fire",
-            enabled: true,
-            index: 0
-        }, {
-            class: "special-heal",
-            enabled: true,
-            index: 1
-        }, {
-            class: "special-invisible",
-            enabled: true,
-            index: 2
-        }];
+        // Setup special powers
+        $scope.specialPowers = UserService.getSpecialPowers();
+        console.log($scope.specialPowers);
 
         /*
             Registering for events from the server

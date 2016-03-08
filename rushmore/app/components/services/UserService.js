@@ -9,6 +9,7 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
     var userTeam = "";
     var username = "";
     var joinPromise;
+    var specialPowers = {};
 
     var colors = {
         blue: {
@@ -155,8 +156,10 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
                     teamColors = colors.blue;
                 }
 
-                joinPromise.resolve(data);
+                // set the specials
+                specialPowers = data.specials;
 
+                joinPromise.resolve(data);
             } else {
                 joinPromise.reject(data);
             }
@@ -169,6 +172,10 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
 
     function getUserID() {
         return uID;
+    }
+
+    function getSpecialPowers() {
+        return specialPowers;
     }
 
     function setUserID() {
@@ -209,7 +216,8 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
         getUsername: getUsername,
         getUserID: getUserID,
         setUserID: setUserID,
-        getTeamColor: getTeamColor
+        getTeamColor: getTeamColor,
+        getSpecialPowers: getSpecialPowers
     };
 
 });
