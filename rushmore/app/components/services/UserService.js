@@ -159,7 +159,8 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
                 // set the specials
                 specialPowers = data.specials;
                 for(var i = 0; i < specialPowers.length; i++){
-                    specialPowers.enabled = false;
+                    specialPowers[i].enabled = false;
+                    specialPowers[i].cssName = specialPowers[i].type + specialPowers[i].idea
                 }
 
                 joinPromise.resolve(data);
