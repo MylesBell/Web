@@ -158,6 +158,9 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
 
                 // set the specials
                 specialPowers = data.specials;
+                for(var i = 0; i < specialPowers.length; i++){
+                    specialPowers.enabled = false;
+                }
 
                 joinPromise.resolve(data);
             } else {
