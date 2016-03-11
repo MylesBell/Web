@@ -24,10 +24,7 @@ angular.module('gameView', ['ngRoute'])
         };
 
         setup();
-
-        setTeamBackground();
-        fillGameContainerSize();
-
+        
         // Setup special powers
         $scope.specialPowers = UserService.getSpecialPowers();
         console.log($scope.specialPowers);

@@ -3,7 +3,7 @@
     Registering user with server
     Set username for game
 */
-angular.module('myApp').factory('UserService', function($q, NetworkService, LocationService) {
+angular.module('myApp').factory('UserService', function($q, NetworkService, LocationService, SpecialPowerManagerService) {
 
     var uID = "";
     var userTeam = "";
@@ -48,20 +48,6 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
 
     // set to an inital value, changed when the user is assigned a team
     var teamColors = colors.blue;
-
-    function alertListeners(eventName, eventData) {
-        listenerEventList.forEach(function(listener) {
-            if (listener.eventName === eventName) {
-                var call = listener.call;
-                call(eventData);
-            }
-        }, this);
-    }
-
-    function registerListener(listenerEvent) {
-        listenerEventList.push(listenerEvent);
-    }
-
 
     function attemptToJoinGame(gamecode) {
         joinPromise = $q.defer();
@@ -147,6 +133,7 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
     function handlePlayerJoinedEvent(data) {
         if (data.uID === uID) {
             if (data.joinSuccess) {
+
                 //set team background colour
                 if (data.team === 0) {
                     userTeam = 'red-team';
@@ -157,11 +144,7 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
                 }
 
                 // set the specials
-                specialPowers = data.specials;
-                for(var i = 0; i < specialPowers.length; i++){
-                    specialPowers[i].enabled = true;
-                    specialPowers[i].cssName = "special-" + specialPowers[i].type + "-" + specialPowers[i].idea;
-                }
+                specialPowers = SpecialPowerManagerService.setupSpecials(data.specials);                
 
                 joinPromise.resolve(data);
             } else {

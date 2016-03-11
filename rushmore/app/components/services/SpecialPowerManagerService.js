@@ -8,20 +8,20 @@ angular.module('myApp').factory('SpecialPowerManagerService', function($q, $inte
     var vibrateTime = 200;
 
     var specialButtonUsed = function(specialList, touchedID) {
-        
+
         var special;
         var deferred;
 
         deferred = $q.defer();
 
-        special = specialList.filter(function(sp){
+        special = specialList.filter(function(sp) {
             return (touchedID.indexOf(sp.id) > -1);
         })[0];
 
         special.enabled = false;
 
         // Vibrate the phone 
-        if (window.navigator.vibrate !== undefined ) {
+        if (window.navigator.vibrate !== undefined) {
             window.navigator.vibrate(vibrateTime);
         } else {
             // no vibrate, do nothing, sucks for iOS
@@ -45,11 +45,24 @@ angular.module('myApp').factory('SpecialPowerManagerService', function($q, $inte
         return deferred.promise;
     };
 
+    // Add client game special stuff to specials,
+    // Enabled flag and css classes
+    var setupSpecials = function(specials) {
+
+        for (var i = 0; i < specials.length; i++) {
+            specials[i].enabled = true;
+            specials[i].cssName = "special-" + specials[i].type + "-" + specials[i].idea;
+        }
+
+        return specials;
+    }
+
     /* --------------------
          PUBLIC API
      ---------------- */
     return {
         specialButtonUsed: specialButtonUsed,
+        setupSpecials: setupSpecials
     };
 
 });
