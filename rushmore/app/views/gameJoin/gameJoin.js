@@ -4,7 +4,7 @@
     Move to the game lobby after this
 */
 angular.module('gameJoinView', ['ngRoute'])
-    .controller('GameJoinCtrl', ['$scope', 'UserService', 'LocationService', "NetworkService", "GameInfoService", "ConfigService", function($scope, UserService, LocationService, NetworkService, GameInfoService, ConfigService) {
+    .controller('GameJoinCtrl', ['$scope', 'UserService', 'LocationService', "NetworkService", "GameInfoService", function($scope, UserService, LocationService, NetworkService, GameInfoService) {
 
         // The unique game code for each game
         $scope.username = UserService.getUsername();
