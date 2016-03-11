@@ -21,8 +21,11 @@ angular.module('gameJoinView', ['ngRoute'])
                 console.log(res);
                 // the code was was valid and sent to the unity server
                 // the user has joined move they to either game or lobby
+
+                // MESSING WITH THIS TO GO TO TUTORIAL
                 if (res.state === 0) {
-                    LocationService.setPath('/lobby');
+                    // LocationService.setPath('/lobby');
+                    LocationService.setPath('/tutorial');
                 } else if (res.state === 1) {
                     LocationService.setPath('/game');
                 } else {

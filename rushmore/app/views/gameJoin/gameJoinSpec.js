@@ -59,7 +59,7 @@ describe('Game Join page', function() {
         expect(inputBox.getAttribute('value')).toEqual('Gamecodes should be 4 characters long');
     });
 
-    it('entering a valid game code moves the user to the game join page', function() {
+    it('entering a valid game code moves the user to the tutorial pages', function() {
 
         var inputBox = element(by.css('#game-code-input-box'));
         var submitButton = element(by.css('#game-join-button'));
@@ -68,6 +68,6 @@ describe('Game Join page', function() {
         inputBox.sendKeys("FAKE");
         submitButton.click();
 
-        expect(browser.getCurrentUrl()).toBe('http://localhost:7777/#/lobby');
+        expect(browser.getCurrentUrl()).toBe('http://localhost:7777/#/tutorial');
     });
 });

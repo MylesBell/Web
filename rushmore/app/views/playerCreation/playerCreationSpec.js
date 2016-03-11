@@ -14,7 +14,6 @@ describe('Player Creation page', function() {
         browser.waitForAngular();
 
         expect(element(by.id('header-bar')).isDisplayed()).toBe(true);
-        // expect(false).toBe(true);
     });
 
     it("clicking input box clears the text inside", function() {
