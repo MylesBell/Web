@@ -4,14 +4,14 @@
     Move to the game lobby after this
 */
 angular.module('gameJoinView', ['ngRoute'])
-    .controller('GameJoinCtrl', ['$scope', 'UserService', 'LocationService', "NetworkService", "GameInfoService", function($scope, UserService, LocationService, NetworkService, GameInfoService) {
+    .controller('GameJoinCtrl', ['$scope', 'UserService', 'LocationService', "NetworkService", "GameInfoService", "ConfigService", function($scope, UserService, LocationService, NetworkService, GameInfoService, ConfigService) {
 
         // The unique game code for each game
         $scope.username = UserService.getUsername();
         $scope.gamecode = "Enter Game Code";
         $scope.enableInput = true;
 
-        var enableFullScreen = false; // should be true in production
+        var enableFullScreen = true; // should be true in production
 
         var codeForm = document.getElementById('game-code-submit-form');
         codeForm.addEventListener("submit", fullscreen);

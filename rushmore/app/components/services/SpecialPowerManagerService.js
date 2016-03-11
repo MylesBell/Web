@@ -55,7 +55,7 @@ angular.module('myApp').factory('SpecialPowerManagerService', function($q, $inte
         }
 
         return specials;
-    }
+    };
 
     /* --------------------
          PUBLIC API
