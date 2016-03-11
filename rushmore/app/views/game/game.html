@@ -12,7 +12,7 @@
     </div>  
     <div id="specials-container" class="pure-u-1">
         <div class="special" ng-repeat="special in specialPowers">
-            <div id="special-button-{{special.index}}" class="special-circle {{special.cssName}}" ng-class="{'special-disabled': !special.enabled}" ng-click="useSpecial(special)">            
+            <div id="special-button-{{special.id}}" class="special-circle {{special.cssName}}" ng-class="{'special-disabled': !special.enabled}" ng-click="useSpecial(special)">            
             </div>              
         </div>
     </div>  

@@ -9,7 +9,7 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
     var userTeam = "";
     var username = "";
     var joinPromise;
-    var specialPowers = {};
+    var specialPowers = [];
 
     var colors = {
         blue: {

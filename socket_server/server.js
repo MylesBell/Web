@@ -126,7 +126,7 @@ io.on('connection', function(socket) {
             var unityRes = unity.gamePlayerJoined(socket, {
                 playerID: socket.id,
                 teamID: 1,
-                state: 0, // 0 the state for idle (needed for testing)                
+                state: 1, // 0 the state for idle (needed for testing)                
                 ok: 1, // code was correct
                 baseMaxHealth: 5000,
                 specialOne: 11,

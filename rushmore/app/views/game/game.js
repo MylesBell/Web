@@ -79,38 +79,15 @@ angular.module('gameView', ['ngRoute'])
                     $rootScope.$emit("canvas.touch.start", e);
                 } else if (touchedElementId.indexOf("special") > -1) {
                     // or handle special powers being selected
-                    clickSpecial(touchedElementId);
+                    SpecialPowerManagerService.specialButtonUsed($scope.specialPowers, touchedElementId);
                 }
             }
         });
 
-        function clickSpecial(touchedElementId) {
-            $scope.specialPowers.forEach(function(sp) {
-                if (touchedElementId.indexOf(sp.index) > -1) {
-                    handleSpecialClicked(sp);
-                }
-            });
-        }
-
-        /*
-            Handle game events sent by the server or UI
-        */
-
-        // handle when a special button is clicked
-        function handleSpecialClicked(specialUsed) {
-            if (specialUsed.enabled === true) {
-                console.log(specialUsed);
-                // Change the css of the button and apply the changes (for some reason agaulr doens't want to update this)
-                specialUsed.enabled = false;
-                // $scope.$apply();
-
-                SpecialPowerManagerService.specialButtonUsed(specialUsed).then(function(special) {
-                    // don't need to do anything here
-                });
-            } else {
-                // special is still cooling down
-            }
-        }
+        // Direct ng-click event
+        $scope.useSpecial = function(special) {
+            SpecialPowerManagerService.specialButtonUsed($scope.specialPowers, special.id.toString());
+        };
 
         // Called when The player has died on the server, Change to the respawn screen and start the respawn timer
         // The timeleft is the time from now until when they should respawn (timestamp sent by the server)
@@ -207,10 +184,6 @@ angular.module('gameView', ['ngRoute'])
             }).catch(function(res) {
                 console.log(res);
             });
-        };
-
-        $scope.useSpecial = function(special) {
-            handleSpecialClicked(special);
         };
 
     }]);
