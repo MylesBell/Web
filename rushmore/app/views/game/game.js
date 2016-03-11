@@ -1,5 +1,5 @@
 angular.module('gameView', ['ngRoute'])
-    .controller('GameCtrl', ['$scope', 'InputHandlerService', "NetworkService", "UserService", "$interval", "SpecialPowerManagerService", "$rootScope", function($scope, InputHandlerService, NetworkService, UserService, $interval, SpecialPowerManagerService, $rootScope) {
+    .controller('GameCtrl', ['$scope', "NetworkService", "UserService", "$interval", "SpecialPowerManagerService", "$rootScope", function($scope, NetworkService, UserService, $interval, SpecialPowerManagerService, $rootScope) {
 
         $scope.teamClass = UserService.getUserTeam();
         $scope.teamClassCSS = "blue-team";
@@ -23,6 +23,8 @@ angular.module('gameView', ['ngRoute'])
             return false;
         };
 
+        setup();
+
         setTeamBackground();
         fillGameContainerSize();
 
@@ -33,11 +35,6 @@ angular.module('gameView', ['ngRoute'])
         /*
             Registering for events from the server
         */
-
-        NetworkService.registerListener({
-            eventName: "gamePlayerNearBase",
-            call: handleGamePlayerNearBaseEvent
-        });
 
         NetworkService.registerListener({
             eventName: "gamePlayerDied",
@@ -110,16 +107,6 @@ angular.module('gameView', ['ngRoute'])
             setTeamBackground();
         }
 
-        // Either show or hide the switch lane button
-        // Can only be alled by a unity event, not on client side
-        function handleGamePlayerNearBaseEvent(data) {
-            if (data.nearBase === 0) {
-                $scope.nearBase = false;
-            } else {
-                $scope.nearBase = true;
-            }
-        }
-
         // handle the game state changing to game over
         function handleGameStateUpdate(data){
             if(data.state === 2) {
@@ -136,15 +123,17 @@ angular.module('gameView', ['ngRoute'])
         /*
             Helper functions 
         */
-
+        
         // Change the background colour of the container to the teams colours
-        function setTeamBackground() {
+        // Set the container to fill screen size
+        function setup() {
             var colors = UserService.getTeamColor();
 
             var mainContainer = document.getElementById('main-container');
             var controlsContainer = document.getElementById('controls-container');
             var statsContainer = document.getElementById('stats-container');
             var specialsContainer = document.getElementById('specials-container');
+            var container = document.getElementById('game-container');
 
             controlsContainer.style.backgroundColor = colors.primary;
             statsContainer.style.backgroundColor = colors.dark;
@@ -155,10 +144,7 @@ angular.module('gameView', ['ngRoute'])
             } else {
                 $scope.teamClassCSS = "red-team";
             }
-        }
 
-        function fillGameContainerSize() {
-            var container = document.getElementById('game-container');
             container.style.height = "100%";
             container.style.top = "0px";
         }
@@ -172,18 +158,5 @@ angular.module('gameView', ['ngRoute'])
                 console.log("respawn timer is done");
             }
         }
-
-        //  Fired when user selects input button on game controller page
-        // input can be one of several driections or powers, sends this input to the server
-        // TODO rename this function to movement changed
-        $scope.inputButtonClicked = function(direction) {
-            InputHandlerService.handleInput({
-                direction: direction
-            }).then(function(res) {
-                console.log(res);
-            }).catch(function(res) {
-                console.log(res);
-            });
-        };
 
     }]);
