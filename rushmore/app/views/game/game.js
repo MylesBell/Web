@@ -99,10 +99,10 @@ angular.module('gameView', ['ngRoute'])
         // handle when a special button is clicked
         function handleSpecialClicked(specialUsed) {
             if (specialUsed.enabled === true) {
-
+                console.log(specialUsed);
                 // Change the css of the button and apply the changes (for some reason agaulr doens't want to update this)
                 specialUsed.enabled = false;
-                $scope.$apply();
+                // $scope.$apply();
 
                 SpecialPowerManagerService.specialButtonUsed(specialUsed).then(function(special) {
                     // don't need to do anything here

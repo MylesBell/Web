@@ -278,14 +278,14 @@ h1, h2, h3, h4, h5, h6, label {
     background-color: #dadfe1;
     box-shadow: 0px 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);    /*box-shadow: 10px 10px 0px 0px rgba(0,0,0,0.52);*/
 }
-.special-fire {
+.special-Attack-Melee {
     background-image: url("../images/flame_red.png");
     background-size: 70%;
     background-repeat: no-repeat;
     background-position: 50% 50%;
     background-color: white;
 }
-.special-heal {
+.special-Heal-Hero {
     background-image: url("../images/heart_green.png");
     background-size: 70%;
     background-repeat: no-repeat;
@@ -293,6 +293,14 @@ h1, h2, h3, h4, h5, h6, label {
     background-color: white;
 }
 .special-invisible {
+    background-image: url("../images/eye_purple.png");
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-color: white;
+}
+
+.special-Special-Trap {
     background-image: url("../images/eye_purple.png");
     background-size: 70%;
     background-repeat: no-repeat;

@@ -11,13 +11,14 @@ angular.module('gameJoinView', ['ngRoute'])
         $scope.gamecode = "Enter Game Code";
         $scope.enableInput = true;
 
-        var enableFullScreen = true; // should be true in production
+        var enableFullScreen = false; // should be true in production
 
         var codeForm = document.getElementById('game-code-submit-form');
         codeForm.addEventListener("submit", fullscreen);
 
         $scope.joinGame = function() {
             UserService.attemptToJoinGame($scope.gamecode).then(function(res) {
+                console.log(res);
                 // the code was was valid and sent to the unity server
                 // the user has joined move they to either game or lobby
                 if (res.state === 0) {
