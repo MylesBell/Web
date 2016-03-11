@@ -9,7 +9,7 @@
 body {
     line-height: 1.7em;
     color: #7f8c8d;
-    font-size: 13px;
+    font-size: 18px;
 }
 h1, h2, h3, h4, h5, h6, label {
     color: #34495e;
@@ -72,6 +72,8 @@ h1, h2, h3, h4, h5, h6, label {
     /* Fixed menus normally have a border at the bottom. */
     border-bottom: none;    /* I need a higher z-index here because of the scroll-over effect. */
     z-index: 4;
+    height: 10%;
+
 }
 .home-menu .pure-menu-heading {
     color: white;
@@ -118,20 +120,7 @@ h1, h2, h3, h4, h5, h6, label {
     position: fixed !important;
     background: white;
 }
-#main-container {
 
-    /* absolute center .splash within .splash-container */     
-    width: 100%;
-    margin: auto;
-    text-align: center;
-}
-#main-container h2 {
-    color: rgba(21, 21, 21, 1);
-    font-size: 25px;
-    margin-bottom: 0px;
-    font-weight: 100;
-    line-height: 1.2em;
-}
 .bottom-container {
     width: 100%;
     padding-left: 40px;
@@ -141,35 +130,135 @@ h1, h2, h3, h4, h5, h6, label {
     position: absolute;
     text-align: center;
 }
-.bottom-container p {
-    color: black;
-    font-size: 20px;
+
+#main-container p {
+    color: rgba(21,21,21,1);
+    font-size: 18px;
     opacity: 0.8;
     font-weight: 100;
     line-height: 1.2em;
 }
-.top-container {
+
+#main-container h1{
+    color: rgba(21,21,21,1);
+    font-size: 25px;
+    margin-bottom: 0px;
+    letter-spacing: 0.05em;
+    opacity: 0.8;
+    font-weight: 100;
+    line-height: 1.2em;
+}
+
+#main-container h2{
+    color: rgba(21,21,21,1);
+    font-size: 25px;
+    margin-bottom: 0px;
+    font-weight: 100;
+    line-height: 1.2em;
+}
+
+#top-container {
     height: 120px;
-    padding-top: 60px;
+    padding: 40px;
     background-color: #2d3e50;
 }
-.top-container p {
-    color: white;
-    font-size: 20px;
-    opacity: 0.8;
-    font-weight: 100;
-    line-height: 1.2em;
+
+#top-container p {
+   color: white;
+   font-size: 18px; 
 }
-.lobby-container {
-    overflow-y: scroll;
+
+#tutorial-container {
+    background-color: #446CB3;
+    height: 100%;
+    top: 0%;
+    width: 100%;    
+    position: absolute;
+    color: white;
+}
+
+.tutorial-page {
+    height: 90%;
+    width: 100%;  
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#tutorial-controls {
+    height: 10%;
+    width: 100%;
+    background-color: #3A539B;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.tutorial-lesson {
+    height: 30%;
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 18px;
+}
+
+.tutorial-lesson img {
+    height: 100px;
+    width: auto;
+}
+
+.tutorial-text {
+    width: 40%;
+    text-align: center;
+ }
+
+ .tutorial-image {
+    width: 40%;
+ }
+
+.tutorial-left {
+    flex-flow: row-reverse wrap;
+}
+
+#tutorial-progress-indicator {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.tutorial-progress-dot {
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;    
+    background-color: grey;
+}
+
+.tutorial-progress-dot-active {
+    background-color: white;
+}
+
+#lobby-container{
+    overflow-y: scroll; 
     height: 100%;
     display: block;
     overflow: auto;
 }
-.lobby-container ul {
+
+#lobby-container ul {
+    list-style-type: none;
     padding-left: 0px;
 }
-.lobby-container h1 {
+
+#lobby-container h1 {
+    list-style-type: none;
+    padding-left: 0px;
     padding-top: 10px;
     font-size: 20px;
     color: rgba(21, 21, 21, 1);
@@ -177,7 +266,8 @@ h1, h2, h3, h4, h5, h6, label {
     opacity: 0.8;
     font-weight: 100;
 }
-.lobby-container li {
+
+#lobby-container li {
     list-style-type: none;
     padding-left: 0px;
     padding-bottom: 5px;
