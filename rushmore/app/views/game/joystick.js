@@ -56,8 +56,6 @@ angular.module('gameView')
 
         var id; // the animation frame
         var animate = false; // whether to be animating or not
-        var switchEnabled = false; // wheter to enable the switch button or not
-        var switchCooldown = 2000; // time between clicking switch button allow (as it can happen once a frame)
 
         // Health as told by the server
         var currentHealth;
@@ -74,14 +72,6 @@ angular.module('gameView')
         var playerHealthColorLost = teamColors.health.player.lost;
         var baseHealthColorReamining;
         var baseHealthColorLost;
-
-        // The switch image is loaded right at the start, instead of every frame
-        var switchImage = new Image();
-        var switchImageLoaded = false;
-        switchImage.src = '../../resources/images/switch_black.png';
-        switchImage.onload = function() {
-            switchImageLoaded = true;
-        };
 
         // The joystick object, storing it's positon information in the pad
         var joystick = {
@@ -131,17 +121,6 @@ angular.module('gameView')
 
         // Redraw the canvas when the window is resize, for example when going into fullscreen
         window.addEventListener("resize", resizeCanvas);
-
-        // Handle the switch event being selected
-        function handleSwitchButtonClicked() {
-            $scope.inputButtonClicked("switch");
-            switchEnabled = false;
-        }
-
-        function handlePlayerNearBaseEvent() {
-            switchEnabled = true;
-            console.log("PLAYER NEAR BASE");
-        }
 
         function handleGamePlayerChangeHealth(data) {
             // get fraction of health remaining
@@ -227,11 +206,6 @@ angular.module('gameView')
 
             joystick.distToOrigin = joystickDisp;
 
-            //check if we clicked on the switch lane button
-            if (pos.x > 10 && pos.x < 70 && pos.y > 10 && pos.y < 70 && switchEnabled) { // TODO make this robost
-                handleSwitchButtonClicked();
-            }
-
             // Only draw if inside the pad
             if (joystickDisp > padRadius) {} else {
                 joystick.x = newX;
@@ -316,9 +290,6 @@ angular.module('gameView')
             drawPlayerHealthRing();
             drawKnob();
 
-            if (switchEnabled) {
-                drawSwitchBaseButton(); // TODO this will be disabled soon
-            }
         }
 
         function drawKnob() {
@@ -339,16 +310,6 @@ angular.module('gameView')
                 ctx.stroke();
                 ctx.fill();
             }
-        }
-
-        // TODO make this responsive and hide when not available
-        function drawSwitchBaseButton() {
-            ctx.fillStyle = "white";
-            ctx.beginPath();
-            ctx.arc(45, 45, 35, 0, Math.PI * 2, true);
-            ctx.stroke();
-            ctx.fill();
-            ctx.drawImage(switchImage, 10, 10, 70, 70);
         }
 
         function drawPlayerHealthRing() {
