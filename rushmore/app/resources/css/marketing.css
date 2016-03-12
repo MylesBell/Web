@@ -408,12 +408,21 @@ h1, h2, h3, h4, h5, h6, label {
     padding-top: 60%;
     width: 60%;
     -webkit-filter: grayscale(1);
+    transition: all 350ms;
+}
+
+.special-enabled {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, .15) inset, 0 0 6px rgba(0, 0, 0, .1) inset;
+    padding-top: 60%;
+    width: 60%;
+    -webkit-filter: grayscale(1);
+    transition: all 350ms;
 }
 
 #special-button-0 {
     margin-bottom: 60px;
 }
-#special-button-2 {
+#special-button-1 {
     margin-bottom: 60px;
 }
 .health-bar-container {
@@ -550,14 +559,15 @@ h1, h2, h3, h4, h5, h6, label {
         width: 50%;
         height: 85%;
     }
+
+    #special-button-0 {
+        margin-bottom: 150px;
+    }
     #special-button-1 {
-        margin-bottom: 80px;
+        margin-top: 150px;
     }
     #special-button-2 {
-        margin-top: 80px;
-    }
-    #special-button-3 {
-        margin-bottom: 80px;
+        margin-bottom: 150px;
     }
 }
 

@@ -8,6 +8,7 @@ angular.module('gameView', ['ngRoute'])
         $scope.timeToRespawn = 5;
         $scope.gameOver = false;  
         $scope.winner = "";
+        $scope.specialPowers;
 
         var respawnTimer; // TODO put this into a timer service
         var respawnTime = $scope.timeToRespawn;
@@ -27,6 +28,7 @@ angular.module('gameView', ['ngRoute'])
         
         // Setup special powers
         $scope.specialPowers = UserService.getSpecialPowers();
+
         console.log($scope.specialPowers);
 
         /*

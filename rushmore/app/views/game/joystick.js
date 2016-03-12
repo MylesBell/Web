@@ -14,11 +14,6 @@ angular.module('gameView')
             Listen to network events 
         */
         NetworkService.registerListener({
-            eventName: "playerNearBase",
-            call: handlePlayerNearBaseEvent
-        });
-
-        NetworkService.registerListener({
             eventName: "gamePlayerChangeHealth",
             call: handleGamePlayerChangeHealth
         });
