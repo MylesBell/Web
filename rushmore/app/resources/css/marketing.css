@@ -367,42 +367,49 @@ h1, h2, h3, h4, h5, h6, label {
     padding-top: 100%;
     background-color: #dadfe1;
     box-shadow: 0px 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);    /*box-shadow: 10px 10px 0px 0px rgba(0,0,0,0.52);*/
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-color: white;
 }
 .special-Attack-Melee {
     background-image: url("../images/flame_red.png");
-    background-size: 70%;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-    background-color: white;
+   
 }
 .special-Heal-Hero {
     background-image: url("../images/heart_green.png");
-    background-size: 70%;
-    background-repeat: no-repeat;
-    background-position: 50% 65%;
-    background-color: white;
 }
-.special-invisible {
+
+.special-Heal-Self-and-close {
+    background-image: url("../images/heal_group_green.png");
+}
+
+.special-Heal-Special-Slow {
+    background-image: url("../images/heal_group_green.png");
+}
+
+.special-Heal-Special-Special-Attack {
+    background-image: url("../images/base_destroy_purple.png");
+}
+.special-Special-Invisibility {
     background-image: url("../images/eye_purple.png");
-    background-size: 70%;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-    background-color: white;
 }
 
 .special-Special-Trap {
-    background-image: url("../images/eye_purple.png");
-    background-size: 70%;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-    background-color: white;
+    background-image: url("../images/bomb_purple.png");  
 }
+
+.special-Buff-Defense {
+    background-image: url("../images/health_buff_blue.png");  
+}
+
 .special-disabled {
     box-shadow: 0 0 0 1px rgba(0, 0, 0, .15) inset, 0 0 6px rgba(0, 0, 0, .1) inset;
     padding-top: 60%;
     width: 60%;
     -webkit-filter: grayscale(1);
 }
+
 #special-button-0 {
     margin-bottom: 60px;
 }
