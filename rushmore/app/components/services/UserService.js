@@ -3,64 +3,16 @@
     Registering user with server
     Set username for game
 */
-angular.module('myApp').factory('UserService', function($q, NetworkService, LocationService) {
+angular.module('myApp').factory('UserService', function($q, NetworkService, LocationService, SpecialPowerManagerService, ColorService) {
 
     var uID = "";
     var userTeam = "";
     var username = "";
     var joinPromise;
-
-    var colors = {
-        blue: {
-            dark: "#3A539B", // chambray
-            primary: "#446CB3", // san marino
-            highlight: "#59ABE3", // Picton Blue
-            light: "#C5EFF7", // Humming bird
-            health: {
-                player: {
-                    remaining: "#87D37C", // gossip
-                    lost: "#90C695" // Dark sea grenn
-                },
-                base: {
-                    lost: "#C5EFF7", // Humming bird
-                    remaining: "#59ABE3", // Picton Blue
-                }
-            }
-        },
-        red: {
-            dark: "#96281B", //old brick
-            primary: "#D91E18", // thunderbrid
-            highlight: "#E74C3C", //cinnabar
-            health: {
-                player: {
-                    remaining: "#87D37C", // gossip
-                    lost: "#90C695" // Dark sea grenn
-                },
-                base: {
-                    lost: "#C5EFF7", // Humming bird
-                    remaining: "#E74C3C", //cinnabar
-                }
-            }
-        },
-
-    };
+    var specialPowers = [];
 
     // set to an inital value, changed when the user is assigned a team
-    var teamColors = colors.blue;
-
-    function alertListeners(eventName, eventData) {
-        listenerEventList.forEach(function(listener) {
-            if (listener.eventName === eventName) {
-                var call = listener.call;
-                call(eventData);
-            }
-        }, this);
-    }
-
-    function registerListener(listenerEvent) {
-        listenerEventList.push(listenerEvent);
-    }
-
+    var teamColors = ColorService.getBlueColors();
 
     function attemptToJoinGame(gamecode) {
         joinPromise = $q.defer();
@@ -146,17 +98,20 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
     function handlePlayerJoinedEvent(data) {
         if (data.uID === uID) {
             if (data.joinSuccess) {
+
                 //set team background colour
                 if (data.team === 0) {
                     userTeam = 'red-team';
-                    teamColors = colors.red;
+                    teamColors = ColorService.getRedColors();
                 } else if (data.team === 1) {
                     userTeam = 'blue-team';
-                    teamColors = colors.blue;
+                    teamColors = ColorService.getBlueColors();
                 }
 
-                joinPromise.resolve(data);
+                // set the specials
+                specialPowers = SpecialPowerManagerService.setupSpecials(data.specials);
 
+                joinPromise.resolve(data);
             } else {
                 joinPromise.reject(data);
             }
@@ -169,6 +124,49 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
 
     function getUserID() {
         return uID;
+    }
+
+    function getSpecialPowers() {
+        if (specialPowers.length === 0) {
+            specialPowers = [{
+                "id": 0,
+                "name": "Flame Ring Attack",
+                "type": "Attack",
+                "idea": "Melee",
+                "description": "Immediately cripple enemies close to you.",
+                "filename": "",
+                "coolDownTime": 5.0,
+                "numberOfUpgrades": 5,
+                "done": true,
+                "enabled" : true,
+                "cssName": "special-Attack-Melee"
+            }, {
+                "id": 3,
+                "name": "Defense Buff",
+                "type": "Buff",
+                "idea": "Defense",
+                "description": "Increase your defense to you can take more punishment.",
+                "filename": "",
+                "coolDownTime": 5.0,
+                "numberOfUpgrades": 5,
+                "done": true,
+                "enabled" : true,
+                "cssName": "special-Buff-Defense"
+            }, {
+                "id": 6,
+                "name": "Healing Ring Spell",
+                "type": "Heal",
+                "idea": "Self-and-close",
+                "description": "Immediately heal teammates close to you.",
+                "filename": "",
+                "coolDownTime": 5.0,
+                "numberOfUpgrades": 5,
+                "done": true,
+                "enabled" : true,
+                "cssName": "special-Heal-Self-and-close"
+            }, ]
+        }
+        return specialPowers;
     }
 
     function setUserID() {
@@ -209,7 +207,8 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
         getUsername: getUsername,
         getUserID: getUserID,
         setUserID: setUserID,
-        getTeamColor: getTeamColor
+        getTeamColor: getTeamColor,
+        getSpecialPowers: getSpecialPowers
     };
 
 });
