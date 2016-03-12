@@ -10,7 +10,7 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
     var username = "";
     var joinPromise;
     var specialPowers = [];
-    
+
     // set to an inital value, changed when the user is assigned a team
     var teamColors = ColorService.getBlueColors();
 
@@ -105,11 +105,11 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
                     teamColors = ColorService.getRedColors();
                 } else if (data.team === 1) {
                     userTeam = 'blue-team';
-                    teamColors =  ColorService.getBlueColors();
+                    teamColors = ColorService.getBlueColors();
                 }
 
                 // set the specials
-                specialPowers = SpecialPowerManagerService.setupSpecials(data.specials);                
+                specialPowers = SpecialPowerManagerService.setupSpecials(data.specials);
 
                 joinPromise.resolve(data);
             } else {
@@ -127,6 +127,45 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
     }
 
     function getSpecialPowers() {
+        if (specialPowers.length === 0) {
+            specialPowers = [{
+                "id": 0,
+                "name": "Flame Ring Attack",
+                "type": "Attack",
+                "idea": "Melee",
+                "description": "Immediately cripple enemies close to you.",
+                "filename": "",
+                "coolDownTime": 5.0,
+                "numberOfUpgrades": 5,
+                "done": true,
+                "enabled" : true,
+                "cssName": "special-Attack-Melee"
+            }, {
+                "id": 3,
+                "name": "Defense Buff",
+                "type": "Buff",
+                "idea": "Defense",
+                "description": "Increase your defense to you can take more punishment.",
+                "filename": "",
+                "coolDownTime": 5.0,
+                "numberOfUpgrades": 5,
+                "done": true,
+                "enabled" : true,
+                "cssName": "special-Buff-Defense"
+            }, {
+                "id": 6,
+                "name": "Healing Ring Spell",
+                "type": "Heal",
+                "idea": "Self-and-close",
+                "description": "Immediately heal teammates close to you.",
+                "filename": "",
+                "coolDownTime": 5.0,
+                "numberOfUpgrades": 5,
+                "done": true,
+                "enabled" : true,
+                "cssName": "special-Heal-Self-and-close"
+            }, ]
+        }
         return specialPowers;
     }
 
