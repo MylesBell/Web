@@ -31,8 +31,8 @@ h1, h2, h3, h4, h5, h6, label {
         -ms-flex-pack: center;
             justify-content: center;
     background-color: #dadfe1;
-    -webkit-align-self: center;
-        -ms-flex-item-align: center;
+    -ms-flex-item-align: center;
+            -webkit-align-self: center;
             align-self: center;    
     font-size: 18px;
     font-weight: 100;
@@ -180,29 +180,53 @@ h1, h2, h3, h4, h5, h6, label {
 .tutorial-page {
     height: 90%;
     width: 100%;  
+    display: -webkit-flex;  
+    display: -ms-flexbox;  
     display: flex;
-    flex-flow: column wrap;
-    justify-content: space-around;
-    align-items: center;
+    -webkit-flex-flow: column wrap;
+        -ms-flex-flow: column wrap;
+            flex-flow: column wrap;
+    -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 
 #tutorial-controls {
     height: 10%;
     width: 100%;
     background-color: #3A539B;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    align-items: center;
+    -webkit-flex-flow: row wrap;
+        -ms-flex-flow: row wrap;
+            flex-flow: row wrap;
+    -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 
 .tutorial-lesson {
     height: 30%;
     width: 100%;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    align-items: center;
+    -webkit-flex-flow: row wrap;
+        -ms-flex-flow: row wrap;
+            flex-flow: row wrap;
+    -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
     font-size: 18px;
 }
 
@@ -221,16 +245,26 @@ h1, h2, h3, h4, h5, h6, label {
  }
 
 .tutorial-left {
-    flex-flow: row-reverse wrap;
+    -webkit-flex-flow: row-reverse wrap;
+        -ms-flex-flow: row-reverse wrap;
+            flex-flow: row-reverse wrap;
 }
 
 #tutorial-progress-indicator {
     width: 30%;
     height: 100%;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    align-items: center;
+    -webkit-flex-flow: row wrap;
+        -ms-flex-flow: row wrap;
+            flex-flow: row wrap;
+    -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 
 .tutorial-progress-dot {
@@ -361,17 +395,31 @@ h1, h2, h3, h4, h5, h6, label {
 }
 .special-circle {
     border-radius: 40%;
-    width: 100%;
     float: left;
     display: block;
     padding-top: 100%;
     background-color: #dadfe1;
-    box-shadow: 0px 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);    /*box-shadow: 10px 10px 0px 0px rgba(0,0,0,0.52);*/
     background-size: 70%;
     background-repeat: no-repeat;
     background-position: 50% 50%;
     background-color: white;
 }
+
+.special-disabled {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, .15) inset, 0 0 6px rgba(0, 0, 0, .1) inset;
+    padding-top: 60%;
+    width: 60%;
+    -webkit-filter: grayscale(1);
+    transition: all 350ms;
+}
+
+.special-enabled {
+    box-shadow: 0px 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);    /*box-shadow: 10px 10px 0px 0px rgba(0,0,0,0.52);*/
+    padding-top: 100%;
+    width: 100%;
+    transition: all 350ms;
+}
+
 .special-Attack-Melee {
     background-image: url("../images/flame_red.png");
    
@@ -401,22 +449,6 @@ h1, h2, h3, h4, h5, h6, label {
 
 .special-Buff-Defense {
     background-image: url("../images/health_buff_blue.png");  
-}
-
-.special-disabled {
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, .15) inset, 0 0 6px rgba(0, 0, 0, .1) inset;
-    padding-top: 60%;
-    width: 60%;
-    -webkit-filter: grayscale(1);
-    transition: all 350ms;
-}
-
-.special-enabled {
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, .15) inset, 0 0 6px rgba(0, 0, 0, .1) inset;
-    padding-top: 60%;
-    width: 60%;
-    -webkit-filter: grayscale(1);
-    transition: all 350ms;
 }
 
 #special-button-0 {
@@ -629,6 +661,17 @@ h1, h2, h3, h4, h5, h6, label {
     /* We increase the header font size even more */
     .splash-head {
         font-size: 300%;
+    }
+}
+
+@-webkit-keyframes hideSpecialButton {
+    from {
+        padding-top: 100%;
+        width: 100%;
+    }
+    to {
+        padding-top: 70%;
+        width: 70%;
     }
 }
 
