@@ -390,6 +390,28 @@ h1, h2, h3, h4, h5, h6, label {
     font-size: 15px;
     color: rgba(21, 21, 21, 1);
 }
+
+#lobby-footer {
+    width: 100%;
+    height: 15vh;
+    position: fixed;
+    top: 85vh;
+    left: 0;
+    /*background-color: red;*/
+    color: white;
+    font-size: x-large;
+    border: none;
+    font-family: inherit;
+}
+
+#lobby-footer.enabled {
+    background-color: blue;
+}
+
+#lobby-footer.disabled {
+    background-color: grey;
+}
+
 .red-team-lobby-header {
     border-bottom: 2px solid red;
 }

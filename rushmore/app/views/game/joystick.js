@@ -333,13 +333,14 @@ angular.module('gameView')
             }
         }
 
+        // Draw the current players and base's health as a ring around the control pad
         function drawPlayerHealthRing() {
 
             // caluclate the size of health ring to draw based on the health lost
             // get angle from the top (270 degree) position
-
             var angleOffset = 0.2; // spacing to put in own and base health icon
 
+            // TODO this is probably gonna fuck up when the player enarly dies
             var startAngle = ((3 / 2) * Math.PI) + playerHealthLostRad + angleOffset;
             var endAngle = ((3 / 2) * Math.PI) - playerHealthLostRad - angleOffset;
 
@@ -351,7 +352,6 @@ angular.module('gameView')
             ctx.stroke();
             ctx.drawImage(userImageObj, centerX - userImageWidth / 2, (centerY - padRadius * 0.86) - userImageWidth / 2, userImageWidth, userImageWidth);
 
-
             startAngle = ((3 / 2) * Math.PI) + baseHealthLostRad + angleOffset;
             endAngle = ((3 / 2) * Math.PI) - baseHealthLostRad - angleOffset;
             ctx.strokeStyle = teamColors.health.base.remaining;
@@ -360,7 +360,6 @@ angular.module('gameView')
             ctx.arc(centerX, centerY, padRadius * 0.65, endAngle, startAngle, true);
             ctx.stroke();
             ctx.drawImage(baseImageObj, centerX - baseImageWidth / 2, (centerY - padRadius * 0.65) - baseImageWidth / 2, baseImageWidth, baseImageWidth);
-
         }
 
         // Draw the control pad with the sectors for movement
