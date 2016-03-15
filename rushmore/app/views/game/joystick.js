@@ -63,10 +63,33 @@ angular.module('gameView')
         var primaryColor = teamColors.primary;
         var highlightColor = teamColors.highlight;
         var darkColor = teamColors.dark;
-
         var playerHealthColorLost = teamColors.health.player.lost;
+
         var baseHealthColorReamining;
         var baseHealthColorLost;
+
+
+        // The base and player health images, need loading callbacks to check they are loaded
+        var baseImageObj = new Image();
+        var baseImageObjLoaded = false;
+        var baseImageWidth = 25;
+        var userImageObj = new Image();
+        var userImageObjLoaded = false;
+        var userImageWidth = 30;
+
+        if (UserService.getUserTeam() === 'red-team') {
+            baseImageObj.src = "../../resources/images/base_health_icon_red.png";
+        } else {
+            baseImageObj.src = "../../resources/images/base_health_icon_blue.png";
+        }
+
+        baseImageObj.onload = function() {
+            baseImageObjLoaded = true;
+        }
+        userImageObj.src = "../../resources/images/user_health_icon.png";
+        userImageObj.onload = function() {
+            userImageObjLoaded = true;
+        }
 
         // The joystick object, storing it's positon information in the pad
         var joystick = {
@@ -311,22 +334,30 @@ angular.module('gameView')
 
             // caluclate the size of health ring to draw based on the health lost
             // get angle from the top (270 degree) position
-            var startAngle = ((3 / 2) * Math.PI) + playerHealthLostRad;
-            var endAngle = ((3 / 2) * Math.PI) - playerHealthLostRad;
+
+            var angleOffset = 0.2; // spacing to put in own and base health icon
+
+            var startAngle = ((3 / 2) * Math.PI) + playerHealthLostRad + angleOffset;
+            var endAngle = ((3 / 2) * Math.PI) - playerHealthLostRad - angleOffset;
+
             ctx.fillStyle = teamColors.health.player.remaining;
             ctx.strokeStyle = teamColors.health.player.remaining;
             ctx.lineWidth = 10;
             ctx.beginPath();
             ctx.arc(centerX, centerY, padRadius * 0.85, endAngle, startAngle, true);
             ctx.stroke();
+            ctx.drawImage(userImageObj, centerX - userImageWidth / 2, (centerY - padRadius * 0.86) - userImageWidth / 2, userImageWidth, userImageWidth);
 
-            startAngle = ((3 / 2) * Math.PI) + baseHealthLostRad;
-            endAngle = ((3 / 2) * Math.PI) - baseHealthLostRad;
+
+            startAngle = ((3 / 2) * Math.PI) + baseHealthLostRad + angleOffset;
+            endAngle = ((3 / 2) * Math.PI) - baseHealthLostRad - angleOffset;
             ctx.strokeStyle = teamColors.health.base.remaining;
             ctx.fillStyle = teamColors.health.base.remaining;
             ctx.beginPath();
             ctx.arc(centerX, centerY, padRadius * 0.65, endAngle, startAngle, true);
             ctx.stroke();
+            ctx.drawImage(baseImageObj, centerX - baseImageWidth / 2, (centerY - padRadius * 0.65) - baseImageWidth / 2, baseImageWidth, baseImageWidth);
+
         }
 
         // Draw the control pad with the sectors for movement
