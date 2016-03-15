@@ -1,15 +1,29 @@
 <div id="tutorial-container">
     <div id="lessons-container">
-        <div id="tutorial-{{tutorial.tutIndex}}" class="tutorial-page" ng-repeat="tutorial in tutorials" ng-show="tutorial.visible" ng-style="getStyle(tutorial)">
-            <div class="tutorial-title">
-                {{tutorial.tutorialTitle}}
+        
+        <div id="tutorial-{{tutorial.tutIndex}}" class="tutorial-page-container" ng-repeat="tutorial in tutorials" ng-show="tutorial.visible" ng-style="getStyle(tutorial)">
+            <div class="tutorial-page-{{tutorial.tutType}}" ng-if="tutorial.tutType === 'single'">
+                <div class="tutorial-title">
+                    {{tutorial.tutorialTitle}}
+                </div>
+                <div class="tutorial-image">
+                </div>
+                <div class="tutorial-text">
+                    {{tutorial.tutorialText}}
+                </div>
             </div>
-            <div class="tutorial-image">
+
+            <div class="tutorial-page-{{tutorial.tutType}}" ng-if="tutorial.tutType === 'multi'">
+                <div class="mini-lesson" ng-repeat="miniLesson in tutorial.miniLessons">
+                    <div class="text">
+                        {{miniLesson.text}}
+                    </div>
+                    <div class="image">
+                        <img ng-src="{{miniLesson.image}}" height="100" width="100">
+                    </div>
+                </div>
             </div>
-            <div class="tutorial-text">
-                {{tutorial.tutorialText}}
-            </div>
-    </div> 
+        </div> 
     </div>
     
     <div id="tutorial-controls">

@@ -10,11 +10,15 @@ angular.module('tutorialView', ['ngRoute'])
         $scope.nextText = "NEXT";
         $scope.prevText = "SKIP";
 
+        var specialTutorial = [];
+
+        setupSpecialTutorial();
         setTeamBackground();
 
         // TODO pull this out to a service
         $scope.tutorials = [{
             tutIndex: 0,
+            tutType: "single",
             tutorialTitle: "Vikings and Cowboys are locked in endless war",
             tutorialText: "As a hero, fight alongside your allies to destroy the COWBOYS",
             tutorialImage: {
@@ -24,6 +28,7 @@ angular.module('tutorialView', ['ngRoute'])
             visible: true
         }, {
             tutIndex: 1,
+            tutType: "single",
             tutorialTitle: "Destroy the enemy's base to win",
             tutorialText: "Heros and grunts continiously spawn from each team's base",
             tutorialImage: {
@@ -33,6 +38,7 @@ angular.module('tutorialView', ['ngRoute'])
             visible: false
         }, {
             tutIndex: 2,
+            tutType: "single",
             tutorialTitle: "Use your special powers to help in combat",
             tutorialText: "Defeating enemy grunts and heros will make you and your powers stronger",
             tutorialImage: {
@@ -40,27 +46,32 @@ angular.module('tutorialView', ['ngRoute'])
                 offset_x: "50%"
             },
             visible: false
-        },{
-            tutIndex: 3,
-            tutorialTitle: "Work with your allies to co-ordinate attacks",
-            tutorialText: "Combine unique powers with friends for maximum destruction",
-            tutorialImage: {
-                image: "../../resources/images/base_cowboy.png",
-                offset_x: "50%"
-            },
-            visible: false
         }, {
-            tutIndex: 4,
+            tutIndex: 3,
+            tutType: "multi",
             tutorialTitle: "Another tutorial side here",
-            tutorialText: "More text that gives more detial about the above text if needed",
+            miniLessons: specialTutorial,
             tutorialImage: {
-                image: "../../resources/images/grunts_blue_base_behind.png",
+                image: "../../resources/images/grunts_blue_base_behind_blur.png",
                 offset_x: "80%"
             },
             visible: false
         }];
 
         $scope.tutorialSteps = $scope.tutorials.length;
+
+
+        function setupSpecialTutorial(){
+            var specials = UserService.getSpecialPowers();
+
+            for(var i = 0; i < specials.length; i++){
+                var spec = specials[i];
+                var lesson = {};
+                lesson.text = spec.name;
+                lesson.image = "../resources/" + spec.image;
+                specialTutorial.push(lesson);
+            }
+        }
 
 
         $scope.getStyle = function(tut) {
@@ -103,7 +114,7 @@ angular.module('tutorialView', ['ngRoute'])
             var prevTutPage = document.getElementById("tutorial-" + $scope.currentTutorialIndex);
             prevTutPage.removeEventListener("transitionend", afterNextTransition);
             prevTutPage.classList.remove("tutorial-anim-page-slide-left");
-            
+
             $scope.tutorials[$scope.currentTutorialIndex].visible = false;
             // move to the next tutorial
             $scope.currentTutorialIndex += 1;
@@ -116,7 +127,7 @@ angular.module('tutorialView', ['ngRoute'])
             $scope.$apply();
         }
 
-        function afterPrevTransition() {            
+        function afterPrevTransition() {
             var prevTutPage = document.getElementById("tutorial-" + $scope.currentTutorialIndex);
             prevTutPage.removeEventListener("transitionend", afterPrevTransition);
             prevTutPage.classList.remove("tutorial-anim-page-slide-right");
@@ -157,7 +168,7 @@ angular.module('tutorialView', ['ngRoute'])
                 });
 
             } else {
-                 // skip to the lobby
+                // skip to the lobby
                 LocationService.setPath('/lobby');
             }
         };

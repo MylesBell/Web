@@ -141,8 +141,9 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
                 "coolDownTime": 5.0,
                 "numberOfUpgrades": 5,
                 "done": true,
-                "enabled" : true,
-                "cssName": "special-Attack-Melee"
+                "enabled": true,
+                "cssName": "special-Attack-Melee",
+                "image": "images/flame_red.png"
             }, {
                 "id": 3,
                 "name": "Defense Buff",
@@ -153,8 +154,9 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
                 "coolDownTime": 5.0,
                 "numberOfUpgrades": 5,
                 "done": true,
-                "enabled" : true,
-                "cssName": "special-Buff-Defense"
+                "enabled": true,
+                "cssName": "special-Buff-Defense",
+                "image": "images/health_buff_blue.png"
             }, {
                 "id": 6,
                 "name": "Healing Ring Spell",
@@ -165,8 +167,9 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
                 "coolDownTime": 5.0,
                 "numberOfUpgrades": 5,
                 "done": true,
-                "enabled" : true,
-                "cssName": "special-Heal-Self-and-close"
+                "enabled": true,
+                "cssName": "special-Heal-Self-and-close",
+                "image": "images/heal_group_green.png"
             }, ];
         }
         return specialPowers;
@@ -188,7 +191,7 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
         return teamColors;
     }
 
-    function getGameState(){
+    function getGameState() {
         return gameState;
     }
 
