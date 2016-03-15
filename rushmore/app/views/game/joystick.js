@@ -83,12 +83,15 @@ angular.module('gameView')
             baseImageObj.src = "../../resources/images/base_health_icon_blue.png";
         }
 
+        // Load the images and redraw the canvas when done
         baseImageObj.onload = function() {
             baseImageObjLoaded = true;
+            resizeCanvas();
         }
         userImageObj.src = "../../resources/images/user_health_icon.png";
         userImageObj.onload = function() {
             userImageObjLoaded = true;
+            resizeCanvas();
         }
 
         // The joystick object, storing it's positon information in the pad
