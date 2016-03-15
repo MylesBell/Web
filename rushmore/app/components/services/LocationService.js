@@ -6,7 +6,6 @@ angular.module('myApp').factory('LocationService', function ($q, $rootScope, $lo
 
     $rootScope.$on("$locationChangeStart",function(event, next, current){
         // Don't let them screw up by pressing back if they're in the game
-
         // PUT THIS BACK IN 
         
         // if(current.indexOf("#/game") > -1){
