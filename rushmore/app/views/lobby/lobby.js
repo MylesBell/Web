@@ -7,7 +7,7 @@ angular.module('lobbyView', ['ngRoute'])
         function($scope, UserService, LocationService, GameInfoService, NetworkService) {
 
             // List of players in the game (updates when players join)   
-            $scope.players = GameInfoService.getPlayerList();
+            $scope.players = [];
             $scope.showStartButton = true;
 
             // When the game playing event occurs, move from the lobby to the game screen
@@ -38,20 +38,6 @@ angular.module('lobbyView', ['ngRoute'])
             /*
                 Register for events, when player join the game and when the game starts
             */
-            // GameInfoService.registerListener({
-            //     stateName: 1,
-            //     call: handleGameStateChange
-            // });
-
-            // GameInfoService.registerListener({
-            //     stateName: "playerJoined",
-            //     call: updateCurrentPlayerList
-            // });
-
-            // GameInfoService.registerListener({
-            //     stateName: "playerLeft",
-            //     call: updateCurrentPlayerList
-            // });
 
             // Register to listen to new players joining
             NetworkService.registerListener({
@@ -71,6 +57,5 @@ angular.module('lobbyView', ['ngRoute'])
                 call: handleGameStateChange
             });
 
-            // TODO update player list
         }
     ]);

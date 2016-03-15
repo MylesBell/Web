@@ -10,19 +10,6 @@ angular.module('myApp').factory('GameInfoService', function($q, NetworkService) 
     var listenerEventList = [];
     var playerList = [];
 
-    function alertListeners(name, data) {
-        listenerEventList.forEach(function(listener) {
-            if (listener.stateName === name) {
-                var call = listener.call;
-                call(data);
-            }
-        }, this);
-    }
-
-    function registerListener(listenerEvent) {
-        listenerEventList.push(listenerEvent);
-    }
-
     // Tell listeners that the game state has changed
     function handleGameStateUpdate(data) {
         console.log("Game state  updated %o", data);
