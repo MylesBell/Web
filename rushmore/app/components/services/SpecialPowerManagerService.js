@@ -7,7 +7,7 @@ angular.module('myApp').factory('SpecialPowerManagerService', function($q, $inte
     var cooldownTIme = 5000;
     var vibrateTime = 200;
 
-    var specialButtonUsed = function(special) {
+    var specialButtonUsed = function(special, position) {
 
         // var special;
         var deferred;
@@ -27,7 +27,7 @@ angular.module('myApp').factory('SpecialPowerManagerService', function($q, $inte
         }
 
         // Fire the special event to the server
-        InputHandlerService.handleSpecial(specialListNum);
+        InputHandlerService.handleSpecial(position);
 
         // Set a cooldown timer for the special before it can be used again
         var specialCooldownTimer = $interval(function() {
