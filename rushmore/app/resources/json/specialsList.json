@@ -19,7 +19,8 @@
 		"description": "Shoot a flame towards the enemy base, burning all in its path.",
 		"filename": "",
 		"coolDownTime": 5.0,
-		"numberOfUpgrades": 5
+		"numberOfUpgrades": 5,
+		"done" : true
 	},
 	{
 		"id": 2,
@@ -50,7 +51,8 @@
 		"description": "Increase your speed to you can move faster.",
 		"filename": "",
 		"coolDownTime": 5.0,
-		"numberOfUpgrades": 5
+		"numberOfUpgrades": 5,
+		"done": true
 	},
 	{
 		"id": 5,
@@ -67,7 +69,7 @@
 		"name": "Healing Ring Spell",
 		"type": "Heal",
 		"idea": "Self-and-close",
-		"description": "Immediately heal teammates close to you.",
+		"description": "Immediately heal yourself and teammates close to you.",
 		"filename": "",
 		"coolDownTime": 5.0,
 		"numberOfUpgrades": 5,
