@@ -7,6 +7,7 @@
 // Require dependencies for interface
 var socketio = require('socket.io');
 var utils = require('./utils');
+var specialsJSON = require('../rushmore/app/resources/json/specialsList.json');
 
 // Export these functions for external access from other interfaces
 module.exports = {
@@ -75,10 +76,12 @@ module.exports = {
             res.playerList = playerList;
             res.joinSuccess = true;
             res.baseMaxHealth = data.baseMaxHealth;
+            res.specials = getSpecialData([data.specialOne, data.specialTwo, data.specialThree]);
 
             playerWhoJoined.health = data.playerMaxHealth;
             playerWhoJoined.maxHealth = data.playerMaxHealth;
             playerWhoJoined.team = data.teamID;
+            playerWhoJoined.specials = res.specials;
 
         } else {
             if (data.ok === 0) {
@@ -141,6 +144,20 @@ module.exports = {
 
         return logger.log(socket, logger.loggableModules.BASE_HEALTH_CHANGE, res);
     }
-
-
 };
+
+// Add the special info from the our special JSON using the IDs sent from server
+function getSpecialData(specials) {
+    var specialObjects = [];
+    for (var i = 0; i < specialsJSON.items.length; i++) {
+        var definedSpecial = specialsJSON.items[i];
+
+        for (var j = 0; j < specials.length; j++) {
+            if (definedSpecial.id === specials[j]){
+                specialObjects.push(definedSpecial);
+            }
+        }
+    }
+
+    return specialObjects;
+}

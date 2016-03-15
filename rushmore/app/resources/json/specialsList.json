@@ -1,0 +1,141 @@
+{
+	"count" : 13,
+	"items" : [{
+		"id": 0,
+		"name": "Flame Ring Attack",
+		"type": "Attack",
+		"idea": "Melee",
+		"description": "Immediately cripple enemies close to you.",
+		"filename": "",
+		"coolDownTime": 5.0,
+		"numberOfUpgrades": 5,
+		"done" : true
+	},
+	{
+		"id": 1,
+		"name": "Flamethrower Attack",
+		"type": "Attack",
+		"idea": "Range",
+		"description": "Shoot a flame towards the enemy base, burning all in its path.",
+		"filename": "",
+		"coolDownTime": 5.0,
+		"numberOfUpgrades": 5
+	},
+	{
+		"id": 2,
+		"name": "Cross lane attack",
+		"type": "Attack",
+		"idea": "Cross_Lane",
+		"description": "Attack an area on the other lane of the map.",
+		"filename": "",
+		"coolDownTime": 5.0,
+		"numberOfUpgrades": 5
+	},
+	{
+		"id": 3,
+		"name": "Defense Buff",
+		"type": "Buff",
+		"idea": "Defense",
+		"description": "Increase your defense to you can take more punishment.",
+		"filename": "",
+		"coolDownTime": 5.0,
+		"numberOfUpgrades": 5,
+		"done" : true
+	},
+	{
+		"id": 4,
+		"name": "Speed Buff",
+		"type": "Buff",
+		"idea": "Speed",
+		"description": "Increase your speed to you can move faster.",
+		"filename": "",
+		"coolDownTime": 5.0,
+		"numberOfUpgrades": 5
+	},
+	{
+		"id": 5,
+		"name": "Attack Buff",
+		"type": "Buff",
+		"idea": "Attack",
+		"description": "Increase your attack to you deal more damage.",
+		"filename": "",
+		"coolDownTime": 5.0,
+		"numberOfUpgrades": 5
+	},
+	{
+		"id": 6,
+		"name": "Healing Ring Spell",
+		"type": "Heal",
+		"idea": "Self-and-close",
+		"description": "Immediately heal teammates close to you.",
+		"filename": "",
+		"coolDownTime": 5.0,
+		"numberOfUpgrades": 5,
+		"done": true
+	},
+	{
+		"id": 7,
+		"name": "Grunt Healer",
+		"type": "Heal",
+		"idea": "Grunt",
+		"description": "Heal Grunts.",
+		"filename": "",
+		"coolDownTime": 10.0,
+		"numberOfUpgrades": 5
+	},
+	{
+		"id": 8,
+		"name": "Hero healer",
+		"type": "Heal",
+		"idea": "Hero",
+		"description": "Heal another player in need, use next to the player you want to heal.",
+		"filename": "",
+		"coolDownTime": 5.0,
+		"numberOfUpgrades": 5,
+		"done" : true
+	},
+	{
+		"id": 9,
+		"name": "Invisibility cloak",
+		"type": "Special",
+		"idea": "Invisibility",
+		"description": "Turn invisible to enemy grunts, so you are not attacked.",
+		"filename": "",
+		"coolDownTime": 5.0,
+		"numberOfUpgrades": 5,
+		"done" : true
+	},
+	{
+		"id": 10,
+		"name": "Super Slowdown Spell",
+		"type": "Special",
+		"idea": "Slow",
+		"description": "",
+		"filename": "",
+		"coolDownTime": 5.0,
+		"numberOfUpgrades": 5,
+		"done" : true
+	},
+	{
+		"id": 11,
+		"name": "Drop Bomb Attack",
+		"type": "Special",
+		"idea": "Trap",
+		"description": "Drop a bomb that will explode after a wait, hurting your enemies.",
+		"filename": "",
+		"coolDownTime": 5.0,
+		"numberOfUpgrades": 5,
+		"done" : true
+	},
+	{
+		"id": 12,
+		"name": "Base Destroyer",
+		"type": "Special",
+		"idea": "Special-Attack",
+		"description": "Deal huge damage to the enemy base when in range.",
+		"filename": "",
+		"coolDownTime": 10.0,
+		"numberOfUpgrades": 5,
+		"done" : true
+	}]
+}

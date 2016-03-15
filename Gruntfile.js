@@ -53,7 +53,7 @@ module.exports = function (grunt) {
             socket_test: {
                 options: {
                     script: 'socket_server/server.js',
-                    args: ['LOGGINGLEVEL=SILENT', 'TESTING=TRUE']
+                    args: ['LOGGINGLEVEL=FULL', 'TESTING=TRUE']
                 }
             }
         },
@@ -93,7 +93,7 @@ module.exports = function (grunt) {
                 constants: {
                     ENV: {
                         name: 'production',
-                        socketIOEndpoint: 'http://icantmiss.com:1337'
+                        socketIOEndpoint: 'http://watchfreenfl.com:1337'
                     }
                 }
             }            
