@@ -60,7 +60,7 @@ angular.module('myApp').factory('GameInfoService', function($q, NetworkService) 
          PUBLIC API
      ---------------- */
     return {
-        registerListener: registerListener,
+        // registerListener: registerListener,
         getPlayerList: getPlayerList,
         getState: getState
     };
