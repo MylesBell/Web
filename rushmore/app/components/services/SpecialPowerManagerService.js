@@ -14,9 +14,10 @@ angular.module('myApp').factory('SpecialPowerManagerService', function($q, $inte
 
         deferred = $q.defer();
 
-        special = specialList.filter(function(sp) {
-            return (touchedID.indexOf(sp.id) > -1);
-        })[0];
+        var specialListNum = Number(touchedID.substring(touchedID.length-2, touchedID.length-1));
+        special = specialList[specialListNum];
+
+        console.log(special);
 
         special.enabled = false;
 
