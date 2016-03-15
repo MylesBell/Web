@@ -46,7 +46,7 @@ angular.module('myApp').factory('InputHandlerService', function($q, NetworkServi
     function handleSpecial(sp) {
         NetworkService.send("playerSpecial", {
             input: "special",
-            specialUsedIndex: sp.id
+            specialUsedIndex: sp
         });
     }
 
