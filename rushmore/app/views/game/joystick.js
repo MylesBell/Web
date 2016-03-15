@@ -87,12 +87,12 @@ angular.module('gameView')
         baseImageObj.onload = function() {
             baseImageObjLoaded = true;
             resizeCanvas();
-        }
+        };
         userImageObj.src = "../../resources/images/user_health_icon.png";
         userImageObj.onload = function() {
             userImageObjLoaded = true;
             resizeCanvas();
-        }
+        };
 
         // The joystick object, storing it's positon information in the pad
         var joystick = {
