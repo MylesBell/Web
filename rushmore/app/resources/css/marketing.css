@@ -365,6 +365,7 @@ h1, h2, h3, h4, h5, h6, label {
     height: 100%;
     display: block;
     overflow: auto;
+    padding: 0px 0px 0px 0px;
 }
 
 #lobby-container ul {
@@ -375,11 +376,11 @@ h1, h2, h3, h4, h5, h6, label {
 #lobby-container h1 {
     list-style-type: none;
     padding-left: 0px;
-    padding-top: 10px;
+    /*padding-top: 10px;*/
     font-size: 20px;
-    color: rgba(21, 21, 21, 1);
+    color: white;
     letter-spacing: 0.05em;
-    opacity: 0.8;
+    opacity: 1;
     font-weight: 100;
 }
 
@@ -387,8 +388,9 @@ h1, h2, h3, h4, h5, h6, label {
     list-style-type: none;
     padding-left: 0px;
     padding-bottom: 5px;
-    font-size: 15px;
-    color: rgba(21, 21, 21, 1);
+    font-size: medium;
+    color: white;
+    letter-spacing: 0.05em;
 }
 
 #lobby-footer {
@@ -405,19 +407,23 @@ h1, h2, h3, h4, h5, h6, label {
 }
 
 #lobby-footer.enabled {
-    background-color: blue;
+    background-color: #26a65b;
 }
 
 #lobby-footer.disabled {
     background-color: grey;
 }
 
-.red-team-lobby-header {
-    border-bottom: 2px solid red;
+#blue-team-lobby-header{
+    background: #446CB3;
+    padding: 10px;
 }
-.blue-team-lobby-header {
-    border-bottom: 2px solid blue;
+
+#red-team-lobby-header{
+    background: #D91E18;
+    padding: 10px;
 }
+
 #game-container {
     height: 90%;
     top: 50px;

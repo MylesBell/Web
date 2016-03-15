@@ -39,6 +39,8 @@ angular.module('lobbyView', ['ngRoute'])
 
             if (UserService.getGameState() === 1) {
                 $scope.showStartButton = true;
+                $scope.canJoin = true;
+                $scope.buttonText = "JOIN GAME";
             }
 
             /*
