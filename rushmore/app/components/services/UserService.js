@@ -111,7 +111,9 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
 
                 // set the specials
                 specialPowers = SpecialPowerManagerService.setupSpecials(data.specials);
-                getGameState = data.state;
+                gameState = data.state;
+
+                console.log(data);
 
 
                 joinPromise.resolve(data);
