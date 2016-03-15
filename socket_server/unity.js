@@ -160,4 +160,4 @@ function getSpecialData(specials) {
     }
 
     return specialObjects;
-};
+}

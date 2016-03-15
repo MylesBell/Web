@@ -23,13 +23,11 @@ angular.module('gameJoinView', ['ngRoute'])
                 // the user has joined move they to either game or lobby
 
                 // MESSING WITH THIS TO GO TO TUTORIAL
-                if (res.state === 0) {
-                    // LocationService.setPath('/lobby');
+                if (res.state === 0 || res.state === 1) {
                     LocationService.setPath('/tutorial');
-                } else if (res.state === 1) {
-                    LocationService.setPath('/game');
-                } else {
+                } else{
                     console.log("Son you fucked up");
+                
                 }
 
             }).catch(function(res) {
