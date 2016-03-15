@@ -7,7 +7,7 @@ angular.module('lobbyView', ['ngRoute'])
         function($scope, UserService, LocationService, GameInfoService, NetworkService) {
 
             // List of players in the game (updates when players join)   
-            $scope.players = [];
+            $scope.players = GameInfoService.getPlayerList();
             $scope.showStartButton = true;
 
             // When the game playing event occurs, move from the lobby to the game screen

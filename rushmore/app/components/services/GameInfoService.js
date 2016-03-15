@@ -14,19 +14,16 @@ angular.module('myApp').factory('GameInfoService', function($q, NetworkService) 
     function handleGameStateUpdate(data) {
         console.log("Game state  updated %o", data);
         state = data.state;
-        // alertListeners(data.state, data); // name and data are the same for the states
     }
 
     // Tell listeners that a player has joined
     function handlePlayerJoinedEvent(data) {
         playerList = data.playerList;
-        // alertListeners("playerJoined", data);
     }
 
     // Tell listeners that a player has left
     function handlePlayerLeaveEvent(data) {
         playerList = data.playerList;
-        // alertListeners("playerLeft", data);
     }
 
     // Register to listen to changes in state
