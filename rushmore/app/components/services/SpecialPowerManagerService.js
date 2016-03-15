@@ -34,7 +34,7 @@ angular.module('myApp').factory('SpecialPowerManagerService', function($q, $inte
             // capture special used in closue to allow multple timeouts
             var spec = special;
 
-            // Cancle timer and reset special
+            // Cancel timer and reset special
             $interval.cancel(specialCooldownTimer);
             spec.enabled = true;
             deferred.resolve(spec);

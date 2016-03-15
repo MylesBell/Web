@@ -83,15 +83,15 @@ angular.module('gameView', ['ngRoute'])
         // Direct ng-click event
         $scope.useSpecial = function(special) {
             specialUsed(special.id.toString());
-            // SpecialPowerManagerService.specialButtonUsed($scope.specialPowers, );
         };
 
+
+        // Do events with that special, tell server it has happened
         function specialUsed(touchedID) {
             var specialListNum = Number(touchedID.substring(touchedID.length - 1, touchedID.length));
             var special = $scope.specialPowers[specialListNum];
             $scope.specialPowers[specialListNum].enabled = false;
             $scope.$apply();
-            // special.enabled = false;
             SpecialPowerManagerService.specialButtonUsed($scope.specialPowers[specialListNum], specialListNum);
         }
 
