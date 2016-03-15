@@ -167,8 +167,9 @@ h1, h2, h3, h4, h5, h6, label {
 }
 
 #top-container {
-    height: 120px;
-    padding: 40px;
+    height: 20vh;
+    padding: 20px;
+    text-align: center;
     background-color: #2d3e50;
 }
 
@@ -366,6 +367,7 @@ h1, h2, h3, h4, h5, h6, label {
     display: block;
     overflow: auto;
     padding: 0px 0px 0px 0px;
+    top: 20vh;
 }
 
 #lobby-container ul {
@@ -395,15 +397,29 @@ h1, h2, h3, h4, h5, h6, label {
 
 #lobby-footer {
     width: 100%;
-    height: 15vh;
+    height: 20vh;
     position: fixed;
-    top: 85vh;
+    top: 80vh;
     left: 0;
     /*background-color: red;*/
     color: white;
     font-size: x-large;
     border: none;
     font-family: inherit;
+}
+
+#lobby-footer.enabled:focus {    
+    background-color: #37955E !important;
+}
+#lobby-footer.enabled:active {    
+    background-color: #37955E !important;
+}
+
+#lobby-footer.disabled:focus {    
+    background-color: #787878 !important;
+}
+#lobby-footer.disabled:active {    
+    background-color: #787878 !important;
 }
 
 #lobby-footer.enabled {
@@ -417,11 +433,13 @@ h1, h2, h3, h4, h5, h6, label {
 #blue-team-lobby-header{
     background: #446CB3;
     padding: 10px;
+    min-height: 30vh;
 }
 
 #red-team-lobby-header{
     background: #D91E18;
     padding: 10px;
+    min-height: 30vh;
 }
 
 #game-container {
