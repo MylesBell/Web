@@ -131,7 +131,7 @@
 		"id": 12,
 		"name": "Base Destroyer",
 		"type": "Special",
-		"idea": "Special-Attack",
+		"idea": "Attack",
 		"description": "Deal huge damage to the enemy base when in range.",
 		"filename": "",
 		"coolDownTime": 10.0,
