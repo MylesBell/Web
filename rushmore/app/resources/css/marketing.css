@@ -676,6 +676,8 @@ h1, h2, h3, h4, h5, h6, label {
         width: 50%;
         height: 85%; /* from the header taking 15% height */
         margin: 0px;
+        float: left;
+
     }
     #joystick-container {
         height: 90%;
