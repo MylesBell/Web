@@ -164,7 +164,7 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
                 "done": true,
                 "enabled" : true,
                 "cssName": "special-Heal-Self-and-close"
-            }, ]
+            }, ];
         }
         return specialPowers;
     }
