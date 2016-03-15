@@ -109,12 +109,9 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
                     teamColors = ColorService.getBlueColors();
                 }
 
-                // set the specials
+                // set the specials and gamestate
                 specialPowers = SpecialPowerManagerService.setupSpecials(data.specials);
                 gameState = data.state;
-
-                console.log(data);
-
 
                 joinPromise.resolve(data);
             } else {
