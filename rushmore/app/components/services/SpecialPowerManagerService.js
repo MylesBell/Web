@@ -29,7 +29,7 @@ angular.module('myApp').factory('SpecialPowerManagerService', function($q, $inte
         }
 
         // Fire the special event to the server
-        InputHandlerService.handleSpecial(special);
+        InputHandlerService.handleSpecial(specialListNum);
 
         // Set a cooldown timer for the special before it can be used again
         var specialCooldownTimer = $interval(function() {
