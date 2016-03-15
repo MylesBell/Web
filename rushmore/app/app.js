@@ -6,6 +6,7 @@ angular.module('myApp', [
     'headerBarInfoView',
     'playerCreationView',
     "lobbyView",
+    "tutorialView",
     "btford.socket-io",
     "LocalStorageModule",
     "config",
@@ -27,6 +28,9 @@ config(function($routeProvider, IdleProvider, KeepaliveProvider, TitleProvider) 
     }).when('/lobby', {
         templateUrl: 'views/lobby/lobby.html',
         controller: 'LobbyCtrl'
+    }).when('/tutorial', {
+        templateUrl: 'views/tutorials/tutorial.html',
+        controller: 'TutorialCtrl'
     }).when('/', {
         templateUrl: 'views/playerCreation/playerCreation.html',
         controller: 'PlayerCreationCtrl'

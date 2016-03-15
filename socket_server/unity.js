@@ -2,7 +2,7 @@
  *
  * Unity Interface for SocketIO server
  *
-*/
+ */
 
 // Require dependencies for interface
 var socketio = require('socket.io');
@@ -14,7 +14,7 @@ module.exports = {
     /* 
         Player has died in the game
     */
-    gamePlayerDied: function(socket, data, logger){
+    gamePlayerDied: function(socket, data, logger) {
         var res = {};
         res.ok = true;
         res.uID = data.playerID;
@@ -26,7 +26,7 @@ module.exports = {
     /* 
         Player has respawned in the game
     */
-    gamePlayerRespawn: function(socket, data, logger, playerList){
+    gamePlayerRespawn: function(socket, data, logger, playerList) {
         var res = {};
         var player;
 
@@ -43,7 +43,7 @@ module.exports = {
     /* 
         The game state has been updated
     */
-    gameStateUpdate: function(socket, data, logger){
+    gameStateUpdate: function(socket, data, logger) {
         var res = {};
         res.ok = false;
 
@@ -59,14 +59,14 @@ module.exports = {
     /* 
         The new player has joined the game
     */
-    gamePlayerJoined: function(socket, data, logger, playerList){
+    gamePlayerJoined: function(socket, data, logger, playerList) {
         var res = {};
         var playerWhoJoined = {};
 
         playerWhoJoined = utils.playerFromUID(data.playerID, playerList);
 
         if (data.ok === 1 && data.playerID && playerWhoJoined !== undefined) {
-            
+
             res.ok = true;
             res.uID = data.playerID;
             res.team = data.teamID;
@@ -75,23 +75,13 @@ module.exports = {
             res.playerList = playerList;
             res.joinSuccess = true;
             res.baseMaxHealth = data.baseMaxHealth;
-            
+
             playerWhoJoined.health = data.playerMaxHealth;
             playerWhoJoined.maxHealth = data.playerMaxHealth;
             playerWhoJoined.team = data.teamID;
 
-
-            // if(data.playerMaxHealth !== undefined){
-            //     playerWhoJoined.health = data.playerMaxHealth;
-            //     playerWhoJoined.maxHealth = data.playerMaxHealth;
-            //     console.log(playerWhoJoined);
-            // } else { // TODO this won't be undefined later when we merge stuff
-            //     playerWhoJoined.health = 1000;
-            //     playerWhoJoined.maxHealth = 1000;
-            // }
-
-        } else{
-            if(data.ok === 0){
+        } else {
+            if (data.ok === 0) {
                 res.ok = true;
                 res.joinSuccess = false;
                 res.uID = data.playerID;
@@ -106,7 +96,7 @@ module.exports = {
     /*
         A player has moved near to the base
     */
-    gamePlayerNearBase: function (socket, data, logger) {
+    gamePlayerNearBase: function(socket, data, logger) {
         var res = {};
 
         res.uID = data.playerID;
@@ -124,7 +114,7 @@ module.exports = {
         var player;
 
         player = utils.playerFromUID(data.playerID, playerList);
-        
+
         //update the players health on the server 
         player.health = player.health + data.amount;
 

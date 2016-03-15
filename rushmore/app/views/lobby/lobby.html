@@ -1,25 +1,22 @@
-<div class="main-container">
-    <div class="controller-container">
-        <div class="top-container">
-            <p>The game will start shortly...</p>
-        </div>
-        <div class="bottom-container lobby-container pure-g ">
-                <div class="pure-u-1-2">
-                    <h1 class="blue-team-lobby-header">Blue Team</h1>
-                    <ul>
-                        <li ng-repeat="playerBlue in players | filter: {team: 1}">
-                          <p>{{playerBlue.username}}</p>
-                        </li>                    
-                    </ul>
-                </div>
-                <div class="pure-u-1-2">
-                    <h1 class="red-team-lobby-header">Red team</h1>
-                    <ul>
-                        <li ng-repeat="playerRed in players | filter: {team: 0}">
-                          <p>{{playerRed.username}}</p>                  
-                        </li>   
-                    </ul>
-                </div>
-        </div>
+<div id="top-container">
+    <p>The game will start shortly...</p>
+</div>
+<div id="lobby-container" class="bottom-container">
+    <input id="start-button" class="deploy-button" ng-show="showStartButton" type="submit" value="START" ng-click="startGame()"></input>
+    <div >
+        <h1 class="blue-team-lobby-header">Blue Team</h1>
+        <ul>
+            <li ng-repeat="playerBlue in players | filter: {team: 1}">
+              <p>{{playerBlue.username}}</p>
+            </li>                    
+        </ul>
+    </div>
+    <div>
+        <h1 class="red-team-lobby-header">Red team</h1>
+        <ul>
+            <li ng-repeat="playerRed in players | filter: {team: 0}">
+              <p>{{playerRed.username}}</p>                  
+            </li>   
+        </ul>
     </div>
 </div>

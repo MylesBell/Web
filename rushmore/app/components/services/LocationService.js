@@ -6,6 +6,8 @@ angular.module('myApp').factory('LocationService', function ($q, $rootScope, $lo
 
     $rootScope.$on("$locationChangeStart",function(event, next, current){
         // Don't let them screw up by pressing back if they're in the game
+        // PUT THIS BACK IN 
+        
         // if(current.indexOf("#/game") > -1){
         //     event.preventDefault();
         // }
@@ -21,13 +23,18 @@ angular.module('myApp').factory('LocationService', function ($q, $rootScope, $lo
         console.log(path);
         $location.path(path);
     }
+
+    function getPath() {
+        return $location.url();
+    }
     
    /* --------------------
         PUBLIC API
     ---------------- */
 
     return {
-        setPath: setPath
+        setPath: setPath,
+        getPath: getPath
     };
 
 });

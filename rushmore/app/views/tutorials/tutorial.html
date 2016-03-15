@@ -1,0 +1,27 @@
+<div id="tutorial-container">
+    <div id="lessons-container">
+        <div id="tutorial-{{tutorial.tutIndex}}" class="tutorial-page" ng-repeat="tutorial in tutorials" ng-show="tutorial.visible" ng-style="getStyle(tutorial)">
+            <div class="tutorial-title">
+                {{tutorial.tutorialTitle}}
+            </div>
+            <div class="tutorial-image">
+            </div>
+            <div class="tutorial-text">
+                {{tutorial.tutorialText}}
+            </div>
+    </div> 
+    </div>
+    
+    <div id="tutorial-controls">
+        <div id="tutorial-prev-button" class="tutorial-controls-button" ng-click="prev()">
+            {{prevText}}
+        </div>
+        <div id="tutorial-progress-indicator">
+            <div class="tutorial-progress-dot" ng-class="{'tutorial-progress-dot-active': currentTutorialIndex === {{tut.tutIndex}} }" ng-repeat="tut in tutorials" >
+            </div>
+        </div>
+        <div id="tutorial-next-button" class="tutorial-controls-button" ng-click="next()">
+            {{nextText}}
+        </div>
+    </div>    
+</div>

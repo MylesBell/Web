@@ -46,7 +46,7 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
     };
 
     // set to an inital value, changed when the user is assigned a team
-    var teamColors = colors.blue;
+    var teamColors = colors.red;
 
     function alertListeners(eventName, eventData) {
         listenerEventList.forEach(function(listener) {

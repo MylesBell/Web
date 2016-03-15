@@ -107,6 +107,9 @@ module.exports = {
         var res = {};
         res.ok = true;
         res.uID = socket.id;
+        res.specialUsedIndex = data.specialUsedIndex;
+
+        console.log(res);
 
         return logger.log(socket, logger.loggableModules.PLAYER_SPECIAL, res);
     },
