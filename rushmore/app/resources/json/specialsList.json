@@ -19,17 +19,19 @@
 		"description": "Shoot a flame towards the enemy base, burning all in its path.",
 		"filename": "",
 		"coolDownTime": 5.0,
-		"numberOfUpgrades": 5
+		"numberOfUpgrades": 5,
+		"done" : true
 	},
 	{
 		"id": 2,
 		"name": "Cross lane attack",
 		"type": "Attack",
-		"idea": "Cross_Lane",
+		"idea": "Cross-Lane",
 		"description": "Attack an area on the other lane of the map.",
 		"filename": "",
 		"coolDownTime": 5.0,
-		"numberOfUpgrades": 5
+		"numberOfUpgrades": 5,
+		"done" : true
 	},
 	{
 		"id": 3,
@@ -50,7 +52,8 @@
 		"description": "Increase your speed to you can move faster.",
 		"filename": "",
 		"coolDownTime": 5.0,
-		"numberOfUpgrades": 5
+		"numberOfUpgrades": 5,
+		"done": true
 	},
 	{
 		"id": 5,
@@ -67,7 +70,7 @@
 		"name": "Healing Ring Spell",
 		"type": "Heal",
 		"idea": "Self-and-close",
-		"description": "Immediately heal teammates close to you.",
+		"description": "Immediately heal yourself and teammates close to you.",
 		"filename": "",
 		"coolDownTime": 5.0,
 		"numberOfUpgrades": 5,
@@ -130,8 +133,8 @@
 	{
 		"id": 12,
 		"name": "Base Destroyer",
-		"type": "Special",
-		"idea": "Attack",
+		"type": "Attack",
+		"idea": "Base",
 		"description": "Deal huge damage to the enemy base when in range.",
 		"filename": "",
 		"coolDownTime": 10.0,

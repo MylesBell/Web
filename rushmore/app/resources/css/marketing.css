@@ -503,13 +503,21 @@ h1, h2, h3, h4, h5, h6, label {
 }
 
 .special-Attack-Melee {
-    background-image: url("../images/flame_red.png");
-   
+    background-image: url("../images/flame_red.png");   
 }
+.special-Attack-Range {
+    background-image: url("../images/arrow_red.png");   
+}
+.special-Attack-Base {
+    background-image: url("../images/base_destroy_red.png");
+}
+.special-Attack-Cross-Lane {
+    background-image: url("../images/base_destroy_red.png");
+}
+
 .special-Heal-Hero {
     background-image: url("../images/heart_green.png");
 }
-
 .special-Heal-Self-and-close {
     background-image: url("../images/heal_group_green.png");
 }
@@ -517,20 +525,21 @@ h1, h2, h3, h4, h5, h6, label {
 .special-Heal-Special-Slow {
     background-image: url("../images/heal_group_green.png");
 }
-
-.special-Special-Attack {
-    background-image: url("../images/base_destroy_purple.png");
-}
 .special-Special-Invisibility {
     background-image: url("../images/eye_purple.png");
 }
-
 .special-Special-Trap {
     background-image: url("../images/bomb_purple.png");  
 }
 
 .special-Buff-Defense {
     background-image: url("../images/health_buff_blue.png");  
+}
+.special-Buff-Speed {
+    background-image: url("../images/speed_blue.png");  
+}
+.special-Buff-Attack {
+    background-image: url("../images/damage_buff_blue.png");  
 }
 
 #special-button-0 {

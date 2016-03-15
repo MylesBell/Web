@@ -90,9 +90,12 @@ angular.module('gameView', ['ngRoute'])
         function specialUsed(touchedID) {
             var specialListNum = Number(touchedID.substring(touchedID.length - 1, touchedID.length));
             var special = $scope.specialPowers[specialListNum];
-            $scope.specialPowers[specialListNum].enabled = false;
-            $scope.$apply();
-            SpecialPowerManagerService.specialButtonUsed($scope.specialPowers[specialListNum], specialListNum);
+            if ($scope.specialPowers[specialListNum].enabled) {
+                $scope.specialPowers[specialListNum].enabled = false;
+                $scope.$apply();
+                SpecialPowerManagerService.specialButtonUsed($scope.specialPowers[specialListNum], specialListNum);                
+            }
+
         }
 
         // Called when The player has died on the server, Change to the respawn screen and start the respawn timer
