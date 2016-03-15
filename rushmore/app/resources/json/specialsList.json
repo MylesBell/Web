@@ -26,11 +26,12 @@
 		"id": 2,
 		"name": "Cross lane attack",
 		"type": "Attack",
-		"idea": "Cross_Lane",
+		"idea": "Cross-Lane",
 		"description": "Attack an area on the other lane of the map.",
 		"filename": "",
 		"coolDownTime": 5.0,
-		"numberOfUpgrades": 5
+		"numberOfUpgrades": 5,
+		"done" : true
 	},
 	{
 		"id": 3,
@@ -132,8 +133,8 @@
 	{
 		"id": 12,
 		"name": "Base Destroyer",
-		"type": "Special",
-		"idea": "Attack",
+		"type": "Attack",
+		"idea": "Base",
 		"description": "Deal huge damage to the enemy base when in range.",
 		"filename": "",
 		"coolDownTime": 10.0,
