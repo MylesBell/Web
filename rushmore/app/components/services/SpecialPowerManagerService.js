@@ -7,19 +7,17 @@ angular.module('myApp').factory('SpecialPowerManagerService', function($q, $inte
     var cooldownTIme = 5000;
     var vibrateTime = 200;
 
-    var specialButtonUsed = function(specialList, touchedID) {
+    var specialButtonUsed = function(special) {
 
-        var special;
+        // var special;
         var deferred;
 
         deferred = $q.defer();
 
-        var specialListNum = Number(touchedID.substring(touchedID.length-1, touchedID.length));
-        special = specialList[specialListNum];
+        // var specialListNum = Number(touchedID.substring(touchedID.length-1, touchedID.length));
+        // special = specialList[specialListNum];
 
         console.log(special);
-
-        special.enabled = false;
 
         // Vibrate the phone 
         if (window.navigator.vibrate !== undefined) {

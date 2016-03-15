@@ -6,7 +6,7 @@ angular.module('gameView', ['ngRoute'])
         $scope.nearBase = false;
         $scope.playerDead = false;
         $scope.timeToRespawn = 5;
-        $scope.gameOver = false;  
+        $scope.gameOver = false;
         $scope.winner = "";
         $scope.specialPowers = undefined;
 
@@ -25,7 +25,7 @@ angular.module('gameView', ['ngRoute'])
         };
 
         setup();
-        
+
         // Setup special powers
         $scope.specialPowers = UserService.getSpecialPowers();
 
@@ -75,15 +75,23 @@ angular.module('gameView', ['ngRoute'])
                     $rootScope.$emit("canvas.touch.start", e);
                 } else if (touchedElementId.indexOf("special") > -1) {
                     // or handle special powers being selected
-                    SpecialPowerManagerService.specialButtonUsed($scope.specialPowers, touchedElementId);
+                    specialUsed(touchedElementId);
                 }
             }
         });
 
         // Direct ng-click event
         $scope.useSpecial = function(special) {
-            SpecialPowerManagerService.specialButtonUsed($scope.specialPowers, special.id.toString());
+            specialUsed(special.id.toString());
+            // SpecialPowerManagerService.specialButtonUsed($scope.specialPowers, );
         };
+
+        function specialUsed(touchedID) {
+            var specialListNum = Number(touchedID.substring(touchedID.length - 1, touchedID.length));
+            var special = $scope.specialPowers[specialListNum];
+            special.enabled = false;
+            SpecialPowerManagerService.specialButtonUsed(special);
+        }
 
         // Called when The player has died on the server, Change to the respawn screen and start the respawn timer
         // The timeleft is the time from now until when they should respawn (timestamp sent by the server)
@@ -107,22 +115,22 @@ angular.module('gameView', ['ngRoute'])
         }
 
         // handle the game state changing to game over
-        function handleGameStateUpdate(data){
-            if(data.state === 2) {
+        function handleGameStateUpdate(data) {
+            if (data.state === 2) {
                 // winner, 1 is blue , 0 is red
-                $scope.gameOver = true;  
+                $scope.gameOver = true;
                 $scope.winnerTeam = data.winner === 0 ? "Red Team" : "Blue Team";
                 $scope.winner = data.winner;
-            } else if(data.state === 1) {
+            } else if (data.state === 1) {
                 // game player, remove the game over thing
-                $scope.gameOver = false;  
-            }           
+                $scope.gameOver = false;
+            }
         }
 
         /*
             Helper functions 
         */
-        
+
         // Change the background colour of the container to the teams colours
         // Set the container to fill screen size
         function setup() {
