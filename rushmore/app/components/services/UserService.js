@@ -10,6 +10,7 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
     var username = "";
     var joinPromise;
     var specialPowers = [];
+    var gameState = 0;
 
     // set to an inital value, changed when the user is assigned a team
     var teamColors = ColorService.getBlueColors();
@@ -108,8 +109,9 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
                     teamColors = ColorService.getBlueColors();
                 }
 
-                // set the specials
+                // set the specials and gamestate
                 specialPowers = SpecialPowerManagerService.setupSpecials(data.specials);
+                gameState = data.state;
 
                 joinPromise.resolve(data);
             } else {
@@ -186,6 +188,10 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
         return teamColors;
     }
 
+    function getGameState(){
+        return gameState;
+    }
+
     /*
         Register with the network service to listen to  when the player has joined the game
     */
@@ -209,7 +215,8 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
         getUserID: getUserID,
         setUserID: setUserID,
         getTeamColor: getTeamColor,
-        getSpecialPowers: getSpecialPowers
+        getSpecialPowers: getSpecialPowers,
+        getGameState: getGameState
     };
 
 });

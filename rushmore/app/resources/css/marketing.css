@@ -518,7 +518,7 @@ h1, h2, h3, h4, h5, h6, label {
     background-image: url("../images/heal_group_green.png");
 }
 
-.special-Heal-Special-Special-Attack {
+.special-Special-Attack {
     background-image: url("../images/base_destroy_purple.png");
 }
 .special-Special-Invisibility {
@@ -536,7 +536,7 @@ h1, h2, h3, h4, h5, h6, label {
 #special-button-0 {
     margin-bottom: 60px;
 }
-#special-button-1 {
+#special-button-2 {
     margin-bottom: 60px;
 }
 .health-bar-container {

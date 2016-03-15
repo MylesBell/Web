@@ -7,18 +7,17 @@ angular.module('myApp').factory('SpecialPowerManagerService', function($q, $inte
     var cooldownTIme = 5000;
     var vibrateTime = 200;
 
-    var specialButtonUsed = function(specialList, touchedID) {
+    var specialButtonUsed = function(special, position) {
 
-        var special;
+        // var special;
         var deferred;
 
         deferred = $q.defer();
 
-        special = specialList.filter(function(sp) {
-            return (touchedID.indexOf(sp.id) > -1);
-        })[0];
+        // var specialListNum = Number(touchedID.substring(touchedID.length-1, touchedID.length));
+        // special = specialList[specialListNum];
 
-        special.enabled = false;
+        console.log(special);
 
         // Vibrate the phone 
         if (window.navigator.vibrate !== undefined) {
@@ -28,14 +27,14 @@ angular.module('myApp').factory('SpecialPowerManagerService', function($q, $inte
         }
 
         // Fire the special event to the server
-        InputHandlerService.handleSpecial(special);
+        InputHandlerService.handleSpecial(position);
 
         // Set a cooldown timer for the special before it can be used again
         var specialCooldownTimer = $interval(function() {
             // capture special used in closue to allow multple timeouts
             var spec = special;
 
-            // Cancle timer and reset special
+            // Cancel timer and reset special
             $interval.cancel(specialCooldownTimer);
             spec.enabled = true;
             deferred.resolve(spec);

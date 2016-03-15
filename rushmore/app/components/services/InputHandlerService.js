@@ -43,10 +43,11 @@ angular.module('myApp').factory('InputHandlerService', function($q, NetworkServi
         return deferred.promise;
     }
 
+    // Send the special position in the user's controller to the server
     function handleSpecial(sp) {
         NetworkService.send("playerSpecial", {
             input: "special",
-            specialUsedIndex: sp.id
+            specialUsedIndex: sp
         });
     }
 
