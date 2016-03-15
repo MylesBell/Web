@@ -22,10 +22,8 @@ describe('Lobby page', function() {
 
         expect(browser.getCurrentUrl()).toBe('http://localhost:7777/#/tutorial');
 
-        // Go past the tutorial
-        element(by.id('tutorial-next-button')).click();
-        element(by.id('tutorial-next-button')).click();
-        element(by.id('tutorial-next-button')).click();
+        // Go past the tutorial using skip
+        element(by.id('tutorial-prev-button')).click();
 
         expect(browser.getCurrentUrl()).toBe('http://localhost:7777/#/lobby');
     });

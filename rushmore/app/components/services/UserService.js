@@ -127,6 +127,7 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
     }
 
     function getSpecialPowers() {
+        // Return default set if non given, used for refresh
         if (specialPowers.length === 0) {
             specialPowers = [{
                 "id": 0,

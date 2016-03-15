@@ -8,6 +8,7 @@ angular.module('lobbyView', ['ngRoute'])
 
             // List of players in the game (updates when players join)   
             $scope.players = GameInfoService.getPlayerList();
+            $scope.showStartButton = true;
 
             // When the game playing event occurs, move from the lobby to the game screen
             function handleGameStateChange(data) {
@@ -19,6 +20,19 @@ angular.module('lobbyView', ['ngRoute'])
             // Updates the player list when a new player joins
             function updateCurrentPlayerList(data) {
                 $scope.players = data.playerList;
+            }
+
+            $scope.startGame = function(){
+                if(GameInfoService.getState() === 1){
+                    LocationService.setPath("/game");
+                } else {
+                    console.error("Tried joining game but game state wasn't 1 but " + GameInfoService.getState());
+                }
+            };
+
+            // TODO test this with a real game
+            if(GameInfoService.getState() === 1){
+                $scope.showStartButton = true;
             }
 
 

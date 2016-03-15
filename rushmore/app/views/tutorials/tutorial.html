@@ -1,27 +1,26 @@
 <div id="tutorial-container">
-    <div id="tutorial-{{tutorial.tutIndex}}" class="tutorial-page" ng-repeat="tutorial in tutorials" ng-show="tutorial.tutIndex === currentTutorialIndex">
-        <div class="tutorial-lesson" ng-repeat="lesson in tutorial.lessons" ng-class="{'tutorial-left': lesson.alignLeft}" >
-            <div class="tutorial-text">
-                {{lesson.lessonText}}
+    <div id="lessons-container">
+        <div id="tutorial-{{tutorial.tutIndex}}" class="tutorial-page" ng-repeat="tutorial in tutorials" ng-show="tutorial.visible" ng-style="getStyle(tutorial)">
+            <div class="tutorial-title">
+                {{tutorial.tutorialTitle}}
             </div>
             <div class="tutorial-image">
-                <img src="{{lesson.lessonImage}}" >
             </div>
-        </div>
+            <div class="tutorial-text">
+                {{tutorial.tutorialText}}
+            </div>
     </div> 
+    </div>
+    
     <div id="tutorial-controls">
-        <div id="tutorial-prev-button" ng-click="prev()" style="width: 20%;">
+        <div id="tutorial-prev-button" class="tutorial-controls-button" ng-click="prev()">
             {{prevText}}
         </div>
         <div id="tutorial-progress-indicator">
-            <div class="tutorial-progress-dot" ng-class="{'tutorial-progress-dot-active': currentTutorialIndex === 0}">                
-            </div>
-            <div class="tutorial-progress-dot" ng-class="{'tutorial-progress-dot-active': currentTutorialIndex === 1}">                
-            </div>
-            <div class="tutorial-progress-dot" ng-class="{'tutorial-progress-dot-active': currentTutorialIndex === 2}">                
+            <div class="tutorial-progress-dot" ng-class="{'tutorial-progress-dot-active': currentTutorialIndex === {{tut.tutIndex}} }" ng-repeat="tut in tutorials" >
             </div>
         </div>
-        <div id="tutorial-next-button" ng-click="next()" style="width: 20%;">
+        <div id="tutorial-next-button" class="tutorial-controls-button" ng-click="next()">
             {{nextText}}
         </div>
     </div>    

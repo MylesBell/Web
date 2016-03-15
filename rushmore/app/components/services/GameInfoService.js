@@ -6,6 +6,7 @@
 */
 angular.module('myApp').factory('GameInfoService', function($q, NetworkService) {
 
+    var state = 0;
     var listenerEventList = [];
     var playerList = [];
 
@@ -24,6 +25,7 @@ angular.module('myApp').factory('GameInfoService', function($q, NetworkService) 
 
     // Tell listeners that the game state has changed
     function handleGameStateUpdate(data) {
+        state = data.state;
         alertListeners(data.state, data); // name and data are the same for the states
     }
 
@@ -62,12 +64,17 @@ angular.module('myApp').factory('GameInfoService', function($q, NetworkService) 
         return playerList;
     }
 
+    function getState() {
+        return state;
+    }
+
     /* --------------------
          PUBLIC API
      ---------------- */
     return {
         registerListener: registerListener,
-        getPlayerList: getPlayerList
+        getPlayerList: getPlayerList,
+        getState: getState
     };
 
 });

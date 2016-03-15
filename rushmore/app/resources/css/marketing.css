@@ -10,6 +10,7 @@ body {
     line-height: 1.7em;
     color: #7f8c8d;
     font-size: 18px;
+    font-family: 'Droid Sans', sans-serif;
 }
 h1, h2, h3, h4, h5, h6, label {
     color: #34495e;
@@ -66,6 +67,10 @@ h1, h2, h3, h4, h5, h6, label {
     text-align: center;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.10);
     background: #2d3e50;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
 }
 .pure-menu.pure-menu-fixed {
 
@@ -79,6 +84,8 @@ h1, h2, h3, h4, h5, h6, label {
     color: white;
     font-weight: 400;
     font-size: 120%;
+    text-decoration: none;
+    padding: .3em 1em;
 }
 .home-menu a {
     color: #6FBEF3;
@@ -96,6 +103,7 @@ h1, h2, h3, h4, h5, h6, label {
     font-weight: 100;
     border-radius: 5px;
     line-height: 1em;
+    font: inherit;
 }
 .deploy-button {
     background-color: white;
@@ -104,6 +112,7 @@ h1, h2, h3, h4, h5, h6, label {
     border-radius: 5px;
     font-size: 25px;
     font-weight: 100;
+    font: inherit;
 }
 
 /*
@@ -165,7 +174,7 @@ h1, h2, h3, h4, h5, h6, label {
 
 #top-container p {
    color: white;
-   font-size: 18px; 
+   font-size: 20px; 
 }
 
 #tutorial-container {
@@ -178,7 +187,7 @@ h1, h2, h3, h4, h5, h6, label {
 }
 
 .tutorial-page {
-    height: 90%;
+    height: 100%;
     width: 100%;  
     display: -webkit-flex;  
     display: -ms-flexbox;  
@@ -192,6 +201,9 @@ h1, h2, h3, h4, h5, h6, label {
     -webkit-align-items: center;
         -ms-flex-align: center;
             align-items: center;
+    background-size: cover;
+    background-position-x: 40%;
+    position: relative;    
 }
 
 #tutorial-controls {
@@ -212,6 +224,29 @@ h1, h2, h3, h4, h5, h6, label {
             align-items: center;
 }
 
+.tutorial-controls-button:active {
+    background-color: #5D1F19;
+}
+
+.tutorial-controls-button {
+    width: 25%;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#tutorial-progress-indicator {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
 .tutorial-lesson {
     height: 30%;
     width: 100%;
@@ -230,18 +265,35 @@ h1, h2, h3, h4, h5, h6, label {
     font-size: 18px;
 }
 
+#lessons-container {
+    width: 100%;
+    height: 90%;
+}
+
 .tutorial-lesson img {
     height: 100px;
     width: auto;
 }
 
 .tutorial-text {
-    width: 40%;
+    width: 80%;
     text-align: center;
+    margin-top: 50%; 
+ }
+
+.tutorial-title {
+    width: 80%;
+    text-align: center;
+    font-size: 30px;
  }
 
  .tutorial-image {
     width: 40%;
+ }
+
+ .tutorial-image img {
+    width: 100%;
+    height: 100%;
  }
 
 .tutorial-left {
@@ -265,6 +317,36 @@ h1, h2, h3, h4, h5, h6, label {
     -webkit-align-items: center;
         -ms-flex-align: center;
             align-items: center;
+}
+
+.tutorial-anim-page-slide-left{
+    transition: 0.8s;
+    transform: translateX(-100%);
+}
+
+.tutorial-anim-page-slide-right{
+    transition: 0.8s;
+    transform: translateX(100%);
+}
+
+.tutorial-anim-page-slide-in-left{
+    animation-name: anim-page-slide-in-left;
+    animation-duration: 0.8s;
+}
+
+.tutorial-anim-page-slide-in-right{
+    animation-name: anim-page-slide-in-right;
+    animation-duration: 0.8s;
+}
+
+@keyframes anim-page-slide-in-left {
+    0% {transform: translateX(100%);position: absolute;top: 0px;height:90%;}
+    100% {transform: translateX(0%);position: absolute;top: 0px;height:90%;}
+}
+
+@keyframes anim-page-slide-in-right {
+    0% {transform: translateX(-100%);position: absolute;top: 0px;height:90%;}
+    100% {transform: translateX(0%);position: absolute;top: 0px;height:90%;}
 }
 
 .tutorial-progress-dot {
@@ -567,6 +649,11 @@ h1, h2, h3, h4, h5, h6, label {
     .specials-container {
         margin-top: 0px;
     }
+
+    #tutorial-controls {
+        font-size: 16px;
+    }
+
 }
 @media (min-width:24em) {
     .pure-game-button {

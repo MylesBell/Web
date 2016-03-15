@@ -76,10 +76,7 @@ module.exports = {
             res.playerList = playerList;
             res.joinSuccess = true;
             res.baseMaxHealth = data.baseMaxHealth;
-
-
             res.specials = getSpecialData([data.specialOne, data.specialTwo, data.specialThree]);
-
 
             playerWhoJoined.health = data.playerMaxHealth;
             playerWhoJoined.maxHealth = data.playerMaxHealth;
@@ -149,9 +146,9 @@ module.exports = {
     }
 };
 
+// Add the special info from the our special JSON using the IDs sent from server
 function getSpecialData(specials) {
     var specialObjects = [];
-
     for (var i = 0; i < specialsJSON.items.length; i++) {
         var definedSpecial = specialsJSON.items[i];
 
@@ -163,4 +160,4 @@ function getSpecialData(specials) {
     }
 
     return specialObjects;
-}
+};
