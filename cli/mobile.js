@@ -20,6 +20,10 @@ socket.on('message', function (data){
 // When you submit a line in the CLI, send a PING
 rl.on('line', function (line) {
     var toRoom = "mobile"
-    socket.emit('message', {name : toRoom, msg : "PING"});
+    var msg =  {name : toRoom, msg : "PING"};
+    console.log(msg);
+    console.log(line);
+
+    socket.emit('message', msg);
     rl.prompt(true);
 });
