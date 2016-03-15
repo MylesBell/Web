@@ -5,17 +5,20 @@
     <div id="blue-team-lobby-header">
         <h1 class="blue-team-lobby-header">Blue Team</h1>
         <ul>
-            <li ng-repeat="playerBlue in players | filter: {team: 1}">
+            <li ng-repeat="playerBlue in bluePlayers = (players | filter: {team: 1})">
               {{playerBlue.username}}
-            </li>                    
+            </li>     
+            <li ng-hide="bluePlayers.length">Nobody's joined the Blue team yet :(</li>
+               
         </ul>
     </div>
     <div  id="red-team-lobby-header">
         <h1 class="red-team-lobby-header">Red team</h1>
         <ul>
-            <li ng-repeat="playerRed in players | filter: {team: 0}">
-              <p>{{playerRed.username}}</p>                  
-            </li>   
+            <li ng-repeat="playerRed in redPlayers = (players | filter: {team: 0})">
+              {{playerRed.username}}                  
+            </li>  
+            <li ng-hide="redPlayers.length">Nobody's joined the Red team yet :(</li>
         </ul>
     </div>
     
