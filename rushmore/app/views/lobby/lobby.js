@@ -3,8 +3,8 @@
     Shows all the players in the game and what team they are on
 */
 angular.module('lobbyView', ['ngRoute'])
-    .controller('LobbyCtrl', ['$scope', 'UserService', 'LocationService', 'GameInfoService',
-        function($scope, UserService, LocationService, GameInfoService) {
+    .controller('LobbyCtrl', ['$scope', 'UserService', 'LocationService', 'GameInfoService', 'NetworkService',
+        function($scope, UserService, LocationService, GameInfoService, NetworkService) {
 
             // List of players in the game (updates when players join)   
             $scope.players = GameInfoService.getPlayerList();
