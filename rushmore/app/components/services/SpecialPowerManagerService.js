@@ -14,7 +14,7 @@ angular.module('myApp').factory('SpecialPowerManagerService', function($q, $inte
 
         deferred = $q.defer();
 
-        var specialListNum = Number(touchedID.substring(touchedID.length-2, touchedID.length-1));
+        var specialListNum = Number(touchedID.substring(touchedID.length-1, touchedID.length));
         special = specialList[specialListNum];
 
         console.log(special);
