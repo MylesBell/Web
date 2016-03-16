@@ -10,11 +10,17 @@ angular.module('lobbyView', ['ngRoute'])
             $scope.players = GameInfoService.getPlayerList();
             $scope.showStartButton = true;
 
+            // Should be false for prod
+            $scope.canJoin = false;
+            $scope.buttonText = "NOT STARTED YET";
+
             // When the game playing event occurs, move from the lobby to the game screen
             function handleGameStateChange(data) {
                 console.log("Game state chnaged %o", data);
                 if (data.state === 1) { // 1 is playing
-                    LocationService.setPath("/game");
+                    // LocationService.setPath("/game");
+                    $scope.canJoin = true;
+                    $scope.buttonText = "JOIN GAME";
                 }
             }
 
@@ -33,6 +39,8 @@ angular.module('lobbyView', ['ngRoute'])
 
             if (UserService.getGameState() === 1) {
                 $scope.showStartButton = true;
+                $scope.canJoin = true;
+                $scope.buttonText = "JOIN GAME";
             }
 
             /*

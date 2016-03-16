@@ -31,7 +31,7 @@ describe('Lobby page', function() {
     it("Should be at least one player in the lobby when joining", function() {
 
         // there may be more than one from previous tests
-        element.all(by.repeater('playerBlue in players')).count().then(function(count) {
+        element.all(by.repeater('playerBlue in bluePlayers')).count().then(function(count) {
             expect(count).not.toBeLessThan(1);
         });
 
@@ -42,7 +42,7 @@ describe('Lobby page', function() {
     it("User's name should be shown in the lobby list", function() {
 
         // there may be more than one from previous tests
-        element.all(by.repeater('playerBlue in players')).last().getText().then(function(text) {
+        element.all(by.repeater('playerBlue in bluePlayers')).last().getText().then(function(text) {
             expect(text).toEqual("Dave");
         });
 
