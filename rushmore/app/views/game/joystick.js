@@ -67,7 +67,9 @@ angular.module('gameView')
 
         var baseHealthColorReamining;
         var baseHealthColorLost;
-
+        
+        // spacing to put in own and base health icon
+        var icon_offset_angle = 0.2
 
         // The base and player health images, need loading callbacks to check they are loaded
         var baseImageObj = new Image();
@@ -146,10 +148,16 @@ angular.module('gameView')
         function handleGamePlayerChangeHealth(data) {
             // get fraction of health remaining
             var remainingHealthRatio = (data.playerHealth / data.maxHealth);
+            
 
             // how many rads is removed from the health using remaining ratio
             // add small delta to lost is not 0, and will not draw a ring
-            playerHealthLostRad = toRadians(180 * (1 - remainingHealthRatio)) + 0.02;
+            playerHealthLostRad = toRadians(180 * (1 - remainingHealthRatio)) + icon_offset_angle;
+
+            // Handle the health ring wrapping round on low health
+            if(playerHealthLostRad > 179) {
+                playerHealthLostRad = 179;
+            }
 
             //update the whole canvas with updated health ring
             updateAll();
@@ -169,8 +177,13 @@ angular.module('gameView')
             var remainingHealthRatio = (data.currentBaseHealth / data.maxBaseHealth);
 
             // how many rads is removed from the health using remaining ratio
-            baseHealthLostRad = toRadians(180 * (1 - remainingHealthRatio));
-
+            baseHealthLostRad = toRadians(180 * (1 - remainingHealthRatio)) + icon_offset_angle;
+            
+            // Handle the health ring wrapping round on low health
+            if(baseHealthLostRad > 179) {
+                baseHealthLostRad = 179;
+            }
+            
             //update the whole canvas with updated health ring
             updateAll();
         }
@@ -338,11 +351,10 @@ angular.module('gameView')
 
             // caluclate the size of health ring to draw based on the health lost
             // get angle from the top (270 degree) position
-            var angleOffset = 0.2; // spacing to put in own and base health icon
 
             // TODO this is probably gonna fuck up when the player enarly dies
-            var startAngle = ((3 / 2) * Math.PI) + playerHealthLostRad + angleOffset;
-            var endAngle = ((3 / 2) * Math.PI) - playerHealthLostRad - angleOffset;
+            var startAngle = ((3 / 2) * Math.PI) + playerHealthLostRad;
+            var endAngle = ((3 / 2) * Math.PI) - playerHealthLostRad;
 
             ctx.fillStyle = teamColors.health.player.remaining;
             ctx.strokeStyle = teamColors.health.player.remaining;
@@ -352,8 +364,8 @@ angular.module('gameView')
             ctx.stroke();
             ctx.drawImage(userImageObj, centerX - userImageWidth / 2, (centerY - padRadius * 0.86) - userImageWidth / 2, userImageWidth, userImageWidth);
 
-            startAngle = ((3 / 2) * Math.PI) + baseHealthLostRad + angleOffset;
-            endAngle = ((3 / 2) * Math.PI) - baseHealthLostRad - angleOffset;
+            startAngle = ((3 / 2) * Math.PI) + baseHealthLostRad;
+            endAngle = ((3 / 2) * Math.PI) - baseHealthLostRad;
             ctx.strokeStyle = teamColors.health.base.remaining;
             ctx.fillStyle = teamColors.health.base.remaining;
             ctx.beginPath();
