@@ -149,11 +149,12 @@ module.exports = {
 // Add the special info from the our special JSON using the IDs sent from server
 function getSpecialData(specials) {
     var specialObjects = [];
-    for (var i = 0; i < specialsJSON.items.length; i++) {
-        var definedSpecial = specialsJSON.items[i];
 
-        for (var j = 0; j < specials.length; j++) {
-            if (definedSpecial.id === specials[j]){
+    for (var j = 0; j < specials.length; j++) {
+        for (var i = 0; i < specialsJSON.items.length; i++) {
+            var definedSpecial = specialsJSON.items[i];
+            if (definedSpecial.id === specials[j]) {
+                console.log(definedSpecial);
                 specialObjects.push(definedSpecial);
             }
         }
