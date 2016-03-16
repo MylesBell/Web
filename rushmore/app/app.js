@@ -11,9 +11,10 @@ angular.module('myApp', [
     "UserServiceModule",
     "GameInfoServiceModule",
     "config",
-    "ngIdle"
+    "ngIdle",
+    "toastr"
     ]).
-config(function($routeProvider, IdleProvider, KeepaliveProvider, TitleProvider) {
+config(function($routeProvider, IdleProvider, KeepaliveProvider, TitleProvider, toastrConfig) {
     // configure Idle settings
     IdleProvider.idle(5); // in seconds
     IdleProvider.timeout(600); // in seconds
@@ -38,8 +39,34 @@ config(function($routeProvider, IdleProvider, KeepaliveProvider, TitleProvider) 
     }).otherwise({
         redirectTo: '/'
     });
+
+    angular.extend(toastrConfig, {
+        allowHtml: false,
+        closeButton: true,
+        closeHtml: '<button>&times;</button>',
+        extendedTimeOut: 1000,
+        iconClasses: {
+            error: 'toast-error',
+            info: 'toast-info',
+            success: 'toast-success',
+            warning: 'toast-warning'
+        },
+        messageClass: 'toast-message',
+        onHidden: null,
+        onShown: null,
+        onTap: null,
+        progressBar: true,
+        tapToDismiss: true,
+        templates: {
+            toast: 'directives/toast/toast.html',
+            progressbar: 'directives/progressbar/progressbar.html'
+        },
+        timeOut: 4000,
+        titleClass: 'toast-title',
+        toastClass: 'toast'
+    });
 }).
-run(function(Idle){
+run(function(Idle) {
     // start watching when the app runs. also starts the Keepalive service by default.
     Idle.watch();
 });

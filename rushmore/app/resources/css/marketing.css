@@ -544,13 +544,23 @@ h1, h2, h3, h4, h5, h6, label {
     height: 15%;
     width: 100%;
     margin: auto;
+    display: flex;
+    -webkit-flex-flow: row nowrap;
+        -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+    -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 
 #level-lane-container {
     color: white;
     width: 30%;
     height: 100%;
-    margin-left: 10px;
+    padding: 10px;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
@@ -590,6 +600,32 @@ h1, h2, h3, h4, h5, h6, label {
             align-items: center;
 }
 
+#message-container{
+    color: white;
+    width: 70%;
+    height: 100%;
+    padding: 10px;
+    display: flex;
+    -webkit-flex-flow: row nowrap;
+        -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+    -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+#icon-container {
+    height: 100%;
+    width: 40%;
+}
+
+#text-container {
+    height: 100%;
+    width: 60%;
+}
 
 #joystick-container {
     height: 100%;
@@ -912,6 +948,12 @@ h1, h2, h3, h4, h5, h6, label {
     }
 }
 
+@media (max-width: 480px) and (min-width: 241px) {
+    #toast-container > div {
+        width: 300px !important;
+    }
+}
+
 /*
 * -- TABLET (AND UP) MEDIA QUERIES --
 * On tablets and other medium-sized devices, we want to customize some
@@ -960,37 +1002,3 @@ h1, h2, h3, h4, h5, h6, label {
     }
 }
 
-/*
- * -- DESKTOP (AND UP) MEDIA QUERIES --
- * On desktops and other large devices, we want to over-ride some
- * of the mobile and tablet styles.
- */
-@media (min-width:78em) {
-
-    /* We increase the header font size even more */
-    .splash-head {
-        font-size: 300%;
-    }
-}
-
-@-webkit-keyframes hideSpecialButton {
-    from {
-        padding-top: 100%;
-        width: 100%;
-    }
-    to {
-        padding-top: 70%;
-        width: 70%;
-    }
-}
-
-@keyframes hideSpecialButton {
-    from {
-        padding-top: 100%;
-        width: 100%;
-    }
-    to {
-        padding-top: 70%;
-        width: 70%;
-    }
-}

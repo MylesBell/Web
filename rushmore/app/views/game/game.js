@@ -1,5 +1,7 @@
 angular.module('gameView', ['ngRoute'])
-    .controller('GameCtrl', ['$scope', "NetworkService", "UserService", "$interval", "SpecialPowerManagerService", "$rootScope", function($scope, NetworkService, UserService, $interval, SpecialPowerManagerService, $rootScope) {
+    .controller('GameCtrl', ['$scope', "NetworkService", "UserService", "$interval", 
+        "SpecialPowerManagerService", "$rootScope", "toastr", 
+        function($scope, NetworkService, UserService, $interval, SpecialPowerManagerService, $rootScope, toastr) {
 
         $scope.teamClass = UserService.getUserTeam();
         $scope.teamClassCSS = "blue-team";
@@ -30,6 +32,9 @@ angular.module('gameView', ['ngRoute'])
         };
 
         setup();
+
+        // Remove this when we know level up works
+        // toastr.success('LEVEL UP!');
 
         console.log($scope.specialPowers);
 
@@ -152,7 +157,8 @@ angular.module('gameView', ['ngRoute'])
         
         function handleGamePlayerLevelUp(data){
             console.log("Player leveled up" + data.level);   
-            $scope.playerLevel = data.level       
+            $scope.playerLevel = data.level;  
+            toastr.success('LEVEL UP!');     
         }
 
         /*
