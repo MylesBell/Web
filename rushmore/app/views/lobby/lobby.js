@@ -20,7 +20,7 @@ angular.module('lobbyView', ['ngRoute'])
                 if (data.state === 1) { // 1 is playing
                     // LocationService.setPath("/game");
                     $scope.canJoin = true;
-                    $scope.buttonText = "JOIN GAME";
+                    $scope.buttonText = "CLICK TO JOIN GAME";
                 }
             }
 
@@ -40,7 +40,7 @@ angular.module('lobbyView', ['ngRoute'])
             if (UserService.getGameState() === 1) {
                 $scope.showStartButton = true;
                 $scope.canJoin = true;
-                $scope.buttonText = "JOIN GAME";
+                $scope.buttonText = "CLICK TO JOIN GAME";
             }
 
             /*
