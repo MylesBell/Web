@@ -7,7 +7,7 @@
 		"idea": "Melee",
 		"description": "Immediately cripple enemies close to you.",
 		"filename": "",
-		"coolDownTime": 5.0,
+		"cooldownTime": 5.0,
 		"numberOfUpgrades": 5,
 		"done": true,
 		"image": "images/flame_red.png"
@@ -18,7 +18,7 @@
 		"idea": "Range",
 		"description": "Shoot a flame towards the enemy base, burning all in its path.",
 		"filename": "",
-		"coolDownTime": 5.0,
+		"cooldownTime": 5.0,
 		"numberOfUpgrades": 5,
 		"done": true,
 		"image": "images/arrow_red.png"
@@ -29,7 +29,7 @@
 		"idea": "Cross-Lane",
 		"description": "Attack an area on the other lane of the map.",
 		"filename": "",
-		"coolDownTime": 5.0,
+		"cooldownTime": 10.0,
 		"numberOfUpgrades": 5,
 		"done": true,
 		"image": "images/base_destroy_red.png"
@@ -40,7 +40,7 @@
 		"idea": "Defense",
 		"description": "Increase your defense to you can take more punishment.",
 		"filename": "",
-		"coolDownTime": 5.0,
+		"cooldownTime": 8.0,
 		"numberOfUpgrades": 5,
 		"done": true,
 		"image": "images/health_buff_blue.png"
@@ -51,7 +51,7 @@
 		"idea": "Speed",
 		"description": "Increase your speed to you can move faster.",
 		"filename": "",
-		"coolDownTime": 5.0,
+		"cooldownTime": 8.0,
 		"numberOfUpgrades": 5,
 		"done": true,
 		"image": "images/speed_blue.png"
@@ -62,7 +62,7 @@
 		"idea": "Attack",
 		"description": "Increase your attack to you deal more damage.",
 		"filename": "",
-		"coolDownTime": 5.0,
+		"cooldownTime": 8.0,
 		"numberOfUpgrades": 5,
 		"image": "images/damage_buff_blue.png"
 	}, {
@@ -72,7 +72,7 @@
 		"idea": "Self-and-close",
 		"description": "Immediately heal yourself and teammates close to you.",
 		"filename": "",
-		"coolDownTime": 5.0,
+		"cooldownTime": 8.0,
 		"numberOfUpgrades": 5,
 		"done": true,
 		"image": "images/heal_group_green.png"
@@ -83,7 +83,7 @@
 		"idea": "Grunt",
 		"description": "Heal Grunts.",
 		"filename": "",
-		"coolDownTime": 10.0,
+		"cooldownTime": 10.0,
 		"numberOfUpgrades": 5,
 		"image": ""
 	}, {
@@ -93,7 +93,7 @@
 		"idea": "Hero",
 		"description": "Heal another player in need, use next to the player you want to heal.",
 		"filename": "",
-		"coolDownTime": 5.0,
+		"cooldownTime": 8.0,
 		"numberOfUpgrades": 5,
 		"done": true,
 		"image": "images/heart_green.png"
@@ -104,7 +104,7 @@
 		"idea": "Invisibility",
 		"description": "Turn invisible to enemy grunts, so you are not attacked.",
 		"filename": "",
-		"coolDownTime": 5.0,
+		"cooldownTime": 15.0,
 		"numberOfUpgrades": 5,
 		"done": true,
 		"image": "images/eye_purple.png"
@@ -115,7 +115,7 @@
 		"idea": "Slow",
 		"description": "",
 		"filename": "",
-		"coolDownTime": 5.0,
+		"cooldownTime": 10.0,
 		"numberOfUpgrades": 5,
 		"done": true,
 		"image" : "images/heal_group_green.png"
@@ -126,7 +126,7 @@
 		"idea": "Trap",
 		"description": "Drop a bomb that will explode after a wait, hurting your enemies.",
 		"filename": "",
-		"coolDownTime": 5.0,
+		"cooldownTime": 10.0,
 		"numberOfUpgrades": 5,
 		"done": true,
 		"image": "images/bomb_purple.png"
@@ -137,7 +137,7 @@
 		"idea": "Base",
 		"description": "Deal huge damage to the enemy base when in range.",
 		"filename": "",
-		"coolDownTime": 10.0,
+		"cooldownTime": 15.0,
 		"numberOfUpgrades": 5,
 		"done": true,
 		"image" : "images/base_destroy_red.png"
