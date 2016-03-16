@@ -4,18 +4,15 @@
 */
 angular.module('myApp').factory('SpecialPowerManagerService', function($q, $interval, InputHandlerService) {
 
-    var cooldownTIme = 5000;
     var vibrateTime = 200;
 
     var specialButtonUsed = function(special, position) {
 
         // var special;
         var deferred;
+        var cooldownTime;
 
         deferred = $q.defer();
-
-        // var specialListNum = Number(touchedID.substring(touchedID.length-1, touchedID.length));
-        // special = specialList[specialListNum];
 
         console.log(special);
 
@@ -29,17 +26,20 @@ angular.module('myApp').factory('SpecialPowerManagerService', function($q, $inte
         // Fire the special event to the server
         InputHandlerService.handleSpecial(position);
 
+        // Set the cooldown time for the special in miliseconds
+        cooldownTime = special.cooldownTime * 1000;
+
         // Set a cooldown timer for the special before it can be used again
         var specialCooldownTimer = $interval(function() {
             // capture special used in closue to allow multple timeouts
             var spec = special;
-
+    
             // Cancel timer and reset special
             $interval.cancel(specialCooldownTimer);
             spec.enabled = true;
             deferred.resolve(spec);
 
-        }, cooldownTIme);
+        }, cooldownTime);
 
         return deferred.promise;
     };
