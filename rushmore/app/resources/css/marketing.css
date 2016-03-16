@@ -449,12 +449,13 @@ h1, h2, h3, h4, h5, h6, label {
 }
 
 #lobby-container{
+    top: 0;
     overflow-y: scroll; 
     height: 100%;
+    width: 100%;
     display: block;
     overflow: auto;
     padding: 0px 0px 0px 0px;
-    top: 20vh;
 }
 
 #lobby-container ul {
@@ -521,13 +522,13 @@ h1, h2, h3, h4, h5, h6, label {
 #blue-team-lobby-header{
     background: #446CB3;
     padding: 10px;
-    min-height: 30vh;
+    min-height: 40vh;
 }
 
 #red-team-lobby-header{
     background: #D91E18;
     padding: 10px;
-    min-height: 30vh;
+    min-height: 40vh;
 }
 
 #game-container {
