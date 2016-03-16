@@ -1,6 +1,10 @@
 /*jshint loopfunc: true */
 
 describe('Tutorial page', function() {
+
+    var tutorialName = "tutorial-";
+    var numTutorials = 4;
+
     it('can get to the tutorial page', function() {
 
         //navigate to the website
@@ -33,16 +37,16 @@ describe('Tutorial page', function() {
         expect(element(by.binding('nextText')).getText()).toBe("NEXT");
     });
 
-    it("Should be 5 tutorial pages", function() {
+    it("Should be " + numTutorials  + " tutorial pages", function() {
         element.all(by.repeater('tutorial in tutorials')).then(function(result) {
-            expect(result.length).toBe(5);
+            expect(result.length).toBe(4);
         });
     });
 
     it("Only 1st tutorial page is shown at the start", function() {
-        expect(element(by.id("tutorial-0")).isDisplayed()).toBe(true);
-        expect(element(by.id("tutorial-1")).isDisplayed()).toBe(false);
-        expect(element(by.id("tutorial-2")).isDisplayed()).toBe(false);
+        expect(element(by.id(tutorialName + "0")).isDisplayed()).toBe(true);
+        expect(element(by.id(tutorialName + "1")).isDisplayed()).toBe(false);
+        expect(element(by.id(tutorialName + "2")).isDisplayed()).toBe(false);
     });
 
     it("Next button moves to the 2nd tutorial page and view only the 2nd tutorial", function() {
@@ -52,14 +56,14 @@ describe('Tutorial page', function() {
 
         // Tut 1 should be dispayed
         var tut1Displayed = function() {
-            return element(by.id("tutorial-1")).isDisplayed().then(function(displayed) {
+            return element(by.id(tutorialName + "1")).isDisplayed().then(function(displayed) {
                 return displayed;
             });
         };
 
         // Tut 0 should be hidden
         var tut0Hidden = function() {
-            return element(by.id("tutorial-0")).isDisplayed().then(function(displayed) {
+            return element(by.id(tutorialName + "0")).isDisplayed().then(function(displayed) {
                 return !displayed;
             });
         };
@@ -72,8 +76,8 @@ describe('Tutorial page', function() {
         var expectedDisplayedStates = [false, true, false, false, false];
 
         // Check the expected values
-        for (var i = 0; i < expectedDisplayedStates; i++) {
-            expect(element(by.id("tutorial-" + i)).isDisplayed()).toBe(expectedDisplayedStates[i]);
+        for (var i = 0; i < numTutorials; i++) {
+            expect(element(by.id(tutorialName + i)).isDisplayed()).toBe(expectedDisplayedStates[i]);
         }
     });
 
@@ -87,14 +91,14 @@ describe('Tutorial page', function() {
 
         // Tut 1 should be dispayed
         var tut1Hidden = function() {
-            return element(by.id("tutorial-1")).isDisplayed().then(function(displayed) {
+            return element(by.id(tutorialName + "1")).isDisplayed().then(function(displayed) {
                 return !displayed;
             });
         };
 
         // Tut 0 should be hidden
         var tut0Displayed = function() {
-            return element(by.id("tutorial-0")).isDisplayed().then(function(displayed) {
+            return element(by.id(tutorialName + "0")).isDisplayed().then(function(displayed) {
                 return displayed;
             });
         };
@@ -107,8 +111,8 @@ describe('Tutorial page', function() {
         var expectedDisplayedStates = [true, false, false, false, false];
 
         // Check the expected values
-        for (var i = 0; i < expectedDisplayedStates; i++) {
-            expect(element(by.id("tutorial-" + i)).isDisplayed()).toBe(expectedDisplayedStates[i]);
+        for (var i = 0; i < numTutorials; i++) {
+            expect(element(by.id(tutorialName + i)).isDisplayed()).toBe(expectedDisplayedStates[i]);
         }
     });
 
@@ -118,11 +122,9 @@ describe('Tutorial page', function() {
 
     it("Can advance to the last tutorial and see the lobby button", function() {
 
-        var tutorialSize = 5;
-
         // Here be promises magic
 
-        for (var i = 0; i < tutorialSize - 1; i++) {
+        for (var i = 0; i < numTutorials - 1; i++) {
 
             element(by.id('tutorial-next-button')).click();
 
@@ -138,7 +140,7 @@ describe('Tutorial page', function() {
                 var capturedI = i;
 
                 return function() {
-                    return element(by.id("tutorial-" + (capturedI + 1))).isDisplayed().then(function(displayed) {
+                    return element(by.id(tutorialName + (capturedI + 1))).isDisplayed().then(function(displayed) {
                         return displayed;
                     });
                 };
@@ -152,7 +154,7 @@ describe('Tutorial page', function() {
 
                 return function() {
 
-                    return element(by.id("tutorial-" + capturedI)).isDisplayed().then(function(displayed) {
+                    return element(by.id(tutorialName + capturedI)).isDisplayed().then(function(displayed) {
                         return !displayed;
                     });
                 };
@@ -165,10 +167,10 @@ describe('Tutorial page', function() {
             browser.wait(condition, 10000);
 
             // Check the expected values
-            for (var j = 0; j < tutorialSize; j++) {
+            for (var j = 0; j < numTutorials; j++) {
                 var expectedValue = (j === (i + 1)) ? true : false;
                 // console.log("page: " + j + " current active page: " + (i + 1) + " displayed: " + expectedValue);
-                expect(element(by.id("tutorial-" + j)).isDisplayed()).toBe(expectedValue);
+                expect(element(by.id(tutorialName + j)).isDisplayed()).toBe(expectedValue);
             }
         }
 
@@ -189,8 +191,8 @@ describe('Tutorial page', function() {
         var expectedDisplayedStates = [true, false, false, false, false];
 
         // Check the expected values
-        for (var i = 0; i < expectedDisplayedStates; i++) {
-            expect(element(by.id("tutorial-" + i)).isDisplayed()).toBe(expectedDisplayedStates[i]);
+        for (var i = 0; i < numTutorials; i++) {
+            expect(element(by.id(tutorialName + i)).isDisplayed()).toBe(expectedDisplayedStates[i]);
         }
     });
 
