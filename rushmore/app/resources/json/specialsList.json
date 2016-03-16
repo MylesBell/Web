@@ -1,6 +1,6 @@
 {
-	"count" : 13,
-	"items" : [{
+	"count": 13,
+	"items": [{
 		"id": 0,
 		"name": "Flame Ring Attack",
 		"type": "Attack",
@@ -9,9 +9,9 @@
 		"filename": "",
 		"coolDownTime": 5.0,
 		"numberOfUpgrades": 5,
-		"done" : true
-	},
-	{
+		"done": true,
+		"image": "images/flame_red.png"
+	}, {
 		"id": 1,
 		"name": "Flamethrower Attack",
 		"type": "Attack",
@@ -20,9 +20,9 @@
 		"filename": "",
 		"coolDownTime": 5.0,
 		"numberOfUpgrades": 5,
-		"done" : true
-	},
-	{
+		"done": true,
+		"image": "images/arrow_red.png"
+	}, {
 		"id": 2,
 		"name": "Cross lane attack",
 		"type": "Attack",
@@ -31,9 +31,9 @@
 		"filename": "",
 		"coolDownTime": 5.0,
 		"numberOfUpgrades": 5,
-		"done" : true
-	},
-	{
+		"done": true,
+		"image": "images/base_destroy_red.png"
+	}, {
 		"id": 3,
 		"name": "Defense Buff",
 		"type": "Buff",
@@ -42,9 +42,9 @@
 		"filename": "",
 		"coolDownTime": 5.0,
 		"numberOfUpgrades": 5,
-		"done" : true
-	},
-	{
+		"done": true,
+		"image": "images/health_buff_blue.png"
+	}, {
 		"id": 4,
 		"name": "Speed Buff",
 		"type": "Buff",
@@ -53,9 +53,9 @@
 		"filename": "",
 		"coolDownTime": 5.0,
 		"numberOfUpgrades": 5,
-		"done": true
-	},
-	{
+		"done": true,
+		"image": "images/speed_blue.png"
+	}, {
 		"id": 5,
 		"name": "Attack Buff",
 		"type": "Buff",
@@ -63,9 +63,9 @@
 		"description": "Increase your attack to you deal more damage.",
 		"filename": "",
 		"coolDownTime": 5.0,
-		"numberOfUpgrades": 5
-	},
-	{
+		"numberOfUpgrades": 5,
+		"image": "images/damage_buff_blue.png"
+	}, {
 		"id": 6,
 		"name": "Healing Ring Spell",
 		"type": "Heal",
@@ -74,9 +74,9 @@
 		"filename": "",
 		"coolDownTime": 5.0,
 		"numberOfUpgrades": 5,
-		"done": true
-	},
-	{
+		"done": true,
+		"image": "images/heal_group_green.png"
+	}, {
 		"id": 7,
 		"name": "Grunt Healer",
 		"type": "Heal",
@@ -84,9 +84,9 @@
 		"description": "Heal Grunts.",
 		"filename": "",
 		"coolDownTime": 10.0,
-		"numberOfUpgrades": 5
-	},
-	{
+		"numberOfUpgrades": 5,
+		"image": ""
+	}, {
 		"id": 8,
 		"name": "Hero healer",
 		"type": "Heal",
@@ -95,9 +95,9 @@
 		"filename": "",
 		"coolDownTime": 5.0,
 		"numberOfUpgrades": 5,
-		"done" : true
-	},
-	{
+		"done": true,
+		"image": "images/heart_green.png"
+	}, {
 		"id": 9,
 		"name": "Invisibility cloak",
 		"type": "Special",
@@ -106,9 +106,9 @@
 		"filename": "",
 		"coolDownTime": 5.0,
 		"numberOfUpgrades": 5,
-		"done" : true
-	},
-	{
+		"done": true,
+		"image": "images/eye_purple.png"
+	}, {
 		"id": 10,
 		"name": "Super Slowdown Spell",
 		"type": "Special",
@@ -117,9 +117,9 @@
 		"filename": "",
 		"coolDownTime": 5.0,
 		"numberOfUpgrades": 5,
-		"done" : true
-	},
-	{
+		"done": true,
+		"image" : "images/heal_group_green.png"
+	}, {
 		"id": 11,
 		"name": "Drop Bomb Attack",
 		"type": "Special",
@@ -128,9 +128,9 @@
 		"filename": "",
 		"coolDownTime": 5.0,
 		"numberOfUpgrades": 5,
-		"done" : true
-	},
-	{
+		"done": true,
+		"image": "images/bomb_purple.png"
+	}, {
 		"id": 12,
 		"name": "Base Destroyer",
 		"type": "Attack",
@@ -139,6 +139,7 @@
 		"filename": "",
 		"coolDownTime": 10.0,
 		"numberOfUpgrades": 5,
-		"done" : true
+		"done": true,
+		"image" : "images/base_destroy_red.png"
 	}]
 }
