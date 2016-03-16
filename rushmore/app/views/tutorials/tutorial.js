@@ -22,7 +22,7 @@ angular.module('tutorialView', ['ngRoute'])
             tutorialTitle: "Vikings and Cowboys are locked in endless war",
             tutorialText: "As a hero, fight alongside your allies to destroy the COWBOYS",
             tutorialImage: {
-                image: "../../resources/images/base_cowboy.png",
+                image: "../../resources/images/tutorial/base_cowboy_blur.png",
                 offset_x: "50%"
             },
             visible: true
@@ -32,7 +32,7 @@ angular.module('tutorialView', ['ngRoute'])
             tutorialTitle: "Destroy the enemy's base to win",
             tutorialText: "Heros and grunts continiously spawn from each team's base",
             tutorialImage: {
-                image: "../../resources/images/grunts_blue_base_behind.png",
+                image: "../../resources/images/tutorial/grunts_blue_base_behind_blur.png",
                 offset_x: "80%"
             },
             visible: false
@@ -42,7 +42,7 @@ angular.module('tutorialView', ['ngRoute'])
             tutorialTitle: "Use your special powers to help in combat",
             tutorialText: "Defeating enemy grunts and heros will make you and your powers stronger",
             tutorialImage: {
-                image: "../../resources/images/grunt_red_base_behind.png",
+                image: "../../resources/images/tutorial/grunt_red_base_behind_blur.png",
                 offset_x: "50%"
             },
             visible: false
@@ -52,7 +52,7 @@ angular.module('tutorialView', ['ngRoute'])
             tutorialTitle: "Another tutorial side here",
             miniLessons: specialTutorial,
             tutorialImage: {
-                image: "../../resources/images/grunts_blue_base_behind_blur.png",
+                image: "../../resources/images/tutorial/grunts_blue_base_behind_blur.png",
                 offset_x: "80%"
             },
             visible: false
@@ -69,6 +69,7 @@ angular.module('tutorialView', ['ngRoute'])
                 var lesson = {};
                 lesson.text = spec.name;
                 lesson.image = "../resources/" + spec.image;
+                lesson.description = spec.description
                 specialTutorial.push(lesson);
             }
         }
@@ -76,7 +77,7 @@ angular.module('tutorialView', ['ngRoute'])
 
         $scope.getStyle = function(tut) {
             var style = {
-                background_image: "linear-gradient(to bottom, rgba(255,255,255,0) 70%,rgba(0,0,0,0.6) 100%), url('" + tut.tutorialImage.image + "')",
+                background_image: "linear-gradient(to bottom, rgba(255,255,255,0) 50%,rgba(0,0,0,0.6) 100%), url('" + tut.tutorialImage.image + "')",
                 background_position_x: tut.tutorialImage.offset_x
             };
             return style;

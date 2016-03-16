@@ -16,7 +16,8 @@
             <div class="tutorial-page-{{tutorial.tutType}}" ng-if="tutorial.tutType === 'multi'">
                 <div class="mini-lesson" ng-repeat="miniLesson in tutorial.miniLessons">
                     <div class="text">
-                        {{miniLesson.text}}
+                        <h2>{{miniLesson.text}}</h2>
+                        <p>{{miniLesson.description}}</p>
                     </div>
                     <div class="image">
                         <img ng-src="{{miniLesson.image}}" height="100" width="100">
