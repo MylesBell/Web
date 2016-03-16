@@ -69,7 +69,7 @@ angular.module('tutorialView', ['ngRoute'])
                 var lesson = {};
                 lesson.text = spec.name;
                 lesson.image = "../resources/" + spec.image;
-                lesson.description = spec.description
+                lesson.description = spec.description;
                 specialTutorial.push(lesson);
             }
         }

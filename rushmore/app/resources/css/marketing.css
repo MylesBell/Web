@@ -391,49 +391,49 @@ h1, h2, h3, h4, h5, h6, label {
 }
 
 .tutorial-anim-page-slide-left{
-    transition: 20s;
+    transition: 0.8s;
     -webkit-transform: translateX(-100%);
             transform: translateX(-100%);
 }
 
 .tutorial-anim-page-slide-right{
-    transition: 20s;
+    transition: 0.8s;
     -webkit-transform: translateX(100%);
             transform: translateX(100%);
 }
 
 .tutorial-anim-page-slide-in-left{
-    -webkit-animation-name: anim-page-slide-in-left;
-            animation-name: anim-page-slide-in-left;
-    -webkit-animation-duration: 20s;
-            animation-duration: 20s;
+    -webkit-animation:0.8s anim-page-slide-in-left;
+            animation:0.8s anim-page-slide-in-left;
+    position: absolute;
+    top: 0px;height:90%;
 }
 
 .tutorial-anim-page-slide-in-right{
-    -webkit-animation-name: anim-page-slide-in-right;
-            animation-name: anim-page-slide-in-right;
-    -webkit-animation-duration: 20s;
-            animation-duration: 20s;
+    -webkit-animation: 0.8s anim-page-slide-in-right;
+            animation: 0.8s anim-page-slide-in-right;
+    position: absolute;
+    top: 0px;height:90%;
 }
 
 @-webkit-keyframes anim-page-slide-in-left {
-    0% {-webkit-transform: translateX(100%);transform: translateX(100%);position: absolute;top: 0px;height:90%;}
-    100% {-webkit-transform: translateX(0%);transform: translateX(0%);position: absolute;top: 0px;height:90%;}
+    0% {-webkit-transform: translateX(100%);transform: translateX(100%)}
+    100% {-webkit-transform: translateX(0%);transform: translateX(0%)}
 }
 
 @keyframes anim-page-slide-in-left {
-    0% {-webkit-transform: translateX(100%);transform: translateX(100%);position: absolute;top: 0px;height:90%;}
-    100% {-webkit-transform: translateX(0%);transform: translateX(0%);position: absolute;top: 0px;height:90%;}
+    0% {-webkit-transform: translateX(100%);transform: translateX(100%)}
+    100% {-webkit-transform: translateX(0%);transform: translateX(0%)}
 }
 
 @-webkit-keyframes anim-page-slide-in-right {
-    0% {-webkit-transform: translateX(-100%);transform: translateX(-100%);position: absolute;top: 0px;height:90%;}
-    100% {-webkit-transform: translateX(0%);transform: translateX(0%);position: absolute;top: 0px;height:90%;}
+    0% {-webkit-transform: translateX(-100%);transform: translateX(-100%)}
+    100% {-webkit-transform: translateX(0%);transform: translateX(0%)}
 }
 
 @keyframes anim-page-slide-in-right {
-    0% {-webkit-transform: translateX(-100%);transform: translateX(-100%);position: absolute;top: 0px;height:90%;}
-    100% {-webkit-transform: translateX(0%);transform: translateX(0%);position: absolute;top: 0px;height:90%;}
+    0% {-webkit-transform: translateX(-100%);transform: translateX(-100%)}
+    100% {-webkit-transform: translateX(0%);transform: translateX(0%)}
 }
 
 .tutorial-progress-dot {
@@ -739,7 +739,7 @@ h1, h2, h3, h4, h5, h6, label {
 .splash-subhead {
     color: white;
 }
-@media (max-width:20em) {
+@media (max-width:320px) {
 
     /* For the iphone 4 at 320px wide */
     .specials-container {
@@ -748,6 +748,14 @@ h1, h2, h3, h4, h5, h6, label {
 
     #tutorial-controls {
         font-size: 16px;
+    }
+
+    .mini-lesson .text h2 {
+        font-size:larger !important;
+    }
+
+    .mini-lesson .text p {
+        font-size: smaller !important;
     }
 
 }
