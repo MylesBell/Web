@@ -151,7 +151,7 @@ angular.module('gameView')
 
             // how many rads is removed from the health using remaining ratio
             // add small delta to lost is not 0, and will not draw a ring
-            playerHealthLostRad = toRadians(180 * (1 - remainingHealthRatio)) + icon_offset_angle;
+            playerHealthLostRad = toRadians(180 * (1 - remainingHealthRatio));
 
             // Handle the health ring wrapping round on low health
             if(playerHealthLostRad > 179) {
@@ -176,8 +176,8 @@ angular.module('gameView')
             var remainingHealthRatio = (data.currentBaseHealth / data.maxBaseHealth);
 
             // how many rads is removed from the health using remaining ratio
-            baseHealthLostRad = toRadians(180 * (1 - remainingHealthRatio)) + icon_offset_angle;
-            
+            baseHealthLostRad = toRadians(180 * (1 - remainingHealthRatio));
+            console.log(baseHealthLostRad);
             // Handle the health ring wrapping round on low health
             if(baseHealthLostRad > 179) {
                 baseHealthLostRad = 179;
@@ -348,12 +348,22 @@ angular.module('gameView')
         // Draw the current players and base's health as a ring around the control pad
         function drawPlayerHealthRing() {
 
+            var playerHealthRingLength = playerHealthLostRad + icon_offset_angle;
+            var baseHealthRingLength = baseHealthLostRad + icon_offset_angle;
+
+            // Prevent the bar wrapping round
+            if(playerHealthRingLength > 3.13) {
+                playerHealthRingLength = 3.14;
+            }
+
+            if(baseHealthRingLength > 3.13) {
+                baseHealthRingLength = 3.14;
+            }
+
             // caluclate the size of health ring to draw based on the health lost
             // get angle from the top (270 degree) position
-
-            // TODO this is probably gonna fuck up when the player enarly dies
-            var startAngle = ((3 / 2) * Math.PI) + playerHealthLostRad;
-            var endAngle = ((3 / 2) * Math.PI) - playerHealthLostRad;
+            var startAngle = ((3 / 2) * Math.PI) + playerHealthRingLength;
+            var endAngle = ((3 / 2) * Math.PI) - playerHealthRingLength;
 
             ctx.fillStyle = teamColors.health.player.remaining;
             ctx.strokeStyle = teamColors.health.player.remaining;
@@ -363,8 +373,8 @@ angular.module('gameView')
             ctx.stroke();
             ctx.drawImage(userImageObj, centerX - userImageWidth / 2, (centerY - padRadius * 0.86) - userImageWidth / 2, userImageWidth, userImageWidth);
 
-            startAngle = ((3 / 2) * Math.PI) + baseHealthLostRad;
-            endAngle = ((3 / 2) * Math.PI) - baseHealthLostRad;
+            startAngle = ((3 / 2) * Math.PI) + baseHealthRingLength;
+            endAngle = ((3 / 2) * Math.PI) - baseHealthRingLength;
             ctx.strokeStyle = teamColors.health.base.remaining;
             ctx.fillStyle = teamColors.health.base.remaining;
             ctx.beginPath();
