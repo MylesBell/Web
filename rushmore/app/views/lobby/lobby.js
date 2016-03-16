@@ -19,7 +19,7 @@ angular.module('lobbyView', ['ngRoute'])
                 console.log("Game state chnaged %o", data);
                 if (data.state === 1) { // 1 is playing
                     // LocationService.setPath("/game");
-                    $scope.canJoin = false;
+                    $scope.canJoin = true;
                     $scope.buttonText = "JOIN GAME";
                 }
             }
