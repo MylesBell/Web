@@ -147,8 +147,7 @@ angular.module('gameView')
 
         function handleGamePlayerChangeHealth(data) {
             // get fraction of health remaining
-            var remainingHealthRatio = (data.playerHealth / data.maxHealth);
-            
+            var remainingHealthRatio = (data.playerHealth / data.maxHealth);            
 
             // how many rads is removed from the health using remaining ratio
             // add small delta to lost is not 0, and will not draw a ring
