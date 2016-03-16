@@ -20,7 +20,7 @@ angular.module('lobbyView', ['ngRoute'])
                 if (data.state === 1) { // 1 is playing
                     // LocationService.setPath("/game");
                     $scope.canJoin = true;
-                    $scope.buttonText = "JOIN GAME";
+                    $scope.buttonText = "CLICK TO JOIN GAME";
                 }
             }
 
@@ -30,7 +30,7 @@ angular.module('lobbyView', ['ngRoute'])
             }
 
             $scope.startGame = function() {
-                if (UserService.getGameState() === 1) {
+                if ($scope.canJoin === 1) {
                     LocationService.setPath("/game");
                 } else {
                     console.error("Tried joining game but game state wasn't 1 but " + UserService.getGameState());
@@ -40,7 +40,7 @@ angular.module('lobbyView', ['ngRoute'])
             if (UserService.getGameState() === 1) {
                 $scope.showStartButton = true;
                 $scope.canJoin = true;
-                $scope.buttonText = "JOIN GAME";
+                $scope.buttonText = "CLICK TO JOIN GAME";
             }
 
             /*
