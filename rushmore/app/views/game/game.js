@@ -5,6 +5,7 @@ angular.module('gameView', ['ngRoute'])
         $scope.teamClassCSS = "blue-team";
         $scope.nearBase = false;
         $scope.playerDead = false;
+        $scope.playerLevel = 1;
         $scope.timeToRespawn = 5;
         $scope.gameOver = false;
         $scope.winner = "";
@@ -150,7 +151,8 @@ angular.module('gameView', ['ngRoute'])
         }
         
         function handleGamePlayerLevelUp(data){
-            console.log("Player leveled up" + data.level);
+            console.log("Player leveled up" + data.level);   
+            $scope.playerLevel = data.level       
         }
 
         /*

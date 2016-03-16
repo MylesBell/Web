@@ -142,9 +142,9 @@ h1, h2, h3, h4, h5, h6, label {
 }
 
 #main-container p {
-    font-size: 18px;
+    /*font-size: 18px;
     font-weight: 100;
-    line-height: 1.2em;
+    line-height: 1.2em;*/
 }
 
 #main-container h1{
@@ -539,11 +539,58 @@ h1, h2, h3, h4, h5, h6, label {
     width: 100%;
     bottom: 100%;
 }
+
 #stats-container {
     height: 15%;
     width: 100%;
     margin: auto;
 }
+
+#level-lane-container {
+    color: white;
+    width: 30%;
+    height: 100%;
+    margin-left: 10px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-flow: row nowrap;
+        -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+    -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+#level-lane-container p {
+    font-size: smaller;
+    margin: 0;
+}
+
+#level-lane-container h2 {
+    margin: 0;
+    color:white;
+}
+
+#level-lane-container div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    -webkit-flex-flow: column nowrap;
+        -ms-flex-flow: column nowrap;
+            flex-flow: column nowrap;
+    -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+
 #joystick-container {
     height: 100%;
     width: 100%;
@@ -844,7 +891,7 @@ h1, h2, h3, h4, h5, h6, label {
     .special {
         width: 30%;
     }
-    
+
     #specials-container {
         width: 50%;
         height: 80%;
