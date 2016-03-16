@@ -832,30 +832,36 @@ h1, h2, h3, h4, h5, h6, label {
 @media screen and (orientation:landscape) {
     #controls-container {
         width: 50%;
-        height: 85%; /* from the header taking 15% height */
+        height: 80%; /* from the header taking 15% height */
         margin: 0px;
         float: left;
-
     }
+
     #joystick-container {
         height: 90%;
     }
+
     .special {
         width: 30%;
     }
+    
     #specials-container {
         width: 50%;
-        height: 85%;
+        height: 80%;
+    }
+
+    #stats-container{
+        height: 20%;
     }
 
     #special-button-0 {
-        margin-bottom: 150px;
+        margin-bottom: 130px;
     }
     #special-button-1 {
-        margin-top: 150px;
+        margin-top: 130px;
     }
     #special-button-2 {
-        margin-bottom: 150px;
+        margin-bottom: 130px;
     }
 }
 

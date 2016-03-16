@@ -77,6 +77,7 @@ module.exports = {
             res.joinSuccess = true;
             res.baseMaxHealth = data.baseMaxHealth;
             res.specials = getSpecialData([data.specialOne, data.specialTwo, data.specialThree]);
+            res.lane = data.lane;
 
             playerWhoJoined.health = data.playerMaxHealth;
             playerWhoJoined.maxHealth = data.playerMaxHealth;
