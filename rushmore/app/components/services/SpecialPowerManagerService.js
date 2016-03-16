@@ -4,7 +4,6 @@
 */
 angular.module('myApp').factory('SpecialPowerManagerService', function($q, $interval, InputHandlerService) {
 
-    // var cooldownTIme = 5000;
     var vibrateTime = 200;
 
     var specialButtonUsed = function(special, position) {
