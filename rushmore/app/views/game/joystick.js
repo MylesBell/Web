@@ -69,7 +69,7 @@ angular.module('gameView')
         var baseHealthColorLost;
         
         // spacing to put in own and base health icon
-        var icon_offset_angle = 0.2
+        var icon_offset_angle = 0.2;
 
         // The base and player health images, need loading callbacks to check they are loaded
         var baseImageObj = new Image();
