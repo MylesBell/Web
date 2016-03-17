@@ -3,7 +3,7 @@
     connects to mobile server using socketio client
 */
 angular.module('myApp').
-service('NetworkService', function($q, socket, StorageService, Idle) {
+service('NetworkService', function($q, socket, StorageService, $rootScope, Idle) {
     $rootScope.events = [];
 
     $rootScope.$on('IdleStart', function() {

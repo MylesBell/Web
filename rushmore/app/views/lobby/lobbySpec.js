@@ -7,7 +7,6 @@ describe('Lobby page', function() {
         var UserServiceMockModule = angular.module('UserServiceModule', []);
 
         UserServiceMockModule.service('UserService', ['$q', function($q) {
-            console.log("MOCKEDDED MODULE");
             this.getUsername = function() {
                 return "James Hayes";
             };
@@ -17,7 +16,7 @@ describe('Lobby page', function() {
             };
 
             this.getGameState = function() {
-                return 1;
+                return 0;
             };
 
             // Allways allow attempt to register with server
@@ -30,7 +29,7 @@ describe('Lobby page', function() {
             this.attemptToJoinGame = function(gamecode) {
                 var deferred = $q.defer();
                 deferred.resolve({
-                    state: 1
+                    state: 0
                 });
                 return deferred.promise;
             };
@@ -142,9 +141,31 @@ describe('Lobby page', function() {
 
     it("Start button should be enabled if game state is already running (1)", function() {
 
-        expect(element(by.id('lobby-footer')).getAttribute('class')).toMatch('enabled');
+        expect(element(by.id('lobby-footer')).getAttribute('class')).toMatch('disabled');
 
         browser.waitForAngular();
+
+        browser.executeAsyncScript(function() {
+            var callback = arguments[arguments.length - 1];
+            console.error("HELLO I'M HERE");
+            console.error(angular.element(document.getElementById('lobby-container')).scope());
+            var sc = angular.element(document.getElementById('lobby-container')).scope();
+            sc.$emit('gameStateUpdate', {
+                state: 1
+            });
+
+            callback();
+
+
+            return "hello me";
+        }).then(function() {
+
+            // Wait for things to happen, idk ()
+            browser.sleep(5000);
+
+            expect(element(by.id('lobby-footer')).getAttribute('class')).toMatch('enabled');
+        });
+
 
     });
 

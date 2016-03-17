@@ -3,8 +3,8 @@
     Shows all the players in the game and what team they are on
 */
 angular.module('myApp')
-    .controller('LobbyCtrl', ['$scope', 'UserService', 'LocationService', 'GameInfoService', 'NetworkService',
-        function($scope, UserService, LocationService, GameInfoService, NetworkService) {
+    .controller('LobbyCtrl', ['$scope', '$rootScope', 'UserService', 'LocationService', 'GameInfoService', 'NetworkService',
+        function($scope, $rootScope, UserService, LocationService, GameInfoService, NetworkService) {
 
             // List of players in the game (updates when players join)   
             $scope.players = GameInfoService.getPlayerList();
@@ -46,6 +46,13 @@ angular.module('myApp')
             /*
                 Register for events, when player join the game and when the game starts
             */
+
+            // Can also be called on the route scope, currently used only be testing
+            $rootScope.$on('gameStateUpdate', function(e, data){
+                console.log("ehlllloosdadsas");
+                console.log(data);
+                handleGameStateChange(data);
+            });
 
             // Register to listen to new players joining
             NetworkService.registerListener({
