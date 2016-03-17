@@ -118,7 +118,7 @@
 		"cooldownTime": 10.0,
 		"numberOfUpgrades": 5,
 		"done": true,
-		"image" : "images/heal_group_green.png"
+		"image" : "images/stop_purple.png"
 	}, {
 		"id": 11,
 		"name": "Drop Bomb Attack",
