@@ -1,6 +1,6 @@
-var q = require('q');
-
 describe('Lobby page', function() {
+
+    var gameStateUpdateCallback;
 
     // Mocked out User service
     var UserServiceMock = function() {
@@ -76,6 +76,7 @@ describe('Lobby page', function() {
     beforeEach(function() {
         browser.addMockModule('UserServiceModule', UserServiceMock);
         browser.addMockModule('GameInfoServiceModule', GameInfoServiceMock);
+        // browser.addMockModule('$rootScope', RootScopeMock);
 
         browser.manage().logs().get('browser').then(function(browserLogs) {
             // browserLogs is an array of objects with level and message fields
@@ -135,6 +136,22 @@ describe('Lobby page', function() {
             expect(text).toEqual("Dave");
         });
 
+        browser.waitForAngular();
+
+    });
+
+    it("Start button should be enabled if game state is already running (1)", function() {
+
+        expect(element(by.id('lobby-footer')).getAttribute('class')).toMatch('enabled');
+
+        browser.waitForAngular();
+
+    });
+
+    it("Start button should move user to the game page when clicked", function() {
+
+        element(by.id('lobby-footer')).click();
+        expect(browser.getCurrentUrl()).toBe('http://localhost:7777/#/game');
         browser.waitForAngular();
 
     });

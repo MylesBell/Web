@@ -5,15 +5,14 @@ angular.module('myApp', [
     'gameView',
     'headerBarInfoView',
     'playerCreationView',
-    "lobbyView",
     "tutorialView",
     "btford.socket-io",
     "LocalStorageModule",
     "UserServiceModule",
     "GameInfoServiceModule",
     "config",
-    "ngIdle",
-]).
+    "ngIdle"
+    ]).
 config(function($routeProvider, IdleProvider, KeepaliveProvider, TitleProvider) {
     // configure Idle settings
     IdleProvider.idle(5); // in seconds

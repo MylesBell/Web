@@ -1,7 +1,7 @@
 module.exports = function(config){
   config.set({
 
-    basePath : './',
+    basePath : './rushmore/',
 
     files : [
       'app/bower_components/angular/angular.js',

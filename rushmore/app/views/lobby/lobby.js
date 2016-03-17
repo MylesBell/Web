@@ -2,7 +2,7 @@
     Page players see when waiting for a game to start
     Shows all the players in the game and what team they are on
 */
-angular.module('lobbyView', ['ngRoute'])
+angular.module('myApp')
     .controller('LobbyCtrl', ['$scope', 'UserService', 'LocationService', 'GameInfoService', 'NetworkService',
         function($scope, UserService, LocationService, GameInfoService, NetworkService) {
 
