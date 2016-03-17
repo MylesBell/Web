@@ -30,7 +30,7 @@ angular.module('lobbyView', ['ngRoute'])
             }
 
             $scope.startGame = function() {
-                if ($scope.canJoin === 1) {
+                if ($scope.canJoin === 1 || UserService.getGameState() === 1) {
                     LocationService.setPath("/game");
                 } else {
                     console.error("Tried joining game but game state wasn't 1 but " + UserService.getGameState());
