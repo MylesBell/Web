@@ -10,6 +10,7 @@ angular.module('myApp', [
     "btford.socket-io",
     "LocalStorageModule",
     "UserServiceModule",
+    "GameInfoServiceModule",
     "config",
     "ngIdle",
 ]).

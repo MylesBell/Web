@@ -57,13 +57,25 @@ describe('Lobby page', function() {
         }]);
     };
 
-    var GameInfoServiceMock = function(){
+    // Mock the info service
+    // No User was registered with the server so must mock the player list 
+    var GameInfoServiceMock = function() {
         var GameInfoServiceMockModule = angular.module('GameInfoServiceModule', []);
-    }
+
+        GameInfoServiceMockModule.service('GameInfoService', function() {
+            this.getPlayerList = function() {
+                return [{
+                    username: "Dave",
+                    team: 1
+                }];
+            };
+        });
+    };
 
     // Add mocked modules and capture console.log output in browser
     beforeEach(function() {
         browser.addMockModule('UserServiceModule', UserServiceMock);
+        browser.addMockModule('GameInfoServiceModule', GameInfoServiceMock);
 
         browser.manage().logs().get('browser').then(function(browserLogs) {
             // browserLogs is an array of objects with level and message fields
