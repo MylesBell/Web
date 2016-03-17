@@ -9,6 +9,7 @@ angular.module('myApp', [
     "tutorialView",
     "btford.socket-io",
     "LocalStorageModule",
+    "UserServiceModule",
     "config",
     "ngIdle",
 ]).

@@ -1,4 +1,81 @@
+var q = require('q');
+
 describe('Lobby page', function() {
+
+    // Mocked out User service
+    var UserServiceMock = function() {
+        var UserServiceMockModule = angular.module('UserServiceModule', []);
+
+        UserServiceMockModule.service('UserService', ['$q', function($q) {
+            console.log("MOCKEDDED MODULE");
+            this.getUsername = function() {
+                return "James Hayes";
+            };
+
+            this.getUserTeam = function() {
+                return "blue-team";
+            };
+
+            this.getGameState = function() {
+                return 1;
+            };
+
+            // Allways allow attempt to register with server
+            this.registerUserWithServer = function(name) {
+                var deferred = $q.defer();
+                deferred.resolve({});
+                return deferred.promise;
+            };
+
+            this.attemptToJoinGame = function(gamecode) {
+                var deferred = $q.defer();
+                deferred.resolve({
+                    state: 1
+                });
+                return deferred.promise;
+            };
+
+            // Give them some empty bollocks
+            this.getSpecialPowers = function() {
+                return [{
+                    id: 0
+                }, {
+                    id: 1
+                }, {
+                    id: 2
+                }];
+            };
+
+            // Just return a shitting color
+            this.getTeamColor = function() {
+                return {
+                    blue: {
+                        dark: "#ffffff"
+                    }
+                };
+            };
+        }]);
+    };
+
+    var GameInfoServiceMock = function(){
+        var GameInfoServiceMockModule = angular.module('GameInfoServiceModule', []);
+    }
+
+    // Add mocked modules and capture console.log output in browser
+    beforeEach(function() {
+        browser.addMockModule('UserServiceModule', UserServiceMock);
+
+        browser.manage().logs().get('browser').then(function(browserLogs) {
+            // browserLogs is an array of objects with level and message fields
+            browserLogs.forEach(function(log) {
+                if (log.level.value > 900) { // it's an error log
+                    console.log('Browser console error!');
+                    console.log(log.message);
+                }
+            });
+        });
+    });
+
     it('can get to the lobby', function() {
 
         //navigate to the website
