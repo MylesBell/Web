@@ -727,6 +727,7 @@ h1, h2, h3, h4, h5, h6, label {
     color: #ECF0F1;
     padding: 1em 1.6em;
     font-weight: 100;
+    text-align: center;
 }
 #death-timer-container {
     width: 90%;
