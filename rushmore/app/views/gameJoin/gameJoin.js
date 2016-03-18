@@ -17,7 +17,8 @@ angular.module('gameJoinView', ['ngRoute'])
         codeForm.addEventListener("submit", fullscreen);
 
         $scope.joinGame = function() {
-            UserService.attemptToJoinGame($scope.gamecode).then(function(res) {
+            var gameCode = $scope.gamecode.toLowerCase();
+            UserService.attemptToJoinGame(gameCode).then(function(res) {
                 console.log(res);
                 // the code was was valid and sent to the unity server
                 // the user has joined move they to either game or lobby
