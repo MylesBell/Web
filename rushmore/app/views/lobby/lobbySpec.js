@@ -43,7 +43,7 @@ describe('Lobby page', function() {
 
         // there may be more than one from previous tests
         element.all(by.repeater('playerBlue in bluePlayers')).last().getText().then(function(text) {
-            expect(text).toEqual("Dave");
+            expect(text).toEqual("Dave --");
         });
 
         browser.waitForAngular();

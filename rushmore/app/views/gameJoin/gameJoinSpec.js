@@ -45,7 +45,6 @@ describe('Game Join page', function() {
         expect(inputBox.getAttribute('value')).toEqual('Gamecodes should be 4 characters long');
     });
 
-    // it
     it('entering code over 4 characters shows error on page', function() {
 
         var inputBox = element(by.css('#game-code-input-box'));
@@ -65,9 +64,11 @@ describe('Game Join page', function() {
         var submitButton = element(by.css('#game-join-button'));
 
         inputBox.click();
-        inputBox.sendKeys("FAKE");
+        inputBox.sendKeys("fake");
         submitButton.click();
 
+        browser.waitForAngular();
+        
         expect(browser.getCurrentUrl()).toBe('http://localhost:7777/#/tutorial');
     });
 });
