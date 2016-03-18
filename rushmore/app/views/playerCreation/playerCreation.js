@@ -17,7 +17,7 @@ angular.module('playerCreationView', ['ngRoute'])
 
             //register with server and send username
             // TODO save user details, perhaps in the user service
-            if ($scope, username === "Enter your name") {
+            if ($scope.username === "Enter your name") {
                 console.log("didn't enter a name");
             } else {
                 UserService.registerUserWithServer($scope.username)
