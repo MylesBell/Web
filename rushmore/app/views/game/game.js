@@ -116,7 +116,7 @@ angular.module('gameView', ['ngRoute'])
             console.log("Player respawned on the server");
             $scope.timeToRespawn = "Now";
             $scope.playerDead = false;
-            setTeamBackground();
+            setup();
         }
 
         // handle the game state changing to game over

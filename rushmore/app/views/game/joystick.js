@@ -177,7 +177,7 @@ angular.module('gameView')
 
             // how many rads is removed from the health using remaining ratio
             baseHealthLostRad = toRadians(180 * (1 - remainingHealthRatio));
-            console.log(baseHealthLostRad);
+
             // Handle the health ring wrapping round on low health
             if(baseHealthLostRad > 179) {
                 baseHealthLostRad = 179;
