@@ -3,7 +3,7 @@
         <h1 class="blue-team-lobby-header">Blue Team</h1>
         <ul>
             <li ng-repeat="playerBlue in bluePlayers = (players | filter: {team: 1})">
-              {{playerBlue.username}}
+              {{playerBlue.username}} -- {{playerBlue.lane}}
             </li>     
             <li ng-hide="bluePlayers.length">Nobody's joined the Blue team yet :(</li>
                
@@ -13,7 +13,7 @@
         <h1 class="red-team-lobby-header">Red team</h1>
         <ul>
             <li ng-repeat="playerRed in redPlayers = (players | filter: {team: 0})">
-              {{playerRed.username}}                  
+              {{playerRed.username}} -- {{playerRed.lane}}             
             </li>  
             <li ng-hide="redPlayers.length">Nobody's joined the Red team yet :(</li>
         </ul>

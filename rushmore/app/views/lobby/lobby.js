@@ -8,7 +8,7 @@ angular.module('lobbyView', ['ngRoute'])
 
             // List of players in the game (updates when players join)   
             $scope.players = GameInfoService.getPlayerList();
-            $scope.showStartButton = true;
+            $scope.showStartButton = true;            
 
             // Should be false for prod
             $scope.canJoin = false;

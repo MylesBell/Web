@@ -195,6 +195,7 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
         return gameState;
     }
 
+
     /*
         Register with the network service to listen to  when the player has joined the game
     */
@@ -202,7 +203,6 @@ angular.module('myApp').factory('UserService', function($q, NetworkService, Loca
         eventName: "gamePlayerJoined",
         call: handlePlayerJoinedEvent
     });
-
 
 
     /* --------------------
