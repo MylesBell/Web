@@ -11,6 +11,7 @@ test:
   pre:
     - npm install
     - ./node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update
+    - ./node_modules/protractor/bin/webdriver-manager update 
     - grunt install
     - google-chrome --version
 
