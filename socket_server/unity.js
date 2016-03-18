@@ -82,6 +82,7 @@ module.exports = {
             playerWhoJoined.maxHealth = data.playerMaxHealth;
             playerWhoJoined.team = data.teamID;
             playerWhoJoined.specials = res.specials;
+            playerWhoJoined.lane = data.lane;
 
         } else {
             if (data.ok === 0) {
