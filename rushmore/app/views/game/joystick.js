@@ -151,7 +151,7 @@ angular.module('gameView')
 
             // how many rads is removed from the health using remaining ratio
             // add small delta to lost is not 0, and will not draw a ring
-            playerHealthLostRad = toRadians(180 * (1 - remainingHealthRatio));
+            playerHealthLostRad = toRadians(180 * (1 - remainingHealthRatio)) + 0.002;
 
             // Handle the health ring wrapping round on low health
             if(playerHealthLostRad > 179) {
