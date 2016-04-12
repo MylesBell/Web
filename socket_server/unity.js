@@ -136,7 +136,6 @@ module.exports = {
     */
     gameBaseChangeHealth: function(socket, data, logger) {
         var res = {};
-        var player;
 
         res.uID = data.playerID;
         res.currentBaseHealth = data.currentHealth;
@@ -144,6 +143,21 @@ module.exports = {
         res.ok = true;
 
         return logger.log(socket, logger.loggableModules.BASE_HEALTH_CHANGE, res);
+    }, 
+
+    /*
+        Player has been leveled up
+
+        some powers may have increased their cooldowns
+    */
+    gamePlayerLevelUp: function(socket, data, logger) {
+        var res = {};
+
+        res.uID = data.playerID;
+        res.level = data.level;
+        res.ok = true;
+
+        return logger.log(socket, logger.loggableModules.PLAYER_LEVEL_UP, res);
     }
 };
 

@@ -56,6 +56,11 @@ angular.module('gameView', ['ngRoute'])
             call: handleGamePlayerChangeHealth
         });
 
+        NetworkService.registerListener({
+             eventName: "gamePlayerLevelUp",
+            call: handleGamePlayerLevelUp
+        });
+
         /*
             Attach event listeners to page to handle touches to both the canvas and other UI elements
             Touch events captured here are emitted on the root scope as a communication channel
@@ -142,6 +147,10 @@ angular.module('gameView', ['ngRoute'])
         // Vibrate the game pad, the joystick handles the actual health change
         function handleGamePlayerChangeHealth(data) {
             vibrate(healthChangeVibrateTime);
+        }
+        
+        function handleGamePlayerLevelUp(data){
+            console.log("Player leveled up" + data.level);
         }
 
         /*

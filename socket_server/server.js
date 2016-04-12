@@ -273,4 +273,17 @@ io.on('connection', function(socket) {
         }
     });
 
+    /*
+        Player has been leveled up
+    */
+    socket.on("gamePlayerLevelUp", function(data) {
+        var res = unity.gamePlayerLevelUp(socket, data, housekeeping.logger);
+
+        if(res.ok) {
+            io.sockets.in(res.uID).emit("gamePlayerLevelUp", res);
+        }
+    }); 
+
+
+
 });
