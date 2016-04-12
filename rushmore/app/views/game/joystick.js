@@ -429,7 +429,7 @@ angular.module('gameView')
             // Also set the movement direction to the currently highlighted pad
             for (var i = 0; i < 8; i++) {
                 // if the knob is inside the movements arcs, outside deadzone and enabled
-                if (angleToOrigin >= startAngleRad && angleToOrigin <= endAngleRad && joystick.distToOrigin > deadZoneRadius && joystick.distToOrigin < padRadius && joystick.down) {
+                if (angleToOrigin >= startAngleRad && angleToOrigin <= endAngleRad && joystick.distToOrigin > deadZoneRadius && /*joystick.distToOrigin < padRadius &&*/ joystick.down) {
                     ctx.fillStyle = "#ECECEC";
                     ctx.strokeStyle = "#ECECEC";
 
