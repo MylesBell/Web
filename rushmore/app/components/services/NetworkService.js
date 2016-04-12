@@ -3,7 +3,7 @@
     connects to mobile server using socketio client
 */
 angular.module('myApp').
-factory('NetworkService', function($q, socket, StorageService, $rootScope, Idle) {
+service('NetworkService', function($q, socket, StorageService, $rootScope, Idle) {
     $rootScope.events = [];
 
     $rootScope.$on('IdleStart', function() {
@@ -22,7 +22,7 @@ factory('NetworkService', function($q, socket, StorageService, $rootScope, Idle)
         Idle.watch();
     });
 
-    var listenerEventList = [];
+    listenerEventList = [];
 
     //check on connect if we have connected previous (cookie or local storage)
     //send that data to the server
@@ -83,6 +83,8 @@ factory('NetworkService', function($q, socket, StorageService, $rootScope, Idle)
                 call(eventData);
             }
         }, this);
+
+        $rootScope.$emit(eventName, eventData);
     }
 
     // Sends a message over the socket to the server
@@ -111,7 +113,8 @@ factory('NetworkService', function($q, socket, StorageService, $rootScope, Idle)
      ---------------- */
     return {
         send: send,
-        registerListener: registerListener
+        registerListener: registerListener,
+        alertListeners: alertListeners
     };
 
 });

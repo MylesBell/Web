@@ -3,7 +3,7 @@
     Registering user with server
     Set username for game
 */
-angular.module('myApp').factory('UserService', function($q, NetworkService, LocationService, SpecialPowerManagerService, ColorService) {
+angular.module('UserServiceModule', []).factory('UserService', function($q, NetworkService, $rootScope, LocationService, SpecialPowerManagerService, ColorService) {
 
     var uID = "";
     var userTeam = "";
