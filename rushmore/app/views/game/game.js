@@ -8,10 +8,14 @@ angular.module('gameView', ['ngRoute'])
         $scope.timeToRespawn = 5;
         $scope.gameOver = false;
         $scope.winner = "";
-        $scope.specialPowers = undefined;
+        $scope.specialPowers = UserService.getSpecialPowers();
 
         var respawnTimer; // TODO put this into a timer service
         var respawnTime = $scope.timeToRespawn;
+
+        var healthChangeVibrateTime = 100;
+        var deathVibrateTime = 1000;
+        var respawnVibrateTime = 1000;
 
         var switchButton = document.getElementById('switch-button');
         var mainContainer = document.getElementById('main-container');
@@ -25,9 +29,6 @@ angular.module('gameView', ['ngRoute'])
         };
 
         setup();
-
-        // Setup special powers
-        $scope.specialPowers = UserService.getSpecialPowers();
 
         console.log($scope.specialPowers);
 
@@ -48,6 +49,11 @@ angular.module('gameView', ['ngRoute'])
         NetworkService.registerListener({
             eventName: "gameStateUpdate",
             call: handleGameStateUpdate
+        });
+
+        NetworkService.registerListener({
+            eventName: "gamePlayerChangeHealth",
+            call: handleGamePlayerChangeHealth
         });
 
         /*
@@ -93,7 +99,7 @@ angular.module('gameView', ['ngRoute'])
             if ($scope.specialPowers[specialListNum].enabled) {
                 $scope.specialPowers[specialListNum].enabled = false;
                 $scope.$apply();
-                SpecialPowerManagerService.specialButtonUsed($scope.specialPowers[specialListNum], specialListNum);                
+                SpecialPowerManagerService.specialButtonUsed($scope.specialPowers[specialListNum], specialListNum);
             }
 
         }
@@ -106,7 +112,7 @@ angular.module('gameView', ['ngRoute'])
             $scope.teamClassCSS = "dead-team";
             $scope.playerDead = true;
             $scope.timeToRespawn = respawnTime; // should be timeleft
-
+            vibrate(deathVibrateTime);
             // Set and start the the respawn timer 
             respawnTimer = $interval(respawnTimerUpdate, 1000);
         }
@@ -116,6 +122,7 @@ angular.module('gameView', ['ngRoute'])
             console.log("Player respawned on the server");
             $scope.timeToRespawn = "Now";
             $scope.playerDead = false;
+            vibrate(respawnVibrateTime);
             setup();
         }
 
@@ -132,9 +139,23 @@ angular.module('gameView', ['ngRoute'])
             }
         }
 
+        // Vibrate the game pad, the joystick handles the actual health change
+        function handleGamePlayerChangeHealth(data) {
+            vibrate(healthChangeVibrateTime);
+        }
+
         /*
             Helper functions 
         */
+
+        // Vibrate the phone 
+        function vibrate(time){
+            if (window.navigator.vibrate !== undefined) {
+                window.navigator.vibrate(100);
+            } else {
+                // no vibrate, do nothing, sucks for iOS
+            }
+        }
 
         // Change the background colour of the container to the teams colours
         // Set the container to fill screen size
