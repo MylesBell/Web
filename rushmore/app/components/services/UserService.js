@@ -11,6 +11,7 @@ angular.module('UserServiceModule', []).factory('UserService', function($q, Netw
     var joinPromise;
     var specialPowers = [];
     var gameState = 0;
+    var lane = 0;
 
     // set to an inital value, changed when the user is assigned a team
     var teamColors = ColorService.getBlueColors();
@@ -112,6 +113,7 @@ angular.module('UserServiceModule', []).factory('UserService', function($q, Netw
                 // set the specials and gamestate
                 specialPowers = SpecialPowerManagerService.setupSpecials(data.specials);
                 gameState = data.state;
+                lane = data.lane;
 
                 joinPromise.resolve(data);
             } else {
@@ -194,6 +196,10 @@ angular.module('UserServiceModule', []).factory('UserService', function($q, Netw
     function getGameState() {
         return gameState;
     }
+    
+    function getLane(){
+        return lane;
+    }
 
 
     /*
@@ -219,7 +225,8 @@ angular.module('UserServiceModule', []).factory('UserService', function($q, Netw
         setUserID: setUserID,
         getTeamColor: getTeamColor,
         getSpecialPowers: getSpecialPowers,
-        getGameState: getGameState
+        getGameState: getGameState,
+        getLane: getLane
     };
 
 });

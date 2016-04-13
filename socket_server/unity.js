@@ -77,13 +77,13 @@ module.exports = {
             res.joinSuccess = true;
             res.baseMaxHealth = data.baseMaxHealth;
             res.specials = getSpecialData([data.specialOne, data.specialTwo, data.specialThree]);
-            res.lane = data.lane;
+            res.lane = data.lane ? "Left" : "Right";;
 
             playerWhoJoined.health = data.playerMaxHealth;
             playerWhoJoined.maxHealth = data.playerMaxHealth;
             playerWhoJoined.team = data.teamID;
             playerWhoJoined.specials = res.specials;
-            playerWhoJoined.lane = data.lane;
+            playerWhoJoined.lane = data.lane ? "Left" : "Right";
 
         } else {
             if (data.ok === 0) {
@@ -159,6 +159,16 @@ module.exports = {
         res.ok = true;
 
         return logger.log(socket, logger.loggableModules.PLAYER_LEVEL_UP, res);
+    },
+    
+    gamePlayerSwitchLane: function(socket, data, logger){
+        var res = {};
+        
+        res.uID = data.playerID;
+        res.lane = data.lane ? "Left" : "Right";
+        res.ok = true;
+        
+        return logger.log(socket, logger.loggableModules.PLAYER_SWITCH_LANE, res);        
     }
 };
 

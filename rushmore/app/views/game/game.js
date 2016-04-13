@@ -12,6 +12,7 @@ angular.module('gameView', ['ngRoute'])
         $scope.gameOver = false;
         $scope.winner = "";
         $scope.specialPowers = UserService.getSpecialPowers();
+        $scope.playerLane = UserService.getPlayerLane();
 
         var respawnTimer; // TODO put this into a timer service
         var respawnTime = $scope.timeToRespawn;
@@ -66,6 +67,12 @@ angular.module('gameView', ['ngRoute'])
              eventName: "gamePlayerLevelUp",
             call: handleGamePlayerLevelUp
         });
+        
+        NetworkService.registerListener({
+             eventName: "gamePlayerSwitchLane",
+             call: handleGamePlayerSwitchLane
+        });
+
 
         /*
             Attach event listeners to page to handle touches to both the canvas and other UI elements
@@ -159,6 +166,12 @@ angular.module('gameView', ['ngRoute'])
             console.log("Player leveled up" + data.level);   
             $scope.playerLevel = data.level;  
             toastr.success('LEVEL UP!');     
+        }
+        
+        function handleGamePlayerSwitchLane(data){
+            console.log("lane switch");
+            alert(data);
+            $scope.playerLane = data.lane;
         }
 
         /*
