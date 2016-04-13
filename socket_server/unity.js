@@ -77,12 +77,18 @@ module.exports = {
             res.joinSuccess = true;
             res.baseMaxHealth = data.baseMaxHealth;
             res.specials = getSpecialData([data.specialOne, data.specialTwo, data.specialThree]);
+            
+            // This may be undefined for older unity servers connecting
+            if(data.heroClass !== undefined) {
+                res.heroClass = data.heroClass;
+            }
 
             playerWhoJoined.health = data.playerMaxHealth;
             playerWhoJoined.maxHealth = data.playerMaxHealth;
             playerWhoJoined.team = data.teamID;
             playerWhoJoined.specials = res.specials;
             playerWhoJoined.lane = data.lane;
+            playerWhoJoined.heroClass = data.heroClass;
 
         } else {
             if (data.ok === 0) {

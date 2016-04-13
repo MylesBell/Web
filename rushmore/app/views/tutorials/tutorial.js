@@ -10,9 +10,6 @@ angular.module('tutorialView', ['ngRoute'])
         $scope.nextText = "NEXT";
         $scope.prevText = "SKIP";
 
-        var specialTutorial = [];
-
-        setupSpecialTutorial();
         setTeamBackground();
 
         // TODO pull this out to a service
@@ -49,8 +46,8 @@ angular.module('tutorialView', ['ngRoute'])
         }, {
             tutIndex: 3,
             tutType: "multi",
-            tutorialTitle: "Another tutorial side here",
-            miniLessons: specialTutorial,
+            tutorialTitle: "Tutorial side not shown",
+            miniLessons: setupSpecialTutorial(),
             tutorialImage: {
                 image: "../../resources/images/tutorial/grunts_blue_base_behind_blur.png",
                 offset_x: "80%"
@@ -58,12 +55,10 @@ angular.module('tutorialView', ['ngRoute'])
             visible: false
         }];
 
-        $scope.tutorialSteps = $scope.tutorials.length;
-
-
         function setupSpecialTutorial(){
             var specials = UserService.getSpecialPowers();
-
+            var specialTutorial = [];
+            
             for(var i = 0; i < specials.length; i++){
                 var spec = specials[i];
                 var lesson = {};
@@ -72,6 +67,8 @@ angular.module('tutorialView', ['ngRoute'])
                 lesson.description = spec.description;
                 specialTutorial.push(lesson);
             }
+            
+            return specialTutorial;
         }
 
 
@@ -84,7 +81,7 @@ angular.module('tutorialView', ['ngRoute'])
         };
 
         $scope.next = function() {
-            if ($scope.currentTutorialIndex + 1 < $scope.tutorialSteps) {
+            if ($scope.currentTutorialIndex + 1 < $scope.tutorials.length) {
 
                 $scope.nextText = "NEXT";
                 $scope.prevText = "PREV";
@@ -121,7 +118,7 @@ angular.module('tutorialView', ['ngRoute'])
             $scope.currentTutorialIndex += 1;
 
             //Update the navgation text
-            if ($scope.currentTutorialIndex + 1 === $scope.tutorialSteps) {
+            if ($scope.currentTutorialIndex + 1 === $scope.tutorials.length) {
                 // Indicate they can move to the lobby on the last tutorial page
                 $scope.nextText = "TO LOBBY";
             }
