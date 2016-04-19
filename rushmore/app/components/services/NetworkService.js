@@ -82,7 +82,7 @@ service('NetworkService', function($q, socket, StorageService, $rootScope, Idle)
     
     socket.on("gamePlayerSwitchLane", function(data){
         alertListeners("gamePlayerSwitchLane", data);
-    })
+    });
 
     function alertListeners(eventName, eventData) {
         listenerEventList.forEach(function(listener) {
