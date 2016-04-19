@@ -14,6 +14,11 @@ angular.module('headerBarInfoView', ['ngRoute'])
         // name on the first screen)
         $scope.$on('$routeChangeStart', function(next, current) {
             $scope.username = UserService.getUsername();
+
+            if ($scope.username === "") {
+                $scope.username = "Not Registered";
+                console.log("Not registered");
+            }
         });
 
         NetworkService.registerListener({
@@ -35,5 +40,6 @@ angular.module('headerBarInfoView', ['ngRoute'])
         if (LocationService.getPath() === "/tutorial" || LocationService.getPath() === "/lobby" || LocationService.getPath() === "/game") {
             $scope.hideHeader = true;
         }
+
 
     }]);

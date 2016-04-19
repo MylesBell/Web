@@ -1,14 +1,18 @@
 angular.module('gameView', ['ngRoute'])
-    .controller('GameCtrl', ['$scope', "NetworkService", "UserService", "$interval", "SpecialPowerManagerService", "$rootScope", function($scope, NetworkService, UserService, $interval, SpecialPowerManagerService, $rootScope) {
+    .controller('GameCtrl', ['$scope', "NetworkService", "UserService", "$interval", 
+        "SpecialPowerManagerService", "$rootScope", "toastr", 
+        function($scope, NetworkService, UserService, $interval, SpecialPowerManagerService, $rootScope, toastr) {
 
         $scope.teamClass = UserService.getUserTeam();
         $scope.teamClassCSS = "blue-team";
         $scope.nearBase = false;
         $scope.playerDead = false;
+        $scope.playerLevel = 1;
         $scope.timeToRespawn = 5;
         $scope.gameOver = false;
         $scope.winner = "";
         $scope.specialPowers = UserService.getSpecialPowers();
+        $scope.playerLane = UserService.getPlayerLane();
 
         var respawnTimer; // TODO put this into a timer service
         var respawnTime = $scope.timeToRespawn;
@@ -29,6 +33,9 @@ angular.module('gameView', ['ngRoute'])
         };
 
         setup();
+
+        // Remove this when we know level up works
+        // toastr.success('LEVEL UP!');
 
         console.log($scope.specialPowers);
 
@@ -55,6 +62,17 @@ angular.module('gameView', ['ngRoute'])
             eventName: "gamePlayerChangeHealth",
             call: handleGamePlayerChangeHealth
         });
+
+        NetworkService.registerListener({
+             eventName: "gamePlayerLevelUp",
+            call: handleGamePlayerLevelUp
+        });
+        
+        NetworkService.registerListener({
+             eventName: "gamePlayerSwitchLane",
+             call: handleGamePlayerSwitchLane
+        });
+
 
         /*
             Attach event listeners to page to handle touches to both the canvas and other UI elements
@@ -142,6 +160,18 @@ angular.module('gameView', ['ngRoute'])
         // Vibrate the game pad, the joystick handles the actual health change
         function handleGamePlayerChangeHealth(data) {
             vibrate(healthChangeVibrateTime);
+        }
+        
+        function handleGamePlayerLevelUp(data){
+            console.log("Player leveled up" + data.level);   
+            $scope.playerLevel = data.level;  
+            toastr.success('LEVEL UP!');     
+        }
+        
+        function handleGamePlayerSwitchLane(data){
+            console.log("lane switch");
+            alert(data);
+            $scope.playerLane = data.lane;
         }
 
         /*
