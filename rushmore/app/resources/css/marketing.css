@@ -105,6 +105,7 @@ h1, h2, h3, h4, h5, h6, label {
     border-radius: 5px;
     line-height: 1em;
     font: inherit;
+    width: 100%;
 }
 .deploy-button {
     background-color: white;
@@ -141,10 +142,8 @@ h1, h2, h3, h4, h5, h6, label {
     text-align: center;
 }
 
-#main-container p {
-    /*font-size: 18px;
-    font-weight: 100;
-    line-height: 1.2em;*/
+#main-container .splash-subhead {
+    color: black;
 }
 
 #main-container h1{
