@@ -12,7 +12,7 @@ angular.module('gameView', ['ngRoute'])
         $scope.gameOver = false;
         $scope.winner = "";
         $scope.specialPowers = UserService.getSpecialPowers();
-        $scope.playerLane = UserService.getPlayerLane();
+        $scope.playerLane = UserService.getLane();
 
         var respawnTimer; // TODO put this into a timer service
         var respawnTime = $scope.timeToRespawn;
