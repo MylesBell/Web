@@ -14,11 +14,6 @@ angular.module('headerBarInfoView', ['ngRoute'])
         // name on the first screen)
         $scope.$on('$routeChangeStart', function(next, current) {
             $scope.username = UserService.getUsername();
-
-            // if ($scope.username === "") {
-            //     $scope.username = "Not Registered";
-            //     console.log("Not registered");
-            // }
         });
 
         NetworkService.registerListener({

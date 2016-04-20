@@ -229,21 +229,7 @@ io.on('connection', function(socket) {
             io.sockets.in(res.uID).emit("gamePlayerChangeHealth", res);
         }
     });
-
-    /*
-        A player is now near their own base
-
-        Informs the player that are near the base
-        Allows the player to do things like upgrade or switch lanes
-    */
-    // socket.on('gamePlayerNearBase', function(data) {
-    //     var res = unity.gamePlayerNearBase(socket, data, housekeeping.logger);
-
-    //     if (res.ok) {
-    //         io.sockets.in(res.uID).emit("gamePlayerNearBase", res);
-    //     }
-    // });
-    
+   
     socket.on('gamePlayerSwitchLane', function(data) {
         var res = unity.gamePlayerSwitchLane(socket, data, housekeeping.logger);
 
