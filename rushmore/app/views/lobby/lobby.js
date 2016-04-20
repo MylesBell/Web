@@ -14,6 +14,8 @@ angular.module('myApp')
             $scope.canJoin = false;
             $scope.buttonText = "NOT STARTED YET";
 
+            window.scrollTo(0,1);
+
             // When the game playing event occurs, move from the lobby to the game screen
             function handleGameStateChange(data) {
                 console.log("Game state chnaged %o", data);
