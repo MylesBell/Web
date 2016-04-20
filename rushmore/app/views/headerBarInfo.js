@@ -15,10 +15,10 @@ angular.module('headerBarInfoView', ['ngRoute'])
         $scope.$on('$routeChangeStart', function(next, current) {
             $scope.username = UserService.getUsername();
 
-            if ($scope.username === "") {
-                $scope.username = "Not Registered";
-                console.log("Not registered");
-            }
+            // if ($scope.username === "") {
+            //     $scope.username = "Not Registered";
+            //     console.log("Not registered");
+            // }
         });
 
         NetworkService.registerListener({

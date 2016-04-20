@@ -77,7 +77,7 @@ h1, h2, h3, h4, h5, h6, label {
     /* Fixed menus normally have a border at the bottom. */
     border-bottom: none;    /* I need a higher z-index here because of the scroll-over effect. */
     z-index: 4;
-    height: 10%;
+    height: 60px;
 
 }
 .home-menu .pure-menu-heading {
