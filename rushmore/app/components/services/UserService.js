@@ -12,9 +12,37 @@ angular.module('UserServiceModule', []).factory('UserService', function($q, Netw
     var specialPowers = [];
     var gameState = 0;
     var lane = 0;
-
+    var heroClass = 0;
+    var teamColors;
     // set to an inital value, changed when the user is assigned a team
-    var teamColors = ColorService.getBlueColors();
+    teamColors = ColorService.getBlueColors(); 
+
+    /*
+        Register with the network service to listen to  when the player has joined the game
+    */
+    NetworkService.registerListener({
+        eventName: "gamePlayerJoined",
+        call: handlePlayerJoinedEvent
+    });
+        
+    /* --------------------
+        PUBLIC API
+    ---------------- */    
+
+    return {
+        registerUserWithServer: registerUserWithServer,
+        attemptToJoinGame: attemptToJoinGame,
+        setUserTeam: setUserTeam,
+        getUserTeam: getUserTeam,
+        getUsername: getUsername,
+        getUserID: getUserID,
+        setUserID: setUserID,
+        getTeamColor: getTeamColor,
+        getSpecialPowers: getSpecialPowers,
+        getGameState: getGameState,
+        getLane: getLane,
+        getHeroClass: getHeroClass
+    };
 
     function attemptToJoinGame(gamecode) {
         joinPromise = $q.defer();
@@ -114,20 +142,13 @@ angular.module('UserServiceModule', []).factory('UserService', function($q, Netw
                 specialPowers = SpecialPowerManagerService.setupSpecials(data.specials);
                 gameState = data.state;
                 lane = data.lane;
-
+                heroClass = data.heroClass;
+                
                 joinPromise.resolve(data);
             } else {
                 joinPromise.reject(data);
             }
         }
-    }
-
-    function getUserTeam() {
-        return userTeam;
-    }
-
-    function getUserID() {
-        return uID;
     }
 
     function getSpecialPowers() {
@@ -175,6 +196,14 @@ angular.module('UserServiceModule', []).factory('UserService', function($q, Netw
             }, ];
         }
         return specialPowers;
+    }    
+    
+    function getUserTeam() {
+        return userTeam;
+    }
+
+    function getUserID() {
+        return uID;
     }
 
     function setUserID() {
@@ -200,33 +229,9 @@ angular.module('UserServiceModule', []).factory('UserService', function($q, Netw
     function getLane(){
         return lane;
     }
-
-
-    /*
-        Register with the network service to listen to  when the player has joined the game
-    */
-    NetworkService.registerListener({
-        eventName: "gamePlayerJoined",
-        call: handlePlayerJoinedEvent
-    });
-
-
-    /* --------------------
-        PUBLIC API
-    ---------------- */
-
-    return {
-        registerUserWithServer: registerUserWithServer,
-        attemptToJoinGame: attemptToJoinGame,
-        setUserTeam: setUserTeam,
-        getUserTeam: getUserTeam,
-        getUsername: getUsername,
-        getUserID: getUserID,
-        setUserID: setUserID,
-        getTeamColor: getTeamColor,
-        getSpecialPowers: getSpecialPowers,
-        getGameState: getGameState,
-        getLane: getLane
-    };
+    
+    function getHeroClass(){
+        return heroClass;
+    }
 
 });

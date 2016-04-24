@@ -91,6 +91,7 @@ module.exports = {
             playerWhoJoined.heroClass = data.heroClass;
             playerWhoJoined.lane = data.lane ? "Left" : "Right";
         } else {
+            
             if (data.ok === 0) {
                 res.ok = true;
                 res.joinSuccess = false;

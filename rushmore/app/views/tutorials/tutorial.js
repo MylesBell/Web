@@ -9,6 +9,8 @@ angular.module('tutorialView', ['ngRoute'])
         $scope.currentTutorialIndex = 0;
         $scope.nextText = "NEXT";
         $scope.prevText = "SKIP";
+        
+        var enemyTeamName = UserService.getUserTeam() === 'red-team' ? "COWBOY" : "VIKING"
 
         setTeamBackground();
 
@@ -17,7 +19,7 @@ angular.module('tutorialView', ['ngRoute'])
             tutIndex: 0,
             tutType: "single",
             tutorialTitle: "Vikings and Cowboys are locked in endless war",
-            tutorialText: "As a hero, fight alongside your allies to destroy the COWBOYS",
+            tutorialText: "Destroy the" + enemyTeamName +"'S base to win",
             tutorialImage: {
                 image: "../../resources/images/tutorial/base_cowboy_blur.png",
                 offset_x: "50%"
@@ -54,7 +56,10 @@ angular.module('tutorialView', ['ngRoute'])
             },
             visible: false
         }];
-
+        
+        /*
+            Creates a tutorial page for a user tailored to their special powers
+        */
         function setupSpecialTutorial(){
             var specials = UserService.getSpecialPowers();
             var specialTutorial = [];
@@ -70,7 +75,11 @@ angular.module('tutorialView', ['ngRoute'])
             
             return specialTutorial;
         }
-
+        
+        // Create a tutorial page for a given class
+        function setupClassTutorial(){
+            
+        }
 
         $scope.getStyle = function(tut) {
             var style = {
