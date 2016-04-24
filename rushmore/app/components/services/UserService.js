@@ -6,7 +6,7 @@
 angular.module('UserServiceModule', []).factory('UserService', function ($q, NetworkService, $rootScope, LocationService, SpecialPowerManagerService, ColorService) {
 
     var uID = "";
-    var userTeam = "red-team";
+    var userTeam = "";
     var username = "";
     var joinPromise;
     var specialPowers = [];

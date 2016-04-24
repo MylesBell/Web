@@ -4,17 +4,17 @@
 */
 angular.module('myApp')
     .controller('LobbyCtrl', ['$scope', '$rootScope', 'UserService', 'LocationService', 'GameInfoService', 'NetworkService',
-        function($scope, $rootScope, UserService, LocationService, GameInfoService, NetworkService) {
+        function ($scope, $rootScope, UserService, LocationService, GameInfoService, NetworkService) {
 
             // List of players in the game (updates when players join)   
             $scope.players = GameInfoService.getPlayerList();
-            $scope.showStartButton = true;            
+            $scope.showStartButton = true;
 
             // Should be false for prod
             $scope.canJoin = false;
             $scope.buttonText = "NOT STARTED YET";
 
-            window.scrollTo(0,1);
+            window.scrollTo(0, 1);
 
             // When the game playing event occurs, move from the lobby to the game screen
             function handleGameStateChange(data) {
@@ -30,7 +30,19 @@ angular.module('myApp')
                 $scope.players = data.playerList;
             }
 
-            $scope.startGame = function() {
+            $scope.getHeroClassName = function (heroClassNum) {
+                if (heroClassNum === 0) {
+                    return "HUNTER";
+                } else if (heroClassNum === 1) {
+                    return "HITMAN";
+                } else if (heroClassNum === 2) {
+                    return "HEALER";
+                } else {
+                    return "HARDHAT";
+                }
+            };
+
+            $scope.startGame = function () {
                 if ($scope.canJoin || UserService.getGameState() === 1) {
                     LocationService.setPath("/game");
                 } else {
@@ -49,7 +61,7 @@ angular.module('myApp')
             */
 
             // Can also be called on the route scope, currently used only be testing
-            $rootScope.$on('gameStateUpdate', function(e, data){
+            $rootScope.$on('gameStateUpdate', function (e, data) {
                 console.log(data);
                 handleGameStateChange(data);
             });
