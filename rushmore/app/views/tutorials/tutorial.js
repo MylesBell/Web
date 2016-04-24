@@ -5,7 +5,7 @@
 angular.module('tutorialView', ['ngRoute'])
     .controller('TutorialCtrl', ['$scope', 'UserService', 'LocationService', function($scope, UserService, LocationService) {
 
-        $scope.tutorialSteps = 5;
+        $scope.tutorialSteps = 4;
         $scope.currentTutorialIndex = 0;
         $scope.nextText = "NEXT";
         $scope.prevText = "SKIP";
@@ -28,8 +28,8 @@ angular.module('tutorialView', ['ngRoute'])
         }, {
             tutIndex: 1,
             tutType: "single",
-            tutorialTitle: "Destroy the enemy's base to win",
-            tutorialText: "Heros and grunts continiously spawn from each team's base",
+            tutorialTitle: "You Auto-Attack enemies beside you",
+            tutorialText: "Defeating enemy grunts and heros will make you and your powers stronger",
             tutorialImage: {
                 image: "../../resources/images/tutorial/grunts_blue_base_behind_blur.png",
                 offset_x: "80%"
@@ -38,10 +38,10 @@ angular.module('tutorialView', ['ngRoute'])
         }, {
             tutIndex: 2,
             tutType: "single",
-            tutorialTitle: "Use your special powers to help in combat",
-            tutorialText: "Defeating enemy grunts and heros will make you and your powers stronger",
+            tutorialTitle: "You are a CLASSNAME",
+            tutorialText: "Use your unique special powers influence the battle",
             tutorialImage: {
-                image: "../../resources/images/tutorial/grunt_red_base_behind_blur.png",
+                image: "../../resources/images/tutorial/classes/cowboy_hardhat_sm.png",
                 offset_x: "50%"
             },
             visible: false
