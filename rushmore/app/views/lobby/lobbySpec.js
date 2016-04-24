@@ -1,32 +1,36 @@
-describe('Lobby page', function() {
+describe('Lobby page', function () {
 
     var gameStateUpdateCallback;
 
     // Mocked out User service
-    var UserServiceMock = function() {
+    var UserServiceMock = function () {
         var UserServiceMockModule = angular.module('UserServiceModule', []);
 
-        UserServiceMockModule.service('UserService', ['$q', function($q) {
-            this.getUsername = function() {
+        UserServiceMockModule.service('UserService', ['$q', function ($q) {
+            this.getUsername = function () {
                 return "James Hayes";
             };
 
-            this.getUserTeam = function() {
+            this.getUserTeam = function () {
                 return "blue-team";
             };
 
-            this.getGameState = function() {
+            this.getGameState = function () {
                 return 0;
             };
 
+            this.getHeroClass = function () {
+                return 1;
+            };
+
             // Allways allow attempt to register with server
-            this.registerUserWithServer = function(name) {
+            this.registerUserWithServer = function (name) {
                 var deferred = $q.defer();
                 deferred.resolve({});
                 return deferred.promise;
             };
 
-            this.attemptToJoinGame = function(gamecode) {
+            this.attemptToJoinGame = function (gamecode) {
                 var deferred = $q.defer();
                 deferred.resolve({
                     state: 0
@@ -35,18 +39,18 @@ describe('Lobby page', function() {
             };
 
             // Give them some empty bollocks
-            this.getSpecialPowers = function() {
+            this.getSpecialPowers = function () {
                 return [{
                     id: 0
                 }, {
-                    id: 1
-                }, {
-                    id: 2
-                }];
+                        id: 1
+                    }, {
+                        id: 2
+                    }];
             };
 
             // Just return a shitting color
-            this.getTeamColor = function() {
+            this.getTeamColor = function () {
                 return {
                     blue: {
                         dark: "#ffffff"
@@ -58,28 +62,29 @@ describe('Lobby page', function() {
 
     // Mock the info service
     // No User was registered with the server so must mock the player list 
-    var GameInfoServiceMock = function() {
+    var GameInfoServiceMock = function () {
         var GameInfoServiceMockModule = angular.module('GameInfoServiceModule', []);
 
-        GameInfoServiceMockModule.service('GameInfoService', function() {
-            this.getPlayerList = function() {
+        GameInfoServiceMockModule.service('GameInfoService', function () {
+            this.getPlayerList = function () {
                 return [{
                     username: "Dave",
-                    team: 1
+                    team: 1,
+                    lane: "Left"
                 }];
             };
         });
     };
 
     // Add mocked modules and capture console.log output in browser
-    beforeEach(function() {
+    beforeEach(function () {
         browser.addMockModule('UserServiceModule', UserServiceMock);
         browser.addMockModule('GameInfoServiceModule', GameInfoServiceMock);
         // browser.addMockModule('$rootScope', RootScopeMock);
 
-        browser.manage().logs().get('browser').then(function(browserLogs) {
+        browser.manage().logs().get('browser').then(function (browserLogs) {
             // browserLogs is an array of objects with level and message fields
-            browserLogs.forEach(function(log) {
+            browserLogs.forEach(function (log) {
                 if (log.level.value > 900) { // it's an error log
                     console.log('Browser console error!');
                     console.log(log.message);
@@ -88,7 +93,7 @@ describe('Lobby page', function() {
         });
     });
 
-    it('can get to the lobby', function() {
+    it('can get to the lobby', function () {
 
         //navigate to the website
         browser.get('http://localhost:7777/');
@@ -117,35 +122,33 @@ describe('Lobby page', function() {
         expect(browser.getCurrentUrl()).toBe('http://localhost:7777/#/lobby');
     });
 
-    it("Should be at least one player in the lobby when joining", function() {
+    it("Should be at least one player in the lobby when joining", function () {
 
         // there may be more than one from previous tests
-        element.all(by.repeater('playerBlue in bluePlayers')).count().then(function(count) {
+        element.all(by.repeater('player in bluePlayers')).count().then(function (count) {
             expect(count).not.toBeLessThan(1);
         });
 
         browser.waitForAngular();
-
     });
 
-    it("User's name should be shown in the lobby list", function() {
+    it("User's name should be shown in the lobby list", function () {
 
         // there may be more than one from previous tests
-        element.all(by.repeater('playerBlue in bluePlayers')).last().getText().then(function(text) {
-            expect(text).toEqual("Dave --");
+        element.all(by.repeater('player in bluePlayers')).last().getText().then(function (text) {
+            expect(text).toEqual("Dave -- (Left Lane) -- HARDHAT");
         });
 
         browser.waitForAngular();
-
     });
 
-    it("Start button should be enabled if game state is already running (1)", function() {
+    it("Start button should be enabled if game state is already running (1)", function () {
 
         expect(element(by.id('lobby-footer')).getAttribute('class')).toMatch('disabled');
 
         browser.waitForAngular();
 
-        browser.executeAsyncScript(function() {
+        browser.executeAsyncScript(function () {
             var callback = arguments[arguments.length - 1];
             console.error("HELLO I'M HERE");
             console.error(angular.element(document.getElementById('lobby-container')).scope());
@@ -156,25 +159,21 @@ describe('Lobby page', function() {
 
             callback();
 
-
             return "hello me";
-        }).then(function() {
+        }).then(function () {
 
             // Wait for things to happen, idk ()
             browser.sleep(5000);
 
             expect(element(by.id('lobby-footer')).getAttribute('class')).toMatch('enabled');
         });
-
-
     });
 
-    it("Start button should move user to the game page when clicked", function() {
+    it("Start button should move user to the game page when clicked", function () {
 
         element(by.id('lobby-footer')).click();
         expect(browser.getCurrentUrl()).toBe('http://localhost:7777/#/game');
         browser.waitForAngular();
-
     });
 
 });

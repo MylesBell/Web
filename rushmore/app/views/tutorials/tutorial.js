@@ -3,79 +3,19 @@
    Let the player move throough a tutorial section of pages
 */
 angular.module('tutorialView', ['ngRoute'])
-    .controller('TutorialCtrl', ['$scope', 'UserService', 'LocationService', function($scope, UserService, LocationService) {
+    .controller('TutorialCtrl', ['$scope', 'UserService', 'LocationService', 'TutorialService', function ($scope, UserService, LocationService, TutorialService) {
 
-        $scope.tutorialSteps = 5;
+        $scope.tutorialSteps = 4;
         $scope.currentTutorialIndex = 0;
         $scope.nextText = "NEXT";
         $scope.prevText = "SKIP";
 
-        var specialTutorial = [];
-
-        setupSpecialTutorial();
         setTeamBackground();
 
-        // TODO pull this out to a service
-        $scope.tutorials = [{
-            tutIndex: 0,
-            tutType: "single",
-            tutorialTitle: "Vikings and Cowboys are locked in endless war",
-            tutorialText: "As a hero, fight alongside your allies to destroy the COWBOYS",
-            tutorialImage: {
-                image: "../../resources/images/tutorial/base_cowboy_blur.png",
-                offset_x: "50%"
-            },
-            visible: true
-        }, {
-            tutIndex: 1,
-            tutType: "single",
-            tutorialTitle: "Destroy the enemy's base to win",
-            tutorialText: "Heros and grunts continiously spawn from each team's base",
-            tutorialImage: {
-                image: "../../resources/images/tutorial/grunts_blue_base_behind_blur.png",
-                offset_x: "80%"
-            },
-            visible: false
-        }, {
-            tutIndex: 2,
-            tutType: "single",
-            tutorialTitle: "Use your special powers to help in combat",
-            tutorialText: "Defeating enemy grunts and heros will make you and your powers stronger",
-            tutorialImage: {
-                image: "../../resources/images/tutorial/grunt_red_base_behind_blur.png",
-                offset_x: "50%"
-            },
-            visible: false
-        }, {
-            tutIndex: 3,
-            tutType: "multi",
-            tutorialTitle: "Another tutorial side here",
-            miniLessons: specialTutorial,
-            tutorialImage: {
-                image: "../../resources/images/tutorial/grunts_blue_base_behind_blur.png",
-                offset_x: "80%"
-            },
-            visible: false
-        }];
+        // Make the tutorials
+        $scope.tutorials = TutorialService.makeTutorial(UserService.getHeroClass(), UserService.getUserTeam(), UserService.getSpecialPowers());
 
-        $scope.tutorialSteps = $scope.tutorials.length;
-
-
-        function setupSpecialTutorial(){
-            var specials = UserService.getSpecialPowers();
-
-            for(var i = 0; i < specials.length; i++){
-                var spec = specials[i];
-                var lesson = {};
-                lesson.text = spec.name;
-                lesson.image = "../resources/" + spec.image;
-                lesson.description = spec.description;
-                specialTutorial.push(lesson);
-            }
-        }
-
-
-        $scope.getStyle = function(tut) {
+        $scope.getStyle = function (tut) {
             var style = {
                 background_image: "linear-gradient(to bottom, rgba(255,255,255,0) 50%,rgba(0,0,0,0.6) 100%), url('" + tut.tutorialImage.image + "')",
                 background_position_x: tut.tutorialImage.offset_x
@@ -83,8 +23,8 @@ angular.module('tutorialView', ['ngRoute'])
             return style;
         };
 
-        $scope.next = function() {
-            if ($scope.currentTutorialIndex + 1 < $scope.tutorialSteps) {
+        $scope.next = function () {
+            if ($scope.currentTutorialIndex + 1 < $scope.tutorials.length) {
 
                 $scope.nextText = "NEXT";
                 $scope.prevText = "PREV";
@@ -101,7 +41,7 @@ angular.module('tutorialView', ['ngRoute'])
                 // set the next lesson to visible
                 $scope.tutorials[$scope.currentTutorialIndex + 1].visible = true;
                 nextTutPage.classList.add("tutorial-anim-page-slide-in-left");
-                nextTutPage.addEventListener("animationend", function() {
+                nextTutPage.addEventListener("animationend", function () {
                     nextTutPage.classList.remove("tutorial-anim-page-slide-in-left");
                 });
 
@@ -121,7 +61,7 @@ angular.module('tutorialView', ['ngRoute'])
             $scope.currentTutorialIndex += 1;
 
             //Update the navgation text
-            if ($scope.currentTutorialIndex + 1 === $scope.tutorialSteps) {
+            if ($scope.currentTutorialIndex + 1 === $scope.tutorials.length) {
                 // Indicate they can move to the lobby on the last tutorial page
                 $scope.nextText = "TO LOBBY";
             }
@@ -144,8 +84,7 @@ angular.module('tutorialView', ['ngRoute'])
             $scope.$apply();
         }
 
-        $scope.prev = function() {
-            console.log("prev");
+        $scope.prev = function () {
             if ($scope.currentTutorialIndex > 0) {
                 // move to the next tutorial
 
@@ -164,7 +103,7 @@ angular.module('tutorialView', ['ngRoute'])
 
                 // set the next lesson to visible
                 nextTutPage.classList.add("tutorial-anim-page-slide-in-right");
-                nextTutPage.addEventListener("animationend", function() {
+                nextTutPage.addEventListener("animationend", function () {
                     nextTutPage.classList.remove("tutorial-anim-page-slide-in-right");
                 });
 

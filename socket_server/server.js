@@ -48,7 +48,7 @@ console.log("Logging set to: " + loggingLevel);
 console.log("Testing set to: " + testingEnabled);
 
 // These functions are exposed to a SocketIO connection
-io.on('connection', function(socket) {
+io.on('connection', function (socket) {
 
     // Define a new logging instance for this connection
     var housekeeping = new logger();
@@ -69,7 +69,7 @@ io.on('connection', function(socket) {
     /*
         Client has subscribed to a channel - our namespace implementation
     */
-    socket.on('subscribe', function(data) {
+    socket.on('subscribe', function (data) {
         utils.subscribe(socket, data, housekeeping.logger);
     });
 
@@ -79,14 +79,14 @@ io.on('connection', function(socket) {
         Remove them from the player list, update everyone else's player list 
         and tell unity that player has left
     */
-    socket.on('disconnect', function(data) {
+    socket.on('disconnect', function (data) {
         var res = mobile.playerLeaveGame(socket, data, housekeeping.logger, playerList);
 
         // Communicate disconnect both Unity server and all other players
         if (res.ok) {
             io.sockets.in(UNITY_CHAN).emit('playerLeave', res);
 
-            playerList.forEach(function(pl) {
+            playerList.forEach(function (pl) {
                 io.sockets.in(pl.uID).emit('gamePlayerLeft', res);
             });
         }
@@ -100,7 +100,7 @@ io.on('connection', function(socket) {
     /*
         New player wants to register in the system with a name and socket id
     */
-    socket.on('playerRegister', function(data, callback) {
+    socket.on('playerRegister', function (data, callback) {
         var res = mobile.playerRegister(socket, data, housekeeping.logger);
 
         // Return the response back to the client, either success or failure, to fufilled the promise
@@ -111,7 +111,7 @@ io.on('connection', function(socket) {
         Registered player wants to join a game using a game code
         Adds the inital player data to the player list        
     */
-    socket.on("playerJoinGame", function(data, callback) {
+    socket.on("playerJoinGame", function (data, callback) {
         var res = mobile.playerJoinGame(socket, data, housekeeping.logger, playerList);
 
         // If joining game was successful, tell the unity server to add them to game        
@@ -126,19 +126,20 @@ io.on('connection', function(socket) {
             var unityRes = unity.gamePlayerJoined(socket, {
                 playerID: socket.id,
                 teamID: 1,
-                state: 1, // 0 the state for idle (needed for testing)                
+                state: 0, // 0 the state for idle (needed for testing)                
                 ok: 1, // code was correct
                 baseMaxHealth: 5000,
                 specialOne: 11,
                 specialTwo: 8,
-                specialThree: 0
+                specialThree: 0,
+                heroClass: 1
             }, housekeeping.logger, playerList);
 
             // Communicate successful join to the joining player and
             // update all other clients in the game with new player
             if (unityRes.ok) {
                 // console.log(unityRes);
-                playerList.forEach(function(pl) {
+                playerList.forEach(function (pl) {
                     io.sockets.in(pl.uID).emit('gamePlayerJoined', unityRes);
                 });
             }
@@ -150,7 +151,7 @@ io.on('connection', function(socket) {
     /*
         Player has fired a special attack button
     */
-    socket.on('playerSpecial', function(data) {
+    socket.on('playerSpecial', function (data) {
         var res = mobile.playerSpecial(socket, data, housekeeping.logger);
 
         if (res.ok) {
@@ -161,7 +162,7 @@ io.on('connection', function(socket) {
     /*
         Player has attempted to switch direction of movement   
     */
-    socket.on('playerDirection', function(data) {
+    socket.on('playerDirection', function (data) {
         var res = mobile.playerDirection(socket, data, housekeeping.logger);
 
         if (res.ok) {
@@ -172,7 +173,7 @@ io.on('connection', function(socket) {
     /*
         Player has attempted to switch which base (side) they are on
     */
-    socket.on('playerSwitchBase', function(data) {
+    socket.on('playerSwitchBase', function (data) {
         var res = mobile.playerDirection(socket, data, housekeeping.logger);
 
         if (res.ok) {
@@ -189,7 +190,7 @@ io.on('connection', function(socket) {
     /*
         A player has respawned in game    
     */
-    socket.on('gamePlayerRespawn', function(data) {
+    socket.on('gamePlayerRespawn', function (data) {
         var res = unity.gamePlayerRespawn(socket, data, housekeeping.logger, playerList);
 
         if (res.ok) {
@@ -200,7 +201,7 @@ io.on('connection', function(socket) {
     /*
         A player has died in game
     */
-    socket.on('gamePlayerDied', function(data) {
+    socket.on('gamePlayerDied', function (data) {
         var res = unity.gamePlayerDied(socket, data, housekeeping.logger);
 
         if (res.ok) {
@@ -211,7 +212,7 @@ io.on('connection', function(socket) {
     /*
         The game state has been updated
     */
-    socket.on('gameStateUpdate', function(data) {
+    socket.on('gameStateUpdate', function (data) {
         var res = unity.gameStateUpdate(socket, data, housekeeping.logger);
 
         if (res.ok) {
@@ -222,15 +223,15 @@ io.on('connection', function(socket) {
     /*
         A player's health has changed
     */
-    socket.on('gamePlayerChangeHealth', function(data) {
+    socket.on('gamePlayerChangeHealth', function (data) {
         var res = unity.gamePlayerChangeHealth(socket, data, housekeeping.logger, playerList);
 
         if (res.ok) {
             io.sockets.in(res.uID).emit("gamePlayerChangeHealth", res);
         }
     });
-   
-    socket.on('gamePlayerSwitchLane', function(data) {
+
+    socket.on('gamePlayerSwitchLane', function (data) {
         var res = unity.gamePlayerSwitchLane(socket, data, housekeeping.logger);
 
         if (res.ok) {
@@ -241,13 +242,13 @@ io.on('connection', function(socket) {
     /*
         Players base's health has changed
     */
-    socket.on("gameBaseChangeHealth", function(data) {
+    socket.on("gameBaseChangeHealth", function (data) {
         var res = unity.gameBaseChangeHealth(socket, data, housekeeping.logger);
 
-        if(res.ok) {
+        if (res.ok) {
             io.sockets.in(res.uID).emit("gameBaseChangeHealth", res);
         }
-    }); 
+    });
 
     /*
         A player has successfully joined the game
@@ -255,13 +256,13 @@ io.on('connection', function(socket) {
         Updates that players info to what team they have been asssigned to
         Also broadcasts this event to all clients in that game to update their own player list
     */
-    socket.on('gamePlayerJoined', function(data) {
+    socket.on('gamePlayerJoined', function (data) {
         var res = unity.gamePlayerJoined(socket, data, housekeeping.logger, playerList);
 
         // Communicate successful join to the joining player and
         // update all other clients in the game with new player
         if (res.ok) {
-            playerList.forEach(function(pl) {
+            playerList.forEach(function (pl) {
                 io.sockets.in(pl.uID).emit('gamePlayerJoined', res);
             });
         }
@@ -270,13 +271,13 @@ io.on('connection', function(socket) {
     /*
         Player has been leveled up
     */
-    socket.on("gamePlayerLevelUp", function(data) {
+    socket.on("gamePlayerLevelUp", function (data) {
         var res = unity.gamePlayerLevelUp(socket, data, housekeeping.logger);
 
-        if(res.ok) {
+        if (res.ok) {
             io.sockets.in(res.uID).emit("gamePlayerLevelUp", res);
         }
-    }); 
+    });
 
 
 

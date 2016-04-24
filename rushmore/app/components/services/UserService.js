@@ -3,7 +3,7 @@
     Registering user with server
     Set username for game
 */
-angular.module('UserServiceModule', []).factory('UserService', function($q, NetworkService, $rootScope, LocationService, SpecialPowerManagerService, ColorService) {
+angular.module('UserServiceModule', []).factory('UserService', function ($q, NetworkService, $rootScope, LocationService, SpecialPowerManagerService, ColorService) {
 
     var uID = "";
     var userTeam = "";
@@ -12,9 +12,38 @@ angular.module('UserServiceModule', []).factory('UserService', function($q, Netw
     var specialPowers = [];
     var gameState = 0;
     var lane = 0;
-
+    var heroClass = 2;
+    var teamColors;
+    
     // set to an inital value, changed when the user is assigned a team
-    var teamColors = ColorService.getBlueColors();
+    teamColors = ColorService.getRedColors();
+
+    /*
+        Register with the network service to listen to  when the player has joined the game
+    */
+    NetworkService.registerListener({
+        eventName: "gamePlayerJoined",
+        call: handlePlayerJoinedEvent
+    });
+
+    /* --------------------
+        PUBLIC API
+    ---------------- */
+
+    return {
+        registerUserWithServer: registerUserWithServer,
+        attemptToJoinGame: attemptToJoinGame,
+        setUserTeam: setUserTeam,
+        getUserTeam: getUserTeam,
+        getUsername: getUsername,
+        getUserID: getUserID,
+        setUserID: setUserID,
+        getTeamColor: getTeamColor,
+        getSpecialPowers: getSpecialPowers,
+        getGameState: getGameState,
+        getLane: getLane,
+        getHeroClass: getHeroClass
+    };
 
     function attemptToJoinGame(gamecode) {
         joinPromise = $q.defer();
@@ -34,7 +63,7 @@ angular.module('UserServiceModule', []).factory('UserService', function($q, Netw
             NetworkService.send("playerJoinGame", {
                 gamecode: gamecode,
                 username: username
-            }).catch(function(err) {
+            }).catch(function (err) {
                 joinPromise.reject({
                     ok: false,
                     message: err.message
@@ -74,14 +103,14 @@ angular.module('UserServiceModule', []).factory('UserService', function($q, Netw
             // may or may not succeed
             NetworkService.send("playerRegister", {
                 username: name
-            }).then(function(res) {
+            }).then(function (res) {
                 username = name;
                 uID = res.uID;
                 deferred.resolve({
                     ok: true,
                     username: name
                 });
-            }).catch(function(err) {
+            }).catch(function (err) {
                 // was an error registering the player
                 deferred.reject({
                     ok: false,
@@ -114,6 +143,7 @@ angular.module('UserServiceModule', []).factory('UserService', function($q, Netw
                 specialPowers = SpecialPowerManagerService.setupSpecials(data.specials);
                 gameState = data.state;
                 lane = data.lane;
+                heroClass = data.heroClass;
 
                 joinPromise.resolve(data);
             } else {
@@ -128,53 +158,6 @@ angular.module('UserServiceModule', []).factory('UserService', function($q, Netw
 
     function getUserID() {
         return uID;
-    }
-
-    function getSpecialPowers() {
-        // Return default set if non given, used for refresh
-        if (specialPowers.length === 0) {
-            specialPowers = [{
-                "id": 0,
-                "name": "Flame Ring Attack",
-                "type": "Attack",
-                "idea": "Melee",
-                "description": "Immediately cripple enemies close to you.",
-                "filename": "",
-                "cooldownTime": 10.0,
-                "numberOfUpgrades": 5,
-                "done": true,
-                "enabled": true,
-                "cssName": "special-Attack-Melee",
-                "image": "images/flame_red.png"
-            }, {
-                "id": 3,
-                "name": "Defense Buff",
-                "type": "Buff",
-                "idea": "Defense",
-                "description": "Increase your defense to you can take more punishment.",
-                "filename": "",
-                "cooldownTime": 2.0,
-                "numberOfUpgrades": 5,
-                "done": true,
-                "enabled": true,
-                "cssName": "special-Buff-Defense",
-                "image": "images/health_buff_blue.png"
-            }, {
-                "id": 6,
-                "name": "Healing Ring Spell",
-                "type": "Heal",
-                "idea": "Self-and-close",
-                "description": "Immediately heal teammates close to you.",
-                "filename": "",
-                "cooldownTime": 5.0,
-                "numberOfUpgrades": 5,
-                "done": true,
-                "enabled": true,
-                "cssName": "special-Heal-Self-and-close",
-                "image": "images/heal_group_green.png"
-            }, ];
-        }
-        return specialPowers;
     }
 
     function setUserID() {
@@ -196,37 +179,61 @@ angular.module('UserServiceModule', []).factory('UserService', function($q, Netw
     function getGameState() {
         return gameState;
     }
-    
-    function getLane(){
+
+    function getLane() {
         return lane;
     }
 
+    function getHeroClass() {
+        return heroClass;
+    }
 
-    /*
-        Register with the network service to listen to  when the player has joined the game
-    */
-    NetworkService.registerListener({
-        eventName: "gamePlayerJoined",
-        call: handlePlayerJoinedEvent
-    });
+    function getSpecialPowers() {
+        // Return default set if non given, used for refresh
+        if (specialPowers.length === 0) {
+            specialPowers = [{
+                "id": 0,
+                "name": "Flame Ring Attack",
+                "type": "Attack",
+                "idea": "Melee",
+                "description": "Immediately cripple enemies close to you.",
+                "filename": "",
+                "cooldownTime": 10.0,
+                "numberOfUpgrades": 5,
+                "done": true,
+                "enabled": true,
+                "cssName": "special-Attack-Melee",
+                "image": "images/flame_red.png"
+            }, {
+                    "id": 3,
+                    "name": "Defense Buff",
+                    "type": "Buff",
+                    "idea": "Defense",
+                    "description": "Increase your defense to you can take more punishment.",
+                    "filename": "",
+                    "cooldownTime": 2.0,
+                    "numberOfUpgrades": 5,
+                    "done": true,
+                    "enabled": true,
+                    "cssName": "special-Buff-Defense",
+                    "image": "images/health_buff_blue.png"
+                }, {
+                    "id": 6,
+                    "name": "Healing Ring Spell",
+                    "type": "Heal",
+                    "idea": "Self-and-close",
+                    "description": "Immediately heal teammates close to you.",
+                    "filename": "",
+                    "cooldownTime": 5.0,
+                    "numberOfUpgrades": 5,
+                    "done": true,
+                    "enabled": true,
+                    "cssName": "special-Heal-Self-and-close",
+                    "image": "images/heal_group_green.png"
+                },];
+        }
+        return specialPowers;
+    }
 
-
-    /* --------------------
-        PUBLIC API
-    ---------------- */
-
-    return {
-        registerUserWithServer: registerUserWithServer,
-        attemptToJoinGame: attemptToJoinGame,
-        setUserTeam: setUserTeam,
-        getUserTeam: getUserTeam,
-        getUsername: getUsername,
-        getUserID: getUserID,
-        setUserID: setUserID,
-        getTeamColor: getTeamColor,
-        getSpecialPowers: getSpecialPowers,
-        getGameState: getGameState,
-        getLane: getLane
-    };
 
 });
