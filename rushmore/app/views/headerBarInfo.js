@@ -36,4 +36,5 @@ angular.module('headerBarInfoView', ['ngRoute'])
             $scope.hideHeader = true;
         }
 
+
     }]);

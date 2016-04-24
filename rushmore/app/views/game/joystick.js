@@ -28,6 +28,11 @@ angular.module('gameView')
             call: handleGameBaseChangeHealth
         });
 
+        NetworkService.registerListener({
+            eventName: "gameStateUpdate",
+            call: handleGameStateUpdate
+        });
+
         /*
             Canvas Setup            
         */
@@ -67,7 +72,7 @@ angular.module('gameView')
 
         var baseHealthColorReamining;
         var baseHealthColorLost;
-        
+
         // spacing to put in own and base health icon
         var icon_offset_angle = 0.2;
 
@@ -147,14 +152,14 @@ angular.module('gameView')
 
         function handleGamePlayerChangeHealth(data) {
             // get fraction of health remaining
-            var remainingHealthRatio = (data.playerHealth / data.maxHealth);            
+            var remainingHealthRatio = (data.playerHealth / data.maxHealth);
 
             // how many rads is removed from the health using remaining ratio
             // add small delta to lost is not 0, and will not draw a ring
             playerHealthLostRad = toRadians(180 * (1 - remainingHealthRatio)) + 0.002;
 
             // Handle the health ring wrapping round on low health
-            if(playerHealthLostRad > 179) {
+            if (playerHealthLostRad > 179) {
                 playerHealthLostRad = 179;
             }
 
@@ -179,12 +184,19 @@ angular.module('gameView')
             baseHealthLostRad = toRadians(180 * (1 - remainingHealthRatio)) + 0.002;
 
             // Handle the health ring wrapping round on low health
-            if(baseHealthLostRad > 179) {
+            if (baseHealthLostRad > 179) {
                 baseHealthLostRad = 179;
             }
-            
+
             //update the whole canvas with updated health ring
             updateAll();
+        }
+
+        // If the game end, then reset the base health to max to prepare for the game restarting
+        function handleGameStateUpdate(data) {
+            if (data.state === 2) {
+                handleGameBaseChangeHealth({currentBaseHealth: 1, maxBaseHealth:1});
+            }
         }
 
         /*
@@ -352,11 +364,11 @@ angular.module('gameView')
             var baseHealthRingLength = baseHealthLostRad + icon_offset_angle;
 
             // Prevent the bar wrapping round
-            if(playerHealthRingLength > 3.13) {
+            if (playerHealthRingLength > 3.13) {
                 playerHealthRingLength = 3.14;
             }
 
-            if(baseHealthRingLength > 3.13) {
+            if (baseHealthRingLength > 3.13) {
                 baseHealthRingLength = 3.14;
             }
 

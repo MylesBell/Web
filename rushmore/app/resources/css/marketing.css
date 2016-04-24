@@ -77,15 +77,16 @@ h1, h2, h3, h4, h5, h6, label {
     /* Fixed menus normally have a border at the bottom. */
     border-bottom: none;    /* I need a higher z-index here because of the scroll-over effect. */
     z-index: 4;
-    height: 10%;
+    height: 60px;
 
 }
 .home-menu .pure-menu-heading {
     color: white;
     font-weight: 400;
-    font-size: 120%;
+    font-size: 100%;
     text-decoration: none;
     padding: .3em 1em;
+
 }
 .home-menu a {
     color: #6FBEF3;
@@ -104,6 +105,7 @@ h1, h2, h3, h4, h5, h6, label {
     border-radius: 5px;
     line-height: 1em;
     font: inherit;
+    width: 100%;
 }
 .deploy-button {
     background-color: white;
@@ -140,10 +142,8 @@ h1, h2, h3, h4, h5, h6, label {
     text-align: center;
 }
 
-#main-container p {
-    font-size: 18px;
-    font-weight: 100;
-    line-height: 1.2em;
+#main-container .splash-subhead {
+    color: black;
 }
 
 #main-container h1{
@@ -485,9 +485,9 @@ h1, h2, h3, h4, h5, h6, label {
 
 #lobby-footer {
     width: 100%;
-    height: 20vh;
+    height: 20%;
     position: fixed;
-    top: 80vh;
+    top: 80%;
     left: 0;
     /*background-color: red;*/
     color: white;
@@ -522,13 +522,13 @@ h1, h2, h3, h4, h5, h6, label {
 #blue-team-lobby-header{
     background: #446CB3;
     padding: 10px;
-    min-height: 40vh;
+    min-height: 40%;
 }
 
 #red-team-lobby-header{
     background: #D91E18;
     padding: 10px;
-    min-height: 40vh;
+    min-height: 40%;
 }
 
 #game-container {
@@ -538,11 +538,94 @@ h1, h2, h3, h4, h5, h6, label {
     width: 100%;
     bottom: 100%;
 }
+
 #stats-container {
     height: 15%;
     width: 100%;
     margin: auto;
+    display: flex;
+    -webkit-flex-flow: row nowrap;
+        -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+    -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
+
+#level-lane-container {
+    color: white;
+    width: 30%;
+    height: 100%;
+    padding: 10px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-flow: row nowrap;
+        -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+    -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+#level-lane-container p {
+    font-size: smaller;
+    margin: 0;
+}
+
+#level-lane-container h2 {
+    margin: 0;
+    color:white;
+}
+
+#level-lane-container div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    -webkit-flex-flow: column nowrap;
+        -ms-flex-flow: column nowrap;
+            flex-flow: column nowrap;
+    -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+#message-container{
+    color: white;
+    width: 70%;
+    height: 100%;
+    padding: 10px;
+    display: flex;
+    -webkit-flex-flow: row nowrap;
+        -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+    -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+#icon-container {
+    height: 100%;
+    width: 40%;
+}
+
+#text-container {
+    height: 100%;
+    width: 60%;
+}
+
 #joystick-container {
     height: 100%;
     width: 100%;
@@ -670,7 +753,7 @@ h1, h2, h3, h4, h5, h6, label {
     background-image: url("../images/heal_group_green.png");
 }
 
-.special-Heal-Special-Slow {
+.special-Special-Slow {
     background-image: url("../images/stop_purple.png");
 }
 .special-Special-Invisibility {
@@ -831,30 +914,42 @@ h1, h2, h3, h4, h5, h6, label {
 @media screen and (orientation:landscape) {
     #controls-container {
         width: 50%;
-        height: 85%; /* from the header taking 15% height */
+        height: 80%; /* from the header taking 15% height */
         margin: 0px;
         float: left;
-
     }
+
     #joystick-container {
         height: 90%;
     }
+
     .special {
         width: 30%;
     }
+
     #specials-container {
         width: 50%;
-        height: 85%;
+        height: 80%;
+    }
+
+    #stats-container{
+        height: 20%;
     }
 
     #special-button-0 {
-        margin-bottom: 150px;
+        margin-bottom: 130px;
     }
     #special-button-1 {
-        margin-top: 150px;
+        margin-top: 130px;
     }
     #special-button-2 {
-        margin-bottom: 150px;
+        margin-bottom: 130px;
+    }
+}
+
+@media (max-width: 480px) and (min-width: 241px) {
+    #toast-container > div {
+        width: 300px !important;
     }
 }
 
@@ -906,37 +1001,3 @@ h1, h2, h3, h4, h5, h6, label {
     }
 }
 
-/*
- * -- DESKTOP (AND UP) MEDIA QUERIES --
- * On desktops and other large devices, we want to over-ride some
- * of the mobile and tablet styles.
- */
-@media (min-width:78em) {
-
-    /* We increase the header font size even more */
-    .splash-head {
-        font-size: 300%;
-    }
-}
-
-@-webkit-keyframes hideSpecialButton {
-    from {
-        padding-top: 100%;
-        width: 100%;
-    }
-    to {
-        padding-top: 70%;
-        width: 70%;
-    }
-}
-
-@keyframes hideSpecialButton {
-    from {
-        padding-top: 100%;
-        width: 100%;
-    }
-    to {
-        padding-top: 70%;
-        width: 70%;
-    }
-}
