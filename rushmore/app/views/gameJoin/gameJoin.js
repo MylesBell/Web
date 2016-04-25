@@ -11,7 +11,7 @@ angular.module('gameJoinView', ['ngRoute'])
         $scope.gamecode = "Enter Game Code";
         $scope.enableInput = true;
 
-        var enableFullScreen = true; // should be TRUE in production
+        var enableFullScreen = false; // should be TRUE in production
 
         var codeForm = document.getElementById('game-code-submit-form');
         codeForm.addEventListener("submit", fullscreen);
