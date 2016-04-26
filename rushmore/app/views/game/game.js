@@ -13,6 +13,7 @@ angular.module('gameView', ['ngRoute'])
         $scope.winner = "";
         $scope.specialPowers = UserService.getSpecialPowers();
         $scope.playerLane = UserService.getLane();
+        $scope.classImageUrl = "/resources/images/hats/hardhat_circle_small.png";
 
         var respawnTimer; // TODO put this into a timer service
         var respawnTime = $scope.timeToRespawn;
