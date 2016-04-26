@@ -238,3 +238,4 @@ angular.module('gameView', ['ngRoute'])
             }
 
         }]);
+        
