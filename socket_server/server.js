@@ -113,12 +113,12 @@ io.on('connection', function (socket) {
     */
     socket.on("playerJoinGame", function (data, callback) {
         var res = mobile.playerJoinGame(socket, data, housekeeping.logger, playerList);
-
+        
         // If joining game was successful, tell the unity server to add them to game        
         if (res.ok) {
             io.sockets.in(UNITY_CHAN).emit('playerJoin', res);
         }
-
+        
         // In testing mode, fake the unity server response, as we need to progress in the app
         // without needing a running unity server
         if (testingEnabled) {

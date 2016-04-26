@@ -109,7 +109,7 @@ angular.module('UserServiceModule', []).factory('UserService', function ($q, Net
                 username = name;
                 uID = res.uID;
 
-                // optinally skip game code screen and go straight to the game
+                // optionally skip game code screen and go straight to the game
                 if (skipCode) {
                     attemptToJoinGame('abcd').then(function (data) {
                         if(data.state === 0 || data.state === 1){

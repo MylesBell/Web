@@ -27,10 +27,8 @@ angular.module('playerCreationView', ['ngRoute'])
                 UserService.registerUserWithServer($scope.username, skipCode)
                     .then(function(res) {
                         console.log(res);
-                        LocationService.setPath(res.path); // TODO CHANGE THIS 
-
+                        LocationService.setPath(res.path);
                     }).catch(function(res) {
-
                         // name was not right, show the user the error                
                         $scope.username = res.message;
                         console.log(res);
