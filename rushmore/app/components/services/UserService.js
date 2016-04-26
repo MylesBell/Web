@@ -3,7 +3,7 @@
     Registering user with server
     Set username for game
 */
-angular.module('UserServiceModule', []).factory('UserService', function ($q, NetworkService, $rootScope, LocationService, SpecialPowerManagerService, ColorService) {
+angular.module('UserServiceModule', []).factory('UserService', function ($q, NetworkService, $rootScope, LocationService, SpecialPowerManagerService, ColorService, ENV) {
 
     var uID = "";
     var userTeam = "";
@@ -110,7 +110,7 @@ angular.module('UserServiceModule', []).factory('UserService', function ($q, Net
                 uID = res.uID;
 
                 // optionally skip game code screen and go straight to the game
-                if (skipCode) {
+                if (ENV.skipCode) {
                     attemptToJoinGame('abcd').then(function (data) {
                         if(data.state === 0 || data.state === 1){
                             deferred.resolve({

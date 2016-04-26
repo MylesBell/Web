@@ -68,7 +68,8 @@ module.exports = function (grunt) {
                 constants: {
                     ENV: {
                         name: 'development',
-                        socketIOEndpoint: 'http://localhost:1337'
+                        socketIOEndpoint: 'http://localhost:1337',
+                        skipCode: false
                     }
                 }
             },
@@ -76,7 +77,8 @@ module.exports = function (grunt) {
                 constants: {
                     ENV: {
                         name: 'development',
-                        socketIOEndpoint: 'http://192.168.0.9:1337'
+                        socketIOEndpoint: 'http://192.168.0.9:1337',
+                        skipCode: false
                     }
                 }
             },
@@ -85,7 +87,8 @@ module.exports = function (grunt) {
                 constants: {
                     ENV: {
                         name: 'development',
-                        socketIOEndpoint: 'http://192.168.1.5:1337'
+                        socketIOEndpoint: 'http://192.168.1.5:1337',
+                        skipCode: false
                     }
                 }
             },
@@ -93,7 +96,8 @@ module.exports = function (grunt) {
                 constants: {
                     ENV: {
                         name: 'production',
-                        socketIOEndpoint: 'http://headgearsofwar.com:1337'
+                        socketIOEndpoint: 'http://headgearsofwar.com:1337',
+                        skipCode: true
                     }
                 }
             }            

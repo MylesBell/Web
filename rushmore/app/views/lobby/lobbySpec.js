@@ -26,13 +26,16 @@ describe('Lobby page', function () {
             // Allways allow attempt to register with server
             this.registerUserWithServer = function (name) {
                 var deferred = $q.defer();
-                deferred.resolve({});
+                deferred.resolve({ok: true,
+                        username: name,
+                        path: '/join'});
                 return deferred.promise;
             };
 
             this.attemptToJoinGame = function (gamecode) {
                 var deferred = $q.defer();
                 deferred.resolve({
+                    ok: true,
                     state: 0
                 });
                 return deferred.promise;
