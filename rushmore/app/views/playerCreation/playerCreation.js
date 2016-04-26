@@ -3,10 +3,14 @@
    Let the player set their username, then move to the game join screen
 */
 angular.module('playerCreationView', ['ngRoute'])
-    .controller('PlayerCreationCtrl', ['$scope', 'UserService', 'LocationService', function($scope, UserService, LocationService) {
+    .controller('PlayerCreationCtrl', ['$scope', 'UserService', 'LocationService', 'GameInfoService', function($scope, UserService, LocationService, GameInfoService) {
 
         // Entered name of the user
         $scope.username = "Enter your name";
+        
+        // Whether to go to the code screen
+        // If true, will go straight to joining the game        
+        var skipCode = true;
 
         /* 
             Called when the deploy button selected
@@ -20,10 +24,10 @@ angular.module('playerCreationView', ['ngRoute'])
             if ($scope.username === "Enter your name") {
                 console.log("didn't enter a name");
             } else {
-                UserService.registerUserWithServer($scope.username)
+                UserService.registerUserWithServer($scope.username, skipCode)
                     .then(function(res) {
                         console.log(res);
-                        LocationService.setPath('/join'); // TODO CHANGE THIS 
+                        LocationService.setPath(res.path); // TODO CHANGE THIS 
 
                     }).catch(function(res) {
 
