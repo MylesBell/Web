@@ -82,7 +82,7 @@ angular.module('UserServiceModule', []).factory('UserService', function ($q, Net
         
         If successful, save the userid in the local storage TODO
     */
-    function registerUserWithServer(name, skipCode) {
+    function registerUserWithServer(name) {
 
         var deferred = $q.defer();
 

@@ -7,10 +7,6 @@ angular.module('playerCreationView', ['ngRoute'])
 
         // Entered name of the user
         $scope.username = "Enter your name";
-        
-        // Whether to go to the code screen
-        // If true, will go straight to joining the game        
-        var skipCode = true;
 
         /* 
             Called when the deploy button selected
@@ -24,7 +20,7 @@ angular.module('playerCreationView', ['ngRoute'])
             if ($scope.username === "Enter your name") {
                 console.log("didn't enter a name");
             } else {
-                UserService.registerUserWithServer($scope.username, skipCode)
+                UserService.registerUserWithServer($scope.username)
                     .then(function(res) {
                         console.log(res);
                         LocationService.setPath(res.path);
