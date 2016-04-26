@@ -696,8 +696,9 @@ h1, h2, h3, h4, h5, h6, label {
 }
 
 #class-image{
-    width:70px;
-    height:70px;
+    width:60%;
+    height:0px;
+    padding-bottom: 60%;
     background-size: cover;
 }
 
@@ -969,7 +970,7 @@ h1, h2, h3, h4, h5, h6, label {
     #joystick-container {
         height: 90%;
     }
-
+    
     .special {
         width: 30%;
     }
