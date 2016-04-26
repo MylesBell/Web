@@ -167,7 +167,6 @@ angular.module('gameView', ['ngRoute'])
 
             function handleGamePlayerSwitchLane(data) {
                 console.log("lane switch");
-                alert(data);
                 $scope.playerLane = data.lane;
             }
 
