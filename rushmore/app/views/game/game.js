@@ -34,9 +34,6 @@ angular.module('gameView', ['ngRoute'])
 
         setup();
 
-        // Remove this when we know level up works
-        // toastr.success('LEVEL UP!');
-
         console.log($scope.specialPowers);
 
         /*
