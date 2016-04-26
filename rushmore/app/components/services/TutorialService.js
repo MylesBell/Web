@@ -9,14 +9,17 @@ angular.module('myApp').service('TutorialService', function () {
 
         var className;
         var teamPrefix = (userTeam === 'red-team') ? "viking" : "cowboy";
+        var enemyTeamPrefix = (userTeam === 'red-team') ? "cowboy" : "viking";
         var enemyName = (userTeam === 'red-team') ? "COWBOY" : "VIKING";
         var classImage = "../../resources/images/tutorial/classes/" + teamPrefix + "_";
+        var classText = "";
         var specialLessons = setupSpecialTutorial(specialPowers);
 
         // Set the classname
         if (classNum === 0) {
             className = "HUNTER";
             classImage += "hunter_sm.png";
+            classText = "Destory your enemies froma distance, becasue you are a bit of a pusyy";
         } else if (classNum === 1) {
             className = "HITMAN";
             classImage += "hitman_sm.png";
@@ -35,7 +38,7 @@ angular.module('myApp').service('TutorialService', function () {
             tutorialTitle: "Vikings and Cowboys are locked in endless war",
             tutorialText: "Destroy the " + enemyName + "'S base to win the game",
             tutorialImage: {
-                image: "../../resources/images/tutorial/base_cowboy_blur.png",
+                image: "../../resources/images/tutorial/backgrounds/" + enemyTeamPrefix + "_base.png",
                 offset_x: "50%"
             },
             visible: true
@@ -45,8 +48,7 @@ angular.module('myApp').service('TutorialService', function () {
                 tutorialTitle: "You Auto-Attack enemies beside you",
                 tutorialText: "Defeating enemy grunts and heros will make you stronger",
                 tutorialImage: {
-                    image: "../../resources/images/tutorial/grunts_blue_base_behind_blur.png",
-                    offset_x: "80%"
+                    image: "../../resources/images/tutorial/backgrounds/" + teamPrefix + "_grunt_battle.png", offset_x: "80%"
                 },
                 visible: false
             }, {
@@ -65,7 +67,7 @@ angular.module('myApp').service('TutorialService', function () {
                 tutorialTitle: "Tutorial side not shown",
                 miniLessons: setupSpecialTutorial(specialPowers),
                 tutorialImage: {
-                    image: "../../resources/images/tutorial/grunts_blue_base_behind_blur.png",
+                     image: "../../resources/images/tutorial/backgrounds/" + teamPrefix + "_battle_with_base_background.png",
                     offset_x: "80%"
                 },
                 visible: false
