@@ -3,7 +3,7 @@
    Let the player move throough a tutorial section of pages
 */
 angular.module('tutorialView', ['ngRoute'])
-    .controller('TutorialCtrl', ['$scope', 'UserService', 'LocationService', 'TutorialService', function ($scope, UserService, LocationService, TutorialService) {
+    .controller('TutorialCtrl', ['$scope', 'UserService', 'LocationService', 'TutorialService','GameInfoService', function ($scope, UserService, LocationService, TutorialService, GameInfoService) {
 
         $scope.tutorialSteps = 4;
         $scope.currentTutorialIndex = 0;

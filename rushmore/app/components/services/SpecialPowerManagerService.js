@@ -28,7 +28,9 @@ angular.module('myApp').factory('SpecialPowerManagerService', function($q, $inte
 
         // Set the cooldown time for the special in miliseconds
         cooldownTime = special.cooldownTime * 1000;
-
+        console.log(special);
+        console.log(cooldownTime);
+        
         // Set a cooldown timer for the special before it can be used again
         var specialCooldownTimer = $interval(function() {
             // capture special used in closue to allow multple timeouts
@@ -47,7 +49,8 @@ angular.module('myApp').factory('SpecialPowerManagerService', function($q, $inte
     // Add client game special stuff to specials,
     // Enabled flag and css classes
     var setupSpecials = function(specials) {
-
+        console.info("Specials");
+        console.log(specials);
         for (var i = 0; i < specials.length; i++) {
             specials[i].enabled = true;
             specials[i].cssName = "special-" + specials[i].type + "-" + specials[i].idea;

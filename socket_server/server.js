@@ -130,7 +130,7 @@ io.on('connection', function (socket) {
                 ok: 1, // code was correct
                 baseMaxHealth: 5000,
                 specialOne: 11,
-                specialTwo: 8,
+                specialTwo: 2,
                 specialThree: 0,
                 heroClass: 1
             }, housekeeping.logger, playerList);

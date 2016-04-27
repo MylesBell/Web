@@ -1,5 +1,9 @@
 <div id="game-container" class="pure-g" ng-show="!playerDead && !gameOver">
     <div class="pure-u-1" id="stats-container">
+        <div id="class-container">
+            <div id="class-image" ng-style="{'background-image': 'url({{classImageUrl}})'}">
+            </div>
+        </div>
         <div id="level-lane-container">
             <div id="level-container">
                 <p>Lvl</p> <h2>{{playerLevel}}</h2>
@@ -18,7 +22,7 @@
     </div>  
     <div id="specials-container" class="pure-u-1">
         <div class="special" ng-repeat="special in specialPowers">
-            <div id="special-button-{{$index}}" class="special-circle {{special.cssName}}" ng-class="special.enabled ? 'special-enabled': 'special-disabled'" ng-click="useSpecial(special)" style="animation-duration: {{special.cooldownTime}}s">            
+            <div id="special-button-{{$index}}" class="special-circle {{special.cssName}}" ng-class="special.enabled ? 'special-enabled': 'special-disabled'" ng-click="useSpecial(special)" style="animation-duration: {{special.cooldownTime}}s;-webkit-animation-duration: {{special.cooldownTime}}s;-moz-animation-duration: {{special.cooldownTime}}s">            
             </div>              
         </div>
     </div>  
