@@ -30,15 +30,23 @@
 
     <div>Angular seed app: v<span app-version></span></div>
 
-    <!-- In production use: -->
-    <script src="bower_components/angular/angular.js"></script>
+    <!-- Angular: -->
+
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="resources/js/socket.io.js"></script>
+
+    <!-- 
+    Developer includes:
+
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-socket-io/socket.js"></script>
     <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
     <script src="bower_components/ng-idle/angular-idle.js"></script>
     <script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
+    -->
 
-    <script src="resources/js/socket.io.js"></script>
+    <!-- 
+    Rushmore includes:
 
     <script src="app.js"></script>
     <script src="/components/config.js"></script>
@@ -57,8 +65,11 @@
     <script src="components/services/ColorService.js"></script>
     <script src="components/services/InputHandlerService.js"></script>
     <script src="components/services/LocationService.js"></script>
-    <script src="components/services/UserService.js"></script>
+    <script src="components/services/UserService.js"></script> 
     <script src="components/services/TutorialService.js"></script>
+    -->
+
+    <script src="resources/js/rushmore.js"></script>
 </body>
 
 </html>
