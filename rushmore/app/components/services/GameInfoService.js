@@ -2,7 +2,7 @@
     Service that provides controllers information about the game state such as 
         Current players in the game
 */
-angular.module('GameInfoServiceModule', []).factory('GameInfoService', function($q, NetworkService) {
+angular.module('GameInfoServiceModule', []).factory('GameInfoService', ["$q", "NetworkService", function($q, NetworkService) {
 
     var listenerEventList = [];
     var playerList = [];
@@ -57,4 +57,4 @@ angular.module('GameInfoServiceModule', []).factory('GameInfoService', function(
         getGameState: getGameState
     };
 
-});
+}]);
