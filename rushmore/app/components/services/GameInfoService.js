@@ -54,7 +54,7 @@ angular.module('GameInfoServiceModule', []).factory('GameInfoService', function(
      ---------------- */
     return {
         getPlayerList: getPlayerList,
-        gameState: gameState
+        getGameState: getGameState
     };
 
 });
