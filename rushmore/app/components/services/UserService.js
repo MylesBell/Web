@@ -224,7 +224,7 @@ angular.module('UserServiceModule', []).factory('UserService', function ($q, Net
                     "idea": "Self-and-close",
                     "description": "Immediately heal teammates close to you.",
                     "filename": "",
-                    "cooldownTime": 5.0,
+                    "cooldownTime": 25.0,
                     "numberOfUpgrades": 5,
                     "done": true,
                     "enabled": true,
