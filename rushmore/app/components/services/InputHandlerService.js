@@ -1,7 +1,7 @@
 /*
     Service that handles input from the game screen to the network manager
 */
-angular.module('myApp').factory('InputHandlerService', function($q, NetworkService) {
+angular.module('myApp').factory('InputHandlerService', ["$q", "NetworkService", function($q, NetworkService) {
 
 
     /* --------------------
@@ -51,4 +51,4 @@ angular.module('myApp').factory('InputHandlerService', function($q, NetworkServi
         });
     }
 
-});
+}]);
