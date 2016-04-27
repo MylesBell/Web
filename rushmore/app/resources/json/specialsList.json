@@ -19,7 +19,7 @@
 		"description": "Shoot a flame towards the enemy base, burning all in its path.",
 		"filename": "",
 		"cooldownTime": 25.0,
-		"numberOfUpgrades": 5,
+		"numberOfUpgrades": 4,
 		"done": true,
 		"image": "images/arrow_red.png"
 	}, {
