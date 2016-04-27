@@ -782,20 +782,18 @@ h1, h2, h3, h4, h5, h6, label {
 .special-Attack-Range {
     background-image: url("../images/arrow_red.png");   
 }
-.special-Attack-Base {
-    background-image: url("../images/base_destroy_red.png");
+.special-Attack-Beserker {
+    background-image: url("../images/beserker_red.png");
 }
 .special-Attack-Cross-Lane {
     background-image: url("../images/base_destroy_red.png");
 }
-
 .special-Heal-Hero {
     background-image: url("../images/heart_green.png");
 }
 .special-Heal-Self-and-close {
     background-image: url("../images/heal_group_green.png");
 }
-
 .special-Special-Slow {
     background-image: url("../images/stop_purple.png");
 }

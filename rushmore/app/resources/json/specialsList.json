@@ -13,7 +13,7 @@
 		"image": "images/flame_red.png"
 	}, {
 		"id": 1,
-		"name": "Flamethrower Attack",
+		"name": "Along Lane Attack",
 		"type": "Attack",
 		"idea": "Range",
 		"description": "Shoot a flame towards the enemy base, burning all in its path.",
@@ -24,7 +24,7 @@
 		"image": "images/arrow_red.png"
 	}, {
 		"id": 2,
-		"name": "Cross lane attack",
+		"name": "Cross Lane Attack",
 		"type": "Attack",
 		"idea": "Cross-Lane",
 		"description": "Attack an area on the other lane of the map.",
@@ -38,7 +38,7 @@
 		"name": "Defense Buff",
 		"type": "Buff",
 		"idea": "Defense",
-		"description": "Increase your defense to you can take more damage.",
+		"description": "Increase your defense and those around you to take less damage.",
 		"filename": "",
 		"cooldownTime": 8.0,
 		"numberOfUpgrades": 5,
@@ -60,11 +60,11 @@
 		"name": "Attack Buff",
 		"type": "Buff",
 		"idea": "Attack",
-		"description": "Increase your attack to you deal more damage.",
+		"description": "Increase your attack and those around you to deal more damage.",
 		"filename": "",
 		"cooldownTime": 8.0,
 		"numberOfUpgrades": 5,
-		"image": "images/damage_buff_blue.png"
+		"image": "images/damage_fist_blue.png"
 	}, {
 		"id": 6,
 		"name": "Healing Ring Spell",
@@ -99,10 +99,10 @@
 		"image": "images/heart_green.png"
 	}, {
 		"id": 9,
-		"name": "Invisibility cloak",
+		"name": "Disguise",
 		"type": "Special",
 		"idea": "Invisibility",
-		"description": "Turn invisible to enemy grunts, so you are not attacked.",
+		"description": "Turn into an enemy grunt to go unnoticed.",
 		"filename": "",
 		"cooldownTime": 15.0,
 		"numberOfUpgrades": 5,
@@ -124,7 +124,7 @@
 		"name": "Drop Bomb Attack",
 		"type": "Special",
 		"idea": "Trap",
-		"description": "Drop a bomb that explodes after a delay.",
+		"description": "Drop a bomb that explodes on a delay. Does extra damage to the base.",
 		"filename": "",
 		"cooldownTime": 10.0,
 		"numberOfUpgrades": 5,
@@ -132,14 +132,14 @@
 		"image": "images/bomb_purple.png"
 	}, {
 		"id": 12,
-		"name": "Base Destroyer",
+		"name": "Beserker",
 		"type": "Attack",
-		"idea": "Base",
-		"description": "Deal huge damage to the enemy base when in range.",
+		"idea": "Beserker",
+		"description": "Deal extra damage, before self destructing!",
 		"filename": "",
-		"cooldownTime": 15.0,
+		"cooldownTime": 10.0,
 		"numberOfUpgrades": 5,
 		"done": true,
-		"image" : "images/base_destroy_red.png"
+		"image" : "images/beserker_red.png"
 	}]
 }
