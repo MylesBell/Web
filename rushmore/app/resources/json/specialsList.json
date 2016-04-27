@@ -18,7 +18,7 @@
 		"idea": "Range",
 		"description": "Shoot a flame towards the enemy base, burning all in its path.",
 		"filename": "",
-		"cooldownTime": 15.0,
+		"cooldownTime": 25.0,
 		"numberOfUpgrades": 5,
 		"done": true,
 		"image": "images/arrow_red.png"
@@ -29,7 +29,7 @@
 		"idea": "Cross-Lane",
 		"description": "Attack an area on the other lane of the map.",
 		"filename": "",
-		"cooldownTime": 15.0,
+		"cooldownTime": 25.0,
 		"numberOfUpgrades": 5,
 		"done": true,
 		"image": "images/cross_lane_red.png"
