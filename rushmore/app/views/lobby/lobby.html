@@ -13,7 +13,7 @@
         <h1 class="red-team-lobby-header">Vikings</h1>
         <ul>
             <li ng-repeat="player in redPlayers = (players | filter: {team: 0})">
-              {{player.username}} -- (Lane {{player.lane}}) -- {{getHeroClassName(player.heroClass)}}   
+              {{player.username}} -- ({{player.lane}} Lane) -- {{getHeroClassName(player.heroClass)}}   
             </li>  
             <li ng-hide="redPlayers.length">Nobody's joined the Vikings yet :(</li>
         </ul>

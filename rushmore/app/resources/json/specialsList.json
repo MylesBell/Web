@@ -32,7 +32,7 @@
 		"cooldownTime": 15.0,
 		"numberOfUpgrades": 5,
 		"done": true,
-		"image": "images/base_destroy_red.png"
+		"image": "images/cross_lane_red.png"
 	}, {
 		"id": 3,
 		"name": "Defense Buff",
