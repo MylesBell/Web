@@ -1,7 +1,7 @@
 /*
     Service that handles movement between pages
 */
-angular.module('myApp').factory('LocationService', function ($q, $rootScope, $location, NetworkService) {
+angular.module('myApp').factory('LocationService', ["$q", "$rootScope", "$location", "NetworkService", function ($q, $rootScope, $location, NetworkService) {
 
 
     $rootScope.$on("$locationChangeStart",function(event, next, current){
@@ -37,4 +37,4 @@ angular.module('myApp').factory('LocationService', function ($q, $rootScope, $lo
         getPath: getPath
     };
 
-});
+}]);
