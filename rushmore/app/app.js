@@ -14,7 +14,7 @@ angular.module('myApp', [
     "ngIdle",
     "toastr"
     ]).
-config(function($routeProvider, IdleProvider, KeepaliveProvider, TitleProvider, toastrConfig) {
+config(["$routeProvider", "IdleProvider", "KeepaliveProvider", "TitleProvider", "toastrConfig", function($routeProvider, IdleProvider, KeepaliveProvider, TitleProvider, toastrConfig) {
     // configure Idle settings
     IdleProvider.idle(5); // in seconds
     IdleProvider.timeout(600); // in seconds
@@ -65,8 +65,8 @@ config(function($routeProvider, IdleProvider, KeepaliveProvider, TitleProvider, 
         titleClass: 'toast-title',
         toastClass: 'toast'
     });
-}).
-run(function(Idle) {
+}]).
+run(["Idle", function(Idle) {
     // start watching when the app runs. also starts the Keepalive service by default.
     Idle.watch();
-});
+}]);
