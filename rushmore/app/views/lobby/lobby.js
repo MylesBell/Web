@@ -50,7 +50,7 @@ angular.module('myApp')
                 }
             };
 
-            if (UserService.getGameState() === 1 || GameInfoService.getGameState() === 1) {
+            if (UserService.getGameState() === 1 || GameInfoService.gameState() === 1) {
                 $scope.showStartButton = true;
                 $scope.canJoin = true;
                 $scope.buttonText = "CLICK TO JOIN GAME";
