@@ -14,7 +14,7 @@ describe('Tutorial page', function () {
         //enter a correct name and move to the game page
         var inputBox = element(by.css('#player-name-input-box'));
         var submitButton = element(by.css('#submit-button'));
-        
+
         joinbox.click();
         inputBox.click();
         inputBox.sendKeys("Dave");
@@ -32,7 +32,9 @@ describe('Tutorial page', function () {
     });
 
     it("Prev text should be blank", function () {
-        expect(element(by.binding('prevText')).getText()).toBe("SKIP");
+        // expect(element(by.binding('prevText')).getText()).toBe("SKIP");
+        expect(element(by.binding('prevText')).getText()).toBe("");
+
     });
 
     it("Next text should be next", function () {
@@ -118,9 +120,9 @@ describe('Tutorial page', function () {
         }
     });
 
-    it("Prev button should go to skip again", function () {
-        expect(element(by.binding('prevText')).getText()).toBe("SKIP");
-    });
+    // it("Prev button should go to skip again", function () {
+    //     expect(element(by.binding('prevText')).getText()).toBe("SKIP");
+    // });
 
     it("Can advance to the last tutorial and see the lobby button", function () {
 
