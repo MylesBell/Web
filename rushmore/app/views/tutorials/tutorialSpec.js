@@ -1,19 +1,21 @@
 /*jshint loopfunc: true */
 
-describe('Tutorial page', function() {
+describe('Tutorial page', function () {
 
     var tutorialName = "tutorial-";
     var numTutorials = 4;
 
-    it('can get to the tutorial page', function() {
+    it('can get to the tutorial page', function () {
 
         //navigate to the website
         browser.get('http://localhost:7777/');
 
+        var joinbox = element(by.css('#submit-button'));
         //enter a correct name and move to the game page
         var inputBox = element(by.css('#player-name-input-box'));
         var submitButton = element(by.css('#submit-button'));
-
+        
+        joinbox.click();
         inputBox.click();
         inputBox.sendKeys("Dave");
         submitButton.click();
@@ -29,41 +31,41 @@ describe('Tutorial page', function() {
         expect(browser.getCurrentUrl()).toBe('http://localhost:7777/#/tutorial');
     });
 
-    it("Prev text should be blank", function() {
+    it("Prev text should be blank", function () {
         expect(element(by.binding('prevText')).getText()).toBe("SKIP");
     });
 
-    it("Next text should be next", function() {
+    it("Next text should be next", function () {
         expect(element(by.binding('nextText')).getText()).toBe("NEXT");
     });
 
-    it("Should be " + numTutorials  + " tutorial pages", function() {
-        element.all(by.repeater('tutorial in tutorials')).then(function(result) {
+    it("Should be " + numTutorials + " tutorial pages", function () {
+        element.all(by.repeater('tutorial in tutorials')).then(function (result) {
             expect(result.length).toBe(4);
         });
     });
 
-    it("Only 1st tutorial page is shown at the start", function() {
+    it("Only 1st tutorial page is shown at the start", function () {
         expect(element(by.id(tutorialName + "0")).isDisplayed()).toBe(true);
         expect(element(by.id(tutorialName + "1")).isDisplayed()).toBe(false);
         expect(element(by.id(tutorialName + "2")).isDisplayed()).toBe(false);
     });
 
-    it("Next button moves to the 2nd tutorial page and view only the 2nd tutorial", function() {
+    it("Next button moves to the 2nd tutorial page and view only the 2nd tutorial", function () {
         element(by.id('tutorial-next-button')).click();
 
         var EC = protractor.ExpectedConditions;
 
         // Tut 1 should be dispayed
-        var tut1Displayed = function() {
-            return element(by.id(tutorialName + "1")).isDisplayed().then(function(displayed) {
+        var tut1Displayed = function () {
+            return element(by.id(tutorialName + "1")).isDisplayed().then(function (displayed) {
                 return displayed;
             });
         };
 
         // Tut 0 should be hidden
-        var tut0Hidden = function() {
-            return element(by.id(tutorialName + "0")).isDisplayed().then(function(displayed) {
+        var tut0Hidden = function () {
+            return element(by.id(tutorialName + "0")).isDisplayed().then(function (displayed) {
                 return !displayed;
             });
         };
@@ -81,7 +83,7 @@ describe('Tutorial page', function() {
         }
     });
 
-    it("Prev button should show last tutorial correctly", function() {
+    it("Prev button should show last tutorial correctly", function () {
 
         expect(element(by.binding('prevText')).getText()).toBe("PREV");
 
@@ -90,15 +92,15 @@ describe('Tutorial page', function() {
         var EC = protractor.ExpectedConditions;
 
         // Tut 1 should be dispayed
-        var tut1Hidden = function() {
-            return element(by.id(tutorialName + "1")).isDisplayed().then(function(displayed) {
+        var tut1Hidden = function () {
+            return element(by.id(tutorialName + "1")).isDisplayed().then(function (displayed) {
                 return !displayed;
             });
         };
 
         // Tut 0 should be hidden
-        var tut0Displayed = function() {
-            return element(by.id(tutorialName + "0")).isDisplayed().then(function(displayed) {
+        var tut0Displayed = function () {
+            return element(by.id(tutorialName + "0")).isDisplayed().then(function (displayed) {
                 return displayed;
             });
         };
@@ -116,11 +118,11 @@ describe('Tutorial page', function() {
         }
     });
 
-    it("Prev button should go to skip again", function() {
+    it("Prev button should go to skip again", function () {
         expect(element(by.binding('prevText')).getText()).toBe("SKIP");
     });
 
-    it("Can advance to the last tutorial and see the lobby button", function() {
+    it("Can advance to the last tutorial and see the lobby button", function () {
 
         // Here be promises magic
 
@@ -133,14 +135,14 @@ describe('Tutorial page', function() {
             var EC = protractor.ExpectedConditions;
 
             // Next tutorial should be dispayed
-            var tutNextDisplayed = (function() {
+            var tutNextDisplayed = (function () {
 
                 // cature the current value of i in a closure so that when the promise fufills i is set to the value
                 // it was when the test was set, not the last value i ever was
                 var capturedI = i;
 
-                return function() {
-                    return element(by.id(tutorialName + (capturedI + 1))).isDisplayed().then(function(displayed) {
+                return function () {
+                    return element(by.id(tutorialName + (capturedI + 1))).isDisplayed().then(function (displayed) {
                         return displayed;
                     });
                 };
@@ -148,13 +150,13 @@ describe('Tutorial page', function() {
             })();
 
             // Previous tutorial should be hidden
-            var tutPrevHidden = (function() {
+            var tutPrevHidden = (function () {
 
                 var capturedI = i;
 
-                return function() {
+                return function () {
 
-                    return element(by.id(tutorialName + capturedI)).isDisplayed().then(function(displayed) {
+                    return element(by.id(tutorialName + capturedI)).isDisplayed().then(function (displayed) {
                         return !displayed;
                     });
                 };
@@ -176,7 +178,7 @@ describe('Tutorial page', function() {
 
     });
 
-    it("Can go to the lobby page", function() {
+    it("Can go to the lobby page", function () {
         expect(element(by.binding('nextText')).getText()).toBe("TO LOBBY");
 
         element(by.id('tutorial-next-button')).click();
@@ -184,7 +186,7 @@ describe('Tutorial page', function() {
         expect(browser.getCurrentUrl()).toBe('http://localhost:7777/#/lobby');
     });
 
-    it("going back from the lobby screen goes to the first tutorial again", function() {
+    it("going back from the lobby screen goes to the first tutorial again", function () {
         browser.navigate().back();
 
         expect(browser.getCurrentUrl()).toBe('http://localhost:7777/#/tutorial');

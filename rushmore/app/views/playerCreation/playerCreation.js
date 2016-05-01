@@ -20,7 +20,7 @@ angular.module('playerCreationView', ['ngRoute'])
             } else {
                 $scope.validname = true;
             }
-        }
+        };
 
         /* 
             Called when the deploy button selected

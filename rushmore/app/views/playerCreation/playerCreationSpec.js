@@ -7,6 +7,8 @@ describe('Player Creation page', function() {
         browser.waitForAngular();
 
         expect(browser.getTitle()).toEqual('Rushmore');
+        
+        expect(browser.getCurrentUrl()).toBe('http://localhost:7777/#/splash');
     });
 
     it('Header bar should be present', function() {
@@ -15,10 +17,18 @@ describe('Player Creation page', function() {
 
         expect(element(by.id('header-bar')).isDisplayed()).toBe(true);
     });
+    
+    it('Start on splash screen and can move to player join page', function(){
+        var joinbox = element(by.css('#submit-button'));
+        expect(browser.getCurrentUrl()).toBe('http://localhost:7777/#/splash');
+        joinbox.click();
+        expect(browser.getCurrentUrl()).toBe('http://localhost:7777/#/create');
+    });
 
     it("clicking input box clears the text inside", function() {
 
         browser.waitForAngular();
+        
 
         var inputBox = element(by.css('#player-name-input-box'));
 
@@ -57,7 +67,7 @@ describe('Player Creation page', function() {
         inputBox.sendKeys("aaaaaaaaaaaaaaaaaaaaa");
         submitButton.click();
 
-        expect(inputBox.getAttribute('value')).toEqual('Too Long');
+        expect(submitButton.getAttribute('disabled')).toEqual('true');
     });
 
     it('entering a valid name moves the user to the game join page', function() {
