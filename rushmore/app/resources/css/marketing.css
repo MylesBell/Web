@@ -180,15 +180,15 @@ h1, h2, h3, h4, h5, h6, label {
 
 #main-container h1{
     color: black;
-    font-size: 50px;
+    font-size: 45px;
     margin-bottom: 0px;
-    letter-spacing: 0.05em;
     font-weight: 100;
     line-height: 1.2em;
 }
 
 #main-container h2{
-    font-size: 25px;
+    color:black;
+    font-size: 40px;
     margin-bottom: 0px;
     font-weight: 100;
     line-height: 1.2em;

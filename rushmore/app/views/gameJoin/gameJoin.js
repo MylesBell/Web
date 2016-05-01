@@ -8,7 +8,7 @@ angular.module('gameJoinView', ['ngRoute'])
 
         // The unique game code for each game
         $scope.username = UserService.getUsername();
-        $scope.gamecode = "Enter Game Code";
+        $scope.gamecode = "";
         $scope.enableInput = true;
 
         var enableFullScreen = true; // should be TRUE in production
