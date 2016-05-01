@@ -6,6 +6,7 @@ angular.module('myApp', [
     'headerBarInfoView',
     'playerCreationView',
     "tutorialView",
+    "splashView",
     "btford.socket-io",
     "LocalStorageModule",
     "UserServiceModule",
@@ -33,11 +34,14 @@ config(function($routeProvider, IdleProvider, KeepaliveProvider, TitleProvider, 
     }).when('/tutorial', {
         templateUrl: 'views/tutorials/tutorial.html',
         controller: 'TutorialCtrl'
-    }).when('/', {
+    }).when('/create', {
         templateUrl: 'views/playerCreation/playerCreation.html',
         controller: 'PlayerCreationCtrl'
+    }).when('/splash', {
+        templateUrl: 'views/splash/splash.html',
+        controller: 'SplashCtrl'
     }).otherwise({
-        redirectTo: '/'
+        redirectTo: '/splash'
     });
 
     angular.extend(toastrConfig, {

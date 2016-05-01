@@ -6,7 +6,7 @@ angular.module('playerCreationView', ['ngRoute'])
     .controller('PlayerCreationCtrl', ['$scope', 'UserService', 'LocationService', function($scope, UserService, LocationService) {
 
         // Entered name of the user
-        $scope.username = "Enter your name";
+        $scope.username = "";
 
         /* 
             Called when the deploy button selected
