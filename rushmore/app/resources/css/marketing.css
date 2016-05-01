@@ -140,6 +140,15 @@ h1, h2, h3, h4, h5, h6, label {
     width: 80%;
 }
 
+.valid-name-input{
+    /*background-color: green;*/
+}
+
+.invalid-name-input{
+    background-color: #95A5A6;
+    color: #D2D7D3;
+}
+
 /*
  * -- SPLASH STYLES --
  * This is the blue top section that appears on the page.

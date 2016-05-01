@@ -1,5 +1,5 @@
 <form class="bottom-container" ng-submit="deploy()">               
-    <input class="input-box" type="text" placeholder="Your Name" ng-model="username" ng-click="username = ''" id="player-name-input-box"/>
+    <input class="input-box" type="text" placeholder="Your Name" ng-model="username" ng-click="username = ''" id="player-name-input-box"  ng-change="checkName()" autocomplete="off"/>
 
-    <input id="submit-button" type="submit" class="deploy-button" id="deploy-button" value="Join Game" style="margin-top:60px;"></input>
+    <input id="submit-button" type="submit" class="deploy-button" id="deploy-button" value="Join Game" style="margin-top:60px;" ng-class="{'valid-name-input': validname, 'invalid-name-input': !validname}"></input>
 </form>        
