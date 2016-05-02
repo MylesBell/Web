@@ -5,16 +5,22 @@
 angular.module('playerCreationView', ['ngRoute'])
     .controller('PlayerCreationCtrl', ['$scope', 'UserService', 'LocationService', function ($scope, UserService, LocationService) {
 
-        $scope.started = false;
 
         // Entered name of the user
         $scope.username = "";
         // Css class showing wether the input name is valid or not
         $scope.validname = false;
-
+        $scope.started = false;
+        
+        // Variables to control the buttons moving around the page
         $scope.titleTranslate = 50;
         $scope.formTranslate = 100;
-
+        
+        var enableFullScreen = true;
+        
+         var codeForm = document.getElementById('start-button');
+        codeForm.addEventListener("click", fullscreen);
+        
         $scope.start = function () {
             // LocationService.setPath('/create'); // TODO CHANGE THIS 
             $scope.started = true;
@@ -59,5 +65,21 @@ angular.module('playerCreationView', ['ngRoute'])
             }
 
         };
+        
+        function fullscreen() {
+            if (enableFullScreen) {
+                var mainContainer = document.getElementById('main-container');
+                if (mainContainer.requestFullscreen) {
+                    mainContainer.requestFullscreen();
+                } else if (mainContainer.msRequestFullscreen) {
+                    mainContainer.msRequestFullscreen();
+                } else if (mainContainer.mozRequestFullScreen) {
+                    mainContainer.mozRequestFullScreen();
+                } else if (mainContainer.webkitRequestFullscreen) {
+                    mainContainer.webkitRequestFullscreen();
+                }
+            }
+
+        }
 
     }]);

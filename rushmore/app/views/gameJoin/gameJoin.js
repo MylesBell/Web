@@ -11,11 +11,6 @@ angular.module('gameJoinView', ['ngRoute'])
         $scope.gamecode = "";
         $scope.enableInput = true;
 
-        var enableFullScreen = true; // should be TRUE in production
-
-        var codeForm = document.getElementById('game-code-submit-form');
-        codeForm.addEventListener("submit", fullscreen);
-
         $scope.joinGame = function() {
             var gameCode = $scope.gamecode.toLowerCase();
             UserService.attemptToJoinGame(gameCode).then(function(res) {
@@ -41,21 +36,5 @@ angular.module('gameJoinView', ['ngRoute'])
             $scope.gamecode = "Joining game...";
             $scope.enableInput = false;
         };
-
-        function fullscreen() {
-            if (enableFullScreen) {
-                var mainContainer = document.getElementById('main-container');
-                if (mainContainer.requestFullscreen) {
-                    mainContainer.requestFullscreen();
-                } else if (mainContainer.msRequestFullscreen) {
-                    mainContainer.msRequestFullscreen();
-                } else if (mainContainer.mozRequestFullScreen) {
-                    mainContainer.mozRequestFullScreen();
-                } else if (mainContainer.webkitRequestFullscreen) {
-                    mainContainer.webkitRequestFullscreen();
-                }
-            }
-
-        }
 
     }]);
