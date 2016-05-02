@@ -123,21 +123,17 @@ h1, h2, h3, h4, h5, h6, label {
     width: 80%;
 }
 .deploy-button {
-    /*background-color: white;
-    color: rgba(21, 21, 21, 1);
-    padding: 0.5em 2em;
-    border-radius: 5px;
-    font-size: 25px;
-    font-weight: 100;
-    font: inherit;*/
-    background-color: #87D37C;
-    color: black;
-    padding: 0.5em 2em;
-    border-radius: 5px;
-    font-size: 30px;
+background-color: #87D37C;
+    color: white;
+    font-size: 40px;
     font-weight: 400;
     border: none;
     width: 80%;
+    height: 120px;
+    border-radius: 4px;
+    margin-right: 40px;
+    margin-left: 40px;
+    margin-top: 100px;
 }
 
 .valid-name-input{
@@ -164,10 +160,23 @@ h1, h2, h3, h4, h5, h6, label {
     background: white;
 }
 
+.splash-container {
+    background-image: url('../images/polybackground.png');
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    position: absolute;
+}
+
+.splash-container h1 {
+    color:white;
+    font-size: 70px;
+    text-align: center;
+    margin-top: 20vh;
+}
+
 .bottom-container {
     width: 100%;
-    /*padding-left: 40px;
-    padding-right: 40px;*/
     margin: auto;
     top: 25%;
     position: absolute;
@@ -179,8 +188,8 @@ h1, h2, h3, h4, h5, h6, label {
 }
 
 #main-container h1{
-    color: black;
-    font-size: 45px;
+    /*color: black;*/
+    /*font-size: 45px;*/
     margin-bottom: 0px;
     font-weight: 100;
     line-height: 1.2em;
@@ -945,6 +954,15 @@ h1, h2, h3, h4, h5, h6, label {
     /* For the iphone 4 at 320px wide */
     .specials-container {
         margin-top: 0px;
+    }
+    
+    .splash-container h1 {
+        font-size: 60px;
+    }
+    
+    .deploy-button {
+        font-size: 35px;
+        width: 75%;        
     }
     
     #tutorial-controls {

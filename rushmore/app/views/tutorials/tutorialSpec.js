@@ -32,8 +32,8 @@ describe('Tutorial page', function () {
     });
 
     it("Prev text should be blank", function () {
-        // expect(element(by.binding('prevText')).getText()).toBe("SKIP");
-        expect(element(by.binding('prevText')).getText()).toBe("");
+        expect(element(by.binding('prevText')).getText()).toBe("SKIP");
+        // expect(element(by.binding('prevText')).getText()).toBe("");
 
     });
 
