@@ -8,28 +8,20 @@ describe('Player Creation page', function() {
 
         expect(browser.getTitle()).toEqual('Rushmore');
         
-        expect(browser.getCurrentUrl()).toBe('http://localhost:7777/#/splash');
-    });
-
-    it('Header bar should be present', function() {
-
-        browser.waitForAngular();
-
-        expect(element(by.id('header-bar')).isDisplayed()).toBe(true);
+        expect(browser.getCurrentUrl()).toBe('http://localhost:7777/#/');
     });
     
     it('Start on splash screen and can move to player join page', function(){
-        var joinbox = element(by.css('#submit-button'));
-        expect(browser.getCurrentUrl()).toBe('http://localhost:7777/#/splash');
+        var joinbox = element(by.css('#start-button'));
+        expect(browser.getCurrentUrl()).toBe('http://localhost:7777/#/');
         joinbox.click();
-        expect(browser.getCurrentUrl()).toBe('http://localhost:7777/#/create');
+        expect(browser.getCurrentUrl()).toBe('http://localhost:7777/#/');
     });
 
     it("clicking input box clears the text inside", function() {
 
         browser.waitForAngular();
         
-
         var inputBox = element(by.css('#player-name-input-box'));
 
         inputBox.click();

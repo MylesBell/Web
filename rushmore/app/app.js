@@ -6,7 +6,6 @@ angular.module('myApp', [
     'headerBarInfoView',
     'playerCreationView',
     "tutorialView",
-    "splashView",
     "btford.socket-io",
     "LocalStorageModule",
     "UserServiceModule",

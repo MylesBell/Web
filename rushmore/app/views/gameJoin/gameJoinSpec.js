@@ -6,7 +6,7 @@ describe('Game Join page', function () {
         browser.get('http://localhost:7777/');
 
         //enter a correct name and move to the game page
-        var joinbox = element(by.css('#submit-button'));
+        var joinbox = element(by.css('#start-button'));
         var inputBox = element(by.css('#player-name-input-box'));
         var submitButton = element(by.css('#submit-button'));
 
