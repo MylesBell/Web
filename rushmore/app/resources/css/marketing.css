@@ -161,7 +161,7 @@ background-color: #87D37C;
 }
 
 .splash-container {
-    background-image: url('../images/polybackground.png');
+    background-image: url('../images/backgrounds/polybackground.png');
     height: 100%;
     width: 100%;
     background-size: cover;
@@ -255,12 +255,12 @@ background-color: #87D37C;
 }
 
 .mini-lesson .text h2 {
-    color: white !important; 
+    margin: 30px 0px 30px 0px !important;
 }
 
 .mini-lesson .text p {
     color: white;
-    font-size: 17px;
+    font-size: 20px;
 }
 
 .mini-lesson .image {
@@ -395,6 +395,7 @@ background-color: #87D37C;
 .tutorial-text {
     width: 80%;
     text-align: center;
+    font-size: 25px;
     margin-top: 50%; 
  }
 
@@ -417,23 +418,6 @@ background-color: #87D37C;
     -webkit-flex-flow: row-reverse wrap;
         -ms-flex-flow: row-reverse wrap;
             flex-flow: row-reverse wrap;
-}
-
-#tutorial-progress-indicator {
-    width: 30%;
-    height: 100%;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-flow: row wrap;
-        -ms-flex-flow: row wrap;
-            flex-flow: row wrap;
-    -webkit-justify-content: space-around;
-        -ms-flex-pack: distribute;
-            justify-content: space-around;
-    -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center;
 }
 
 .tutorial-anim-page-slide-left{
@@ -484,8 +468,8 @@ background-color: #87D37C;
 
 .tutorial-progress-dot {
     border-radius: 50%;
-    width: 10px;
-    height: 10px;    
+    width: 13px;
+    height: 13px;    
     background-color: grey;
 }
 

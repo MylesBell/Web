@@ -116,7 +116,7 @@ angular.module('tutorialView', ['ngRoute'])
 
             } else {
                 // skip to the lobby
-                if(allowSkipping){
+                if (allowSkipping) {
                     LocationService.setPath('/lobby');
                 }
             }
@@ -127,6 +127,13 @@ angular.module('tutorialView', ['ngRoute'])
             var colors = UserService.getTeamColor();
             var tutorialsControlContainer = document.getElementById('tutorial-controls');
             tutorialsControlContainer.style.backgroundColor = colors.dark;
+            
+            var team = UserService.getUserTeam();
+            if (team === 'red-team') {
+                tutorialsControlContainer.style.backgroundImage = "url('../resources/images/backgrounds/red_tut_polybackground.png')";
+            } else {
+                tutorialsControlContainer.style.backgroundImage = "url('../resources/images/backgrounds/blue_tut_polybackground.png')";
+            }
         }
 
     }]);
