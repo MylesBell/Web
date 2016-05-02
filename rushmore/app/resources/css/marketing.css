@@ -11,6 +11,7 @@ body {
     color: #7f8c8d;
     font-size: 18px;
     font-family: 'Droid Sans', sans-serif;
+    margin: 0px;
 }
 h1, h2, h3, h4, h5, h6, label {
     color: #34495e;
@@ -157,10 +158,9 @@ background-color: #87D37C;
     z-index: 1;
     overflow: hidden;    /* The following styles are required for the "scroll-over" effect */
     width: 100%;
-    height: 100%;
+    height: 100vh;
     top: 0;
     left: 0;
-    position: fixed !important;
     background: white;
 }
 
@@ -169,7 +169,6 @@ background-color: #87D37C;
     height: 100%;
     width: 100%;
     background-size: cover;
-    position: absolute;
 }
 
 .splash-container h1 {
@@ -186,7 +185,7 @@ background-color: #87D37C;
     width: 100%;
     margin: auto;
     text-align: center;
-    padding-top: 60px;
+    padding-top: 80px;
 }
 
 #main-container .splash-subhead {

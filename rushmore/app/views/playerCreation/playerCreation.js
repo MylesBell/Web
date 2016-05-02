@@ -16,7 +16,7 @@ angular.module('playerCreationView', ['ngRoute'])
         $scope.titleTranslate = 80;
         $scope.formTranslate = 100;
         
-        var enableFullScreen = false; //SHOULD be TRUE in PROD
+        var enableFullScreen = true; //SHOULD be TRUE in PROD
         
          var codeForm = document.getElementById('start-button');
         codeForm.addEventListener("click", fullscreen);
