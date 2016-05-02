@@ -13,10 +13,10 @@ angular.module('playerCreationView', ['ngRoute'])
         $scope.started = false;
         
         // Variables to control the buttons moving around the page
-        $scope.titleTranslate = 50;
+        $scope.titleTranslate = 80;
         $scope.formTranslate = 100;
         
-        var enableFullScreen = true;
+        var enableFullScreen = false; //SHOULD be TRUE in PROD
         
          var codeForm = document.getElementById('start-button');
         codeForm.addEventListener("click", fullscreen);
@@ -24,7 +24,7 @@ angular.module('playerCreationView', ['ngRoute'])
         $scope.start = function () {
             // LocationService.setPath('/create'); // TODO CHANGE THIS 
             $scope.started = true;
-            $scope.titleTranslate = 0;
+            $scope.titleTranslate = 20;
             $scope.formTranslate = 0;
         };
 
