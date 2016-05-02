@@ -136,6 +136,10 @@ background-color: #87D37C;
     margin-top: 40px;
 }
 
+.deploy-button:active {
+    background-color: #26A65B;
+}
+
 .valid-name-input{
     /*background-color: green;*/
 }
