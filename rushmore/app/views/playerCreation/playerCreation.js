@@ -5,10 +5,22 @@
 angular.module('playerCreationView', ['ngRoute'])
     .controller('PlayerCreationCtrl', ['$scope', 'UserService', 'LocationService', function ($scope, UserService, LocationService) {
 
+        $scope.started = false;
+
         // Entered name of the user
         $scope.username = "";
         // Css class showing wether the input name is valid or not
         $scope.validname = false;
+
+        $scope.titleTranslate = 50;
+        $scope.formTranslate = 100;
+
+        $scope.start = function () {
+            // LocationService.setPath('/create'); // TODO CHANGE THIS 
+            $scope.started = true;
+            $scope.titleTranslate = 0;
+            $scope.formTranslate = 0;
+        };
 
         $scope.checkName = function () {
             if ($scope.username === "") {
