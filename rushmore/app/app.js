@@ -34,14 +34,11 @@ config(function($routeProvider, IdleProvider, KeepaliveProvider, TitleProvider, 
     }).when('/tutorial', {
         templateUrl: 'views/tutorials/tutorial.html',
         controller: 'TutorialCtrl'
-    }).when('/create', {
+    }).when('/', {
         templateUrl: 'views/playerCreation/playerCreation.html',
         controller: 'PlayerCreationCtrl'
-    }).when('/splash', {
-        templateUrl: 'views/splash/splash.html',
-        controller: 'SplashCtrl'
     }).otherwise({
-        redirectTo: '/splash'
+        redirectTo: '/'
     });
 
     angular.extend(toastrConfig, {
