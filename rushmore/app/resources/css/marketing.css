@@ -135,6 +135,7 @@ background-color: #87D37C;
     justify-content: center;
     flex-direction: column;
     align-content: space-around;
+    line-height: 120px;
 }
 
 .deploy-button:active {
