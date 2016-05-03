@@ -12,10 +12,10 @@ angular.module('playerCreationView', ['ngRoute'])
         $scope.started = false;
         
         // Variables to control the buttons moving around the page
-        $scope.titleTranslate = 80;
+        $scope.titleTranslate = 60;
         $scope.formTranslate = 100;
         
-        var enableFullScreen = false; //SHOULD be TRUE in PROD
+        var enableFullScreen = true; //SHOULD be TRUE in PROD
         
          var codeForm = document.getElementById('start-button');
         codeForm.addEventListener("click", fullscreen);
@@ -30,10 +30,10 @@ angular.module('playerCreationView', ['ngRoute'])
         $scope.checkName = function () {
             console.log($scope.username);
             if ($scope.username === "") {
-                console.log("didn't enter a name");
+                console.log("Please enter a name");
                 $scope.validname = false;
             } else if ($scope.username.length > 20) {
-                console.log("Too long");
+                console.log("Please use a shorter name");
                 $scope.validname = false;
             } else {
                 $scope.validname = true;

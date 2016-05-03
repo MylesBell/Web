@@ -93,12 +93,12 @@ angular.module('UserServiceModule', []).factory('UserService', function ($q, Net
         if (name.length === 0) {
             deferred.reject({
                 ok: false,
-                message: "Too Short"
+                message: "Please enter a name"
             });
         } else if (name.length > 20) {
             deferred.reject({
                 ok: false,
-                message: "Too Long"
+                message: "Please use a shorter name"
             });
         } else {
             // Send the user info to the server to register their name
