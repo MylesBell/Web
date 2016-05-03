@@ -943,13 +943,12 @@ background-color: #87D37C;
     flex-flow: row;
     align-items: flex-end;    
     width: 25%;
-    height: 300px;
+    height: 100%;
     margin-top: 50px;
 }
 
 .podium-place {
     flex: 1;
-    background-color: white;
     text-align: center;
     padding-top: 5px;
     color:white;
@@ -958,33 +957,59 @@ background-color: #87D37C;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    height: 100%;
 }
 
 .podium-place p{
     margin: 0px;
 }
 
+.box{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.player {
+    width: 100%;
+    background-image: url('/resources/images/stats/herotypes/viking_placeholder.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position-y: 105%;
 
-.third-place {
-    height:20%;
-    background-color: #cc6633;;
 }
 
-.second-place {
-    height:40%;
+.second-place.box{
     background-color: silver;
-
+    height:30%;
 }
 
-.first-place {
-    height:60%;
+.second-place.player{
+    height:70%;
+}
+
+.first-place.box {
+    height:50%;
     background-color: gold;
+}
+
+.first-place.player {
+    height:50%;
+}
+
+.third-place.box {
+    height:20%;
+    background-color: #cc6633;
+}
+
+.third-place.player {
+    height:80%;
 }
 
 #award-text-container {
     width: 100%;
     margin-top: 20px; 
-    height: 150px;
+    height: 15%;
     display: flex;
     flex-flow: row;
     justify-content: space-around;
