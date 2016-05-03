@@ -236,6 +236,9 @@ background-color: #87D37C;
 #tutorial-sliding-container{
     height: 100%;
     width: 400%;
+    display: flex;
+    justify-content: space-around;
+    transition: all 300ms;
 }
 
 .tutorial-page-container {

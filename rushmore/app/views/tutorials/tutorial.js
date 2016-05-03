@@ -10,6 +10,9 @@ angular.module('tutorialView', ['ngRoute'])
         $scope.nextText = "NEXT";
         $scope.prevText = "";
 
+        $scope.xTranslate = 0;
+        var step = 100 / $scope.tutorialSteps;
+
         setTeamBackground();
 
         // Allow skipping the tutorial, onlt possible in dev builds
@@ -31,103 +34,47 @@ angular.module('tutorialView', ['ngRoute'])
         };
 
         $scope.next = function () {
-            if ($scope.currentTutorialIndex + 1 < $scope.tutorials.length) {
-
-                $scope.nextText = "NEXT";
-                $scope.prevText = "PREV";
-
-                // animate the current page moving out
-                var prevTutPage = document.getElementById("tutorial-" + $scope.currentTutorialIndex);
-                prevTutPage.classList.add("tutorial-anim-page-slide-left");
-
-                // when the animation ends, hide the old tutorial page
-                prevTutPage.addEventListener("transitionend", afterNextTransition);
-
-                // animate the next lesson moving in
-                var nextTutPage = document.getElementById("tutorial-" + ($scope.currentTutorialIndex + 1));
-                // set the next lesson to visible
-                $scope.tutorials[$scope.currentTutorialIndex + 1].visible = true;
-                nextTutPage.classList.add("tutorial-anim-page-slide-in-left");
-                nextTutPage.addEventListener("animationend", function () {
-                    nextTutPage.classList.remove("tutorial-anim-page-slide-in-left");
-                });
-
-            } else {
-                // finished tutorial, go to the lobby
-                LocationService.setPath('/lobby');
+            if ($scope.currentTutorialIndex < $scope.tutorialSteps - 1) {
+                $scope.xTranslate -= step;
+                $scope.currentTutorialIndex += 1;
             }
+            afterMove();            
         };
-
-        function afterNextTransition() {
-            var prevTutPage = document.getElementById("tutorial-" + $scope.currentTutorialIndex);
-            prevTutPage.removeEventListener("transitionend", afterNextTransition);
-            prevTutPage.classList.remove("tutorial-anim-page-slide-left");
-
-            $scope.tutorials[$scope.currentTutorialIndex].visible = false;
-            // move to the next tutorial
-            $scope.currentTutorialIndex += 1;
-
-            //Update the navgation text
-            if ($scope.currentTutorialIndex + 1 === $scope.tutorials.length) {
-                // Indicate they can move to the lobby on the last tutorial page
-                $scope.nextText = "TO LOBBY";
-            }
-            $scope.$apply();
-        }
-
-        function afterPrevTransition() {
-            var prevTutPage = document.getElementById("tutorial-" + $scope.currentTutorialIndex);
-            prevTutPage.removeEventListener("transitionend", afterPrevTransition);
-            prevTutPage.classList.remove("tutorial-anim-page-slide-right");
-
-            $scope.tutorials[$scope.currentTutorialIndex].visible = false;
-            // move to the next tutorial
-            $scope.currentTutorialIndex -= 1;
-
-            if ($scope.currentTutorialIndex === 0 && allowSkipping) {
-                // allow skipping on the first page
-                $scope.prevText = "SKIP";
-            }
-            $scope.$apply();
-        }
 
         $scope.prev = function () {
             if ($scope.currentTutorialIndex > 0) {
-                // move to the next tutorial
-
-                $scope.nextText = "NEXT";
-
-                // animate the current page moving out
-                var prevTutPage = document.getElementById("tutorial-" + $scope.currentTutorialIndex);
-                prevTutPage.classList.add("tutorial-anim-page-slide-right");
-
-                // when the animation ends, hide the old tutorial page
-                prevTutPage.addEventListener("transitionend", afterPrevTransition);
-
-                // animate the next lesson moving in
-                var nextTutPage = document.getElementById("tutorial-" + ($scope.currentTutorialIndex - 1));
-                $scope.tutorials[$scope.currentTutorialIndex - 1].visible = true;
-
-                // set the next lesson to visible
-                nextTutPage.classList.add("tutorial-anim-page-slide-in-right");
-                nextTutPage.addEventListener("animationend", function () {
-                    nextTutPage.classList.remove("tutorial-anim-page-slide-in-right");
-                });
-
+                $scope.xTranslate += step;
+                $scope.currentTutorialIndex -= 1;
             } else {
-                // skip to the lobby
                 if (allowSkipping) {
                     LocationService.setPath('/lobby');
                 }
             }
+            afterMove();
         };
+
+        function afterMove() {
+            if ($scope.currentTutorialIndex === 0) {
+                if (allowSkipping) {
+                    $scope.prevText = "SKIP";
+                } else {
+                    $scope.prevText = "";
+                }
+            } else if ($scope.currentTutorialIndex === $scope.tutorialSteps - 1) {
+                $scope.nextText = "LOBBY";
+            } else {
+                $scope.prevText = "PREV";
+                $scope.nextText = "NEXT";
+
+            }
+        }
 
         // Change the background colour of the container to the teams colours
         function setTeamBackground() {
             var colors = UserService.getTeamColor();
             var tutorialsControlContainer = document.getElementById('tutorial-controls');
             tutorialsControlContainer.style.backgroundColor = colors.dark;
-            
+
             var team = UserService.getUserTeam();
             if (team === 'red-team') {
                 tutorialsControlContainer.style.backgroundImage = "url('../resources/images/backgrounds/red_tut_polybackground.png')";
