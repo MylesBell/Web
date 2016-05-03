@@ -282,10 +282,10 @@ io.on('connection', function (socket) {
     /*
         Statitics about the game for all players, sent at the end of a game
     */
-    socket.on('gamePlayerStats', function(data){
+    socket.on('gamePlayersStats', function(data){
        console.log(data);
        
-       io.sockets.in(MOBILE_CHAN).emit("gamePlayerStats", data); 
+       io.sockets.in(MOBILE_CHAN).emit("gamePlayersStats", data); 
     });
 
 

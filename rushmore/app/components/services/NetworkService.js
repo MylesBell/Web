@@ -84,7 +84,7 @@ angular.module('myApp').
             alertListeners("gamePlayerSwitchLane", data);
         });
 
-        socket.on("gamePlayerStats", function (data) {
+        socket.on("gamePlayersStats", function (data) {
             alert(data);
             alertListeners("gamePlayerStats", data);
         });
