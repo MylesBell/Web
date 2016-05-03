@@ -30,8 +30,6 @@ angular.module('myApp').factory('InputHandlerService', function($q, NetworkServi
             eventName = "playerDirection";
         }
 
-        console.log(eventName);
-
         NetworkService.send(eventName, {
             input: input.direction
         });
