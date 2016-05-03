@@ -18,7 +18,7 @@ angular.module('myApp')
                 $scope.boardTransform -= step;
                 currentStep += 1;
             }
-        }
+        };
 
         $scope.prev = function () {
             if (currentStep > 0) {
@@ -27,7 +27,7 @@ angular.module('myApp')
                 $scope.boardTransform += step;
                 currentStep -= 1;
             }
-        }
+        };
 
         var podiumsEls = document.querySelectorAll(".podium-container");
         for (var i = 0; i < podiumsEls.length; i++) {
@@ -35,7 +35,7 @@ angular.module('myApp')
         }
 
         var width = (100 * podiums).toString();
-        var el = document.getElementById('podiums-container')
+        var el = document.getElementById('podiums-container');
         el.style.width = width + "%";
 
     }]);

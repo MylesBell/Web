@@ -130,6 +130,11 @@ background-color: #87D37C;
     margin-right: 40px;
     margin-left: 40px;
     margin-top: 40px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-content: space-around;
 }
 
 .deploy-button:active {
