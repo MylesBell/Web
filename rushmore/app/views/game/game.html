@@ -22,7 +22,7 @@
     </div>  
     <div id="specials-container" class="pure-u-1">
         <div class="special" ng-repeat="special in specialPowers">
-            <div id="special-button-{{$index}}" class="special-circle {{special.cssName}}" ng-class="special.enabled ? 'special-enabled': 'special-disabled'" ng-click="useSpecial(special)" style="animation-duration: {{special.cooldownTime}}s">            
+            <div id="special-button-{{$index}}" class="special-circle {{special.cssName}}" ng-class="special.enabled ? 'special-enabled': 'special-disabled'" ng-click="useSpecial(special)" style="animation-duration: {{special.cooldownTime}}s;-webkit-animation-duration: {{special.cooldownTime}}s;-moz-animation-duration: {{special.cooldownTime}}s">            
             </div>              
         </div>
     </div>  

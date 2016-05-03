@@ -1,8 +1,15 @@
-<form class="bottom-container" ng-submit="deploy()">               
-    <input class="input-box" type="text" ng-model="username" ng-click="username = ''" id="player-name-input-box"/>
-    <p style="padding-top:20px" class="splash-subhead">
-        Enter your name, then join a game in progress!
-    </p>
+<div class="splash-container">
+    <h1 ng-style="{'transform':'translateY(' + titleTranslate + '%)', '-webkit-transform':'translateY(' + titleTranslate + '%)'}">Headgears of War</h1>
 
-    <input id="submit-button" type="submit" class="deploy-button" id="deploy-button"  value="Join Game"></input>
-</form>        
+    <input id="start-button" type="submit" class="deploy-button" value="Click to Start!" ng-click="start()" ng-show="!started" style="margin-top:180px;"></input>
+
+    <div ng-style="{'transform':'translateX(' + formTranslate +'%)'}" style="transition:all 300ms;">
+        <form class="bottom-container" ng-submit="deploy()">
+            <input class="input-box" type="text" placeholder="Enter Your Name" ng-model="username" ng-click="username = ''" id="player-name-input-box"
+                ng-change="checkName()" autocomplete="off" style="margin-top:20px" />
+
+            <input id="submit-button" type="submit" class="deploy-button" value="Join Game" 
+                ng-class="{'valid-name-input': validname, 'invalid-name-input': !validname}" ng-disabled="!validname"></input>
+        </form>
+    </div>
+</div>

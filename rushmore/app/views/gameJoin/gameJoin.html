@@ -1,10 +1,10 @@
 <div id="game-join-container">
-    <form id="game-code-submit-form" class="bottom-container" ng-submit="joinGame()" >               
-        <input id="game-code-input-box" class="input-box" type="text" ng-model="gamecode" ng-click="gamecode = ''" ng-disabled="!enableInput" style="text-transform: lowercase;"/>
-        <p class="splash-subhead" style="padding-top:20px">
-            {{username}}, the fight needs you. </br>
-            Enter the game code to join a side!
-        </p>
+    <p class="splash-subhead" style="padding:20px">
+        Enter the game code to join a side! DEV VIEW ONLY, SHOULD BE DISABLED IN PROD
+    </p>
+    <form id="game-code-submit-form" class="bottom-container" ng-submit="joinGame()">
+        <input id="game-code-input-box" class="input-box" type="text" placeholder="ABCD" ng-model="gamecode" ng-click="gamecode = ''"
+            ng-disabled="!enableInput" style="text-transform: lowercase;" autocomplete="off" />
         <input id="game-join-button" class="deploy-button" id="deploy-button" ng-disabled="!enableInput" type="submit" value="Deploy"></input>
-    </form>        
+    </form>
 </div>
