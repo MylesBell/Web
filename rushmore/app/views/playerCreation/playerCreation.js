@@ -3,8 +3,7 @@
    Let the player set their username, then move to the game join screen
 */
 angular.module('playerCreationView', ['ngRoute'])
-    .controller('PlayerCreationCtrl', ['$scope', 'UserService', 'LocationService', function ($scope, UserService, LocationService) {
-
+    .controller('PlayerCreationCtrl', ['$scope', 'UserService', 'LocationService', 'GameInfoService', function($scope, UserService, LocationService, GameInfoService) {
 
         // Entered name of the user
         $scope.username = "";
@@ -55,10 +54,8 @@ angular.module('playerCreationView', ['ngRoute'])
                 UserService.registerUserWithServer($scope.username)
                     .then(function (res) {
                         console.log(res);
-                        LocationService.setPath('/join'); // TODO CHANGE THIS 
-
-                    }).catch(function (res) {
-
+                        LocationService.setPath(res.path);
+                    }).catch(function(res) {
                         // name was not right, show the user the error                
                         console.log(res);
                         alert(res.message);

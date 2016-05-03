@@ -3,7 +3,7 @@
     Registering user with server
     Set username for game
 */
-angular.module('UserServiceModule', []).factory('UserService', function ($q, NetworkService, $rootScope, LocationService, SpecialPowerManagerService, ColorService) {
+angular.module('UserServiceModule', []).factory('UserService', function ($q, NetworkService, $rootScope, LocationService, SpecialPowerManagerService, ColorService, ENV) {
 
     var uID = "";
     var userTeam = "";
@@ -14,7 +14,9 @@ angular.module('UserServiceModule', []).factory('UserService', function ($q, Net
     var lane = 0;
     var heroClass = 2;
     var teamColors;
-    
+
+    var skipCode = true;
+
     // set to an inital value, changed when the user is assigned a team
     teamColors = ColorService.getRedColors();
 
@@ -106,10 +108,26 @@ angular.module('UserServiceModule', []).factory('UserService', function ($q, Net
             }).then(function (res) {
                 username = name;
                 uID = res.uID;
-                deferred.resolve({
-                    ok: true,
-                    username: name
-                });
+
+                // optionally skip game code screen and go straight to the game
+                if (ENV.skipCode) {
+                    attemptToJoinGame('abcd').then(function (data) {
+                        if(data.state === 0 || data.state === 1){
+                            deferred.resolve({
+                                ok:true,
+                                path: '/tutorial'
+                            });
+                        }
+                    });
+                } else {
+                    // go to the game join screen
+                    deferred.resolve({
+                        ok: true,
+                        username: name,
+                        path: '/join'
+                    });
+                }
+
             }).catch(function (err) {
                 // was an error registering the player
                 deferred.reject({
