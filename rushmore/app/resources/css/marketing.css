@@ -436,52 +436,6 @@ background-color: #87D37C;
             flex-flow: row-reverse wrap;
 }
 
-.tutorial-anim-page-slide-left{
-    transition: 0.8s;
-    -webkit-transform: translateX(-100%);
-            transform: translateX(-100%);
-}
-
-.tutorial-anim-page-slide-right{
-    transition: 0.8s;
-    -webkit-transform: translateX(100%);
-            transform: translateX(100%);
-}
-
-.tutorial-anim-page-slide-in-left{
-    -webkit-animation:0.8s anim-page-slide-in-left;
-            animation:0.8s anim-page-slide-in-left;
-    position: absolute;
-    top: 0px;height:85vh;
-}
-
-.tutorial-anim-page-slide-in-right{
-    -webkit-animation: 0.8s anim-page-slide-in-right;
-            animation: 0.8s anim-page-slide-in-right;
-    position: absolute;
-    top: 0px;height:85vh;
-}
-
-@-webkit-keyframes anim-page-slide-in-left {
-    0% {-webkit-transform: translateX(100%);transform: translateX(100%)}
-    100% {-webkit-transform: translateX(0%);transform: translateX(0%)}
-}
-
-@keyframes anim-page-slide-in-left {
-    0% {-webkit-transform: translateX(100%);transform: translateX(100%)}
-    100% {-webkit-transform: translateX(0%);transform: translateX(0%)}
-}
-
-@-webkit-keyframes anim-page-slide-in-right {
-    0% {-webkit-transform: translateX(-100%);transform: translateX(-100%)}
-    100% {-webkit-transform: translateX(0%);transform: translateX(0%)}
-}
-
-@keyframes anim-page-slide-in-right {
-    0% {-webkit-transform: translateX(-100%);transform: translateX(-100%)}
-    100% {-webkit-transform: translateX(0%);transform: translateX(0%)}
-}
-
 .tutorial-progress-dot {
     border-radius: 50%;
     width: 13px;
