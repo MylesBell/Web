@@ -264,6 +264,7 @@ background-color: #87D37C;
 .mini-lesson .text p {
     color: white;
     font-size: 20px;
+    margin-top: 0px;
 }
 
 .mini-lesson .image {

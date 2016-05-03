@@ -59,8 +59,8 @@ angular.module('playerCreationView', ['ngRoute'])
                     }).catch(function (res) {
 
                         // name was not right, show the user the error                
-                        $scope.username = res.message;
                         console.log(res);
+                        alert(res.message);
                     });
             }
 
