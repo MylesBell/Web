@@ -30,6 +30,27 @@ describe('Player Creation page', function() {
         expect(inputBox.getAttribute('value')).toEqual('');
     });
 
+    it('entering no name means the button is disabled', function() {
+
+        var inputBox = element(by.css('#player-name-input-box'));
+        var submitButton = element(by.css('#submit-button'));
+
+        inputBox.click();
+
+        expect(submitButton.getAttribute('disabled')).toEqual('true');
+    });
+
+    it('entering a name over 20 characters means the button is disabled', function() {
+
+        var inputBox = element(by.css('#player-name-input-box'));
+        var submitButton = element(by.css('#submit-button'));
+
+        inputBox.click();
+        inputBox.sendKeys("aaaaaaaaaaaaaaaaaaaaa");
+
+        expect(submitButton.getAttribute('disabled')).toEqual('true');
+    });
+    
     it('can enter a name into the input box', function() {
 
         var inputBox = element(by.css('#player-name-input-box'));
@@ -37,29 +58,6 @@ describe('Player Creation page', function() {
         inputBox.sendKeys("James");
 
         expect(inputBox.getAttribute('value')).toEqual('James');
-    });
-
-    it('entering no name shows error on page', function() {
-
-        var inputBox = element(by.css('#player-name-input-box'));
-        var submitButton = element(by.css('#submit-button'));
-
-        inputBox.click();
-        submitButton.click();
-
-        expect(inputBox.getAttribute('value')).toEqual('Too Short');
-    });
-
-    it('entering a name over 20 characters shows error on page', function() {
-
-        var inputBox = element(by.css('#player-name-input-box'));
-        var submitButton = element(by.css('#submit-button'));
-
-        inputBox.click();
-        inputBox.sendKeys("aaaaaaaaaaaaaaaaaaaaa");
-        submitButton.click();
-
-        expect(submitButton.getAttribute('disabled')).toEqual('true');
     });
 
     it('entering a valid name moves the user to the game join page', function() {

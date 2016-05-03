@@ -16,7 +16,7 @@ angular.module('playerCreationView', ['ngRoute'])
         $scope.titleTranslate = 80;
         $scope.formTranslate = 100;
         
-        var enableFullScreen = true; //SHOULD be TRUE in PROD
+        var enableFullScreen = false; //SHOULD be TRUE in PROD
         
          var codeForm = document.getElementById('start-button');
         codeForm.addEventListener("click", fullscreen);
@@ -29,6 +29,7 @@ angular.module('playerCreationView', ['ngRoute'])
         };
 
         $scope.checkName = function () {
+            console.log($scope.username);
             if ($scope.username === "") {
                 console.log("didn't enter a name");
                 $scope.validname = false;
