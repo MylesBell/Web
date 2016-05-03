@@ -69,7 +69,7 @@ module.exports = function (grunt) {
                     ENV: {
                         name: 'development',
                         socketIOEndpoint: 'http://localhost:1337',
-                        skipCode: true
+                        skipCode: false
                     }
                 }
             },

@@ -16,7 +16,7 @@
 		"name": "Along Lane Attack",
 		"type": "Attack",
 		"idea": "Range",
-		"description": "Shoot a flame towards the enemy base, burning all in its path.Test",
+		"description": "Shoot a flame towards the enemy base, burning all in its path",
 		"filename": "",
 		"cooldownTime": 10.0,
 		"numberOfUpgrades": 4,

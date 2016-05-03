@@ -11,7 +11,6 @@ angular.module('tutorialView', ['ngRoute'])
         $scope.prevText = "";
 
         $scope.xTranslate = 0;
-        var step = 100 / $scope.tutorialSteps;
 
         setTeamBackground();
 
@@ -24,6 +23,9 @@ angular.module('tutorialView', ['ngRoute'])
 
         // Make the tutorials
         $scope.tutorials = TutorialService.makeTutorial(UserService.getHeroClass(), UserService.getUserTeam(), UserService.getSpecialPowers());
+        
+        var step = 100 / $scope.tutorials.length;
+
 
         $scope.getStyle = function (tut) {
             var style = {
@@ -37,6 +39,8 @@ angular.module('tutorialView', ['ngRoute'])
             if ($scope.currentTutorialIndex < $scope.tutorialSteps - 1) {
                 $scope.xTranslate -= step;
                 $scope.currentTutorialIndex += 1;
+            } else {
+                LocationService.setPath('/lobby');
             }
             afterMove();            
         };
@@ -65,7 +69,6 @@ angular.module('tutorialView', ['ngRoute'])
             } else {
                 $scope.prevText = "PREV";
                 $scope.nextText = "NEXT";
-
             }
         }
 
