@@ -73,6 +73,10 @@ describe('Lobby page', function () {
                     lane: "Left"
                 }];
             };
+            
+            this.getGameState = function(){
+                return 0;
+            };
         });
     };
 
@@ -98,10 +102,12 @@ describe('Lobby page', function () {
         //navigate to the website
         browser.get('http://localhost:7777/');
 
+        var joinbox = element(by.css('#start-button'));
         //enter a correct name and move to the game page
         var inputBox = element(by.css('#player-name-input-box'));
         var submitButton = element(by.css('#submit-button'));
-
+        
+        joinbox.click();
         inputBox.click();
         inputBox.sendKeys("Dave");
         submitButton.click();

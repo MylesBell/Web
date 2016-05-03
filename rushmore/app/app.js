@@ -11,7 +11,7 @@ angular.module('myApp', [
     "UserServiceModule",
     "GameInfoServiceModule",
     "config",
-    "ngIdle",
+    'ngIdle',
     "toastr"
     ]).
 config(function($routeProvider, IdleProvider, KeepaliveProvider, TitleProvider, toastrConfig) {

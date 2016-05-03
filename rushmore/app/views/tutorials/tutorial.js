@@ -3,14 +3,21 @@
    Let the player move throough a tutorial section of pages
 */
 angular.module('tutorialView', ['ngRoute'])
-    .controller('TutorialCtrl', ['$scope', 'UserService', 'LocationService', 'TutorialService','GameInfoService', function ($scope, UserService, LocationService, TutorialService, GameInfoService) {
+    .controller('TutorialCtrl', ['$scope', 'ENV', 'UserService', 'LocationService', 'TutorialService', 'GameInfoService', function ($scope, ENV, UserService, LocationService, TutorialService, GameInfoService) {
 
         $scope.tutorialSteps = 4;
         $scope.currentTutorialIndex = 0;
         $scope.nextText = "NEXT";
-        $scope.prevText = "SKIP";
+        $scope.prevText = "";
 
         setTeamBackground();
+
+        // Allow skipping the tutorial, onlt possible in dev builds
+        var allowSkipping = false;
+        if (ENV.name === 'development') {
+            allowSkipping = true;
+            $scope.prevText = "SKIP";
+        }
 
         // Make the tutorials
         $scope.tutorials = TutorialService.makeTutorial(UserService.getHeroClass(), UserService.getUserTeam(), UserService.getSpecialPowers());
@@ -77,7 +84,7 @@ angular.module('tutorialView', ['ngRoute'])
             // move to the next tutorial
             $scope.currentTutorialIndex -= 1;
 
-            if ($scope.currentTutorialIndex === 0) {
+            if ($scope.currentTutorialIndex === 0 && allowSkipping) {
                 // allow skipping on the first page
                 $scope.prevText = "SKIP";
             }
@@ -109,7 +116,9 @@ angular.module('tutorialView', ['ngRoute'])
 
             } else {
                 // skip to the lobby
-                LocationService.setPath('/lobby');
+                if (allowSkipping) {
+                    LocationService.setPath('/lobby');
+                }
             }
         };
 
@@ -118,6 +127,13 @@ angular.module('tutorialView', ['ngRoute'])
             var colors = UserService.getTeamColor();
             var tutorialsControlContainer = document.getElementById('tutorial-controls');
             tutorialsControlContainer.style.backgroundColor = colors.dark;
+            
+            var team = UserService.getUserTeam();
+            if (team === 'red-team') {
+                tutorialsControlContainer.style.backgroundImage = "url('../resources/images/backgrounds/red_tut_polybackground.png')";
+            } else {
+                tutorialsControlContainer.style.backgroundImage = "url('../resources/images/backgrounds/blue_tut_polybackground.png')";
+            }
         }
 
     }]);

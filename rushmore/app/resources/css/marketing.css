@@ -11,6 +11,7 @@ body {
     color: #7f8c8d;
     font-size: 18px;
     font-family: 'Droid Sans', sans-serif;
+    margin: 0px;
 }
 h1, h2, h3, h4, h5, h6, label {
     color: #34495e;
@@ -92,29 +93,61 @@ h1, h2, h3, h4, h5, h6, label {
     color: #6FBEF3;
 }
 
+
+/* do not group these rules */
+::-webkit-input-placeholder {
+    color: #95A5A6;
+}
+:-moz-placeholder {
+    /* FF 4-18 */
+    color: #95A5A6;
+}
+*::-moz-placeholder {
+    /* FF 19+ */
+    color: #95A5A6;
+}
+*:-ms-input-placeholder {
+    /* IE 10+ */
+    color: #95A5A6;
+}
+
 /* This is the input box heading that appears on the blue section */
 .input-box {
     font-size: 20px;
-    font-weight: bold;
     text-align: center;
     color: rgba(21, 21, 21, 1);
     border: 3px solid rgba(21, 21, 21, 1);
     background-color: #ECF0F1;
     padding: 1em 1.6em;
-    font-weight: 100;
     border-radius: 5px;
-    line-height: 1em;
     font: inherit;
-    width: 100%;
+    width: 80%;
 }
 .deploy-button {
-    background-color: white;
-    color: rgba(21, 21, 21, 1);
-    padding: 0.5em 2em;
-    border-radius: 5px;
-    font-size: 25px;
-    font-weight: 100;
-    font: inherit;
+background-color: #87D37C;
+    color: white;
+    font-size: 40px;
+    font-weight: 400;
+    border: none;
+    width: 80%;
+    height: 120px;
+    border-radius: 4px;
+    margin-right: 40px;
+    margin-left: 40px;
+    margin-top: 40px;
+}
+
+.deploy-button:active {
+    background-color: #26A65B;
+}
+
+.valid-name-input{
+    /*background-color: green;*/
+}
+
+.invalid-name-input{
+    background-color: #95A5A6;
+    color: #D2D7D3;
 }
 
 /*
@@ -125,21 +158,34 @@ h1, h2, h3, h4, h5, h6, label {
     z-index: 1;
     overflow: hidden;    /* The following styles are required for the "scroll-over" effect */
     width: 100%;
-    height: 100%;
+    height: 100vh;
     top: 0;
     left: 0;
-    position: fixed !important;
     background: white;
+}
+
+.splash-container {
+    background-image: url('../images/backgrounds/polybackground.png');
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+}
+
+.splash-container h1 {
+    color:white;
+    font-size: 70px;
+    text-align: center;
+    transform: translateY(50%);
+    -webkit-transition: all 300ms ;
+    -moz-transition: all 300ms ;
+    transition: all 300ms ;
 }
 
 .bottom-container {
     width: 100%;
-    padding-left: 40px;
-    padding-right: 40px;
     margin: auto;
-    top: 25%;
-    position: absolute;
     text-align: center;
+    padding-top: 80px;
 }
 
 #main-container .splash-subhead {
@@ -147,20 +193,19 @@ h1, h2, h3, h4, h5, h6, label {
 }
 
 #main-container h1{
-    color: rgba(21,21,21,1);
-    font-size: 25px;
+    margin-top: 0;
     margin-bottom: 0px;
-    letter-spacing: 0.05em;
-    opacity: 0.8;
     font-weight: 100;
     line-height: 1.2em;
 }
 
 #main-container h2{
+    color:white;
     font-size: 25px;
     margin-bottom: 0px;
     font-weight: 100;
     line-height: 1.2em;
+    margin:30px 15px 30px 15px;
 }
 
 #top-container {
@@ -213,11 +258,13 @@ h1, h2, h3, h4, h5, h6, label {
 }
 
 .mini-lesson .text h2 {
-    color: white;
+    margin: 30px 0px 0px 0px !important;
 }
 
 .mini-lesson .text p {
     color: white;
+    font-size: 20px;
+    margin-top: 0px;
 }
 
 .mini-lesson .image {
@@ -262,9 +309,16 @@ h1, h2, h3, h4, h5, h6, label {
     position: relative;    
 }
 
-#tutorial-controls {
-    height: 10%;
+
+#lessons-container {
     width: 100%;
+    height: 85vh;
+}
+
+#tutorial-controls {
+    height: 15vh;
+    width: 100%;
+    font-size: 25px;
     background-color: #3A539B;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -337,11 +391,6 @@ h1, h2, h3, h4, h5, h6, label {
     font-size: 18px;
 }
 
-#lessons-container {
-    width: 100%;
-    height: 90%;
-}
-
 .tutorial-lesson img {
     height: 100px;
     width: auto;
@@ -350,6 +399,7 @@ h1, h2, h3, h4, h5, h6, label {
 .tutorial-text {
     width: 80%;
     text-align: center;
+    font-size: 25px;
     margin-top: 50%; 
  }
 
@@ -374,23 +424,6 @@ h1, h2, h3, h4, h5, h6, label {
             flex-flow: row-reverse wrap;
 }
 
-#tutorial-progress-indicator {
-    width: 30%;
-    height: 100%;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-flow: row wrap;
-        -ms-flex-flow: row wrap;
-            flex-flow: row wrap;
-    -webkit-justify-content: space-around;
-        -ms-flex-pack: distribute;
-            justify-content: space-around;
-    -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center;
-}
-
 .tutorial-anim-page-slide-left{
     transition: 0.8s;
     -webkit-transform: translateX(-100%);
@@ -407,14 +440,14 @@ h1, h2, h3, h4, h5, h6, label {
     -webkit-animation:0.8s anim-page-slide-in-left;
             animation:0.8s anim-page-slide-in-left;
     position: absolute;
-    top: 0px;height:90%;
+    top: 0px;height:85vh;
 }
 
 .tutorial-anim-page-slide-in-right{
     -webkit-animation: 0.8s anim-page-slide-in-right;
             animation: 0.8s anim-page-slide-in-right;
     position: absolute;
-    top: 0px;height:90%;
+    top: 0px;height:85vh;
 }
 
 @-webkit-keyframes anim-page-slide-in-left {
@@ -439,8 +472,8 @@ h1, h2, h3, h4, h5, h6, label {
 
 .tutorial-progress-dot {
     border-radius: 50%;
-    width: 10px;
-    height: 10px;    
+    width: 13px;
+    height: 13px;    
     background-color: grey;
 }
 
@@ -901,25 +934,6 @@ h1, h2, h3, h4, h5, h6, label {
     background: #95A5A6;
 }
 
-/* do not group these rules */
-*::-webkit-input-placeholder {
-    color: #DADFE1;
-}
-*:-moz-placeholder {
-
-    /* FF 4-18 */
-    color: white;
-}
-*::-moz-placeholder {
-
-    /* FF 19+ */
-    color: white;
-}
-*:-ms-input-placeholder {
-
-    /* IE 10+ */
-    color: white;
-}
 
 /* This is the subheading that appears on the blue section */
 .splash-subhead {
@@ -932,8 +946,23 @@ h1, h2, h3, h4, h5, h6, label {
         margin-top: 0px;
     }
     
+    .splash-container h1 {
+        font-size: 50px;
+    }
+    
+    #main-container h2{
+        margin: 10px 10px 10px 10px;
+    }
+    
+    .deploy-button {
+        font-size: 35px;
+        width: 75%;    
+        margin-top: 20px;
+    
+    }
+    
     #tutorial-controls {
-        font-size: 16px;
+        font-size: 25px;
     }
     
     .mini-lesson .text h2 {
@@ -941,7 +970,7 @@ h1, h2, h3, h4, h5, h6, label {
     }
 
     .mini-lesson .text p {
-        font-size: smaller !important;
+        font-size: 17px !important;
     }
 
 }

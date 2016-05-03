@@ -193,24 +193,22 @@ angular.module('gameView', ['ngRoute'])
                 var colors = UserService.getTeamColor();
 
                 var mainContainer = document.getElementById('main-container');
-                var controlsContainer = document.getElementById('controls-container');
                 var statsContainer = document.getElementById('stats-container');
-                var specialsContainer = document.getElementById('specials-container');
                 var container = document.getElementById('game-container');
 
-                controlsContainer.style.backgroundColor = colors.primary;
                 statsContainer.style.backgroundColor = colors.dark;
-                specialsContainer.style.backgroundColor = colors.primary;
 
                 if ($scope.teamClass === "blue-team") {
                     $scope.teamClassCSS = "blue-team";
+                    container.style.backgroundImage = 'url("/resources/images/backgrounds/blue_game_back.png")';
                 } else {
                     $scope.teamClassCSS = "red-team";
+                    container.style.backgroundImage = 'url("/resources/images/backgrounds/red_game_back.png")';
                 }
 
                 container.style.height = "100%";
                 container.style.top = "0px";
-                
+
                 // Set the class image
                 var classNo = UserService.getHeroClass();
                 var classBasePath = "/resources/images/hats/";
@@ -237,4 +235,3 @@ angular.module('gameView', ['ngRoute'])
             }
 
         }]);
-        
