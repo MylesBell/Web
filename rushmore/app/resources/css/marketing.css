@@ -564,6 +564,10 @@ background-color: #87D37C;
     min-height: 40%;
 }
 
+/*
+    Styles for the game page
+*/
+
 #game-container {
     height: 90%;
     top: 50px;
@@ -871,9 +875,11 @@ background-color: #87D37C;
 #death-container {
     background-color: grey;
 }
+
 #game-over-container {
     background-color: pink;
 }
+
 .state-container {
     height: 100%;
     position: absolute;
@@ -934,11 +940,29 @@ background-color: #87D37C;
     background: #95A5A6;
 }
 
+/*
+//////////////////////////////////////////////////////
+
+    Styles for the stats and leaderboard page
+    
+//////////////////////////////////////////////////////
+*/
+
+
+
+/*
+//////////////////////////////////////////////////////
+
+    Styles for the mobile and landscape screens
+    
+//////////////////////////////////////////////////////
+*/
 
 /* This is the subheading that appears on the blue section */
 .splash-subhead {
     color: white;
 }
+
 @media (max-width:320px) {
 
     /* For the iphone 4 at 320px wide */
