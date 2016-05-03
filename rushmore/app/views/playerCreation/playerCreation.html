@@ -8,9 +8,9 @@
             <input class="input-box" type="text" placeholder="Enter Your Name" ng-model="username" ng-click="username = ''" id="player-name-input-box"
                 ng-change="checkName()" autocomplete="off" style="margin-top:20px" />
 
-            <div id="submit-button" type="submit" class="deploy-button" ng-class="{'valid-name-input': validname, 'invalid-name-input': !validname}"
+            <button id="submit-button" type="submit" class="deploy-button" ng-class="{'valid-name-input': validname, 'invalid-name-input': !validname}"
                 ng-disabled="!validname" ng-click="deploy()">
-                Join Game</div>
+                Join Game</button>
         </form>
     </div>
 </div>
