@@ -30,10 +30,10 @@ angular.module('playerCreationView', ['ngRoute'])
         $scope.checkName = function () {
             console.log($scope.username);
             if ($scope.username === "") {
-                console.log("didn't enter a name");
+                console.log("Please enter a name");
                 $scope.validname = false;
             } else if ($scope.username.length > 20) {
-                console.log("Too long");
+                console.log("Please use a shorter name");
                 $scope.validname = false;
             } else {
                 $scope.validname = true;
