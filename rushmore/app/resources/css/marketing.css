@@ -130,11 +130,7 @@ background-color: #87D37C;
     margin-right: 40px;
     margin-left: 40px;
     margin-top: 40px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-content: space-around;
+    text-align: center;   
     line-height: 120px;
 }
 
@@ -235,6 +231,11 @@ background-color: #87D37C;
     width: 100%;    
     position: absolute;
     color: white;
+}
+
+#tutorial-sliding-container{
+    height: 100%;
+    width: 400%;
 }
 
 .tutorial-page-container {
