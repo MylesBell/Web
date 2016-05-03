@@ -12,7 +12,7 @@ angular.module('playerCreationView', ['ngRoute'])
         $scope.started = false;
         
         // Variables to control the buttons moving around the page
-        $scope.titleTranslate = 80;
+        $scope.titleTranslate = 60;
         $scope.formTranslate = 100;
         
         var enableFullScreen = false; //SHOULD be TRUE in PROD
