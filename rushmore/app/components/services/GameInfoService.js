@@ -42,9 +42,6 @@ angular.module('GameInfoServiceModule', []).factory('GameInfoService', ["$q", "N
         getStats: getStats
     };
 
-<<<<<<< HEAD
-}]);
-=======
     // Tell listeners that a player has joined
     function handlePlayerJoinedEvent(data) {
         playerList = data.playerList;
@@ -107,5 +104,4 @@ angular.module('GameInfoServiceModule', []).factory('GameInfoService', ["$q", "N
     }
 
 
-});
->>>>>>> origin/master
+}]);
