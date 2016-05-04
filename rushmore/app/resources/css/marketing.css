@@ -928,7 +928,7 @@ background-color: #87D37C;
 }
 
 #podiums-container {
-    height: 300px;
+    height: 60%;
     width:200%;
     display: flex;
     justify-content: space-around;
@@ -936,7 +936,6 @@ background-color: #87D37C;
     -moz-transition: all 300ms ;
     transition: all 300ms ;
 }
-
 
 .podium-container {
     display: flex;
@@ -974,36 +973,50 @@ background-color: #87D37C;
     width: 100%;
     background-image: url('/resources/images/stats/herotypes/viking_placeholder.png');
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: 75%;
     background-position-y: 105%;
+    background-position-x: 50%;
+}
 
+.name{
+    width: 100%;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
 }
 
 .second-place.box{
     background-color: silver;
     height:30%;
 }
-
 .second-place.player{
-    height:70%;
+    height:50%;
+}
+.second-place.name {
+    height:20%
 }
 
 .first-place.box {
-    height:50%;
+    height:60%;
     background-color: gold;
 }
-
 .first-place.player {
     height:50%;
+}
+.first-place.name {
+    height:10%
 }
 
 .third-place.box {
     height:20%;
     background-color: #cc6633;
 }
-
 .third-place.player {
-    height:80%;
+    height:50%;
+}
+.third-place.name {
+    height:30%
 }
 
 #award-text-container {
@@ -1022,6 +1035,7 @@ background-color: #87D37C;
     height: 70px;
     width: 70px;
     background-size: contain;
+    background-repeat: no-repeat;
 }
 
 #arrow-right  {
@@ -1062,6 +1076,10 @@ background-color: #87D37C;
     
     #main-container h2{
         margin: 10px 10px 10px 10px;
+    }
+    
+     #main-container h1{
+       font-size: 50px;
     }
     
     .deploy-button {
