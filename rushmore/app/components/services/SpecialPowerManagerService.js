@@ -2,7 +2,7 @@
     Service that provides an interface for sending and recieving messages over the network,
     connects to mobile server using socketio client
 */
-angular.module('myApp').factory('SpecialPowerManagerService', function($q, $interval, InputHandlerService) {
+angular.module('myApp').factory('SpecialPowerManagerService', ["$q", "$interval", "InputHandlerService", function($q, $interval, InputHandlerService) {
 
     var vibrateTime = 200;
 
@@ -67,4 +67,4 @@ angular.module('myApp').factory('SpecialPowerManagerService', function($q, $inte
         setupSpecials: setupSpecials
     };
 
-});
+}]);

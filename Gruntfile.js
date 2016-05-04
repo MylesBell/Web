@@ -8,8 +8,17 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-protractor-runner');    
     grunt.loadNpmTasks('grunt-selenium-webdriver');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    require('load-grunt-tasks')(grunt);
 
     grunt.initConfig({
+        shell: {
+            options: {
+                stderr: false
+            },
+            target: {
+                command: 'sh minify.sh'
+            }
+        },
         bower: {
             install: {
                 options: {
@@ -164,18 +173,19 @@ module.exports = function (grunt) {
 
     grunt.registerTask("check", ["jshint"]);
     grunt.registerTask("install", ['bower:install']);
-    grunt.registerTask('e2e-test', ["check", 'ngconstant:dev', "express:angular_loc", "express:socket_test", 'selenium_start', 'protractor:e2e']);
+    grunt.registerTask('e2e-test', ["check", "shell", 'ngconstant:dev', "express:angular_loc", "express:socket_test", 'selenium_start', 'protractor:e2e']);
     grunt.registerTask("run-socket", ["express:socket"]);
     grunt.registerTask("default", ["check", 'install']);
     grunt.registerTask("run-angular-local-phone", ["default", "ngconstant:dev_phone", "express:angular_loc", "watch:angular"]);
     grunt.registerTask("run-angular-local-wifi", ["default", "ngconstant:dev_local_wifi", "express:angular_loc", "watch:angular"]);
-    grunt.registerTask("run-angular-local", ["default", "ngconstant:dev", "express:angular_loc", "watch:angular"]);
-    grunt.registerTask("run-angular-prod", ["default", "ngconstant:prod", "express:angular_prod", "watch:angular"]);
+    grunt.registerTask("run-angular-local", ["default", "shell", "ngconstant:dev", "express:angular_loc", "watch:angular"]);
+    grunt.registerTask("run-angular-prod", ["default", "shell", "ngconstant:prod", "express:angular_prod", "watch:angular"]);
     grunt.registerTask("run-socket-prod", ["default", "express:socket", "watch:socket"]);
     grunt.registerTask("run-socket-test", ["default", "express:socket_test", "watch:socket_test"]);
     grunt.registerTask("run-socket-local", ["default", "express:socket", "watch:socket"]);
 
     grunt.registerTask("run-concurrent-local", ["concurrent:run"]);
     grunt.registerTask("run-concurrent-dev", ["concurrent:run_dev"]);
+    grunt.registerTask('minify', ['shell']);
 
 };
