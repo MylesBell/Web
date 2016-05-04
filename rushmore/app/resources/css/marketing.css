@@ -839,7 +839,7 @@ background-color: #87D37C;
 }
 
 #death-container {
-    background-color: grey;
+    background-image: url('/resources/images/backgrounds/dead_game_back.png');
 }
 
 #game-over-container {
@@ -897,13 +897,10 @@ background-color: #87D37C;
     font-size: 20px;
 }
 .winning-team {
-    background: #2ECC71 !important;
+    background-image: url('/resources/images/backgrounds/winner_game_back.png');
 }
 .losing-team {
-    background: #D91E18 !important;
-}
-.dead-team {
-    background: #95A5A6;
+    background-image: url('/resources/images/backgrounds/loser_game_back.png'); 
 }
 
 /*

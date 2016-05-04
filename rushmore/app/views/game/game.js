@@ -140,8 +140,9 @@ angular.module('gameView', ['ngRoute'])
                 vibrate(respawnVibrateTime);
                 setup();
             }
-
-            handleGameStateUpdate({ state: 2, winner: 1 });
+            
+            handleGamePlayerDied({});
+            // handleGameStateUpdate({ state: 2, winner: 0 });
 
             // handle the game state changing to game over
             function handleGameStateUpdate(data) {
