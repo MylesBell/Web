@@ -173,7 +173,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask("check", ["jshint"]);
     grunt.registerTask("install", ['bower:install']);
-    grunt.registerTask('e2e-test', ["check", 'ngconstant:dev', "express:angular_loc", "express:socket_test", 'selenium_start', 'protractor:e2e']);
+    grunt.registerTask('e2e-test', ["check", "shell", 'ngconstant:dev', "express:angular_loc", "express:socket_test", 'selenium_start', 'protractor:e2e']);
     grunt.registerTask("run-socket", ["express:socket"]);
     grunt.registerTask("default", ["check", 'install']);
     grunt.registerTask("run-angular-local-phone", ["default", "ngconstant:dev_phone", "express:angular_loc", "watch:angular"]);
