@@ -1,0 +1,46 @@
+<div id="leaderboard-container">
+    <h1 ng-style="{'transform':'translateY(' + titleTranslate + '%)', '-webkit-transform':'translateY(' + titleTranslate + '%)'}">Leaderboard</h1>
+
+    <div id="podiums-container" ng-style="{'transform': 'translateX(' + boardTransform + '%)'}">
+        <div class="podium-container" ng-repeat="award in awards" ng-style="{'width': step + '%'}">
+            <div class="podium-place ">
+                <div class="second-place name">
+                    {{award.players[1].username}}
+                </div>
+                <div class="second-place player">
+                </div>
+                <div class="second-place box">
+                    <p>2</p>
+                </div>
+            </div>
+            <div class="podium-place ">
+                <div class="first-place name">
+                    {{award.players[0].username}}
+                </div>
+                <div class="first-place player">
+                </div>
+                <div class="first-place box">
+                    <p>1</p>
+                </div>
+            </div>
+            <div class="podium-place">
+                <div class="third-place name">
+                    {{award.players[2].username}}
+                </div>
+                <div class="third-place player">
+                </div>
+                <div class="third-place box">
+                    <p>3</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="award-text-container">
+        <div class="arrow" id="arrow-left" ng-click="prev()">
+        </div>
+        <h2 style="margin: 20px 0 0 0;width: 50%;text-align: center;">{{currentAward}}</h2>
+        <div class="arrow" id="arrow-right" ng-click="next()">
+        </div>
+    </div>
+</div>

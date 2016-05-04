@@ -11,7 +11,7 @@ angular.module('myApp', [
     "UserServiceModule",
     "GameInfoServiceModule",
     "config",
-    "ngIdle",
+    'ngIdle',
     "toastr"
     ]).
 config(["$routeProvider", "IdleProvider", "KeepaliveProvider", "TitleProvider", "toastrConfig", function($routeProvider, IdleProvider, KeepaliveProvider, TitleProvider, toastrConfig) {
@@ -33,6 +33,9 @@ config(["$routeProvider", "IdleProvider", "KeepaliveProvider", "TitleProvider", 
     }).when('/tutorial', {
         templateUrl: 'views/tutorials/tutorial.html',
         controller: 'TutorialCtrl'
+    }).when('/stats', {
+        templateUrl: 'views/stats/stats.html',
+        controller: 'StatsCtrl'
     }).when('/', {
         templateUrl: 'views/playerCreation/playerCreation.html',
         controller: 'PlayerCreationCtrl'

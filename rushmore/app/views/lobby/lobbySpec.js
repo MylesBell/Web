@@ -26,13 +26,16 @@ describe('Lobby page', function () {
             // Allways allow attempt to register with server
             this.registerUserWithServer = function (name) {
                 var deferred = $q.defer();
-                deferred.resolve({});
+                deferred.resolve({ok: true,
+                        username: name,
+                        path: '/join'});
                 return deferred.promise;
             };
 
             this.attemptToJoinGame = function (gamecode) {
                 var deferred = $q.defer();
                 deferred.resolve({
+                    ok: true,
                     state: 0
                 });
                 return deferred.promise;
@@ -73,6 +76,10 @@ describe('Lobby page', function () {
                     lane: "Left"
                 }];
             };
+            
+            this.getGameState = function(){
+                return 0;
+            };
         });
     };
 
@@ -98,10 +105,12 @@ describe('Lobby page', function () {
         //navigate to the website
         browser.get('http://localhost:7777/');
 
+        var joinbox = element(by.css('#start-button'));
         //enter a correct name and move to the game page
         var inputBox = element(by.css('#player-name-input-box'));
         var submitButton = element(by.css('#submit-button'));
-
+        
+        joinbox.click();
         inputBox.click();
         inputBox.sendKeys("Dave");
         submitButton.click();

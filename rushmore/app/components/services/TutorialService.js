@@ -34,7 +34,7 @@ angular.module('myApp').service('TutorialService', function () {
         return [{
             tutIndex: 0,
             tutType: "single",
-            tutorialTitle: "Vikings and Cowboys are locked in endless war",
+            tutorialTitle: "You are a " + teamPrefix.toUpperCase() + "!",
             tutorialText: "Destroy the " + enemyName + "'S base to win the game",
             tutorialImage: {
                 image: "../../resources/images/tutorial/backgrounds/" + enemyTeamPrefix + "_base.png",
@@ -45,7 +45,7 @@ angular.module('myApp').service('TutorialService', function () {
                 tutIndex: 1,
                 tutType: "single",
                 tutorialTitle: "You Auto-Attack enemies beside you",
-                tutorialText: "Defeating enemy grunts and heros will make you stronger",
+                tutorialText: "Defeating enemy grunts and heros will make you stronger!",
                 tutorialImage: {
                     image: "../../resources/images/tutorial/backgrounds/" + teamPrefix + "_grunt_battle.png", offset_x: "80%"
                 },
@@ -54,7 +54,7 @@ angular.module('myApp').service('TutorialService', function () {
                 tutIndex: 2,
                 tutType: "single",
                 tutorialTitle: "You are a " + className,
-                tutorialText: "Use your unique special powers influence the battle",
+                tutorialText: "Use your unique special powers to influence the battle",
                 tutorialImage: {
                     image: classImage,
                     offset_x: "50%"

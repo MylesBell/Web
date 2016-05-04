@@ -334,7 +334,6 @@ angular.module('gameView')
             drawPad();
             drawPlayerHealthRing();
             drawKnob();
-
         }
 
         function drawKnob() {
@@ -397,14 +396,6 @@ angular.module('gameView')
 
         // Draw the control pad with the sectors for movement
         function drawPad() {
-
-            ctx.fillStyle = "white";
-            ctx.strokeStyle = primaryColor;
-            ctx.lineWidth = 0;
-            ctx.beginPath();
-            ctx.arc(centerX, centerY, padRadius, 0, Math.PI * 2, true); // Outer circle
-            ctx.stroke();
-            ctx.fill();
 
             // get which pad the knob is in
             // get angle from point to hoiztonal and compare to the arc of each the pad zone

@@ -6,17 +6,17 @@ angular.module('myApp').
 service('NetworkService', ["$q", "socket", "StorageService", "$rootScope", "Idle", function($q, socket, StorageService, $rootScope, Idle) {
     $rootScope.events = [];
 
-    $rootScope.$on('IdleStart', function() {
+    $rootScope.$on('IdleStart', function () {
         console.log("Player is now idle");
     });
 
-    $rootScope.$on('IdleWarn', function(e, countdown) {
+    $rootScope.$on('IdleWarn', function (e, countdown) {
         // Do we want to warn the user?
     });
 
-    $rootScope.$on('IdleTimeout', function() {
+    $rootScope.$on('IdleTimeout', function () {
         socket.disconnect();
-        $rootScope.$apply(function() {
+        $rootScope.$apply(function () {
             alertListeners("locationChange", "/");
         });
         Idle.watch();
@@ -26,7 +26,7 @@ service('NetworkService', ["$q", "socket", "StorageService", "$rootScope", "Idle
 
     //check on connect if we have connected previous (cookie or local storage)
     //send that data to the server
-    socket.on("connect", function(data) {
+    socket.on("connect", function (data) {
         // get the  client user id in session storage, if it exists
         // var existingID = StorageService.get("uID");
         // TODO actuallt do this
@@ -39,53 +39,57 @@ service('NetworkService', ["$q", "socket", "StorageService", "$rootScope", "Idle
         });
     });
 
-    socket.on("locationChange", function(data) {
+    socket.on("locationChange", function (data) {
         alertListeners("locationChange", data);
     });
 
-    socket.on('gameStateUpdate', function(data) {
+    socket.on('gameStateUpdate', function (data) {
         alertListeners("gameStateUpdate", data);
     });
 
     // called by the sever when a player has their request to join a game granted
-    socket.on('gamePlayerJoined', function(data) {
+    socket.on('gamePlayerJoined', function (data) {
         alertListeners("gamePlayerJoined", data);
     });
 
-    socket.on('gamePlayerLeft', function(data) {
+    socket.on('gamePlayerLeft', function (data) {
         alertListeners("gamePlayerLeft", data);
     });
 
-    socket.on("gamePlayerNearBase", function(data) {
+    socket.on("gamePlayerNearBase", function (data) {
         alertListeners("gamePlayerNearBase", data);
     });
 
-    socket.on("gamePlayerChangeHealth", function(data) {
+    socket.on("gamePlayerChangeHealth", function (data) {
         alertListeners("gamePlayerChangeHealth", data);
     });
 
-    socket.on("gamePlayerDied", function(data) {
+    socket.on("gamePlayerDied", function (data) {
         alertListeners("gamePlayerDied", data);
     });
 
-    socket.on("gamePlayerRespawn", function(data) {
+    socket.on("gamePlayerRespawn", function (data) {
         alertListeners("gamePlayerRespawn", data);
     });
 
-    socket.on("gameBaseChangeHealth", function(data) {
+    socket.on("gameBaseChangeHealth", function (data) {
         alertListeners("gameBaseChangeHealth", data);
     });
 
-    socket.on("gamePlayerLevelUp", function(data) {
+    socket.on("gamePlayerLevelUp", function (data) {
         alertListeners("gamePlayerLevelUp", data);
     });
-    
-    socket.on("gamePlayerSwitchLane", function(data){
+
+    socket.on("gamePlayerSwitchLane", function (data) {
         alertListeners("gamePlayerSwitchLane", data);
     });
 
+    socket.on("gamePlayersStats", function (data) {
+        alertListeners("gamePlayerStats", data);
+    });
+
     function alertListeners(eventName, eventData) {
-        listenerEventList.forEach(function(listener) {
+        listenerEventList.forEach(function (listener) {
             if (listener.eventName === eventName) {
                 var call = listener.call;
                 call(eventData);
@@ -100,7 +104,7 @@ service('NetworkService', ["$q", "socket", "StorageService", "$rootScope", "Idle
     function send(eventName, msg) {
         var deferred = $q.defer();
 
-        socket.emit(eventName, msg, function(res) {
+        socket.emit(eventName, msg, function (res) {
             if (res.ok) {
                 deferred.resolve(res);
             } else {
@@ -124,5 +128,4 @@ service('NetworkService', ["$q", "socket", "StorageService", "$rootScope", "Idle
         registerListener: registerListener,
         alertListeners: alertListeners
     };
-
 }]);

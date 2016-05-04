@@ -113,12 +113,12 @@ io.on('connection', function (socket) {
     */
     socket.on("playerJoinGame", function (data, callback) {
         var res = mobile.playerJoinGame(socket, data, housekeeping.logger, playerList);
-
+        
         // If joining game was successful, tell the unity server to add them to game        
         if (res.ok) {
             io.sockets.in(UNITY_CHAN).emit('playerJoin', res);
         }
-
+        
         // In testing mode, fake the unity server response, as we need to progress in the app
         // without needing a running unity server
         if (testingEnabled) {
@@ -277,6 +277,15 @@ io.on('connection', function (socket) {
         if (res.ok) {
             io.sockets.in(res.uID).emit("gamePlayerLevelUp", res);
         }
+    });
+    
+    /*
+        Statitics about the game for all players, sent at the end of a game
+    */
+    socket.on('gamePlayersStats', function(data){
+       console.log(data);
+       
+       io.sockets.in(MOBILE_CHAN).emit("gamePlayersStats", data); 
     });
 
 
