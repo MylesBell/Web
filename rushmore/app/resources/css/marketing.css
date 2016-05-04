@@ -889,17 +889,17 @@ background-color: #87D37C;
         -ms-flex-align: center;
             align-items: center;
 }
+
+/*
+    Game over stuuf
+*/
 #respawn-text {
     font-size: 20px;
 }
-.blue-team {
-
-    /*background: #ECF0F1;*/
-    background: #4183D7 !important;
+.winning-team {
+    background: #2ECC71 !important;
 }
-.red-team {
-
-    /*background: #ECF0F1;*/
+.losing-team {
     background: #D91E18 !important;
 }
 .dead-team {

@@ -41,9 +41,9 @@
         </div>
     </div> 
 </div>
-<div id="game-over-container" class="state-container pure-g" ng-show="gameOver" ng-class="{'blue-team' : winner, 'red-team' : !winner}">
+<div id="game-over-container" class="state-container pure-g" ng-show="gameOver" ng-class="{'winning-team' : winner, 'losing-team' : !winner}">
     <div id="game-over-text-container" class="state-text-container pure-u-1">
-        Game over
+        You {{wonOrLost}}
     </div> 
 
     <div id="death-timer-container" class="pure-u-1">
