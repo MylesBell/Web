@@ -19,7 +19,12 @@
         </h2>
         <div class="class-container" ng-style="{'transform': 'translateX('+ classTranslate +'%)'}">
             <div class="single-class-container" ng-repeat="class in classes">
-                {{class.name}}
+                <div class="class-header">
+                    <div class="hat-image" style="background-image:url('{{class.hatImage}}')">
+                        
+                    </div>
+                    {{class.name}}
+                </div>
             </div>
            
         </div>

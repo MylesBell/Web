@@ -24,16 +24,22 @@ angular.module('playerCreationView', ['ngRoute'])
 
         $scope.classes = [
             {
-                name: "Hardhat"
+                name: "Hardhat",
+                hatImage: '/resources/images/hats/hardhat_circle_small.png'
             },
             {
-                name: "Healer"
+                name: "Healer",
+                hatImage: '/resources/images/hats/healer_circle_small.png'
+
             },
             {
-                name: "Hunter"
+                name: "Hunter",
+                hatImage: '/resources/images/hats/hunter_circle_small.png'
+
             },
             {
-                name: "Hitman"
+                name: "Hitman",
+                hatImage: '/resources/images/hats/hitman_circle_small.png'
             }
         ];
         var currentClassSelected = 0;
