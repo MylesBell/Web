@@ -3,23 +3,27 @@
    Let the player set their username, then move to the game join screen
 */
 angular.module('playerCreationView', ['ngRoute'])
-    .controller('PlayerCreationCtrl', ['$scope', 'UserService', 'LocationService', 'GameInfoService', function($scope, UserService, LocationService, GameInfoService) {
+    .controller('PlayerCreationCtrl', ['$scope', 'UserService', 'LocationService', 'GameInfoService', function ($scope, UserService, LocationService, GameInfoService) {
 
         // Entered name of the user
         $scope.username = "";
         // Css class showing wether the input name is valid or not
         $scope.validname = false;
         $scope.started = false;
-        
+
+        // Controls whether the to allow user to submit the form
+        // Disabled waiting for submit to go through 
+        var enableSubmit = true;
+
         // Variables to control the buttons moving around the page
         $scope.titleTranslate = 60;
         $scope.formTranslate = 100;
-        
+
         var enableFullScreen = true; //SHOULD be TRUE in PROD
-        
-         var codeForm = document.getElementById('start-button');
+
+        var codeForm = document.getElementById('start-button');
         codeForm.addEventListener("click", fullscreen);
-        
+
         $scope.start = function () {
             // LocationService.setPath('/create'); // TODO CHANGE THIS 
             $scope.started = true;
@@ -47,23 +51,27 @@ angular.module('playerCreationView', ['ngRoute'])
         */
         $scope.deploy = function () {
 
-            //register with server and send username
-            // TODO save user details, perhaps in the user service
-            if ($scope.validname) {
+            if (enableSubmit) {
+                enableSubmit = false;
 
-                UserService.registerUserWithServer($scope.username)
-                    .then(function (res) {
-                        console.log(res);
-                        LocationService.setPath(res.path);
-                    }).catch(function(res) {
-                        // name was not right, show the user the error                
-                        console.log(res);
-                        alert(res.message);
-                    });
+                //register with server and send username
+                // TODO save user details, perhaps in the user service
+                if ($scope.validname) {
+                    UserService.registerUserWithServer($scope.username)
+                        .then(function (res) {
+                            console.log(res);
+                            LocationService.setPath(res.path);
+                        }).catch(function (res) {
+                            // name was not right, show the user the error                
+                            console.log(res);
+                            alert(res.message);
+                            enableSubmit = true;
+                        });
+                }
             }
 
         };
-        
+
         function fullscreen() {
             if (enableFullScreen) {
                 var mainContainer = document.getElementById('main-container');

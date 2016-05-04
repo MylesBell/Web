@@ -925,7 +925,7 @@ background-color: #87D37C;
 }
 
 #podiums-container {
-    height: 300px;
+    height: 60%;
     width:200%;
     display: flex;
     justify-content: space-around;
@@ -934,19 +934,17 @@ background-color: #87D37C;
     transition: all 300ms ;
 }
 
-
 .podium-container {
     display: flex;
     flex-flow: row;
     align-items: flex-end;    
     width: 25%;
-    height: 300px;
+    height: 100%;
     margin-top: 50px;
 }
 
 .podium-place {
     flex: 1;
-    background-color: white;
     text-align: center;
     padding-top: 5px;
     color:white;
@@ -955,33 +953,73 @@ background-color: #87D37C;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    height: 100%;
 }
 
 .podium-place p{
     margin: 0px;
 }
 
-
-.third-place {
-    height:20%;
-    background-color: #cc6633;;
+.box{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.player {
+    width: 100%;
+    background-image: url('/resources/images/stats/herotypes/viking_placeholder.png');
+    background-repeat: no-repeat;
+    background-size: 75%;
+    background-position-y: 105%;
+    background-position-x: 50%;
 }
 
-.second-place {
-    height:40%;
+.name{
+    width: 100%;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.second-place.box{
     background-color: silver;
-
+    height:30%;
+}
+.second-place.player{
+    height:50%;
+}
+.second-place.name {
+    height:20%
 }
 
-.first-place {
+.first-place.box {
     height:60%;
     background-color: gold;
+}
+.first-place.player {
+    height:50%;
+}
+.first-place.name {
+    height:10%
+}
+
+.third-place.box {
+    height:20%;
+    background-color: #cc6633;
+}
+.third-place.player {
+    height:50%;
+}
+.third-place.name {
+    height:30%
 }
 
 #award-text-container {
     width: 100%;
     margin-top: 20px; 
-    height: 150px;
+    height: 15%;
     display: flex;
     flex-flow: row;
     justify-content: space-around;
@@ -994,6 +1032,7 @@ background-color: #87D37C;
     height: 70px;
     width: 70px;
     background-size: contain;
+    background-repeat: no-repeat;
 }
 
 #arrow-right  {
@@ -1034,6 +1073,10 @@ background-color: #87D37C;
     
     #main-container h2{
         margin: 10px 10px 10px 10px;
+    }
+    
+     #main-container h1{
+       font-size: 50px;
     }
     
     .deploy-button {

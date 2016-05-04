@@ -1,7 +1,7 @@
 angular.module('gameView', ['ngRoute'])
     .controller('GameCtrl', ['$scope', "NetworkService", "UserService", "$interval",
-        "SpecialPowerManagerService", "$rootScope", "toastr",
-        function ($scope, NetworkService, UserService, $interval, SpecialPowerManagerService, $rootScope, toastr) {
+        "SpecialPowerManagerService", "$rootScope", "toastr", 'GameInfoService',
+        function ($scope, NetworkService, UserService, $interval, SpecialPowerManagerService, $rootScope, toastr, GameInfoService) {
 
             $scope.teamClass = UserService.getUserTeam();
             $scope.teamClassCSS = "blue-team";

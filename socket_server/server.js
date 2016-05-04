@@ -278,6 +278,15 @@ io.on('connection', function (socket) {
             io.sockets.in(res.uID).emit("gamePlayerLevelUp", res);
         }
     });
+    
+    /*
+        Statitics about the game for all players, sent at the end of a game
+    */
+    socket.on('gamePlayersStats', function(data){
+       console.log(data);
+       
+       io.sockets.in(MOBILE_CHAN).emit("gamePlayersStats", data); 
+    });
 
 
 
