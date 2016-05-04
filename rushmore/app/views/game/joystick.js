@@ -1,13 +1,13 @@
 angular.module('gameView')
-    .controller('JoystickController', ['$scope', 'InputHandlerService', "NetworkService", "UserService", "$rootScope", function($scope, InputHandlerService, NetworkService, UserService, $rootScope) {
+    .controller('JoystickController', ['$scope', 'InputHandlerService', "NetworkService", "UserService", "$rootScope", function ($scope, InputHandlerService, NetworkService, UserService, $rootScope) {
 
         //  Fired when user selects input button on game controller page
         // input can be one of several driections or powers, sends this input to the server
         // TODO rename this function to movement changed
-        $scope.inputButtonClicked = function(direction) {
+        $scope.inputButtonClicked = function (direction) {
             InputHandlerService.handleInput({
                 direction: direction
-            }).catch(function(res) {});
+            }).catch(function (res) { });
         };
 
         /*
@@ -63,6 +63,9 @@ angular.module('gameView')
         var playerHealthLostRad = 0.0001; // number of rads removed from the semi circle of health i.e 45 degress is 75% health
         var baseHealthLostRad = 0.0001;
 
+        // element on the gameback, to move around while the controller moves
+        var background = document.getElementById('game-container');
+
         // set the colours
         var teamColors = UserService.getTeamColor();
         var primaryColor = teamColors.primary;
@@ -91,12 +94,12 @@ angular.module('gameView')
         }
 
         // Load the images and redraw the canvas when done
-        baseImageObj.onload = function() {
+        baseImageObj.onload = function () {
             baseImageObjLoaded = true;
             resizeCanvas();
         };
         userImageObj.src = "../../resources/images/user_health_icon.png";
-        userImageObj.onload = function() {
+        userImageObj.onload = function () {
             userImageObjLoaded = true;
             resizeCanvas();
         };
@@ -121,7 +124,7 @@ angular.module('gameView')
         // Listen to events from the root scope
         // this is from the game controller when a touch start occurs
         // rootscope allows communiation between controllers effectivly
-        $rootScope.$on("canvas.touch.start", function(e, args) {
+        $rootScope.$on("canvas.touch.start", function (e, args) {
             handleTouchStart(args);
         });
 
@@ -137,13 +140,13 @@ angular.module('gameView')
 
         // Bind event for user letting go of knob with mouse
         // stop the updating of the canvas and remove movement event listener
-        canvas.addEventListener("mouseup", function(e) {
+        canvas.addEventListener("mouseup", function (e) {
             stopKnobUpdate();
         });
 
         // Bind event for user letting go of knob with mouse
         // stop the updating of the canvas and remove movement event listener
-        canvas.addEventListener("touchend", function(e) {
+        canvas.addEventListener("touchend", function (e) {
             stopKnobUpdate();
         });
 
@@ -195,7 +198,7 @@ angular.module('gameView')
         // If the game end, then reset the base health to max to prepare for the game restarting
         function handleGameStateUpdate(data) {
             if (data.state === 2) {
-                handleGameBaseChangeHealth({currentBaseHealth: 1, maxBaseHealth:1});
+                handleGameBaseChangeHealth({ currentBaseHealth: 1, maxBaseHealth: 1 });
             }
         }
 
@@ -252,7 +255,7 @@ angular.module('gameView')
             joystick.distToOrigin = joystickDisp;
 
             // Only draw if inside the pad
-            if (joystickDisp > padRadius) {} else {
+            if (joystickDisp > padRadius) { } else {
                 joystick.x = newX;
                 joystick.y = newY;
                 joystick.down = true;
@@ -297,10 +300,19 @@ angular.module('gameView')
                 // moved knob to a new location
                 movDir = newMoveDir;
                 $scope.inputButtonClicked(movDir);
+
+                var backgroundPos = [['30%', '0%'], ['10%', '10%'], ['0%', '30%'], ['-10%', '10%'], ['-30%', '0%'], ['-10%', '-10%'],['0%', '-30%'], ['10%', '-10%']];
+                console.log(movDir);
+                // move the background around
+                background.style.backgroundPositionX = backgroundPos[movDir][0];
+                background.style.backgroundPositionY = backgroundPos[movDir][1];
+
             } else if (movDir !== newMoveDir && newMoveDir === -1) {
                 // dead zone
                 movDir = newMoveDir;
                 $scope.inputButtonClicked(movDir);
+                background.style.backgroundPositionX = "0%";
+                background.style.backgroundPositionY = "0%";
             }
 
             return movDir;
