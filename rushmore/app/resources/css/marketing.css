@@ -196,6 +196,7 @@ background-color: #87D37C;
     line-height: 1.2em;
     color:white;
     font-size: 70px;
+    height: 20%;
     text-align: center;
     transform: translateY(50%);
     -webkit-transition: all 300ms ;
