@@ -17,6 +17,7 @@
     "http-server": "^0.6.1",
     "jasmine": "^2.4.1",
     "jasmine-core": "^2.3.4",
+    "load-grunt-tasks": "^3.5.0",
     "protractor": "^2.1.0"
   },
   "scripts": {
