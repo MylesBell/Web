@@ -17,8 +17,27 @@ angular.module('playerCreationView', ['ngRoute'])
 
         // Variables to control the buttons moving around the page
         $scope.titleTranslate = 60;
-        $scope.formTranslate = 100;
-        $scope.headerFontSize = 70;
+        $scope.nameFormTranslate = 100;
+        $scope.chooseTranslate = 100;
+        $scope.headerFontSize = 50;
+        $scope.classTranslate = 0;
+
+        $scope.classes = [
+            {
+                name: "Hardhat"
+            },
+            {
+                name: "Healer"
+            },
+            {
+                name: "Hunter"
+            },
+            {
+                name: "Hitman"
+            }
+        ];
+        var currentClassSelected = 0;
+        $scope.currentClass = $scope.classes[0].name;
 
         var enableFullScreen = false; //SHOULD be TRUE in PROD
 
@@ -28,9 +47,36 @@ angular.module('playerCreationView', ['ngRoute'])
         $scope.start = function () {
             $scope.started = true;
             $scope.titleTranslate = 20;
-            $scope.formTranslate = 0;
-            $scope.headerFontSize = 50;
+            $scope.headerFontSize = 40;
+
+            $scope.nameFormTranslate = 0;
+            $scope.chooseTranslate = 0;
+
         };
+
+        // Moves use to the choose class section
+        $scope.moveToChooseClass = function () {
+
+        };
+
+        $scope.nextClass = function () {
+            if (currentClassSelected < 3) {
+
+                $scope.classTranslate -= 25;
+                currentClassSelected += 1;
+                $scope.currentClass = $scope.classes[currentClassSelected].name;
+            }
+
+        }
+
+        $scope.prevClass = function () {
+            if (currentClassSelected > 0) {
+                $scope.classTranslate += 25;
+                currentClassSelected -= 1;
+                $scope.currentClass = $scope.classes[currentClassSelected].name;
+
+            }
+        }
 
         $scope.checkName = function () {
             console.log($scope.username);
