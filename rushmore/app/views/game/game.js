@@ -139,10 +139,7 @@ angular.module('gameView', ['ngRoute'])
                 $scope.playerDead = false;
                 vibrate(respawnVibrateTime);
                 setup();
-            }
-            
-            handleGamePlayerDied({});
-            // handleGameStateUpdate({ state: 2, winner: 0 });
+            }           
 
             // handle the game state changing to game over
             function handleGameStateUpdate(data) {
