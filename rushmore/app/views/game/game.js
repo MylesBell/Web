@@ -222,7 +222,7 @@ angular.module('gameView', ['ngRoute'])
                 var container = document.getElementById('game-container');
 
                 statsContainer.style.backgroundColor = colors.dark;
-
+                
                 if ($scope.teamClass === "blue-team") {
                     $scope.teamClassCSS = "blue-team";
                     container.style.backgroundImage = 'url("/resources/images/backgrounds/blue_game_back.png")';
@@ -236,8 +236,7 @@ angular.module('gameView', ['ngRoute'])
 
                 // Set the class image
                 var classNo = UserService.getHeroClass();
-                var classBasePath = "/resources/images/hats/";
-
+                var classBasePath = "/resources/images/hats/";                             
                 if (classNo === 0) {
                     $scope.classImageUrl = classBasePath + "hunter_circle_small.png";
                 } else if (classNo === 1) {

@@ -3,7 +3,7 @@
    Let the player set their username, then move to the game join screen
 */
 angular.module('playerCreationView', ['ngRoute'])
-    .controller('PlayerCreationCtrl', ['$scope', 'UserService', 'LocationService', 'GameInfoService', function ($scope, UserService, LocationService, GameInfoService) {
+    .controller('PlayerCreationCtrl', ['$scope', 'UserService', 'LocationService', 'GameInfoService', 'ClassService', function ($scope, UserService, LocationService, GameInfoService, ClassService) {
 
         // Entered name of the user
         $scope.username = "";
@@ -14,25 +14,48 @@ angular.module('playerCreationView', ['ngRoute'])
         // Controls whether the to allow user to submit the form
         // Disabled waiting for submit to go through 
         var enableSubmit = true;
+        var currentClassSelected = 0;
+        $scope.currentClass = "";
 
         // Variables to control the buttons moving around the page
         $scope.titleTranslate = 60;
-        $scope.formTranslate = 100;
+        $scope.nameFormTranslate = 100;
+        $scope.chooseTranslate = 200;
+        $scope.headerFontSize = 50;
+        $scope.classTranslate = 0;
 
-        var enableFullScreen = true; //SHOULD be TRUE in PROD
+        ClassService.getClasses().then(function (data) {
+            $scope.classes = data;
+            $scope.currentClass = $scope.classes[0].name;
+        });
 
+        var enableFullScreen = false; //SHOULD be TRUE in PROD
         var codeForm = document.getElementById('start-button');
         codeForm.addEventListener("click", fullscreen);
 
         $scope.start = function () {
-            // LocationService.setPath('/create'); // TODO CHANGE THIS 
             $scope.started = true;
             $scope.titleTranslate = 20;
-            $scope.formTranslate = 0;
+            $scope.headerFontSize = 40;
+
+            $scope.nameFormTranslate = 0;
+            $scope.chooseTranslate = 100;
         };
 
+        // Check if name correct and Moves use to the choose class section
+        $scope.setName = function () {
+            if (enableSubmit) {
+                enableSubmit = false;
+                //register with server and send username
+                if ($scope.validname) {
+                    $scope.nameFormTranslate = -100;
+                    $scope.chooseTranslate = 0;
+                }
+            }
+        };
+        
+        // Check the name is valid
         $scope.checkName = function () {
-            console.log($scope.username);
             if ($scope.username === "") {
                 console.log("Please enter a name");
                 $scope.validname = false;
@@ -44,32 +67,42 @@ angular.module('playerCreationView', ['ngRoute'])
             }
         };
 
+        // See next class 
+        $scope.nextClass = function () {
+            if (currentClassSelected < 3) {
+                $scope.classTranslate -= 25;
+                currentClassSelected += 1;
+                $scope.currentClass = $scope.classes[currentClassSelected].name;
+            }
+        };
+
+        $scope.prevClass = function () {
+            if (currentClassSelected > 0) {
+                $scope.classTranslate += 25;
+                currentClassSelected -= 1;
+                $scope.currentClass = $scope.classes[currentClassSelected].name;
+            }
+        };
+
         /* 
             Called when the deploy button selected
                 register username to the server over the socket
                 move to the main game screen
+            Useses the currently selected class and sends that to the server
         */
         $scope.deploy = function () {
 
-            if (enableSubmit) {
-                enableSubmit = false;
-
-                //register with server and send username
-                // TODO save user details, perhaps in the user service
-                if ($scope.validname) {
-                    UserService.registerUserWithServer($scope.username)
-                        .then(function (res) {
-                            console.log(res);
-                            LocationService.setPath(res.path);
-                        }).catch(function (res) {
-                            // name was not right, show the user the error                
-                            console.log(res);
-                            alert(res.message);
-                            enableSubmit = true;
-                        });
-                }
-            }
-
+            //register with server and send username
+            UserService.registerUserWithServer($scope.username, currentClassSelected)
+                .then(function (res) {
+                    console.log(res);
+                    LocationService.setPath(res.path);
+                }).catch(function (res) {
+                    // name was not right, show the user the error                
+                    console.log(res);
+                    alert(res.message);
+                    enableSubmit = true;
+                });
         };
 
         function fullscreen() {

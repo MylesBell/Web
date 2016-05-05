@@ -9,12 +9,16 @@ describe('Game Join page', function () {
         var joinbox = element(by.css('#start-button'));
         var inputBox = element(by.css('#player-name-input-box'));
         var submitButton = element(by.css('#submit-button'));
+        var selectClassButton = element(by.css('#select-class-button'));
+
+
 
         joinbox.click();
         inputBox.click();
         inputBox.sendKeys("Dave");
         submitButton.click();
-
+        selectClassButton.click();
+        
         browser.waitForAngular();
 
         expect(browser.getCurrentUrl()).toBe('http://localhost:7777/#/join');

@@ -26,9 +26,11 @@ describe('Lobby page', function () {
             // Allways allow attempt to register with server
             this.registerUserWithServer = function (name) {
                 var deferred = $q.defer();
-                deferred.resolve({ok: true,
-                        username: name,
-                        path: '/join'});
+                deferred.resolve({
+                    ok: true,
+                    username: name,
+                    path: '/join'
+                });
                 return deferred.promise;
             };
 
@@ -76,8 +78,8 @@ describe('Lobby page', function () {
                     lane: "Left"
                 }];
             };
-            
-            this.getGameState = function(){
+
+            this.getGameState = function () {
                 return 0;
             };
         });
@@ -109,12 +111,15 @@ describe('Lobby page', function () {
         //enter a correct name and move to the game page
         var inputBox = element(by.css('#player-name-input-box'));
         var submitButton = element(by.css('#submit-button'));
-        
+        var selectClassButton = element(by.css('#select-class-button'));
+
+
         joinbox.click();
         inputBox.click();
         inputBox.sendKeys("Dave");
         submitButton.click();
-
+        selectClassButton.click();
+        
         // enter the game code
         inputBox = element(by.css('#game-code-input-box'));
         submitButton = element(by.css('#game-join-button'));

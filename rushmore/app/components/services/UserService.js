@@ -47,7 +47,7 @@ angular.module('UserServiceModule', []).factory('UserService', function ($q, Net
         getHeroClass: getHeroClass
     };
 
-    function attemptToJoinGame(gamecode) {
+    function attemptToJoinGame(gamecode, playerClass) {
         joinPromise = $q.defer();
 
         gamecode = gamecode.trim();
@@ -64,7 +64,8 @@ angular.module('UserServiceModule', []).factory('UserService', function ($q, Net
             // may need much more validtion and details being sent here
             NetworkService.send("playerJoinGame", {
                 gamecode: gamecode,
-                username: username
+                username: username,
+                playerClass: playerClass
             }).catch(function (err) {
                 joinPromise.reject({
                     ok: false,
@@ -82,7 +83,7 @@ angular.module('UserServiceModule', []).factory('UserService', function ($q, Net
         
         If successful, save the userid in the local storage TODO
     */
-    function registerUserWithServer(name) {
+    function registerUserWithServer(name, selectedClass) {
 
         var deferred = $q.defer();
 
@@ -111,7 +112,7 @@ angular.module('UserServiceModule', []).factory('UserService', function ($q, Net
 
                 // optionally skip game code screen and go straight to the game
                 if (ENV.skipCode) {
-                    attemptToJoinGame('abcd').then(function (data) {
+                    attemptToJoinGame('abcd', selectedClass).then(function (data) {
                         if(data.state === 0 || data.state === 1){
                             deferred.resolve({
                                 ok:true,

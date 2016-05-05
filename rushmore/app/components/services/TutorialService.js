@@ -66,7 +66,7 @@ angular.module('myApp').service('TutorialService', function () {
                 tutorialTitle: "Tutorial side not shown",
                 miniLessons: setupSpecialTutorial(specialPowers),
                 tutorialImage: {
-                     image: "../../resources/images/tutorial/backgrounds/" + teamPrefix + "_battle_with_base_background.png",
+                    image: "../../resources/images/tutorial/backgrounds/" + teamPrefix + "_battle_with_base_background.png",
                     offset_x: "80%"
                 },
                 visible: false

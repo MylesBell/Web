@@ -3,7 +3,6 @@ exports.config = {
     specs: [
         "app/views/playerCreation/playerCreationSpec.js",
         "app/views/gameJoin/gameJoinSpec.js",
-        "app/views/game/gameSpec.js",
         "app/views/tutorials/tutorialSpec.js",
         "app/views/lobby/lobbySpec.js"
     ],

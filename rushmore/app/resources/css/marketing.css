@@ -196,6 +196,7 @@ background-color: #87D37C;
     line-height: 1.2em;
     color:white;
     font-size: 70px;
+    height: 20%;
     text-align: center;
     transform: translateY(50%);
     -webkit-transition: all 300ms ;
@@ -205,11 +206,12 @@ background-color: #87D37C;
 
 #main-container h2{
     color:white;
-    font-size: 25px;
+    font-size: 30px;
     margin-bottom: 0px;
     font-weight: 100;
     line-height: 1.2em;
     margin:30px 15px 30px 15px;
+    text-align: center;
 }
 
 #top-container {
@@ -223,6 +225,79 @@ background-color: #87D37C;
    color: white;
    font-size: 20px; 
 }
+
+/*
+//////////////////////////////////////////////////////
+
+    Styles for the CHOOSE CLASS 
+    
+//////////////////////////////////////////////////////
+*/
+
+#choose-class-container {
+    width: 100%;
+    height: 80%;    
+}
+
+#choose-class-container .class-container {
+    height: 70%;
+    width: 400%;
+    display: flex;
+    flex-direction: row;
+    -webkit-transition: all 300ms;
+    -moz-transition: all 300ms;
+    transition: all 300ms;
+}
+
+.single-class-container {
+    width: 25%;
+    height: 100%;
+    margin: 20px;
+}
+
+.single-class-container .class-header{
+    width: 100%;
+    height: 25%;    
+}
+
+.class-header .hat-image {
+    width:100px;
+    height: 100%;
+    padding-left: 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    font-size: 40px;
+    color:white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.single-class-container .class-power {
+    width:100%;
+    height:25%;
+    font-size: 25px;
+    color: white;
+    background-size: contain;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#choose-class-container  #controller-container {
+    font-size: 40px;
+    color: white;
+    height:100px;  
+    margin-top: 40px;  
+}
+
+/*
+////////////////////////////////////////////
+    
+    TUTORIAL stuff
+    
+////////////////////////////////////////////
+*/
 
 #tutorial-container {
     background-color: #446CB3;
@@ -446,6 +521,14 @@ background-color: #87D37C;
 .tutorial-progress-dot-active {
     background-color: white;
 }
+
+/*
+//////////////////////////////////////////////////////
+
+    Styles for the LOBBY 
+    
+//////////////////////////////////////////////////////
+*/
 
 #lobby-container{
     top: 0;
@@ -705,6 +788,7 @@ background-color: #87D37C;
     height:0px;
     padding-bottom: 60%;
     background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .special {
@@ -1020,7 +1104,6 @@ background-color: #87D37C;
 
 #award-text-container {
     width: 100%;
-    margin-top: 20px; 
     height: 15%;
     display: flex;
     flex-flow: row;
@@ -1031,7 +1114,7 @@ background-color: #87D37C;
 }
 
 #award-text-container .arrow{
-    height: 70px;
+    height: 80%;
     width: 70px;
     background-size: contain;
     background-repeat: no-repeat;
@@ -1070,22 +1153,30 @@ background-color: #87D37C;
     }
     
     .splash-container h1 {
-        font-size: 50px;
+        font-size: 40px !important;
     }
     
     #main-container h2{
         margin: 10px 10px 10px 10px;
+        font-size: 20px !important;
     }
     
      #main-container h1{
        font-size: 50px;
     }
     
+    .class-header .hat-image{
+        font-size: 25px;
+    }
+    
+    .single-class-container .class-power {
+        font-size: 20px;
+    }
+    
     .deploy-button {
         font-size: 35px;
         width: 75%;    
-        margin-top: 20px;
-    
+        margin-top: 20px;    
     }
     
     #tutorial-controls {
