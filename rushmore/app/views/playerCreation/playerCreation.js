@@ -73,7 +73,7 @@ angular.module('playerCreationView', ['ngRoute'])
                 $scope.currentClass = $scope.classes[currentClassSelected].name;
             }
 
-        }
+        };
 
         $scope.prevClass = function () {
             if (currentClassSelected > 0) {
@@ -82,7 +82,7 @@ angular.module('playerCreationView', ['ngRoute'])
                 $scope.currentClass = $scope.classes[currentClassSelected].name;
 
             }
-        }
+        };
 
         $scope.checkName = function () {
             console.log($scope.username);

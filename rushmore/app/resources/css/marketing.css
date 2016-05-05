@@ -751,6 +751,7 @@ background-color: #87D37C;
     height:0px;
     padding-bottom: 60%;
     background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .special {
