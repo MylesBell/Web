@@ -23,7 +23,6 @@ angular.module('myApp').service('TutorialService', function () {
         } else if (classNum === 1) {
             className = "HITMAN";
             classImage += "hitman_sm.png";
-
         } else if (classNum === 2) {
             className = "HEALER";
             classImage += "healer_sm.png";

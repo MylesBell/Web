@@ -6,9 +6,9 @@ angular.module('playerCreationView', ['ngRoute'])
     .controller('PlayerCreationCtrl', ['$scope', 'UserService', 'LocationService', 'GameInfoService', 'ClassService', function ($scope, UserService, LocationService, GameInfoService, ClassService) {
 
         // Entered name of the user
-        $scope.username = "";
+        $scope.username = "james";
         // Css class showing wether the input name is valid or not
-        $scope.validname = false;
+        $scope.validname = true;
         $scope.started = false;
 
         // Controls whether the to allow user to submit the form
