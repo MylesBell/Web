@@ -1,7 +1,7 @@
 angular.module('gameView', ['ngRoute'])
     .controller('GameCtrl', ['$scope', "NetworkService", "UserService", "$interval",
-        "SpecialPowerManagerService", "$rootScope", "toastr", 'GameInfoService',
-        function ($scope, NetworkService, UserService, $interval, SpecialPowerManagerService, $rootScope, toastr, GameInfoService) {
+        "SpecialPowerManagerService", "$rootScope", "toastr", 'GameInfoService', 'LocationService',
+        function ($scope, NetworkService, UserService, $interval, SpecialPowerManagerService, $rootScope, toastr, GameInfoService, LocationService) {
 
             $scope.teamClass = UserService.getUserTeam();
             $scope.teamClassCSS = "blue-team";
@@ -11,6 +11,7 @@ angular.module('gameView', ['ngRoute'])
             $scope.timeToRespawn = 5;
             $scope.gameOver = false;
             $scope.winner = "";
+            $scope.winnerTeam = "";
             $scope.specialPowers = UserService.getSpecialPowers();
             $scope.playerLane = UserService.getLane();
             $scope.classImageUrl = "";
@@ -98,6 +99,8 @@ angular.module('gameView', ['ngRoute'])
                     } else if (touchedElementId.indexOf("special") > -1) {
                         // or handle special powers being selected
                         specialUsed(touchedElementId);
+                    } else if(touchedElementId === "stats-button") {
+                        LocationService.setPath('/stats');
                     }
                 }
             });
@@ -118,7 +121,13 @@ angular.module('gameView', ['ngRoute'])
                 }
 
             }
-
+            
+            // Move the user to the stats page
+            $scope.viewStats = function(){
+                console.log("sats");
+                LocationService.setPath('/stats');
+            }
+            
             // Called when The player has died on the server, Change to the respawn screen and start the respawn timer
             // The timeleft is the time from now until when they should respawn (timestamp sent by the server)
             function handleGamePlayerDied(data) {
@@ -140,7 +149,8 @@ angular.module('gameView', ['ngRoute'])
                 vibrate(respawnVibrateTime);
                 setup();
             }           
-
+            
+            handleGameStateUpdate({state:2, winner:1});
             // handle the game state changing to game over
             function handleGameStateUpdate(data) {
                 // Handle game over, set winner

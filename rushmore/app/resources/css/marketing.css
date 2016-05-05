@@ -1075,6 +1075,7 @@ background-color: #87D37C;
     
     #main-container h2{
         margin: 10px 10px 10px 10px;
+        font-size: 20px;
     }
     
      #main-container h1{
@@ -1084,8 +1085,7 @@ background-color: #87D37C;
     .deploy-button {
         font-size: 35px;
         width: 75%;    
-        margin-top: 20px;
-    
+        margin-top: 20px;    
     }
     
     #tutorial-controls {
