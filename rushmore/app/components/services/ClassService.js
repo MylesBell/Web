@@ -14,13 +14,13 @@ angular.module('myApp').factory('ClassService', function ($http, $q) {
             name: "Hitman",
             hatImage: '/resources/images/hats/hitman_circle_small.png',
             description: "I am a hitman",
-            powers: [9, 10, 4],
+            powers: [4, 10, 9],
             powerDesc: []
         },
         {
             name: "Healer",
             hatImage: '/resources/images/hats/healer_circle_small.png',
-            powers: [6, 5, 3],
+            powers: [3, 5, 6],
             powerDesc: []
         },
         {
