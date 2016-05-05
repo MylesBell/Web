@@ -126,7 +126,7 @@ angular.module('gameView', ['ngRoute'])
             $scope.viewStats = function(){
                 console.log("sats");
                 LocationService.setPath('/stats');
-            }
+            };
             
             // Called when The player has died on the server, Change to the respawn screen and start the respawn timer
             // The timeleft is the time from now until when they should respawn (timestamp sent by the server)
