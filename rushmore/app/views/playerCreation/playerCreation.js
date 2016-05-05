@@ -3,7 +3,7 @@
    Let the player set their username, then move to the game join screen
 */
 angular.module('playerCreationView', ['ngRoute'])
-    .controller('PlayerCreationCtrl', ['$scope', 'UserService', 'LocationService', 'GameInfoService', function ($scope, UserService, LocationService, GameInfoService) {
+    .controller('PlayerCreationCtrl', ['$scope', 'UserService', 'LocationService', 'GameInfoService', 'ClassService', function ($scope, UserService, LocationService, GameInfoService, ClassService) {
 
         // Entered name of the user
         $scope.username = "";
@@ -14,7 +14,9 @@ angular.module('playerCreationView', ['ngRoute'])
         // Controls whether the to allow user to submit the form
         // Disabled waiting for submit to go through 
         var enableSubmit = true;
-
+        var currentClassSelected = 0;
+        $scope.currentClass = "";
+        
         // Variables to control the buttons moving around the page
         $scope.titleTranslate = 60;
         $scope.nameFormTranslate = 100;
@@ -22,31 +24,14 @@ angular.module('playerCreationView', ['ngRoute'])
         $scope.headerFontSize = 50;
         $scope.classTranslate = 0;
 
-        $scope.classes = [
-            {
-                name: "Hardhat",
-                hatImage: '/resources/images/hats/hardhat_circle_small.png'
-            },
-            {
-                name: "Healer",
-                hatImage: '/resources/images/hats/healer_circle_small.png'
 
-            },
-            {
-                name: "Hunter",
-                hatImage: '/resources/images/hats/hunter_circle_small.png'
 
-            },
-            {
-                name: "Hitman",
-                hatImage: '/resources/images/hats/hitman_circle_small.png'
-            }
-        ];
-        var currentClassSelected = 0;
-        $scope.currentClass = $scope.classes[0].name;
-
+        ClassService.getClasses().then(function (data) {
+            $scope.classes = data;
+            $scope.currentClass = $scope.classes[0].name;
+        });
+        
         var enableFullScreen = false; //SHOULD be TRUE in PROD
-
         var codeForm = document.getElementById('start-button');
         codeForm.addEventListener("click", fullscreen);
 
@@ -57,7 +42,6 @@ angular.module('playerCreationView', ['ngRoute'])
 
             $scope.nameFormTranslate = 0;
             $scope.chooseTranslate = 0;
-
         };
 
         // Moves use to the choose class section
@@ -103,7 +87,6 @@ angular.module('playerCreationView', ['ngRoute'])
                 move to the main game screen
         */
         $scope.deploy = function () {
-
             if (enableSubmit) {
                 enableSubmit = false;
 
