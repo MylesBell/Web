@@ -21,17 +21,19 @@
             <div class="single-class-container" ng-repeat="class in classes">
                 <div class="class-header">
                     <div class="hat-image" style="background-image:url('{{class.hatImage}}')">
-                        
+                        {{class.name}}
                     </div>
-                    {{class.name}}
                 </div>
-            </div>           
+                <div class="class-power" ng-repeat="power in class.powerDesc">
+                    {{power.name}}
+                </div>
+            </div>
         </div>
 
         <div id="award-text-container">
             <div class="arrow" id="arrow-left" ng-click="prevClass()">
             </div>
-            <h2 style="margin: 20px 0 0 0;width: 60%;text-align: center;">Choose {{currentClass}}</h2>
+            <h2 class="deploy-button" ng-click="deploy()" style="margin: 0px;width: 60%;height:70%;text-align: center;display: flex;align-items: center;justify-content: center;">Choose {{currentClass}}</h2>
             <div class="arrow" id="arrow-right" ng-click="nextClass()">
             </div>
         </div>

@@ -24,8 +24,6 @@ angular.module('playerCreationView', ['ngRoute'])
         $scope.headerFontSize = 50;
         $scope.classTranslate = 0;
 
-
-
         ClassService.getClasses().then(function (data) {
             $scope.classes = data;
             $scope.currentClass = $scope.classes[0].name;
@@ -43,15 +41,15 @@ angular.module('playerCreationView', ['ngRoute'])
             $scope.nameFormTranslate = 0;
             $scope.chooseTranslate = 0;
         };
+        
 
         // Moves use to the choose class section
         $scope.moveToChooseClass = function () {
 
         };
-
+        
         $scope.nextClass = function () {
             if (currentClassSelected < 3) {
-
                 $scope.classTranslate -= 25;
                 currentClassSelected += 1;
                 $scope.currentClass = $scope.classes[currentClassSelected].name;
@@ -64,7 +62,6 @@ angular.module('playerCreationView', ['ngRoute'])
                 $scope.classTranslate += 25;
                 currentClassSelected -= 1;
                 $scope.currentClass = $scope.classes[currentClassSelected].name;
-
             }
         };
 
@@ -85,6 +82,7 @@ angular.module('playerCreationView', ['ngRoute'])
             Called when the deploy button selected
                 register username to the server over the socket
                 move to the main game screen
+            Useses the currently selected class and sends that to the server
         */
         $scope.deploy = function () {
             if (enableSubmit) {
@@ -92,7 +90,7 @@ angular.module('playerCreationView', ['ngRoute'])
 
                 //register with server and send username
                 if ($scope.validname) {
-                    UserService.registerUserWithServer($scope.username)
+                    UserService.registerUserWithServer($scope.username, currentClassSelected)
                         .then(function (res) {
                             console.log(res);
                             LocationService.setPath(res.path);

@@ -34,7 +34,6 @@ angular.module('myApp').factory('ClassService', function ($http, $q) {
 
 
     function getClasses() {
-
         var deferred = $q.defer()
 
         $http.get('/resources/json/specialsList.json').then(function (res) {
@@ -43,14 +42,12 @@ angular.module('myApp').factory('ClassService', function ($http, $q) {
             // Fill out the specials of each class with info
             classes.forEach(function (cl) {
                 cl.powers.forEach(function (powerID) {
-
                     for (var i = 0; i < powerList.length; i++) {
                         if (powerList[i].id === powerID) {
                             cl.powerDesc.push(powerList[i]);
                         }
                     }
-
-                })
+                });
             });
             console.log(classes);
             deferred.resolve(classes);
@@ -58,8 +55,6 @@ angular.module('myApp').factory('ClassService', function ($http, $q) {
 
         return deferred.promise;
     }
-
-    console.log
 
     /* --------------------
         PUBLIC API
