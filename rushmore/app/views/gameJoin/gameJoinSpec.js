@@ -20,7 +20,6 @@ describe('Game Join page', function () {
         selectClassButton.click();
         
         browser.waitForAngular();
-
         expect(browser.getCurrentUrl()).toBe('http://localhost:7777/#/join');
     });
 

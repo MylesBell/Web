@@ -302,7 +302,7 @@ angular.module('gameView')
                 $scope.inputButtonClicked(movDir);
 
                 var backgroundPos = [['30%', '0%'], ['10%', '10%'], ['0%', '30%'], ['-10%', '10%'], ['-30%', '0%'], ['-10%', '-10%'],['0%', '-30%'], ['10%', '-10%']];
-                console.log(movDir);
+                // console.log(movDir);
                 // move the background around
                 // background.style.backgroundPositionX = backgroundPos[movDir][0];
                 // background.style.backgroundPositionY = backgroundPos[movDir][1];
