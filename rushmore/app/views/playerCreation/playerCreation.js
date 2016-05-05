@@ -14,7 +14,7 @@ angular.module('playerCreationView', ['ngRoute'])
         // Controls whether the to allow user to submit the form
         // Disabled waiting for submit to go through 
         var enableSubmit = true;
-        var currentClassSelected = 0;
+        $scope.currentClassSelected = 0;
         $scope.currentClass = "";
 
         // Variables to control the buttons moving around the page
@@ -69,18 +69,18 @@ angular.module('playerCreationView', ['ngRoute'])
 
         // See next class 
         $scope.nextClass = function () {
-            if (currentClassSelected < 3) {
+            if ($scope.currentClassSelected < 3) {
                 $scope.classTranslate -= 25;
-                currentClassSelected += 1;
-                $scope.currentClass = $scope.classes[currentClassSelected].name;
+                $scope.currentClassSelected += 1;
+                $scope.currentClass = $scope.classes[$scope.currentClassSelected].name;
             }
         };
 
         $scope.prevClass = function () {
-            if (currentClassSelected > 0) {
+            if ($scope.currentClassSelected > 0) {
                 $scope.classTranslate += 25;
-                currentClassSelected -= 1;
-                $scope.currentClass = $scope.classes[currentClassSelected].name;
+                $scope.currentClassSelected -= 1;
+                $scope.currentClass = $scope.classes[$scope.currentClassSelected].name;
             }
         };
 
@@ -93,7 +93,7 @@ angular.module('playerCreationView', ['ngRoute'])
         $scope.deploy = function () {
 
             //register with server and send username
-            UserService.registerUserWithServer($scope.username, currentClassSelected)
+            UserService.registerUserWithServer($scope.username, $scope.currentClassSelected)
                 .then(function (res) {
                     console.log(res);
                     LocationService.setPath(res.path);
