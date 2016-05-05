@@ -77,7 +77,7 @@ module.exports = {
             res.joinSuccess = true;
             res.baseMaxHealth = data.baseMaxHealth;
             res.specials = getSpecialData([data.specialOne, data.specialTwo, data.specialThree]);
-            res.lane = data.lane ? "Left" : "Right";
+            res.lane = data.lane ? "Right" : "Left";
             
             // This may be undefined for older unity servers connecting
             if(data.heroClass !== undefined) {
@@ -89,7 +89,7 @@ module.exports = {
             playerWhoJoined.team = data.teamID;
             playerWhoJoined.specials = res.specials;
             playerWhoJoined.heroClass = data.heroClass;
-            playerWhoJoined.lane = data.lane ? "Left" : "Right";
+            playerWhoJoined.lane = data.lane ? "Right" : "Left";
         } else {
             
             if (data.ok === 0) {
@@ -171,7 +171,7 @@ module.exports = {
         var res = {};
         
         res.uID = data.playerID;
-        res.lane = data.lane ? "Left" : "Right";
+        res.lane = data.lane ? "Right" : "Left";
         res.ok = true;
         
         return logger.log(socket, logger.loggableModules.PLAYER_SWITCH_LANE, res);        

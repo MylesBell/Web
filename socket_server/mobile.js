@@ -40,6 +40,7 @@ module.exports = {
             res.gamecode = data.gamecode;
             res.uID = socket.id;
             res.username = data.username;
+            res.playerClass = data.playerClass;
 
             // Add player to the player list
             utils.addPlayerToList(socket.id, playerList, data);
