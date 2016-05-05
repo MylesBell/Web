@@ -23,6 +23,7 @@ angular.module('myApp').service('TutorialService', function () {
         } else if (classNum === 1) {
             className = "HITMAN";
             classImage += "hitman_sm.png";
+
         } else if (classNum === 2) {
             className = "HEALER";
             classImage += "healer_sm.png";
@@ -66,7 +67,7 @@ angular.module('myApp').service('TutorialService', function () {
                 tutorialTitle: "Tutorial side not shown",
                 miniLessons: setupSpecialTutorial(specialPowers),
                 tutorialImage: {
-                     image: "../../resources/images/tutorial/backgrounds/" + teamPrefix + "_battle_with_base_background.png",
+                    image: "../../resources/images/tutorial/backgrounds/" + teamPrefix + "_battle_with_base_background.png",
                     offset_x: "80%"
                 },
                 visible: false
