@@ -139,17 +139,42 @@ angular.module('gameView', ['ngRoute'])
                 $scope.playerDead = false;
                 vibrate(respawnVibrateTime);
                 setup();
-            }
+            }           
 
             // handle the game state changing to game over
             function handleGameStateUpdate(data) {
+                // Handle game over, set winner
                 if (data.state === 2) {
-                    // winner, 1 is blue , 0 is red
+                    // winner, 1 is blue , 0 is red       
                     $scope.gameOver = true;
                     $scope.winnerTeam = data.winner === 0 ? "VIKINGS" : "COWBOYS";
-                    $scope.winner = data.winner;
+
+                    // check if user is in the winning team and set background color as required
+                    if ($scope.teamClass === 'red-team') {
+                        if (data.winner === 0) {
+                            // user is in the winner
+                            $scope.winner = true;
+                            $scope.wonOrLost = "Won!";
+                        } else {
+                            // not the winner
+                            $scope.winner = false;
+                            $scope.wonOrLost = "Lost!";
+                        }
+                    } else {
+                        if (data.winner === 0) {
+                            // user is in the winner
+                            $scope.winner = false;
+                            $scope.wonOrLost = "Lost!";
+                        } else {
+                            // not the winner
+                            $scope.winner = true;
+                            $scope.wonOrLost = "Won!";
+
+                        }
+                    }
+
                 } else if (data.state === 1) {
-                    // game player, remove the game over thing
+                    // game not playing game, remove the game over div
                     $scope.gameOver = false;
                 }
             }
