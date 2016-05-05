@@ -24,6 +24,8 @@ angular.module('myApp')
 
         $scope.currentAward = $scope.awards[Object.keys($scope.awards)[0]].description;
 
+        filterStats();
+
         // Register to listen to players leaving
         NetworkService.registerListener({
             eventName: "gameStateUpdate",
@@ -49,8 +51,6 @@ angular.module('myApp')
             $scope.currentAward = $scope.awards[Object.keys($scope.awards)[currentStep]].description;
         };
 
-        filterStats();
-
         // For each metric in the stats, set the top ranked players
         function filterStats() {
             // For each scoring metric rank all the players
@@ -75,7 +75,10 @@ angular.module('myApp')
         // Handle the Game state changing
         // If game starts playing again, go back to the /game page
         function handleGameStateUpdate(data) {
-
+            alert('Game state updated');
+            if(data.state === 1){
+                LocationService.setPath('/game');
+            }
         }
 
     }]);
