@@ -26,7 +26,12 @@
                     </div>
                 </div>
                 <div class="class-power" ng-repeat="power in class.powerDesc">
-                    {{power.name}}
+                    <div class="class-name">
+                        {{power.name}}
+                    </div>
+                    <div class="class-image" style="background-image:url(/resources/{{power.image}})">
+
+                    </div>
                 </div>
             </div>
         </div>
