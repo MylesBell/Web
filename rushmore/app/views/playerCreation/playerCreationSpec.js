@@ -72,7 +72,6 @@ describe('Player Creation page', function() {
         selectClassButton.click();
 
         browser.waitForAngular();
-        browser.wait();
         expect(browser.getCurrentUrl()).toBe('http://localhost:7777/#/join');
     });
 });
