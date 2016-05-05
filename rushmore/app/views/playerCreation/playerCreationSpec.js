@@ -60,14 +60,16 @@ describe('Player Creation page', function() {
         expect(inputBox.getAttribute('value')).toEqual('James');
     });
 
-    it('entering a valid name moves the user to the game join page', function() {
+    it('entering a valid name moves the user to the class select page', function() {
 
         var inputBox = element(by.css('#player-name-input-box'));
         var submitButton = element(by.css('#submit-button'));
+        var selectClassButton = element(by.css('#select-class-button'));
 
         inputBox.click();
         inputBox.sendKeys("Dave");
         submitButton.click();
+        selectClassButton.click();
 
         expect(browser.getCurrentUrl()).toBe('http://localhost:7777/#/join');
     });

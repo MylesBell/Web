@@ -13,12 +13,15 @@ describe('Tutorial page', function () {
         var joinbox = element(by.css('#start-button'));
         //enter a correct name and move to the game page
         var inputBox = element(by.css('#player-name-input-box'));
-        var submitButton = element(by.css('#submit-button'));
+        var submitButton = element(by.css('#submit-button'));        
+        var selectClassButton = element(by.css('#select-class-button'));
+
 
         joinbox.click();
         inputBox.click();
         inputBox.sendKeys("Dave");
         submitButton.click();
+        selectClassButton.click();
 
         // move to the lobby page
         inputBox = element(by.css('#game-code-input-box'));

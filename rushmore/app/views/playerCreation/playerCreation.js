@@ -52,7 +52,7 @@ angular.module('playerCreationView', ['ngRoute'])
                     $scope.chooseTranslate = 0;
                 }
             }
-        }
+        };
         
         // Check the name is valid
         $scope.checkName = function () {
