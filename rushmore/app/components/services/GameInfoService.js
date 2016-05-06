@@ -72,9 +72,10 @@ angular.module('GameInfoServiceModule', []).factory('GameInfoService', function 
     function getStats() {
         console.log(stats);
         if (stats) {
-            var image_name = "/resources/images/stats/herotypes/";
             // add images to each player in stats
             stats.forEach(function (player) {
+                var image_name = "/resources/images/stats/herotypes/";
+
                 if (player.teamID === 0) {
                     // viking
                     image_name += "viking_";
