@@ -180,7 +180,7 @@ describe('Lobby page', function () {
         }).then(function () {
 
             // Wait for things to happen, idk ()
-            browser.sleep(5000);
+            browser.sleep(2000);
 
             expect(element(by.id('lobby-footer')).getAttribute('class')).toMatch('enabled');
         });

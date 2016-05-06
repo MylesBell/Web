@@ -21,9 +21,6 @@ describe('Tutorial page', function () {
         inputBox.click();
         inputBox.sendKeys("Dave");
         submitButton.click();
-        
-        browser.waitForAngular();
-         
         selectClassButton.click();
 
         // move to the lobby page
