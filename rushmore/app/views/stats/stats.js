@@ -75,7 +75,6 @@ angular.module('myApp')
         // Handle the Game state changing
         // If game starts playing again, go back to the /game page
         function handleGameStateUpdate(data) {
-            alert('Game state updated');
             if(data.state === 1){
                 LocationService.setPath('/game');
             }
