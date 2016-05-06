@@ -58,6 +58,7 @@ angular.module('GameInfoServiceModule', []).factory('GameInfoService', function 
 
     function handleStats(data) {
         stats = data;
+        console.log(data);
     }
 
     function getPlayerList() {
@@ -69,6 +70,7 @@ angular.module('GameInfoServiceModule', []).factory('GameInfoService', function 
     }
 
     function getStats() {
+        console.log(stats);
         if (stats) {
             return stats;
         } else {
