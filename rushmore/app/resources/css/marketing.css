@@ -299,6 +299,10 @@ background-color: #87D37C;
     background-repeat: no-repeat;
 }
 
+#select-class-button {
+    font-size: 15px;
+}
+
 
 #choose-class-container  #controller-container {
     font-size: 40px;
