@@ -14,6 +14,7 @@ angular.module('playerCreationView', ['ngRoute'])
         // Controls whether the to allow user to submit the form
         // Disabled waiting for submit to go through 
         var enableSubmit = true;
+        var enableDeploy = true;
         $scope.currentClassSelected = 0;
         $scope.currentClass = "";
 
@@ -53,7 +54,7 @@ angular.module('playerCreationView', ['ngRoute'])
                 }
             }
         };
-        
+
         // Check the name is valid
         $scope.checkName = function () {
             if ($scope.username === "") {
@@ -91,18 +92,21 @@ angular.module('playerCreationView', ['ngRoute'])
             Useses the currently selected class and sends that to the server
         */
         $scope.deploy = function () {
+            if (enableDeploy) {
+                enableDeploy = false;
+                //register with server and send username
+                UserService.registerUserWithServer($scope.username, $scope.currentClassSelected)
+                    .then(function (res) {
+                        console.log(res);
+                        LocationService.setPath(res.path);
+                    }).catch(function (res) {
+                        // name was not right, show the user the error                
+                        console.log(res);
+                        alert(res.message);
+                        enableDeploy = true;
+                    });
+            }
 
-            //register with server and send username
-            UserService.registerUserWithServer($scope.username, $scope.currentClassSelected)
-                .then(function (res) {
-                    console.log(res);
-                    LocationService.setPath(res.path);
-                }).catch(function (res) {
-                    // name was not right, show the user the error                
-                    console.log(res);
-                    alert(res.message);
-                    enableSubmit = true;
-                });
         };
 
         function fullscreen() {
