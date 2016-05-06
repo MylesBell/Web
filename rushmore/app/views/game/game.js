@@ -150,7 +150,6 @@ angular.module('gameView', ['ngRoute'])
                 setup();
             }           
             
-            handleGameStateUpdate({state:2, winner:1});
             // handle the game state changing to game over
             function handleGameStateUpdate(data) {
                 // Handle game over, set winner
