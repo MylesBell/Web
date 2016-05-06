@@ -9,7 +9,7 @@ angular.module('myApp')
         $scope.currentAward = "";
 
         var podiums = 4;
-        var currentStep = 0;
+        $scope.currentStep = 0;
         var step = 100 / podiums;
         $scope.step = step - 5;
 
@@ -35,20 +35,20 @@ angular.module('myApp')
 
         // Control moving to different leadboard sections
         $scope.next = function () {
-            if (currentStep < podiums - 1) {
+            if ($scope.currentStep < podiums - 1) {
                 $scope.boardTransform -= step;
-                currentStep += 1;
+                $scope.currentStep += 1;
             }
-            $scope.currentAward = $scope.awards[Object.keys($scope.awards)[currentStep]].description;
+            $scope.currentAward = $scope.awards[Object.keys($scope.awards)[$scope.currentStep]].description;
 
         };
 
         $scope.prev = function () {
-            if (currentStep > 0) {
+            if ($scope.currentStep > 0) {
                 $scope.boardTransform += step;
-                currentStep -= 1;
+                $scope.currentStep -= 1;
             }
-            $scope.currentAward = $scope.awards[Object.keys($scope.awards)[currentStep]].description;
+            $scope.currentAward = $scope.awards[Object.keys($scope.awards)[$scope.currentStep]].description;
         };
 
         // For each metric in the stats, set the top ranked players
