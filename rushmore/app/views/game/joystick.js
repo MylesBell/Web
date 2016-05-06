@@ -178,7 +178,10 @@ angular.module('gameView')
                 maxHealth: 1000
             });
         }
-
+        
+        // Force the base to max health when this page is navigated to
+        handleGameBaseChangeHealth({currentBaseHealth:1, maxBaseHealth:1});
+       
         function handleGameBaseChangeHealth(data) {
             // get fraction of health remaining
             var remainingHealthRatio = (data.currentBaseHealth / data.maxBaseHealth);
