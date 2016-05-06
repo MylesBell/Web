@@ -82,18 +82,17 @@ angular.module('GameInfoServiceModule', []).factory('GameInfoService', function 
                     image_name += "cowboy_";
                 }
 
-                if (heroClass === 0) {
+                if (player.heroClass === 0) {
                     image_name += "hunter.png";
-                } else if (heroClass === 1) {
+                } else if (player.heroClass === 1) {
                     image_name += "hitman.png";
-                } else if (heroClass === 2) {
+                } else if (player.heroClass === 2) {
                     image_name += "healer.png";
                 } else {
                     image_name += "hardhat.png";
                 }
 
                 player.image = image_name;
-
             });
 
             return stats;
