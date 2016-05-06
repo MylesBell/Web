@@ -29,9 +29,9 @@ angular.module('playerCreationView', ['ngRoute'])
             $scope.currentClass = $scope.classes[0].name;
         });
 
-        var enableFullScreen = true; //SHOULD be TRUE in PROD
-        var codeForm = document.getElementById('start-button');
-        codeForm.addEventListener("click", fullscreen);
+        // var enableFullScreen = true; //SHOULD be TRUE in PROD
+        // var codeForm = document.getElementById('start-button');
+        // codeForm.addEventListener("click", fullscreen);
 
         $scope.start = function () {
             $scope.started = true;
@@ -118,7 +118,6 @@ angular.module('playerCreationView', ['ngRoute'])
                     mainContainer.webkitRequestFullscreen();
                 }
             }
-
         }
 
     }]);
