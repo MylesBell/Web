@@ -33,7 +33,7 @@
 
 
     <div id="tutorial-controls">
-        <div id="tutorial-prev-button" class="tutorial-controls-button" ng-click="prev()">
+        <div id="tutorial-prev-button" class="tutorial-controls-button" ng-click="prev()" style="-webkit-user-select: none;user-select:none">
             {{prevText}}
         </div>
         <div id="tutorial-progress-indicator">
@@ -41,7 +41,7 @@
                 ng-repeat="tut in tutorials">
             </div>
         </div>
-        <div id="tutorial-next-button" class="tutorial-controls-button" ng-click="next()">
+        <div id="tutorial-next-button" class="tutorial-controls-button" ng-click="next()" style="-webkit-user-select: none;user-select:none">
             {{nextText}}
         </div>
     </div>
