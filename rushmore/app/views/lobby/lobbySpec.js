@@ -118,6 +118,9 @@ describe('Lobby page', function () {
         inputBox.click();
         inputBox.sendKeys("Dave");
         submitButton.click();
+        
+        browser.waitForAngular();
+                
         selectClassButton.click();
         
         // enter the game code
