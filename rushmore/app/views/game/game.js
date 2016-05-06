@@ -99,7 +99,7 @@ angular.module('gameView', ['ngRoute'])
                     } else if (touchedElementId.indexOf("special") > -1) {
                         // or handle special powers being selected
                         specialUsed(touchedElementId);
-                    } else if(touchedElementId === "stats-button") {
+                    } else if (touchedElementId === "stats-button") {
                         LocationService.setPath('/stats');
                     }
                 }
@@ -121,13 +121,13 @@ angular.module('gameView', ['ngRoute'])
                 }
 
             }
-            
+
             // Move the user to the stats page
-            $scope.viewStats = function(){
+            $scope.viewStats = function () {
                 console.log("sats");
                 LocationService.setPath('/stats');
             };
-            
+
             // Called when The player has died on the server, Change to the respawn screen and start the respawn timer
             // The timeleft is the time from now until when they should respawn (timestamp sent by the server)
             function handleGamePlayerDied(data) {
@@ -148,8 +148,8 @@ angular.module('gameView', ['ngRoute'])
                 $scope.playerDead = false;
                 vibrate(respawnVibrateTime);
                 setup();
-            }           
-            
+            }
+
             // handle the game state changing to game over
             function handleGameStateUpdate(data) {
                 // Handle game over, set winner
@@ -231,7 +231,7 @@ angular.module('gameView', ['ngRoute'])
                 var container = document.getElementById('game-container');
 
                 statsContainer.style.backgroundColor = colors.dark;
-                
+
                 if ($scope.teamClass === "blue-team") {
                     $scope.teamClassCSS = "blue-team";
                     container.style.backgroundImage = 'url("/resources/images/backgrounds/blue_game_back.png")';
@@ -245,7 +245,7 @@ angular.module('gameView', ['ngRoute'])
 
                 // Set the class image
                 var classNo = UserService.getHeroClass();
-                var classBasePath = "/resources/images/hats/";                             
+                var classBasePath = "/resources/images/hats/";
                 if (classNo === 0) {
                     $scope.classImageUrl = classBasePath + "hunter_circle_small.png";
                 } else if (classNo === 1) {
@@ -260,10 +260,11 @@ angular.module('gameView', ['ngRoute'])
             // When called, will reduced the time to respawn by 1 each second
             // will clear itself when it gets to 0 BUT not call the respawn, this only on the server's command
             function respawnTimerUpdate() {
-                $scope.timeToRespawn = $scope.timeToRespawn - 1;
                 if ($scope.timeToRespawn <= 0) {
                     $interval.cancel(respawnTimer);
                     console.log("respawn timer is done");
+                } else {
+                    $scope.timeToRespawn = $scope.timeToRespawn - 1;
                 }
             }
 
