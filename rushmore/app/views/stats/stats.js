@@ -16,10 +16,10 @@ angular.module('myApp')
         var userStats = GameInfoService.getStats();
 
         $scope.awards = {
-            deaths: { players: [], description: "Deaths" },
-            gruntKills: { players: [], description: "Grunts Kills" },
             heroKills: { players: [], description: "Hero Kills" },
-            towersCaptured: { players: [], description: "Tower Captures" }
+            gruntKills: { players: [], description: "Grunts Kills" },
+            towersCaptured: { players: [], description: "Tower Captures" },
+            deaths: { players: [], description: "Deaths" }
         };
 
         $scope.currentAward = $scope.awards[Object.keys($scope.awards)[0]].description;
@@ -75,7 +75,7 @@ angular.module('myApp')
         // Handle the Game state changing
         // If game starts playing again, go back to the /game page
         function handleGameStateUpdate(data) {
-            if(data.state === 1){
+            if (data.state === 1) {
                 LocationService.setPath('/game');
             }
         }
