@@ -57,7 +57,7 @@ angular.module('GameInfoServiceModule', []).factory('GameInfoService', function 
     }
 
     function handleStats(data) {
-        stats = data;
+        stats = data.playersStats;
         console.log(data);
     }
 
