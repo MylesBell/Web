@@ -51,7 +51,7 @@ module.exports = {
     	our own version of namespacing
     */
     connect : function(socket, logger){
-        logger.log(socket, logger.loggableModules.CONNECT);
+        logger.log(socket, logger.loggableModules.CONNECT, socket.id);
     },
 
     /*
