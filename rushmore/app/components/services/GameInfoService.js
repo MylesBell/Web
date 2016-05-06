@@ -72,6 +72,30 @@ angular.module('GameInfoServiceModule', []).factory('GameInfoService', function 
     function getStats() {
         console.log(stats);
         if (stats) {
+            var image_name = "/resources/images/stats/herotypes/";
+            // add images to each player in stats
+            stats.forEach(function (player) {
+                if (player.teamID === 0) {
+                    // viking
+                    image_name += "viking_";
+                } else {
+                    image_name += "cowboy_";
+                }
+
+                if (heroClass === 0) {
+                    image_name += "hunter.png";
+                } else if (heroClass === 1) {
+                    image_name += "hitman.png";
+                } else if (heroClass === 2) {
+                    image_name += "healer.png";
+                } else {
+                    image_name += "hardhat.png";
+                }
+
+                player.image = image_name;
+
+            });
+
             return stats;
         } else {
             return [{
@@ -82,7 +106,8 @@ angular.module('GameInfoServiceModule', []).factory('GameInfoService', function 
                 heroKills: 1,
                 towersCaptured: 1,
                 heroClass: 0,
-                teamID: 1
+                teamID: 1,
+                image: " /resources/images/stats/herotypes/viking_hunter.png"
             }, {
                     playerID: 1,
                     username: "Dave",
@@ -91,7 +116,9 @@ angular.module('GameInfoServiceModule', []).factory('GameInfoService', function 
                     heroKills: 4,
                     towersCaptured: 1,
                     heroClass: 0,
-                    teamID: 1
+                    teamID: 1,
+                    image: " /resources/images/stats/herotypes/cowboy_hitman.png"
+
                 }, {
                     playerID: 2,
                     username: "Madjid",
@@ -100,7 +127,8 @@ angular.module('GameInfoServiceModule', []).factory('GameInfoService', function 
                     heroKills: 2,
                     towersCaptured: 2,
                     heroClass: 0,
-                    teamID: 1
+                    teamID: 1,
+                    image: " /resources/images/stats/herotypes/viking_healer.png"
                 }];
         }
     }
