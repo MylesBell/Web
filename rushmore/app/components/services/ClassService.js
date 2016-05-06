@@ -49,7 +49,6 @@ angular.module('myApp').factory('ClassService', function ($http, $q) {
                     }
                 });
             });
-            console.log(classes);
             deferred.resolve(classes);
         });
 
