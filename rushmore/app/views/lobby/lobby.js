@@ -14,7 +14,7 @@ angular.module('myApp')
             $scope.canJoin = false;
             $scope.buttonText = "NOT STARTED YET";
 
-            var enableFullScreen = true; //SHOULD be TRUE in PROD
+            var enableFullScreen = false; //SHOULD be TRUE in PROD
             var codeForm = document.getElementById('lobby-footer');
             codeForm.addEventListener("click", fullscreen);
 

@@ -14,7 +14,9 @@ describe('Game Join page', function () {
 
 
         joinbox.click();
-        inputBox.click();
+        // inputBox.click();
+        browser.executeScript("document.getElementById('player-name-input-box').click()");
+        
         inputBox.sendKeys("Dave");
         submitButton.click();
         selectClassButton.click();

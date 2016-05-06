@@ -104,20 +104,4 @@ angular.module('playerCreationView', ['ngRoute'])
             }
 
         };
-
-        function fullscreen() {
-            if (enableFullScreen) {
-                var mainContainer = document.getElementById('main-container');
-                if (mainContainer.requestFullscreen) {
-                    mainContainer.requestFullscreen();
-                } else if (mainContainer.msRequestFullscreen) {
-                    mainContainer.msRequestFullscreen();
-                } else if (mainContainer.mozRequestFullScreen) {
-                    mainContainer.mozRequestFullScreen();
-                } else if (mainContainer.webkitRequestFullscreen) {
-                    mainContainer.webkitRequestFullscreen();
-                }
-            }
-        }
-
     }]);

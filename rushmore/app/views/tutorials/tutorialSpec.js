@@ -13,14 +13,19 @@ describe('Tutorial page', function () {
         var joinbox = element(by.css('#start-button'));
         //enter a correct name and move to the game page
         var inputBox = element(by.css('#player-name-input-box'));
-        var submitButton = element(by.css('#submit-button'));        
+        var submitButton = element(by.css('#submit-button'));
         var selectClassButton = element(by.css('#select-class-button'));
+        
+        
+        browser.executeScript("document.getElementById('start-button').click()");
 
 
-        joinbox.click();
+        // joinbox.click();
+        browser.waitForAngular();
         inputBox.click();
         inputBox.sendKeys("Dave");
         submitButton.click();
+        browser.waitForAngular();
         selectClassButton.click();
 
         // move to the lobby page
@@ -183,12 +188,12 @@ describe('Tutorial page', function () {
 
     // });
 
-    it("Can go to the lobby page", function () {      
-      
+    it("Can go to the lobby page", function () {
+
         for (var i = 0; i < numTutorials - 1; i++) {
-            element(by.id('tutorial-next-button')).click();            
-        }        
-        
+            element(by.id('tutorial-next-button')).click();
+        }
+
         expect(element(by.binding('nextText')).getText()).toBe("LOBBY");
 
         element(by.id('tutorial-next-button')).click();

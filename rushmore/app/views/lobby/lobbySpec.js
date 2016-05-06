@@ -115,13 +115,18 @@ describe('Lobby page', function () {
 
 
         joinbox.click();
+        
+        browser.waitForAngular();
+        // browser.pause();
         inputBox.click();
         inputBox.sendKeys("Dave");
         submitButton.click();
         
         browser.waitForAngular();
-                
-        selectClassButton.click();
+               
+        browser.executeScript("document.getElementById('select-class-button').click()");
+ 
+        // selectClassButton.click();
         
         // enter the game code
         inputBox = element(by.css('#game-code-input-box'));
@@ -167,8 +172,6 @@ describe('Lobby page', function () {
 
         browser.executeAsyncScript(function () {
             var callback = arguments[arguments.length - 1];
-            console.error("HELLO I'M HERE");
-            console.error(angular.element(document.getElementById('lobby-container')).scope());
             var sc = angular.element(document.getElementById('lobby-container')).scope();
             sc.$emit('gameStateUpdate', {
                 state: 1
