@@ -25,7 +25,7 @@
                         {{class.name}}
                     </div>
                 </div>
-                <div class="class-power" ng-repeat="power in class.powerDesc">
+                <div class="class-power" ng-repeat="power in class.powerDesc | limitTo: 3">
                     <div class="class-name">
                         {{power.name}}
                     </div>
