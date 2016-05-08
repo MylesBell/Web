@@ -18,19 +18,19 @@ angular.module('myApp').service('TutorialService', function () {
         // Set the classname
         if (classNum === 0) {
             className = "HUNTER";
-            classImage += "hunter_sm.png";
+            classImage += "hunter_sm.jpg";
             classText = "Destory your enemies froma distance, becasue you are a bit of a pusyy";
         } else if (classNum === 1) {
             className = "HITMAN";
-            classImage += "hitman_sm.png";
+            classImage += "hitman_sm.jpg";
             classText = "I am a hit man"
         } else if (classNum === 2) {
             className = "HEALER";
-            classImage += "healer_sm.png";
+            classImage += "healer_sm.jpg";
             classText = "I am a healer you fuck"
         } else {
             className = "HARDHAT";
-            classImage += "hardhat_sm.png";
+            classImage += "hardhat_sm.jpg";
             classText = "I am a hardhat you fuck"
         }
 
