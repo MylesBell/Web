@@ -5,7 +5,7 @@
 angular.module('tutorialView', ['ngRoute'])
     .controller('TutorialCtrl', ['$scope', 'ENV', 'UserService', 'LocationService', 'TutorialService', 'GameInfoService', function ($scope, ENV, UserService, LocationService, TutorialService, GameInfoService) {
 
-        $scope.tutorialSteps = 4;
+        $scope.tutorialSteps = 0;
         $scope.currentTutorialIndex = 0;
         $scope.nextText = "NEXT";
         $scope.prevText = "";
@@ -24,8 +24,11 @@ angular.module('tutorialView', ['ngRoute'])
         // Make the tutorials
         $scope.tutorials = TutorialService.makeTutorial(UserService.getHeroClass(), UserService.getUserTeam(), UserService.getSpecialPowers());
         
-        var step = 100 / $scope.tutorials.length;
-
+        document.getElementById('tutorial-sliding-container').style.width = "600%"
+        
+        $scope.tutorialSteps = $scope.tutorials.length;
+        
+        var step = 100 / $scope.tutorialSteps;
 
         $scope.getStyle = function (tut) {
             var style = {

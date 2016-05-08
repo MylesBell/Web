@@ -23,6 +23,7 @@ angular.module('myApp').service('TutorialService', function () {
         } else if (classNum === 1) {
             className = "HITMAN";
             classImage += "hitman_sm.png";
+
         } else if (classNum === 2) {
             className = "HEALER";
             classImage += "healer_sm.png";
@@ -53,6 +54,26 @@ angular.module('myApp').service('TutorialService', function () {
             }, {
                 tutIndex: 2,
                 tutType: "single",
+                tutorialTitle: "Capture towers for your team",
+                tutorialText: "Captured towers make your army bigger!",
+                tutorialImage: {
+                    image: "../../resources/images/tutorial/backgrounds/tower.png", 
+                    offset_x: "80%"
+                },
+                visible: false
+            }, {
+                tutIndex: 3,
+                tutType: "single",
+                tutorialTitle: "Help your team on the other side",
+                tutorialText: "Travel through caves to appear on the opposite screen!",
+                tutorialImage: {
+                    image: "/resources/images/tutorial/backgrounds/cave.png",
+                    offset_x: "80%"
+                },
+                visible: false
+            }, {
+                tutIndex: 4,
+                tutType: "single",
                 tutorialTitle: "You are a " + className,
                 tutorialText: "Use your unique special powers to influence the battle",
                 tutorialImage: {
@@ -61,7 +82,7 @@ angular.module('myApp').service('TutorialService', function () {
                 },
                 visible: false
             }, {
-                tutIndex: 3,
+                tutIndex: 5,
                 tutType: "multi",
                 tutorialTitle: "Tutorial side not shown",
                 miniLessons: setupSpecialTutorial(specialPowers),
