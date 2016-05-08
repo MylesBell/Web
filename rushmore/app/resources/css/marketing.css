@@ -162,7 +162,7 @@ background-color: #87D37C;
 }
 
 .splash-container {
-    background-image: url('../images/backgrounds/polybackground.png');
+    background-image: url('../images/backgrounds/polybackground.jpg');
     height: 100%;
     width: 100%;
     background-size: cover;
@@ -920,7 +920,7 @@ background-color: #87D37C;
 }
 
 #death-container {
-    background-image: url('/resources/images/backgrounds/dead_game_back.png');
+    background-image: url('/resources/images/backgrounds/dead_game_back.jpg');
 }
 
 #game-over-container {
@@ -978,10 +978,10 @@ background-color: #87D37C;
     font-size: 20px;
 }
 .winning-team {
-    background-image: url('/resources/images/backgrounds/winner_game_back.png');
+    background-image: url('/resources/images/backgrounds/winner_game_back.jpg');
 }
 .losing-team {
-    background-image: url('/resources/images/backgrounds/loser_game_back.png'); 
+    background-image: url('/resources/images/backgrounds/loser_game_back.jpg'); 
 }
 
 /*
@@ -997,7 +997,7 @@ background-color: #87D37C;
     height: 100vh;
     padding: 20px 10px 10px 10px;
     background-color: red;
-    background-image: url('/resources/images/backgrounds/stats_back.png');
+    background-image: url('/resources/images/backgrounds/stats_back.jpg');
 }
 
 #leaderboard-container h1 {

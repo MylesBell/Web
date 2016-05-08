@@ -83,9 +83,9 @@ angular.module('tutorialView', ['ngRoute'])
 
             var team = UserService.getUserTeam();
             if (team === 'red-team') {
-                tutorialsControlContainer.style.backgroundImage = "url('../resources/images/backgrounds/red_tut_polybackground.png')";
+                tutorialsControlContainer.style.backgroundImage = "url('../resources/images/backgrounds/red_tut_polybackground.jpg')";
             } else {
-                tutorialsControlContainer.style.backgroundImage = "url('../resources/images/backgrounds/blue_tut_polybackground.png')";
+                tutorialsControlContainer.style.backgroundImage = "url('../resources/images/backgrounds/blue_tut_polybackground.jpg')";
             }
         }
 

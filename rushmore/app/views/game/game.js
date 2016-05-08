@@ -232,10 +232,10 @@ angular.module('gameView', ['ngRoute'])
 
                 if ($scope.teamClass === "blue-team") {
                     $scope.teamClassCSS = "blue-team";
-                    container.style.backgroundImage = 'url("/resources/images/backgrounds/blue_game_back.png")';
+                    container.style.backgroundImage = 'url("/resources/images/backgrounds/blue_game_back.jpg")';
                 } else {
                     $scope.teamClassCSS = "red-team";
-                    container.style.backgroundImage = 'url("/resources/images/backgrounds/red_game_back.png")';
+                    container.style.backgroundImage = 'url("/resources/images/backgrounds/red_game_back.jpg")';
                 }
 
                 container.style.height = "100%";
