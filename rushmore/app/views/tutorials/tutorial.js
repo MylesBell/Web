@@ -28,7 +28,7 @@ angular.module('tutorialView', ['ngRoute'])
         
         $scope.tutorialSteps = $scope.tutorials.length;
         
-        var step = Math.floor(100 / $scope.tutorialSteps);
+        var step = 100 / $scope.tutorialSteps;
 
         $scope.getStyle = function (tut) {
             var style = {
