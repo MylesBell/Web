@@ -70,7 +70,6 @@ angular.module('GameInfoServiceModule', []).factory('GameInfoService', function 
     }
 
     function getStats() {
-        console.log(stats);
         if (stats) {
             // add images to each player in stats
             stats.forEach(function (player) {
