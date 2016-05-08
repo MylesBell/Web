@@ -29,7 +29,6 @@ angular.module('myApp').factory('SpecialPowerManagerService', function($q, $inte
         // Set the cooldown time for the special in miliseconds
         cooldownTime = special.cooldownTime * 1000;
         console.log(special);
-        console.log(cooldownTime);
         
         // Set a cooldown timer for the special before it can be used again
         var specialCooldownTimer = $interval(function() {
