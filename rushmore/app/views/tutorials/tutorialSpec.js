@@ -3,7 +3,7 @@
 describe('Tutorial page', function () {
 
     var tutorialName = "tutorial-";
-    var numTutorials = 4;
+    var numTutorials = 6;
 
     it('can get to the tutorial page', function () {
 
@@ -51,7 +51,7 @@ describe('Tutorial page', function () {
 
     it("Should be " + numTutorials + " tutorial pages", function () {
         element.all(by.repeater('tutorial in tutorials')).then(function (result) {
-            expect(result.length).toBe(4);
+            expect(result.length).toBe(6);
         });
     });
 
