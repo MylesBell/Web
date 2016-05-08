@@ -39,7 +39,7 @@
         <div id="award-text-container">
             <div class="arrow" id="arrow-left" ng-click="prevClass()" ng-style="currentClassSelected === 0 && {'background-image': 'none'}">
             </div>
-            <h3 id="select-class-button" class="deploy-button" ng-click="deploy()" style="margin: 0px;width: 60%;height:70%;text-align: center;display: flex;align-items: center;justify-content: center;">Choose {{currentClass}}</h3>
+            <h3 id="select-class-button" class="deploy-button" ng-click="deploy()" style="margin: 0px;width: 60%;height:70%;text-align: center;display: flex;align-items: center;justify-content: center;-webkit-user-select: none;user-select:none">Choose {{currentClass}}</h3>
             <div class="arrow" id="arrow-right" ng-click="nextClass()" ng-style="currentClassSelected === 3 && {'background-image': 'none'}">
             </div>
         </div>

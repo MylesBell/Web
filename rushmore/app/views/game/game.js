@@ -36,8 +36,6 @@ angular.module('gameView', ['ngRoute'])
 
             setup();
 
-            console.log($scope.specialPowers);
-
             /*
                 Registering for events from the server
             */

@@ -30,10 +30,6 @@ angular.module('playerCreationView', ['ngRoute'])
             $scope.currentClass = $scope.classes[0].name;
         });
 
-        var enableFullScreen = true; //SHOULD be TRUE in PROD
-        var codeForm = document.getElementById('start-button');
-        codeForm.addEventListener("click", fullscreen);
-
         $scope.start = function () {
             $scope.started = true;
             $scope.titleTranslate = 20;
@@ -97,7 +93,6 @@ angular.module('playerCreationView', ['ngRoute'])
                 //register with server and send username
                 UserService.registerUserWithServer($scope.username, $scope.currentClassSelected)
                     .then(function (res) {
-                        console.log(res);
                         LocationService.setPath(res.path);
                     }).catch(function (res) {
                         // name was not right, show the user the error                
@@ -108,21 +103,4 @@ angular.module('playerCreationView', ['ngRoute'])
             }
 
         };
-
-        function fullscreen() {
-            if (enableFullScreen) {
-                var mainContainer = document.getElementById('main-container');
-                if (mainContainer.requestFullscreen) {
-                    mainContainer.requestFullscreen();
-                } else if (mainContainer.msRequestFullscreen) {
-                    mainContainer.msRequestFullscreen();
-                } else if (mainContainer.mozRequestFullScreen) {
-                    mainContainer.mozRequestFullScreen();
-                } else if (mainContainer.webkitRequestFullscreen) {
-                    mainContainer.webkitRequestFullscreen();
-                }
-            }
-
-        }
-
     }]);

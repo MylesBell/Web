@@ -7,7 +7,7 @@
                 <div class="second-place name">
                     {{award.players[1].username}}
                 </div>
-                <div class="second-place player">
+                <div class="second-place player" style="background-image:url({{award.players[1].image}})">
                 </div>
                 <div class="second-place box">
                     <p>2</p>
@@ -17,7 +17,7 @@
                 <div class="first-place name">
                     {{award.players[0].username}}
                 </div>
-                <div class="first-place player">
+                <div class="first-place player" style="background-image:url({{award.players[0].image}})">
                 </div>
                 <div class="first-place box">
                     <p>1</p>
@@ -27,7 +27,7 @@
                 <div class="third-place name">
                     {{award.players[2].username}}
                 </div>
-                <div class="third-place player">
+                <div class="third-place player" style="background-image:url({{award.players[2].image}})">
                 </div>
                 <div class="third-place box">
                     <p>3</p>
@@ -37,10 +37,10 @@
     </div>
 
     <div id="award-text-container">
-        <div class="arrow" id="arrow-left" ng-click="prev()">
+        <div class="arrow" id="arrow-left" ng-click="prev()"ng-style="currentStep === 0 && {'background-image': 'none'}">
         </div>
-        <h2 style="margin: 20px 0 0 0;width: 50%;text-align: center;">{{currentAward}}</h2>
-        <div class="arrow" id="arrow-right" ng-click="next()">
+        <h2 style="margin: 20px 0 0 0;width: 50%;text-align: center;font-size:15px">{{currentAward}}</h2>
+        <div class="arrow" id="arrow-right" ng-click="next()" ng-style="currentStep === 3 && {'background-image': 'none'}">
         </div>
     </div>
 </div>

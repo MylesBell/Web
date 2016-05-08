@@ -19,8 +19,8 @@
                 <div class="tutorial-page-{{tutorial.tutType}}" ng-if="tutorial.tutType === 'multi'">
                     <div class="mini-lesson" ng-repeat="miniLesson in tutorial.miniLessons">
                         <div class="text">
-                            <h2>{{miniLesson.text}}</h2>
-                            <p>{{miniLesson.description}}</p>
+                            <h2 style="font-size:20px;text-align:left">{{miniLesson.text}}</h2>
+                            <p style="font-size:15px">{{miniLesson.description}}</p>
                         </div>
                         <div class="image">
                             <img ng-src="{{miniLesson.image}}" height="100" width="100">
@@ -33,7 +33,7 @@
 
 
     <div id="tutorial-controls">
-        <div id="tutorial-prev-button" class="tutorial-controls-button" ng-click="prev()">
+        <div id="tutorial-prev-button" class="tutorial-controls-button" ng-click="prev()" style="-webkit-user-select: none;user-select:none">
             {{prevText}}
         </div>
         <div id="tutorial-progress-indicator">
@@ -41,7 +41,7 @@
                 ng-repeat="tut in tutorials">
             </div>
         </div>
-        <div id="tutorial-next-button" class="tutorial-controls-button" ng-click="next()">
+        <div id="tutorial-next-button" class="tutorial-controls-button" ng-click="next()" style="-webkit-user-select: none;user-select:none">
             {{nextText}}
         </div>
     </div>

@@ -14,11 +14,12 @@ angular.module('myApp')
             $scope.canJoin = false;
             $scope.buttonText = "NOT STARTED YET";
 
-            window.scrollTo(0, 1);
+            var enableFullScreen = false; //SHOULD be TRUE in PROD
+            var codeForm = document.getElementById('lobby-footer');
+            codeForm.addEventListener("click", fullscreen);
 
             // When the game playing event occurs, move from the lobby to the game screen
             function handleGameStateChange(data) {
-                console.log("Game state chnaged %o", data);
                 if (data.state === 1) { // 1 is playing
                     $scope.canJoin = true;
                     $scope.buttonText = "CLICK TO JOIN GAME";
@@ -62,7 +63,6 @@ angular.module('myApp')
 
             // Can also be called on the route scope, currently used only be testing
             $rootScope.$on('gameStateUpdate', function (e, data) {
-                console.log(data);
                 handleGameStateChange(data);
             });
 
@@ -83,6 +83,21 @@ angular.module('myApp')
                 eventName: "gameStateUpdate",
                 call: handleGameStateChange
             });
+
+            function fullscreen() {
+                if (enableFullScreen) {
+                    var mainContainer = document.getElementById('main-container');
+                    if (mainContainer.requestFullscreen) {
+                        mainContainer.requestFullscreen();
+                    } else if (mainContainer.msRequestFullscreen) {
+                        mainContainer.msRequestFullscreen();
+                    } else if (mainContainer.mozRequestFullScreen) {
+                        mainContainer.mozRequestFullScreen();
+                    } else if (mainContainer.webkitRequestFullscreen) {
+                        mainContainer.webkitRequestFullscreen();
+                    }
+                }
+            }
 
         }
     ]);

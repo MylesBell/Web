@@ -15,7 +15,7 @@ module.exports = {
     /* 
         Player has died in the game
     */
-    gamePlayerDied: function(socket, data, logger) {
+    gamePlayerDied: function (socket, data, logger) {
         var res = {};
         res.ok = true;
         res.uID = data.playerID;
@@ -27,16 +27,22 @@ module.exports = {
     /* 
         Player has respawned in the game
     */
-    gamePlayerRespawn: function(socket, data, logger, playerList) {
+    gamePlayerRespawn: function (socket, data, logger, playerList) {
         var res = {};
         var player;
 
         player = utils.playerFromUID(data.playerID, playerList);
-        player.health = player.maxHealth;
 
-        res.ok = true;
-        res.uID = data.playerID;
-        res.playerHealth = player.maxHealth;
+        if (player) {
+            player.health = player.maxHealth;
+
+            res.ok = true;
+            res.uID = data.playerID;
+            res.playerHealth = player.maxHealth;
+        } else {
+            res.ok = false;
+        }
+
 
         return logger.log(socket, logger.loggableModules.GAME_PLAYER_RESPAWN, res);
     },
@@ -44,7 +50,7 @@ module.exports = {
     /* 
         The game state has been updated
     */
-    gameStateUpdate: function(socket, data, logger) {
+    gameStateUpdate: function (socket, data, logger) {
         var res = {};
         res.ok = false;
 
@@ -60,7 +66,7 @@ module.exports = {
     /* 
         The new player has joined the game
     */
-    gamePlayerJoined: function(socket, data, logger, playerList) {
+    gamePlayerJoined: function (socket, data, logger, playerList) {
         var res = {};
         var playerWhoJoined = {};
 
@@ -78,9 +84,9 @@ module.exports = {
             res.baseMaxHealth = data.baseMaxHealth;
             res.specials = getSpecialData([data.specialOne, data.specialTwo, data.specialThree]);
             res.lane = data.lane ? "Right" : "Left";
-            
+
             // This may be undefined for older unity servers connecting
-            if(data.heroClass !== undefined) {
+            if (data.heroClass !== undefined) {
                 res.heroClass = data.heroClass;
             }
 
@@ -91,7 +97,7 @@ module.exports = {
             playerWhoJoined.heroClass = data.heroClass;
             playerWhoJoined.lane = data.lane ? "Right" : "Left";
         } else {
-            
+
             if (data.ok === 0) {
                 res.ok = true;
                 res.joinSuccess = false;
@@ -107,7 +113,7 @@ module.exports = {
     /*
         A player has moved near to the base
     */
-    gamePlayerNearBase: function(socket, data, logger) {
+    gamePlayerNearBase: function (socket, data, logger) {
         var res = {};
 
         res.uID = data.playerID;
@@ -120,20 +126,24 @@ module.exports = {
     /*
         A player has either gained or lost a unit of health by "amount"
     */
-    gamePlayerChangeHealth: function(socket, data, logger, playerList) {
+    gamePlayerChangeHealth: function (socket, data, logger, playerList) {
         var res = {};
         var player;
 
         player = utils.playerFromUID(data.playerID, playerList);
 
-        //update the players health on the server 
-        player.health = player.health + data.amount;
+        if (player) {
+            //update the players health on the server 
+            player.health = player.health + data.amount;
 
-        // send back the updated health
-        res.uID = player.uID;
-        res.playerHealth = player.health;
-        res.maxHealth = player.maxHealth;
-        res.ok = true;
+            // send back the updated health
+            res.uID = player.uID;
+            res.playerHealth = player.health;
+            res.maxHealth = player.maxHealth;
+            res.ok = true;
+        } else {
+            res.ok = false;
+        }
 
         return logger.log(socket, logger.loggableModules.PLAYER_HEALTH_CHANGE, res);
     },
@@ -141,7 +151,7 @@ module.exports = {
     /*
         Player's base has changed health
     */
-    gameBaseChangeHealth: function(socket, data, logger) {
+    gameBaseChangeHealth: function (socket, data, logger) {
         var res = {};
 
         res.uID = data.playerID;
@@ -150,14 +160,14 @@ module.exports = {
         res.ok = true;
 
         return logger.log(socket, logger.loggableModules.BASE_HEALTH_CHANGE, res);
-    }, 
+    },
 
     /*
         Player has been leveled up
 
         some powers may have increased their cooldowns
     */
-    gamePlayerLevelUp: function(socket, data, logger) {
+    gamePlayerLevelUp: function (socket, data, logger) {
         var res = {};
 
         res.uID = data.playerID;
@@ -166,15 +176,15 @@ module.exports = {
 
         return logger.log(socket, logger.loggableModules.PLAYER_LEVEL_UP, res);
     },
-    
-    gamePlayerSwitchLane: function(socket, data, logger){
+
+    gamePlayerSwitchLane: function (socket, data, logger) {
         var res = {};
-        
+
         res.uID = data.playerID;
         res.lane = data.lane ? "Right" : "Left";
         res.ok = true;
-        
-        return logger.log(socket, logger.loggableModules.PLAYER_SWITCH_LANE, res);        
+
+        return logger.log(socket, logger.loggableModules.PLAYER_SWITCH_LANE, res);
     }
 };
 
@@ -186,7 +196,6 @@ function getSpecialData(specials) {
         for (var i = 0; i < specialsJSON.items.length; i++) {
             var definedSpecial = specialsJSON.items[i];
             if (definedSpecial.id === specials[j]) {
-                console.log(definedSpecial);
                 specialObjects.push(definedSpecial);
             }
         }
