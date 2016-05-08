@@ -23,13 +23,15 @@ angular.module('myApp').service('TutorialService', function () {
         } else if (classNum === 1) {
             className = "HITMAN";
             classImage += "hitman_sm.png";
-
+            classText = "I am a hit man"
         } else if (classNum === 2) {
             className = "HEALER";
             classImage += "healer_sm.png";
+            classText = "I am a healer you fuck"
         } else {
             className = "HARDHAT";
             classImage += "hardhat_sm.png";
+            classText = "I am a hardhat you fuck"
         }
 
         return [{
@@ -55,7 +57,7 @@ angular.module('myApp').service('TutorialService', function () {
                 tutIndex: 2,
                 tutType: "single",
                 tutorialTitle: "Capture towers for your team",
-                tutorialText: "Captured towers make your army bigger!",
+                tutorialText: "Stand beside enemCaptured towers make your army bigger!",
                 tutorialImage: {
                     image: "../../resources/images/tutorial/backgrounds/tower.png", 
                     offset_x: "80%"
@@ -75,7 +77,7 @@ angular.module('myApp').service('TutorialService', function () {
                 tutIndex: 4,
                 tutType: "single",
                 tutorialTitle: "You are a " + className,
-                tutorialText: "Use your unique special powers to influence the battle",
+                tutorialText: classText,
                 tutorialImage: {
                     image: classImage,
                     offset_x: "50%"
