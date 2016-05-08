@@ -5,7 +5,7 @@
             <li ng-repeat="player in bluePlayers = (players | filter: {team: 1})">
               {{player.username}} -- ({{player.lane}} Lane) -- {{getHeroClassName(player.heroClass)}} 
             </li>     
-            <li ng-hide="bluePlayers.length">Nobody's joined the Cowboys team yet :(</li>
+            <li ng-hide="bluePlayers.length">Nobody's joined the Cowboys yet :(</li>
                
         </ul>
     </div>
