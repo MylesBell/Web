@@ -40,7 +40,7 @@ angular.module('myApp').service('TutorialService', function () {
             tutorialTitle: "You are a " + teamPrefix.toUpperCase() + "!",
             tutorialText: "Destroy the " + enemyName + "'S base to win the game",
             tutorialImage: {
-                image: "../../resources/images/tutorial/backgrounds/" + enemyTeamPrefix + "_base.png",
+                image: "../../resources/images/tutorial/backgrounds/" + enemyTeamPrefix + "_base.jpg",
                 offset_x: "50%"
             },
             visible: true
@@ -50,7 +50,7 @@ angular.module('myApp').service('TutorialService', function () {
                 tutorialTitle: "You Auto-Attack enemies beside you",
                 tutorialText: "Defeating enemy grunts and heros will make you stronger!",
                 tutorialImage: {
-                    image: "../../resources/images/tutorial/backgrounds/" + teamPrefix + "_grunt_battle.png", offset_x: "80%"
+                    image: "../../resources/images/tutorial/backgrounds/" + teamPrefix + "_grunt_battle.jpg", offset_x: "80%"
                 },
                 visible: false
             }, {
@@ -59,7 +59,7 @@ angular.module('myApp').service('TutorialService', function () {
                 tutorialTitle: "Capture towers for your team",
                 tutorialText: "Stand beside enemCaptured towers make your army bigger!",
                 tutorialImage: {
-                    image: "../../resources/images/tutorial/backgrounds/tower.png", 
+                    image: "../../resources/images/tutorial/backgrounds/tower.jpg", 
                     offset_x: "80%"
                 },
                 visible: false
@@ -69,7 +69,7 @@ angular.module('myApp').service('TutorialService', function () {
                 tutorialTitle: "Help your team on the other side",
                 tutorialText: "Travel through caves to appear on the opposite screen!",
                 tutorialImage: {
-                    image: "/resources/images/tutorial/backgrounds/cave.png",
+                    image: "/resources/images/tutorial/backgrounds/cave.jpg",
                     offset_x: "80%"
                 },
                 visible: false
@@ -89,7 +89,7 @@ angular.module('myApp').service('TutorialService', function () {
                 tutorialTitle: "Tutorial side not shown",
                 miniLessons: setupSpecialTutorial(specialPowers),
                 tutorialImage: {
-                    image: "../../resources/images/tutorial/backgrounds/" + teamPrefix + "_battle_with_base_background.png",
+                    image: "../../resources/images/tutorial/backgrounds/" + teamPrefix + "_battle_with_base_background.jpg",
                     offset_x: "80%"
                 },
                 visible: false
