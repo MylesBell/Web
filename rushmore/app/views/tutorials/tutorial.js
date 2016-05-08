@@ -24,7 +24,7 @@ angular.module('tutorialView', ['ngRoute'])
         // Make the tutorials
         $scope.tutorials = TutorialService.makeTutorial(UserService.getHeroClass(), UserService.getUserTeam(), UserService.getSpecialPowers());
         
-        document.getElementById('tutorial-sliding-container').style.width = "600%"
+        document.getElementById('tutorial-sliding-container').style.width = "600%";
         
         $scope.tutorialSteps = $scope.tutorials.length;
         

@@ -23,15 +23,15 @@ angular.module('myApp').service('TutorialService', function () {
         } else if (classNum === 1) {
             className = "HITMAN";
             classImage += "hitman_sm.jpg";
-            classText = "I am a hit man"
+            classText = "I am a hit man";
         } else if (classNum === 2) {
             className = "HEALER";
             classImage += "healer_sm.jpg";
-            classText = "I am a healer you fuck"
+            classText = "I am a healer you fuck";
         } else {
             className = "HARDHAT";
             classImage += "hardhat_sm.jpg";
-            classText = "I am a hardhat you fuck"
+            classText = "I am a hardhat you fuck";
         }
 
         return [{
