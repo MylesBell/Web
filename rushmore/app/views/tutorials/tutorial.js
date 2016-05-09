@@ -24,10 +24,13 @@ angular.module('tutorialView', ['ngRoute'])
         // Make the tutorials
         $scope.tutorials = TutorialService.makeTutorial(UserService.getHeroClass(), UserService.getUserTeam(), UserService.getSpecialPowers());
         
-        document.getElementById('tutorial-sliding-container').style.width = "600%";
-        
+        // Prevent user scrolling tutorial with touch
+        (document.getElementById('tutorial-sliding-container')).addEventListener('touchstart', function (e) {
+            e.preventDefault();
+        });
+
         $scope.tutorialSteps = $scope.tutorials.length;
-        
+
         var step = 100 / $scope.tutorialSteps;
 
         $scope.getStyle = function (tut) {
@@ -45,7 +48,7 @@ angular.module('tutorialView', ['ngRoute'])
             } else {
                 LocationService.setPath('/lobby');
             }
-            afterMove();            
+            afterMove();
         };
 
         $scope.prev = function () {
