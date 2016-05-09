@@ -104,7 +104,7 @@
 		"idea": "Invisibility",
 		"description": "Turn into an enemy grunt to go unnoticed.",
 		"filename": "",
-		"cooldownTime": 15.0,
+		"cooldownTime": 18.0,
 		"numberOfUpgrades": 5,
 		"done": true,
 		"image": "images/eye_purple.png"
