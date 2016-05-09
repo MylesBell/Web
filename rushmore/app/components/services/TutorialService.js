@@ -19,19 +19,19 @@ angular.module('myApp').service('TutorialService', function () {
         if (classNum === 0) {
             className = "HUNTER";
             classImage += "hunter_sm.jpg";
-            classText = "Destory your enemies froma distance, becasue you are a bit of a pusyy";
+            classText = "A ranged class that can do big damage from distance, but must avoid close range combat";
         } else if (classNum === 1) {
             className = "HITMAN";
             classImage += "hitman_sm.jpg";
-            classText = "I am a hit man";
+            classText = "A stealthy class with faster speed and ways of getting past opposing players without being detected";
         } else if (classNum === 2) {
             className = "HEALER";
             classImage += "healer_sm.jpg";
-            classText = "I am a healer you fuck";
+            classText = "A slow, heavy class with big attack and lots of health";
         } else {
             className = "HARDHAT";
             classImage += "hardhat_sm.jpg";
-            classText = "I am a hardhat you fuck";
+            classText = " A support class who can heal, and buff stats, of themselves and their teammates";
         }
 
         return [{
@@ -57,7 +57,7 @@ angular.module('myApp').service('TutorialService', function () {
                 tutIndex: 2,
                 tutType: "single",
                 tutorialTitle: "Capture towers for your team",
-                tutorialText: "Stand beside enemCaptured towers make your army bigger!",
+                tutorialText: "Captured towers make your army bigger!",
                 tutorialImage: {
                     image: "../../resources/images/tutorial/backgrounds/tower.jpg", 
                     offset_x: "80%"
