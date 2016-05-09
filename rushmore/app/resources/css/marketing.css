@@ -327,6 +327,7 @@ background-color: #87D37C;
     width: 100%;    
     position: absolute;
     color: white;
+    position: fixed;
 }
 
 #tutorial-sliding-container{
