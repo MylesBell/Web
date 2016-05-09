@@ -8,7 +8,7 @@ angular.module('gameView', ['ngRoute'])
             $scope.nearBase = false;
             $scope.playerDead = false;
             $scope.playerLevel = 1;
-            $scope.timeToRespawn = 5;
+            $scope.timeToRespawn = 10;
             $scope.gameOver = false;
             $scope.winner = "";
             $scope.winnerTeam = "";
