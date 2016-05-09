@@ -427,7 +427,7 @@ background-color: #87D37C;
     height: 15vh;
     width: 100%;
     font-size: 25px;
-    position: fixed;
+    /*position: fixed;*/
     background-color: #3A539B;
     display: -webkit-flex;
     display: -ms-flexbox;
