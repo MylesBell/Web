@@ -173,9 +173,8 @@ background-color: #87D37C;
     color:white;
     font-size: 70px;
     text-align: center;
-    transform: translateY(50%);
-    -webkit-transition: all 300ms ;
-    -moz-transition: all 300ms ;
+    -webkit-transform: translateY(50%);
+            transform: translateY(50%);
     transition: all 300ms ;
 }
 
@@ -199,9 +198,8 @@ background-color: #87D37C;
     font-size: 70px;
     height: 20%;
     text-align: center;
-    transform: translateY(50%);
-    -webkit-transition: all 300ms ;
-    -moz-transition: all 300ms ;
+    -webkit-transform: translateY(50%);
+            transform: translateY(50%);
     transition: all 300ms ;
 }
 
@@ -243,10 +241,12 @@ background-color: #87D37C;
 #choose-class-container .class-container {
     height: 70%;
     width: 400%;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: row;
-    -webkit-transition: all 500ms;
-    -moz-transition: all 500ms;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
     transition: all 500ms;
 }
 
@@ -269,9 +269,15 @@ background-color: #87D37C;
     background-repeat: no-repeat;
     font-size: 40px;
     color:white;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 
 .single-class-container .class-power {
@@ -279,18 +285,30 @@ background-color: #87D37C;
     height:25%;
     font-size: 25px;
     color: white;    
+    display: -webkit-flex;    
+    display: -ms-flexbox;    
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 
 .class-power .class-name{
     width:70%;
     height:100%;
     background-size: contain;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 
 .class-power .class-image{
@@ -333,8 +351,12 @@ background-color: #87D37C;
 #tutorial-sliding-container{
     height: 100%;
     width: 600%;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-around;
+    -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
     transition: all 800ms;
 }
 
@@ -645,8 +667,6 @@ background-color: #87D37C;
     position: absolute;
     width: 100%;
     bottom: 100%;
-    -webkit-transition: all 300ms;
-    -moz-transition: all 300ms;
     transition: all 300ms;
 }
 
@@ -1004,37 +1024,56 @@ background-color: #87D37C;
 
 #leaderboard-container h1 {
     font-size: 50px;
-    transform: translateY(0%);
+    -webkit-transform: translateY(0%);
+            transform: translateY(0%);
 }
 
 #podiums-container {
     height: 60%;
     width:200%;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-around;
-    -webkit-transition: all 500ms ;
-    -moz-transition: all 500ms ;
+    -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
     transition: all 500ms ;
 }
 
 .podium-container {
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
-    flex-flow: row;
-    align-items: flex-end;    
+    -webkit-flex-flow: row;
+        -ms-flex-flow: row;
+            flex-flow: row;
+    -webkit-align-items: flex-end;
+        -ms-flex-align: end;
+            align-items: flex-end;    
     width: 25%;
     height: 100%;
 }
 
 .podium-place {
-    flex: 1;
+    -webkit-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
     text-align: center;
     padding-top: 5px;
     color:white;
     font-size: 40px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     height: 100%;
 }
 
@@ -1044,9 +1083,15 @@ background-color: #87D37C;
 
 .box{
     width: 100%;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 .player {
     width: 100%;
@@ -1060,9 +1105,15 @@ background-color: #87D37C;
 .name{
     width: 100%;
     font-size: 20px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
-    align-items: flex-end;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-align-items: flex-end;
+        -ms-flex-align: end;
+            align-items: flex-end;
 }
 
 .second-place.box{
@@ -1101,9 +1152,15 @@ background-color: #87D37C;
 #award-text-container {
     width: 100%;
     height: 15%;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
-    flex-flow: row;
-    justify-content: space-around;
+    -webkit-flex-flow: row;
+        -ms-flex-flow: row;
+            flex-flow: row;
+    -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
     position: absolute;
     bottom:0;
     left:0;
