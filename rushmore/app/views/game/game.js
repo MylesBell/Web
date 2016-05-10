@@ -129,14 +129,16 @@ angular.module('gameView', ['ngRoute'])
             // Called when The player has died on the server, Change to the respawn screen and start the respawn timer
             // The timeleft is the time from now until when they should respawn (timestamp sent by the server)
             function handleGamePlayerDied(data) {
-
+                // Set and start the the respawn timer 
+                if(!$scope.playerDead){
+                    respawnTimer = $interval(respawnTimerUpdate, 1000);
+                }
+                $scope.playerDead = true;
+                
                 // show the respawn screen
                 $scope.teamClassCSS = "dead-team";
-                $scope.playerDead = true;
                 $scope.timeToRespawn = respawnTime; // should be timeleft
                 vibrate(deathVibrateTime);
-                // Set and start the the respawn timer 
-                respawnTimer = $interval(respawnTimerUpdate, 1000);
             }
 
             // Sent from the server when the player respawns in the game, starts the respawn process
