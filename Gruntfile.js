@@ -50,7 +50,7 @@ module.exports = function (grunt) {
             angular_prod: {                
                 options: {
                     script: 'rushmore/local_server/server.js',
-                    port: '3000' // we port forward all 80 traffic to 3000                
+                    port: '80' // we port forward all 80 traffic to 3000                
                 }
             },
             socket: {
