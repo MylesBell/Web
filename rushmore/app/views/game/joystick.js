@@ -87,8 +87,7 @@ angular.module('gameView')
         var userImageObjLoaded = false;
         var userImageWidth = 30;
         
-        console.log(UserService.getUserTeam());
-        
+       
         if (UserService.getUserTeam() === 'red-team') {
             baseImageObj.src = "/resources/images/base_health_icon_red.png";
         } else {
