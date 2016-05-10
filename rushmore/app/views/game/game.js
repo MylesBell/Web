@@ -131,10 +131,11 @@ angular.module('gameView', ['ngRoute'])
             function handleGamePlayerDied(data) {
                 // Set and start the the respawn timer 
                 if(!$scope.playerDead){
+                    $interval.cancel(respawnTimer);
                     respawnTimer = $interval(respawnTimerUpdate, 1000);
                 }
                 $scope.playerDead = true;
-                
+
                 // show the respawn screen
                 $scope.teamClassCSS = "dead-team";
                 $scope.timeToRespawn = respawnTime; // should be timeleft
