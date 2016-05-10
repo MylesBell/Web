@@ -1,5 +1,5 @@
 angular.module('config', [])
 
-.constant('ENV', {name:'development',socketIOEndpoint:'http://localhost:1337',skipCode:false})
+.constant('ENV', {name:'production',socketIOEndpoint:'http://headgearsofwar.com:1337',skipCode:true})
 
 ;
