@@ -18,6 +18,7 @@ java -jar compiler.jar \
     --js ./rushmore/app/components/services/LocationService.js \
     --js ./rushmore/app/components/services/UserService.js \
     --js ./rushmore/app/components/services/TutorialService.js \
+    --js ./rushmore/app/components/services/ClassService.js \
     --js ./rushmore/app/bower_components/angular-toastr/dist/angular-toastr.tpls.js \
     --js ./rushmore/app/bower_components/ng-idle/angular-idle.js \
     --js ./rushmore/app/bower_components/angular-local-storage/dist/angular-local-storage.js \
