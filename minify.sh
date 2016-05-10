@@ -7,6 +7,7 @@ java -jar compiler.jar \
     --js ./rushmore/app/views/gameJoin/gameJoin.js \
     --js ./rushmore/app/views/lobby/lobby.js \
     --js ./rushmore/app/views/tutorials/tutorial.js \
+    --js ./rushmore/app/views/stats/stats.js \
     --js ./rushmore/app/views/headerBarInfo.js \
     --js ./rushmore/app/components/services/socketFactory.js \
     --js ./rushmore/app/components/services/NetworkService.js \
