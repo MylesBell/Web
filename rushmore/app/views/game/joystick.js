@@ -86,11 +86,13 @@ angular.module('gameView')
         var userImageObj = new Image();
         var userImageObjLoaded = false;
         var userImageWidth = 30;
-
+        
+        console.log(UserService.getUserTeam());
+        
         if (UserService.getUserTeam() === 'red-team') {
-            baseImageObj.src = "../../resources/images/base_health_icon_red.png";
+            baseImageObj.src = "/resources/images/base_health_icon_red.png";
         } else {
-            baseImageObj.src = "../../resources/images/base_health_icon_blue.png";
+            baseImageObj.src = "/resources/images/base_health_icon_blue.png";
         }
 
         // Load the images and redraw the canvas when done
@@ -98,7 +100,7 @@ angular.module('gameView')
             baseImageObjLoaded = true;
             resizeCanvas();
         };
-        userImageObj.src = "../../resources/images/user_health_icon.png";
+        userImageObj.src = "/resources/images/user_health_icon.png";
         userImageObj.onload = function () {
             userImageObjLoaded = true;
             resizeCanvas();
@@ -220,8 +222,8 @@ angular.module('gameView')
             canvas.height = canvas.offsetHeight;
 
             // Get the center coords of the canvas
-            centerX = canvas.width / 2;
-            centerY = canvas.height / 2;
+            centerX = Math.floor(canvas.width / 2);
+            centerY = Math.floor(canvas.height / 2);
 
             // scale pad radius from center
             padRadius = centerX * 0.85;
@@ -390,23 +392,26 @@ angular.module('gameView')
             // get angle from the top (270 degree) position
             var startAngle = ((3 / 2) * Math.PI) + playerHealthRingLength;
             var endAngle = ((3 / 2) * Math.PI) - playerHealthRingLength;
-
+                        
             ctx.fillStyle = teamColors.health.player.remaining;
             ctx.strokeStyle = teamColors.health.player.remaining;
             ctx.lineWidth = 10;
             ctx.beginPath();
-            ctx.arc(centerX, centerY, padRadius * 0.85, endAngle, startAngle, true);
-            ctx.stroke();
-            ctx.drawImage(userImageObj, centerX - userImageWidth / 2, (centerY - padRadius * 0.86) - userImageWidth / 2, userImageWidth, userImageWidth);
+            ctx.arc(centerX, centerY, Math.floor(padRadius * 0.85), endAngle, startAngle, true);
+            ctx.stroke();           
 
+                       
             startAngle = ((3 / 2) * Math.PI) + baseHealthRingLength;
             endAngle = ((3 / 2) * Math.PI) - baseHealthRingLength;
             ctx.strokeStyle = teamColors.health.base.remaining;
             ctx.fillStyle = teamColors.health.base.remaining;
             ctx.beginPath();
-            ctx.arc(centerX, centerY, padRadius * 0.65, endAngle, startAngle, true);
+            ctx.arc(centerX, centerY,  Math.floor(padRadius * 0.65), endAngle, startAngle, true);
             ctx.stroke();
-            ctx.drawImage(baseImageObj, centerX - baseImageWidth / 2, (centerY - padRadius * 0.65) - baseImageWidth / 2, baseImageWidth, baseImageWidth);
+            
+            ctx.drawImage(userImageObj, Math.floor(centerX - userImageWidth / 2),  Math.floor((centerY - padRadius * 0.86) - userImageWidth / 2));
+            ctx.drawImage(baseImageObj, Math.floor(centerX - baseImageWidth / 2), Math.floor((centerY - padRadius * 0.65) - baseImageWidth / 2));
+
         }
 
         // Draw the control pad with the sectors for movement
