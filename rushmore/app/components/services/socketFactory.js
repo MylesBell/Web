@@ -1,4 +1,4 @@
-angular.module('myApp').factory('socket', function(socketFactory, ENV) {
+angular.module('myApp').factory('socket', ["socketFactory", "ENV", function(socketFactory, ENV) {
 
     var myIoSocket = io.connect(ENV.socketIOEndpoint);
 
@@ -7,4 +7,4 @@ angular.module('myApp').factory('socket', function(socketFactory, ENV) {
     });
 
     return mySocket;
-});
+}]);

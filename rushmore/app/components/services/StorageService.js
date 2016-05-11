@@ -2,7 +2,7 @@
     Service that provides an interface to the session and local storage
     of the users browser
 */
-angular.module('myApp').factory('StorageService', function($q,localStorageService ) {
+angular.module('myApp').factory('StorageService', ["$q", "localStorageService", function($q,localStorageService ) {
     
     var get = function(key){
         localStorageService.get(key);
@@ -17,9 +17,9 @@ angular.module('myApp').factory('StorageService', function($q,localStorageServic
         get: get
     };
 
-}).config(function (localStorageServiceProvider) {
+}]).config(["localStorageServiceProvider", function (localStorageServiceProvider) {
   localStorageServiceProvider
     .setPrefix('rushmore')
     .setStorageType('sessionStorage')
     .setNotify(true, true);
-});
+}]);

@@ -1,7 +1,7 @@
 /*
 
 */
-angular.module('myApp').factory('ClassService', function ($http, $q) {
+angular.module('myApp').factory('ClassService', ["$http", "$q", function ($http, $q) {
 
     var classes = [
         {
@@ -63,4 +63,4 @@ angular.module('myApp').factory('ClassService', function ($http, $q) {
         getClasses: getClasses
     };
 
-});
+}]);

@@ -320,6 +320,20 @@ background-color: #87D37C;
 
 #select-class-button {
     font-size: 15px;
+    text-align: center;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+     -ms-user-select: none;
+         user-select: none
 }
 
 
@@ -443,7 +457,7 @@ background-color: #87D37C;
 
 #lessons-container {
     width: 100%;
-    height: 85vh;
+    height: 85%;
 }
 
 #tutorial-controls {
